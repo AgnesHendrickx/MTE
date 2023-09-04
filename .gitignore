@@ -1,3 +1,6 @@
 #Ignore DEMS folder 
 /DEMS/
 
+#Ignore VTU files
+*.vtu
+
