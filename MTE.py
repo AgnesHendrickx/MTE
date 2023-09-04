@@ -134,7 +134,6 @@ if benchmark=='1':
    xend=Lx/2+1e-9
    yend=Ly/2+1e-10
    zend=2
-   #zend=0.02
    #zend=100
    line_nmeas=100
    #plane meas
