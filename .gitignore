@@ -1,5 +1,5 @@
 #Ignore DEMS folder (due to unauthorized)
-/Main/DEMS/
+/*/DEMS/
 
 #Ignore VTU files
 *.vtu
