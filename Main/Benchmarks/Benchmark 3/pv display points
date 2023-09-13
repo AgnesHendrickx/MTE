@@ -1,0 +1,6 @@
+use under "view" -> "find data", 
+then: data producer = 'spiral_meas.vtu'
+element type = 'point'
+ID is one of = '0,1,2,3,5,6,8,11,13,14,16,19,21,24,26,27,29,32,34,35,37,40,42,45,47,48,50,53,55,58,60,61,63,66,68,71,74,76,79,84,87,89,92'
+
+

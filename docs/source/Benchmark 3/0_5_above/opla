@@ -1,0 +1,328 @@
+========================================
+=             ETNA project             =
+========================================
+========================================
+benchmark= 3
+Lx,Ly,Lz= 20 20 20
+nelx,nely,nelz= 60 60 60
+nnx,nny,nnz= 61 61 61
+nel= 216000
+do_plane_measurements= False
+do_line_measurements= False
+do_spiral_measurements= True
+npts_spiral 101
+radius_spiral 10.5
+do_path_measurements= False
+========================================
+grid points setup: 0.294 s
+grid connectivity setup: 0.698 s
+prescribe M vector in domain: 3.713 s
+========================================
+========================================
+========================================
+========================================
+========================================
+doing 0 out of  101
+vol int: 102.835 s
+surf int: 11.296 s
+doing 1 out of  101
+vol int: 96.029 s
+surf int: 6.145 s
+doing 2 out of  101
+vol int: 93.128 s
+surf int: 5.418 s
+doing 3 out of  101
+vol int: 95.011 s
+surf int: 5.387 s
+doing 4 out of  101
+vol int: 99.232 s
+surf int: 5.484 s
+doing 5 out of  101
+vol int: 97.798 s
+surf int: 5.937 s
+doing 6 out of  101
+vol int: 113.086 s
+surf int: 6.837 s
+doing 7 out of  101
+vol int: 107.361 s
+surf int: 6.368 s
+doing 8 out of  101
+vol int: 99.627 s
+surf int: 5.125 s
+doing 9 out of  101
+vol int: 105.954 s
+surf int: 6.282 s
+doing 10 out of  101
+vol int: 104.832 s
+surf int: 5.566 s
+doing 11 out of  101
+vol int: 96.667 s
+surf int: 5.613 s
+doing 12 out of  101
+vol int: 97.199 s
+surf int: 5.459 s
+doing 13 out of  101
+vol int: 95.082 s
+surf int: 4.963 s
+doing 14 out of  101
+vol int: 96.233 s
+surf int: 5.335 s
+doing 15 out of  101
+vol int: 89.334 s
+surf int: 5.031 s
+doing 16 out of  101
+vol int: 90.579 s
+surf int: 5.021 s
+doing 17 out of  101
+vol int: 92.049 s
+surf int: 5.040 s
+doing 18 out of  101
+vol int: 103.804 s
+surf int: 5.178 s
+doing 19 out of  101
+vol int: 95.015 s
+surf int: 5.169 s
+doing 20 out of  101
+vol int: 90.133 s
+surf int: 5.053 s
+doing 21 out of  101
+vol int: 92.401 s
+surf int: 5.107 s
+doing 22 out of  101
+vol int: 89.526 s
+surf int: 5.153 s
+doing 23 out of  101
+vol int: 89.956 s
+surf int: 5.783 s
+doing 24 out of  101
+vol int: 92.466 s
+surf int: 5.944 s
+doing 25 out of  101
+vol int: 97.830 s
+surf int: 5.190 s
+doing 26 out of  101
+vol int: 93.167 s
+surf int: 5.058 s
+doing 27 out of  101
+vol int: 89.334 s
+surf int: 5.650 s
+doing 28 out of  101
+vol int: 94.820 s
+surf int: 5.471 s
+doing 29 out of  101
+vol int: 93.015 s
+surf int: 5.077 s
+doing 30 out of  101
+vol int: 93.532 s
+surf int: 5.058 s
+doing 31 out of  101
+vol int: 96.721 s
+surf int: 5.153 s
+doing 32 out of  101
+vol int: 101.154 s
+surf int: 6.051 s
+doing 33 out of  101
+vol int: 95.626 s
+surf int: 5.138 s
+doing 34 out of  101
+vol int: 90.414 s
+surf int: 5.344 s
+doing 35 out of  101
+vol int: 94.683 s
+surf int: 5.057 s
+doing 36 out of  101
+vol int: 91.330 s
+surf int: 5.106 s
+doing 37 out of  101
+vol int: 95.065 s
+surf int: 5.166 s
+doing 38 out of  101
+vol int: 100.219 s
+surf int: 6.119 s
+doing 39 out of  101
+vol int: 92.240 s
+surf int: 5.279 s
+doing 40 out of  101
+vol int: 91.918 s
+surf int: 5.952 s
+doing 41 out of  101
+vol int: 99.302 s
+surf int: 5.969 s
+doing 42 out of  101
+vol int: 100.360 s
+surf int: 5.089 s
+doing 43 out of  101
+vol int: 101.064 s
+surf int: 6.595 s
+doing 44 out of  101
+vol int: 105.428 s
+surf int: 6.684 s
+doing 45 out of  101
+vol int: 97.111 s
+surf int: 5.034 s
+doing 46 out of  101
+vol int: 89.550 s
+surf int: 5.039 s
+doing 47 out of  101
+vol int: 88.554 s
+surf int: 5.062 s
+doing 48 out of  101
+vol int: 89.250 s
+surf int: 5.369 s
+doing 49 out of  101
+vol int: 89.325 s
+surf int: 5.046 s
+doing 50 out of  101
+vol int: 102.603 s
+surf int: 6.162 s
+doing 51 out of  101
+vol int: 94.497 s
+surf int: 5.911 s
+doing 52 out of  101
+vol int: 104.990 s
+surf int: 6.741 s
+doing 53 out of  101
+vol int: 104.987 s
+surf int: 5.994 s
+doing 54 out of  101
+vol int: 110.000 s
+surf int: 5.163 s
+doing 55 out of  101
+vol int: 97.771 s
+surf int: 6.512 s
+doing 56 out of  101
+vol int: 109.605 s
+surf int: 6.673 s
+doing 57 out of  101
+vol int: 116.171 s
+surf int: 5.543 s
+doing 58 out of  101
+vol int: 105.354 s
+surf int: 6.239 s
+doing 59 out of  101
+vol int: 96.059 s
+surf int: 5.556 s
+doing 60 out of  101
+vol int: 106.652 s
+surf int: 5.835 s
+doing 61 out of  101
+vol int: 97.853 s
+surf int: 5.748 s
+doing 62 out of  101
+vol int: 99.554 s
+surf int: 5.580 s
+doing 63 out of  101
+vol int: 105.292 s
+surf int: 5.579 s
+doing 64 out of  101
+vol int: 108.127 s
+surf int: 5.290 s
+doing 65 out of  101
+vol int: 104.476 s
+surf int: 5.291 s
+doing 66 out of  101
+vol int: 97.298 s
+surf int: 5.254 s
+doing 67 out of  101
+vol int: 107.705 s
+surf int: 6.684 s
+doing 68 out of  101
+vol int: 116.102 s
+surf int: 5.536 s
+doing 69 out of  101
+vol int: 111.708 s
+surf int: 6.623 s
+doing 70 out of  101
+vol int: 91.563 s
+surf int: 5.017 s
+doing 71 out of  101
+vol int: 97.627 s
+surf int: 5.610 s
+doing 72 out of  101
+vol int: 104.622 s
+surf int: 5.082 s
+doing 73 out of  101
+vol int: 98.786 s
+surf int: 5.522 s
+doing 74 out of  101
+vol int: 94.599 s
+surf int: 7.180 s
+doing 75 out of  101
+vol int: 95.594 s
+surf int: 5.545 s
+doing 76 out of  101
+vol int: 97.475 s
+surf int: 5.175 s
+doing 77 out of  101
+vol int: 98.898 s
+surf int: 5.969 s
+doing 78 out of  101
+vol int: 104.426 s
+surf int: 5.114 s
+doing 79 out of  101
+vol int: 92.634 s
+surf int: 5.178 s
+doing 80 out of  101
+vol int: 96.881 s
+surf int: 5.850 s
+doing 81 out of  101
+vol int: 102.560 s
+surf int: 5.490 s
+doing 82 out of  101
+vol int: 90.416 s
+surf int: 4.957 s
+doing 83 out of  101
+vol int: 89.245 s
+surf int: 4.968 s
+doing 84 out of  101
+vol int: 95.782 s
+surf int: 5.494 s
+doing 85 out of  101
+vol int: 96.168 s
+surf int: 5.047 s
+doing 86 out of  101
+vol int: 96.879 s
+surf int: 5.925 s
+doing 87 out of  101
+vol int: 97.000 s
+surf int: 5.541 s
+doing 88 out of  101
+vol int: 92.533 s
+surf int: 5.015 s
+doing 89 out of  101
+vol int: 93.930 s
+surf int: 6.949 s
+doing 90 out of  101
+vol int: 104.233 s
+surf int: 6.210 s
+doing 91 out of  101
+vol int: 96.474 s
+surf int: 5.104 s
+doing 92 out of  101
+vol int: 96.739 s
+surf int: 5.761 s
+doing 93 out of  101
+vol int: 98.917 s
+surf int: 5.519 s
+doing 94 out of  101
+vol int: 92.673 s
+surf int: 5.266 s
+doing 95 out of  101
+vol int: 90.789 s
+surf int: 5.065 s
+doing 96 out of  101
+vol int: 90.697 s
+surf int: 5.132 s
+doing 97 out of  101
+vol int: 90.015 s
+surf int: 5.598 s
+doing 98 out of  101
+vol int: 89.712 s
+surf int: 4.940 s
+doing 99 out of  101
+vol int: 88.047 s
+surf int: 5.143 s
+doing 100 out of  101
+vol int: 90.475 s
+surf int: 4.943 s
+========================================

@@ -1,0 +1,209 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions &#8212; MTE 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="References" href="ref.html" />
+    <link rel="prev" title="Benchmarks" href="benchmarks.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ref.html" title="References"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="benchmarks.html" title="Benchmarks"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Functions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
+<p>you can use the <code class="docutils literal notranslate"><span class="pre">add_referencefield()</span></code> function:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="MTE.add_referencefield">
+<code class="sig-prename descclassname"><span class="pre">MTE.</span></code><code class="sig-name descname"><span class="pre">add_referencefield</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">B0_name</span></span></em>, <em><span class="n"><span class="pre">npath</span></span></em>, <em><span class="n"><span class="pre">B0</span></span></em>, <em><span class="n"><span class="pre">B_si</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MTE.add_referencefield" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns total computed magnetic field, intentsity, inclination and declination
+at all points on a path by</p>
+<ol class="arabic simple">
+<li>rotating vector from model to paleomagnetism coordinate sytem,</li>
+<li>adding a (global) reference field B0</li>
+<li>computing standard PMAG equations <span id="id1">[<a class="reference internal" href="ref.html#id14" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tau10</a>]</span>,</li>
+</ol>
+<p>Next, it writes individual(x,y,z) components of total magnetic field and intensity,
+inclination and declination into file named: <code class="docutils literal notranslate"><span class="pre">measurements_path_refField{BO_name}.ascii</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>B0_name</strong> (<em>string</em>) – Name of reference field (used in writing file)</li>
+<li><strong>npath</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – amount of points on path</li>
+<li><strong>B0</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(3) containing 3 components (0=x;1=y;2=z), components of reference field to be added</li>
+<li><strong>B_si</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,npath), containing components (0=x;1=y;2=z,npath) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each point of the path.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>B_siB0</strong> <em>(array_like(float))</em> - 2D array(3,npath), containing components (0=x;1=y;2=z,npath) of the total magnetic field (anomalous + reference field) at each point of the path.</li>
+<li><strong>In_siB0</strong> <em>(array_like(float))</em> - 1D array(npath), containing intensity of the total magnetic field (anomalous + reference field) at each point of the path.</li>
+<li><strong>Ic_siB0</strong> <em>(array_like(float))</em> - 1D array(npath), containing inclination of the total magnetic field (anomalous + reference field) at each point of the path.</li>
+<li><strong>Dc_siB0</strong> <em>(array_like(float))</em> - 1D array(npath), containing declination of total magnetic field (anomalous + reference field) at each point of the path.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>you can use the <code class="docutils literal notranslate"><span class="pre">topography()</span></code> function:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="MTE.topography">
+<code class="sig-prename descclassname"><span class="pre">MTE.</span></code><code class="sig-name descname"><span class="pre">topography</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">A</span></span></em>, <em><span class="n"><span class="pre">llambda</span></span></em>, <em><span class="n"><span class="pre">cos_dir</span></span></em>, <em><span class="n"><span class="pre">sin_dir</span></span></em>, <em><span class="n"><span class="pre">slopex</span></span></em>, <em><span class="n"><span class="pre">slopey</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MTE.topography" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns topography (height) value at each point defined by x,y coordinates passed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of computation point</li>
+<li><strong>y</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of computation point</li>
+<li><strong>A</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – amplitude of sine function used to approximate wavy topography of ridges and gullies</li>
+<li><strong>llambda</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – wavelength of sine function used to approximate wavy topography of ridges and gullies</li>
+<li><strong>cos_dir</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – cosine of <code class="docutils literal notranslate"><span class="pre">direction</span></code>, that defines the direction of the wave function along the surface (default = for south/north it runs perpendicular to slope, for west/east parallel)</li>
+<li><strong>sin_dir</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – sine of <code class="docutils literal notranslate"><span class="pre">direction</span></code>, that defines the direction of the wave function along the surface (for south/north it runs perpendicular to slope, for west/east parallel)</li>
+<li><strong>slopex</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – the arctan of the angle (in rad) of the surface that defines the slope in x direction  for each respective side <strong>TODO: CHECK ARCTAN?</strong>, used to compute added height due to slope of the flank on each side.</li>
+<li><strong>slopey</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – the arctan of the angle (in rad) of the surface that defines the slope in y direction for each respective side <strong>TODO: CHECK ARCTAN?</strong>, used to compute added height due to slope of the flank on each side.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the height value for the point passed to function for the respective position on the flank (chosen by <code class="docutils literal notranslate"><span class="pre">subbench</span></code>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">scalar(float)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>you can use the <code class="docutils literal notranslate"><span class="pre">compute_analytical_solution()</span></code> function:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="MTE.compute_analytical_solution">
+<code class="sig-prename descclassname"><span class="pre">MTE.</span></code><code class="sig-name descname"><span class="pre">compute_analytical_solution</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">R</span></span></em>, <em><span class="n"><span class="pre">Mx</span></span></em>, <em><span class="n"><span class="pre">My</span></span></em>, <em><span class="n"><span class="pre">Mz</span></span></em>, <em><span class="n"><span class="pre">xcenter</span></span></em>, <em><span class="n"><span class="pre">ycenter</span></span></em>, <em><span class="n"><span class="pre">zcenter</span></span></em>, <em><span class="n"><span class="pre">benchmark</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MTE.compute_analytical_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns analytical solution, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, of the components of the magnetic field for each benchmark.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of computation point</li>
+<li><strong>y</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of computation point</li>
+<li><strong>z</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of computation point</li>
+<li><strong>R</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – radius of the sphere (if applicable)</li>
+<li><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization of magnetized body (constant)</li>
+<li><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization of magnetized body (constant)</li>
+<li><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization of magnetized body (constant)</li>
+<li><strong>xcenter</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of center of the sphere</li>
+<li><strong>ycenter</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of center of the sphere</li>
+<li><strong>zcenter</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of center of the sphere</li>
+<li><strong>benchmark</strong> (<em>string</em>) – number associated with benchmark, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">1D array containing components (0=x;1=y;2=z) produced by the analytical solution for the magnetic field for chosen benchmark (and model setup)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array_like(float)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="benchmarks.html"
+                        title="previous chapter">Benchmarks</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ref.html"
+                        title="next chapter">References</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ref.html" title="References"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="benchmarks.html" title="Benchmarks"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Functions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Agnes.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.1.
+    </div>
+  </body>
+</html>
