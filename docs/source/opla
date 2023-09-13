@@ -1,0 +1,24 @@
+========================================
+=             ETNA project             =
+========================================
+========================================
+benchmark= 1
+Lx,Ly,Lz= 2 2 2
+nelx,nely,nelz= 100 100 100
+nnx,nny,nnz= 101 101 101
+nel= 1000000
+do_plane_measurements= False
+do_line_measurements= True
+xstart,ystart,zstart= 1.000000001 1.0000000001 0.01
+xend,yend,zend= 1.000000001 1.0000000001 2
+line_nmeas= 100
+do_spiral_measurements= False
+do_path_measurements= False
+========================================
+grid points setup: 1.171 s
+grid connectivity setup: 2.928 s
+prescribe M vector in domain: 12.645 s
+========================================
+starting line measurement ...
+doing 0 out of  100
+doing 1 out of  100

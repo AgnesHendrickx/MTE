@@ -1,6 +1,25 @@
-#Ignore DEMS folder 
-/DEMS/
+#Ignore DEMS folder (due to unauthorized)
+/Main/DEMS/
 
 #Ignore VTU files
 *.vtu
+
+#Ignore my folders
+/Overig/
+/Writing/
+/Lit/
+/Oude codes, versies, functions, subroutines/ 
+/Backup/
+
+# Ignore .swp 
+*.swp
+
+# Ignore __pycache__
+/__pycache__/
+
+
+# Ignore other results
+/Main/Path\ results/
+/Main/Tests/
+/Benchmarks/*/other/
 

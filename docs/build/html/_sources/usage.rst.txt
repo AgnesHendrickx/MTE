@@ -1,0 +1,17 @@
+Usage
+=====
+
+.. _installation:
+
+Installation
+------------
+
+| To use MTE code, clone from `github <https://github.com/AgnesHendrickx/MTE/>`_. 
+| To run all (optimized) setups for case study Mount Etna (reproducing) field sites use ``script_etna_full``.
+| Make sure to have python3 and gnuplot installed and updated
+
+.. code-block:: console
+
+   ./script_etna_full > opla
+
+

@@ -1,0 +1,164 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Governing equations &#8212; MTE 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Computational approach" href="computational_approach.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="computational_approach.html" title="Computational approach"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Governing equations</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="governing-equations">
+<span id="ge"></span><h1>Governing equations<a class="headerlink" href="#governing-equations" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Required is the computation of the magnetic field produced by (permanently) magnetized matter outside the source body within an ambient magnetic field.</div>
+<div class="line">The total magnetic field <span class="math notranslate nohighlight">\(\mathbf{B_t(r)}\)</span> at position <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> above the surface of magnetized matter consist of contributions from the initial field <span class="math notranslate nohighlight">\(\mathbf{B_0}\)</span> and the anomalous field <span class="math notranslate nohighlight">\(\mathbf{B_a}\)</span> produced by the underlying magnetized matter</div>
+</div>
+<div class="math notranslate nohighlight" id="equation-bsum">
+<span class="eqno">(1)<a class="headerlink" href="#equation-bsum" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+    \mathbf{B_t(r)} =  \mathbf{B_0} + \mathbf{B_a}
+    \label{eq:Bsum}
+\end{equation}\]</div>
+<div class="line-block">
+<div class="line">We assume the initial field (<span class="math notranslate nohighlight">\(\mathbf{B_0}\)</span>) to be solely the Earth’s magnetic field, uniform and constant above the surface. Thereby disregarding any contribution of solar-induced fields, as these are considered to be insignificant compared to the topography induced anomalies in regular conditions (i.e. absence of geomagnetic storms, etc.) <span id="id1">[<a class="reference internal" href="ref.html#id17" title="C. Baag, C. E. Helsley, Shi-zhe Xu, and B. R. Lienert. Deflection of paleomagnetic directions due to magnetization of the underlying terrain. Journal of Geophysical Research: Solid Earth, 100(B6):10013-10027, 1995. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/95JB00148, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/95JB00148, doi:10.1029/95JB00148.">BHXL95</a>]</span>.</div>
+<div class="line"><br /></div>
+<div class="line">Additionally, we assume the underlying flows to be uniformly magnetized (<span class="math notranslate nohighlight">\(\nabla \cdot \mathbf{M} = 0\)</span>).  In doing so, we ignore any mineralogical or spatial variations within the flow. While we acknowledge the potential significance of such variations, as other studies have demonstrated their effect <span id="id2">[<a class="reference internal" href="ref.html#id33" title="Mads Faurschou Knudsen, Bo Holm Jacobsen, and Niels Abrahamsen. Palaeomagnetic distortion modelling and possible recovery by inversion. Physics of the Earth and Planetary Interiors, 135(1):55 - 73, 2003. URL: http://www.sciencedirect.com/science/article/pii/S0031920102002030, doi:https://doi.org/10.1016/S0031-9201(02)00203-0.">KJA03</a>]</span>, our current focus is solely on topographical influences. Thus, from now on, any use of the term “magnetization” in this manner will imply “uniform magnetization”.</div>
+<div class="line"><br /></div>
+<div class="line">The anomalous field  (<span class="math notranslate nohighlight">\(\mathbf{B_a}\)</span>) is produced by permanently magnetized matter, in this case the volcanic rock. The igneous rock contains magnetic iron-bearing minerals, which form during solidification. During the cooling of the lava flow certain minerals become magnetic and their moments continually flip among the easy axes with a statistical preference for the applied magnetic field. As the lava cools further and the moments become fixed, a thermal remanence (TRM) parallel to the applied field is preserved <span id="id3">[<a class="reference internal" href="ref.html#id14" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tau10</a>]</span>. If these grains are small and the distance is large (i.e. outside of source), the grains can be considered tiny dipoles with a net alignment along some direction <span id="id4">[<a class="reference internal" href="ref.html#id13" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span>. Thus, the magnetization (<span class="math notranslate nohighlight">\(\mathbf{M}\)</span> <span class="math notranslate nohighlight">\([Am^{-1}]\)</span>) of a material, is equal to the magnetic dipole moment (<span class="math notranslate nohighlight">\(\mathbf{m}\)</span>  <span class="math notranslate nohighlight">\([Am^{2}]\)</span>) per unit volume <span class="math notranslate nohighlight">\(V\)</span></div>
+</div>
+<div class="math notranslate nohighlight" id="equation-magnetization">
+<span class="eqno">(2)<a class="headerlink" href="#equation-magnetization" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+    \mathbf{m} = \int\int\int \mathbf{M} \; dV
+\end{equation}\]</div>
+<div class="line-block">
+<div class="line">The magnetic field produced by a single dipole outside the magnetized source is <span id="id5">[<a class="reference internal" href="ref.html#id11" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span></div>
+</div>
+<div class="math notranslate nohighlight" id="equation-sd">
+<span class="eqno">(3)<a class="headerlink" href="#equation-sd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+   {\mathbf {B}_{dip} ({\mathbf {r} })={\frac {\mu _{0}}{4\pi }}\left[{\frac {3\mathbf {r} (\mathbf {m} \cdot \mathbf {r} )}{r^{5}}}-{\frac {\mathbf {m} }{r^{3}}}\right]}
+\end{equation}\]</div>
+<div class="line-block">
+<div class="line">where <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> <span class="math notranslate nohighlight">\([T]\)</span> is the magnetic induction or magnetic flux density,  <span class="math notranslate nohighlight">\(\mu_0\)</span> <span class="math notranslate nohighlight">\([NA^{-2}]\)</span> is the magnetic permeability of a vacuum, and <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> is the vector with length <span class="math notranslate nohighlight">\(r\)</span> <span class="math notranslate nohighlight">\([m]\)</span> from the position of the dipole to the observation point.</div>
+</div>
+<div class="figure align-default" id="id9">
+<span id="figmodel"></span><img alt="_images/Model_final_pmag_light_shadow.png" class="with-border" src="_images/Model_final_pmag_light_shadow.png" />
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">At any given position <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> the resulting field <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> are the sum of the contribution of all elements in the object <span class="math notranslate nohighlight">\(\Omega\)</span>. Axial orientation of model is given, and conventional paleomagnetism orientation is in brackets to visualize the required rotation.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="line-block">
+<div class="line">Following eq. <a class="reference internal" href="#equation-magnetization">(2)</a>, the potential due to a magnetized object can be defined as a summation of the magnetic contribution of the magnetic moments of all volume elements <span class="math notranslate nohighlight">\((dv')\)</span> in this object <a class="reference internal" href="#figmodel"><span class="std std-numref">Fig. 1</span></a>. So, after substituting <a class="reference internal" href="#equation-magnetization">(2)</a> in eq. <a class="reference internal" href="#equation-sd">(3)</a>, see <a class="reference internal" href="app1.html"><span class="doc">Complete derivation of the equations</span></a>, the magnetic induction <span class="math notranslate nohighlight">\(\mathbf{B_a(r)}\)</span> of a magnetized object can be defined as <span id="id6">[<a class="reference internal" href="ref.html#id13" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span></div>
+</div>
+<div class="math notranslate nohighlight" id="equation-btrans">
+<span class="eqno">(4)<a class="headerlink" href="#equation-btrans" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+      \mathbf{B_a(r)} =  \frac{\mu_{0}}{4\pi}\int_V \frac{(-\nabla'\cdot\mathbf{M(r')})\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}dv'
+      + \frac{\mu_{0}}{4\pi}\oint_S \frac{\left(\mathbf{M(r')}\cdot\mathbf{\hat{n}}\right)\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}ds'
+\end{equation}\]</div>
+<div class="line-block">
+<div class="line">where <span class="math notranslate nohighlight">\(\mathbf{\hat{n}}\)</span> is the unit vector normal to the surface <cite>S</cite>, <span class="math notranslate nohighlight">\(\mathbf{r-r'}\)</span> is the distance between the observation point and <cite>ds’</cite> and <cite>dv’</cite> are the surface and volume of the element (<a class="reference internal" href="#figmodel"><span class="std std-numref">Fig. 1</span></a>).</div>
+<div class="line"><span class="math notranslate nohighlight">\(\nabla \cdot \mathbf{M} = 0\)</span> reduces <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> in eq. <a class="reference internal" href="#equation-btrans">(4)</a> to only the surface integral, the second term of the right hand side <span id="id7">[<a class="reference internal" href="ref.html#id10" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>, <a class="reference internal" href="ref.html#id11" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span>.</div>
+<div class="line">Physically this can be viewed as the cancellation of the current of the neighboring atomic dipoles, which happens everywhere inside of uniform magnetized object except on the edges of the body <span id="id8">[<a class="reference internal" href="ref.html#id11" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span>.</div>
+</div>
+<div class="line-block">
+<div class="line">Finally, we can define the total magnetic field at a position <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> above the surface as</div>
+</div>
+<div class="math notranslate nohighlight" id="equation-bsumfinal">
+<span class="eqno">(5)<a class="headerlink" href="#equation-bsumfinal" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+    \mathbf{B_t(r)} =  \mathbf{B_0} + \frac{\mu_{0}}{4\pi}\oint_S \frac{\left(\mathbf{M(r')}\cdot\mathbf{\hat{n}}\right)\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}ds'
+\end{equation}\]</div>
+<div class="line-block">
+<div class="line">where <span class="math notranslate nohighlight">\(\mathbf{B_0}\)</span> is the reference field outside the body.</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="previous chapter">Usage</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="computational_approach.html"
+                        title="next chapter">Computational approach</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/governing_equations.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="computational_approach.html" title="Computational approach"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Governing equations</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Agnes.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.1.
+    </div>
+  </body>
+</html>
