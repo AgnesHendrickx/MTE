@@ -14,6 +14,7 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Parameters" href="parameters.html" />
@@ -46,34 +47,21 @@
 <p>Given that the majority of lava flows are located on the flanks of volcanoes, simulating volcanic flanks is a relevant and intuitive starting point for our initial generic modeling setup. While the magnetization direction remains consistent, the dip direction of the surfaces on these flanks varies. To explore the impact of these variances, we established a model setup dedicated to flank simulations, as illustrated in Figure ref{fig:flanksim}. In our approach, the flank topography is emulated using a sine approximation on a slope, with the sine function capturing the characteristic ridges and gullies of volcanic topography.</p>
 <p>In these simulations, a wide range of parameters can be adjusted to investigate their influence on the magnetic field. These include the surface slope, the amplitude and wavelength of the sine function, and the angle between the sine wave’s direction and either the x-axis or y-axis—depending on the flank, as depicted in Figure ref{fig:bdeg}.</p>
 <p>For alignment with our case study, parameter estimates aiming to replicate the ridges and gullies of Mount Etna were derived from aerial images and Digital Elevation Models (DEMs). The estimated amplitude, wavelength, and angle for the slope were 8m, 25m, and 6 degree, respectively.</p>
-<p>Flank simulations were done using a domain of 250x250x20m with 375x375x10 elements (per predetermined required parameters), with computation done a path of 47 points located one meter above the center of the domain. The sine wave was shifted to create the exact same topography underneath the path at the center of each flanks.</p>
-<p>begin{figure}
-centering</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>includegraphics[width=0.5textwidth]{Afbeeldingen/flanksim/flanks2edit.png}</dt><dd>caption{Flank simulation on the Etna. ($mathbf{M}$) = 7.5 $A/m$ (arrows). The slope ($a$ in Figure, $sf$ in code) is 0.15. The computations of the magnetic field ($mathbf{B}$) above the flanks are done on a plane and path. The flanks are numbered as displayed. For visual display the size of the domain here is much smaller than in the test.}
-label{fig:flanksim}</dd>
-</dl>
-</div></blockquote>
-<p>end{figure}
-begin{figure}
-centering</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>includegraphics[width=8cm]{Afbeeldingen/methods/bdegflank.png}</dt><dd>caption{$bdeg$ is ang{-31}, an example of a variation possible while doing flank simulations tests.}
-label{fig:bdeg}</dd>
-</dl>
-</div></blockquote>
-<p>end{figure}
-begin{figure}
-centering</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>includegraphics[width=8cm]{Afbeeldingen/flanksim/s3_p1_pathdem3.png}</dt><dd>caption{A topography based on field path of site 3, path 1, iterated 7 times, on the North flank of Mt. Etna. The surface is placed on a slope with $sf$=0.15 dipping north.}
-label{fig:dempath}</dd>
-</dl>
-</div></blockquote>
-<p>end{figure}</p>
+<p>Flank simulations were done using a domain of 250x250x20m with 375x375x10 elements (upon careful consideration, see section <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a>), with computation done a path of 47 points located one meter above the center of the domain. The sine wave was shifted to create the exact same topography underneath the path at the center of each flanks.</p>
+<div class="figure align-default" id="id2">
+<span id="flanksim"></span><img alt="_images/flanks2edit.png" class="with-border" src="_images/flanks2edit.png" />
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Flank simulation on the Etna. (<span class="math notranslate nohighlight">\(\mathbf{M}\)</span>) = <span class="math notranslate nohighlight">\(7.5 [A/m]\)</span> (arrows). The slope (<span class="math notranslate nohighlight">\(a\)</span> in <code class="xref std std-numref docutils literal notranslate"><span class="pre">flanksim</span></code>) is  <span class="math notranslate nohighlight">\(6 \degree\)</span>. The computations of the magnetic field (<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>) above the flanks are done at point composing either a path or a plane above each flank. The flanks are labeled as displayed. Please note, for visual purposes, a different extent and resolution of the mesh was chosen for the displayed mesh, not adhering the optimized testing setup outlined before and in section <span class="xref std std-ref">parameters</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id3">
+<span id="bdeg"></span><img alt="_images/bdegflank.png" class="with-border" src="_images/bdegflank.png" />
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Direction on south flank is <span class="math notranslate nohighlight">\(-31 ^{\circ}\)</span>, an example of a variation possible while doing flank simulations tests.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<div class="legend">
+</div>
+</div>
+<div class="figure align-default" id="id4">
+<span id="id1"></span><img alt="figures/dempath.png" class="with-border" src="figures/dempath.png" />
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">A topography based on field path of site 3, path 1, iterated 7 times, on the North flank of Mt. Etna. The surface is placed on a slope with <span class="math notranslate nohighlight">\(6 ^{\circ}\)</span> dipping north.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 
 
