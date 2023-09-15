@@ -47,12 +47,24 @@
 <span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">To use MTE code, clone from <a class="reference external" href="https://github.com/AgnesHendrickx/MTE/">github</a>.</div>
-<div class="line">To run all (optimized) setups for case study Mount Etna (reproducing) field sites use <code class="docutils literal notranslate"><span class="pre">script_etna_full</span></code>.</div>
-<div class="line">Make sure to have python3 and gnuplot installed and updated</div>
+<div class="line">Make sure to have python3 and gnuplot installed and updated.</div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./script_etna_full &gt; opla</span>
-</pre></div>
 </div>
+<div class="section" id="general-outline-hierarchy-of-code">
+<h2>General outline (hierarchy) of code<a class="headerlink" href="#general-outline-hierarchy-of-code" title="Permalink to this headline">¶</a></h2>
+<p>The main body of code is called <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, here one can change model setup for different benchmarks, modify meshing, etc.
+It calls upon two modules composed of various functions:</p>
+<ol class="arabic simple">
+<li>The computational module <code class="docutils literal notranslate"><span class="pre">magnetostatics.py</span></code>, containing mostly translation of original Fortran77 code from <span id="id2">[<a class="reference internal" href="ref.html#id10" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
+<li>The visualization module <code class="docutils literal notranslate"><span class="pre">tools.py</span></code>, containing functions to produce vtu files.</li>
+</ol>
+<p>Furthermore, two other (optional) modules are available only for the Mount Etna case study, where the field sites of <span id="id3">[<a class="reference internal" href="ref.html#id9" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span> are reproduced:</p>
+<ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">set_measurement_parameters</span> <span class="pre">import.py</span></code>, which contains one function (see <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a>) that returns DEM, site and path specific values like <code class="docutils literal notranslate"><span class="pre">pathfile</span></code>, number of points, IGRF, and more, see <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a>, from input.</li>
+<li><code class="docutils literal notranslate"><span class="pre">etna.py</span></code>, where one defines the input parameters, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>, to run different options to reproduce field paths, and calling <code class="docutils literal notranslate"><span class="pre">set_measurement_parameters</span> <span class="pre">import.py</span></code></li>
+</ol>
+<p>Lastly, there are two scripts that automatically modify <code class="docutils literal notranslate"><span class="pre">etna.py</span></code>, <code class="docutils literal notranslate"><span class="pre">script_etna_full.sh</span></code>, and <code class="docutils literal notranslate"><span class="pre">script_etna.sh</span></code>, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a> for more information.</p>
+<p>Please see each respective section for specific usage of the code: <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, <a class="reference internal" href="flanksim.html"><span class="doc">Synthetic topopography: flank simulations</span></a>, <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> and <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</p>
 </div>
 </div>
 
@@ -70,6 +82,7 @@
   <ul>
 <li><a class="reference internal" href="#">Usage</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#general-outline-hierarchy-of-code">General outline (hierarchy) of code</a></li>
 </ul>
 </li>
 </ul>

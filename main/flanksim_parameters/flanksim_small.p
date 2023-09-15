@@ -1,16 +1,11 @@
-loc1 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/north/250_250_600/measurements_line_plotfile.ascii'
-loc2 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/east/250_250_600/measurements_line_plotfile.ascii'
-loc3 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/south/250_250_600/measurements_line_plotfile.ascii'
-loc4 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/west/250_250_600/measurements_line_plotfile.ascii'
-loc5 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/north/250_250_600/measurements_path_refFieldIGRF.ascii'
-loc6 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/east/250_250_600/measurements_path_refFieldIGRF.ascii'
-loc7 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/south/250_250_600/measurements_path_refFieldIGRF.ascii'
-loc8 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/west/250_250_600/measurements_path_refFieldIGRF.ascii'
-
-loc9 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/south/250_250_20/measurements_line_plotfile.ascii'
-loc10 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/east/250_250_20/measurements_line_plotfile.ascii'
-loc11 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/south/250_250_20/measurements_path_refFieldIGRF.ascii'
-loc12 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/east/250_250_20/measurements_path_refFieldIGRF.ascii'
+loc1 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/north/measurements_line_plotfile.ascii'
+loc2 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/east/measurements_line_plotfile.ascii'
+loc3 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/measurements_line_plotfile.ascii'
+loc4 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/west/measurements_line_plotfile.ascii'
+loc5 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/north/measurements_path_refFieldIGRF.ascii'
+loc6 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/east/measurements_path_refFieldIGRF.ascii'
+loc7 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/measurements_path_refFieldIGRF.ascii'
+loc8 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/west/measurements_path_refFieldIGRF.ascii'
 
 #IGRFx=26850.3e-9
 #IGRFy=1561.2e-9
@@ -31,7 +26,7 @@ set grid back ytics ls 12
 set y2range[-6:6]
 set y2tics -6,1
 set tics out font "courier,14"
-set xrange[100:150]
+set xrange[0:50]
 
 set style line 1 lw 2 lc "grey40"
 set style line 2 lw 3 lc rgb '#000000' dt (50,4,2,4)
@@ -39,8 +34,6 @@ set style line 3 lw 3 lc rgb '#d55e00' dt (50,4,2,4)
 set style line 4 pt 2 lw 2 lc rgb '#0072b2'
 set style line 5 pt 4 lw 2 lc rgb '#009e73' 
 set style line 6 pt 6 lw 2 lc rgb '#d55e00'
-set style line 15 pt 3 dt (50,4,2,4) lw 2 lc rgb '#009e73' 
-set style line 16 pt 5 dt (50,4,2,4) lw 2 lc rgb '#d55e00'
 set style line 7 pt 8 lw 2 lc rgb '#f0e442'
 
 
@@ -63,8 +56,6 @@ plot loc1 u 1:($4*1e6) w l ls 1 t "IGRF int" axis x1y1,\
      loc1 u 1:($7*1e6) w lp ls 7 t "North flank" axis x1y1,\
      loc2 u 2:($7*1e6) w lp ls 6 t "East flank" axis x1y1,\
      loc3 u 1:($7*1e6) w lp ls 5 t "South flank" axis x1y1,\
-     loc10 u 2:($7*1e6) w lp ls 16 t "East flank D20m" axis x1y1,\
-     loc9 u 1:($7*1e6) w lp ls 15 t "South flank D20m" axis x1y1,\
      loc4 u 2:($7*1e6) w lp ls 4 t "West flank" axis x1y1
 
 set output 'flanksimIc.png'
@@ -75,8 +66,6 @@ plot loc1 u 1:5 w l ls 1 t "IGRF inc" axis x1y1,\
      loc1 u 1:8 w lp ls 7 t "North flank" axis x1y1,\
      loc2 u 2:8 w lp ls 6 t "East flank" axis x1y1,\
      loc3 u 1:8 w lp ls 5 t "South flank" axis x1y1,\
-     loc10 u 2:8 w lp ls 16 t "East flank D20m" axis x1y1,\
-     loc9 u 1:8 w lp ls 15 t "South flank D20m" axis x1y1,\
      loc4 u 2:8 w lp ls 4 t "West flank" axis x1y1
 
 
@@ -89,8 +78,6 @@ plot loc1 u 1:6 w l ls 1 t "IGRF dec" axis x1y1,\
      loc1 u 1:9 w lp ls 7 t "North flank" axis x1y1,\
      loc2 u 2:9 w lp ls 6 t "East flank" axis x1y1,\
      loc3 u 1:9 w lp ls 5 t "South flank" axis x1y1,\
-     loc10 u 2:9 w lp ls 16 t "East flank D20m" axis x1y1,\
-     loc9 u 1:9 w lp ls 15 t "South flank D20m" axis x1y1,\
      loc4 u 2:9 w lp ls 4 t "West flank" axis x1y1
 ###########################################
 set terminal pngcairo size 1200,1800
@@ -103,8 +90,6 @@ plot loc1 u 1:($4*1e6) w l ls 1 t "IGRF int" axis x1y1,\
      loc1 u 1:($7*1e6) w lp ls 7 t "North flank" axis x1y1,\
      loc2 u 2:($7*1e6) w lp ls 6 t "East flank" axis x1y1,\
      loc3 u 1:($7*1e6) w lp ls 5 t "South flank" axis x1y1,\
-     loc10 u 2:($7*1e6) w lp ls 16 t "East flank D20m" axis x1y1,\
-     loc9 u 1:($7*1e6) w lp ls 15 t "South flank D20m" axis x1y1,\
      loc4 u 2:($7*1e6) w lp ls 4 t "West flank" axis x1y1
 
 set ylabel font "courier,12" 'Inclination (degree)'
@@ -113,8 +98,6 @@ plot loc1 u 1:5 w l ls 1 t "IGRF inc" axis x1y1,\
      loc1 u 1:8 w lp ls 7 t "North flank" axis x1y1,\
      loc2 u 2:8 w lp ls 6 t "East flank" axis x1y1,\
      loc3 u 1:8 w lp ls 5 t "South flank" axis x1y1,\
-     loc10 u 2:8 w lp ls 16 t "East flank D20m" axis x1y1,\
-     loc9 u 1:8 w lp ls 15 t "South flank D20m" axis x1y1,\
      loc4 u 2:8 w lp ls 4 t "West flank" axis x1y1
 
 set ylabel font "courier,12" 'Declination (degree)'
@@ -123,8 +106,6 @@ plot loc1 u 1:6 w l ls 1 t "IGRF dec" axis x1y1,\
      loc1 u 1:9 w lp ls 7 t "North flank" axis x1y1,\
      loc2 u 2:9 w lp ls 6 t "East flank" axis x1y1,\
      loc3 u 1:9 w lp ls 5 t "South flank" axis x1y1,\
-     loc10 u 2:9 w lp ls 16 t "East flank D20m" axis x1y1,\
-     loc9 u 1:9 w lp ls 15 t "South flank D20m" axis x1y1,\
      loc4 u 2:9 w lp ls 4 t "West flank" axis x1y1
 unset multiplot
 ###########################################
@@ -140,8 +121,6 @@ plot (26850.3e-3) w l ls 1 t "IGRFx" axis x1y1,\
      loc5 u 0:($1*1e6) w lp ls 7 t "North flank" axis x1y1,\
      loc6 u 0:($1*1e6) w lp ls 6 t "East flank" axis x1y1,\
      loc7 u 0:($1*1e6) w lp ls 5 t "South flank" axis x1y1,\
-     loc12 u 0:($1*1e6) w lp ls 16 t "East flank D20m" axis x1y1,\
-     loc11 u 0:($1*1e6) w lp ls 15 t "South flank D20m" axis x1y1,\
      loc8 u 0:($1*1e6) w lp ls 4 t "West flank" axis x1y1
 
 set ylabel font "courier,12" 'By (Easting) ({/Symbol m}T)'
@@ -150,8 +129,6 @@ plot (1561.2e-3) w l ls 1 t "IGRFy" axis x1y1,\
      loc5 u 0:($2*1e6) w lp ls 7 t "North flank" axis x1y1,\
      loc6 u 0:($2*1e6) w lp ls 6 t "East flank" axis x1y1,\
      loc7 u 0:($2*1e6) w lp ls 5 t "South flank" axis x1y1,\
-     loc12 u 0:($2*1e6) w lp ls 16 t "East flank D20m" axis x1y1,\
-     loc11 u 0:($2*1e6) w lp ls 15 t "South flank D20m" axis x1y1,\
      loc8 u 0:($2*1e6) w lp ls 4 t "West flank" axis x1y1
 
 set ylabel font "courier,12" 'Bz (Downing) ({/Symbol m}T)'
@@ -160,8 +137,6 @@ plot (36305.7e-3) w l ls 1 t "IGRF z" axis x1y1,\
      loc5 u 0:($3*1e6) w lp ls 7 t "North flank" axis x1y1,\
      loc6 u 0:($3*1e6) w lp ls 6 t "East flank" axis x1y1,\
      loc7 u 0:($3*1e6) w lp ls 5 t "South flank" axis x1y1,\
-     loc12 u 0:($3*1e6) w lp ls 16 t "East flank D20m" axis x1y1,\
-     loc11 u 0:($3*1e6) w lp ls 15 t "South flank D20m" axis x1y1,\
      loc8 u 0:($3*1e6) w lp ls 4 t "West flank" axis x1y1
 
 

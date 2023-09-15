@@ -17,6 +17,7 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Coordinate systems of different components" href="app2.html" />
     <link rel="prev" title="References" href="ref.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -25,6 +26,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="app2.html" title="Coordinate systems of different components"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="ref.html" title="References"
              accesskey="P">previous</a> |</li>
@@ -241,7 +245,7 @@
 <div class="section" id="uniformly-magnetized-sphere">
 <h2>Uniformly magnetized sphere<a class="headerlink" href="#uniformly-magnetized-sphere" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="id6">
-<span id="sphere-si"></span><img alt="_images/Magnetized_sphere.png" class="with-border" src="_images/Magnetized_sphere.png" />
+<span id="sphere-si2"></span><img alt="_images/sf_image2.png" class="with-border" src="_images/sf_image2.png" />
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">The magnetized sphere (blue). <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the direction of <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>, <span class="math notranslate nohighlight">\(r[m]\)</span>  is the distance from the center of the sphere to the observation point <code class="docutils literal notranslate"><span class="pre">P</span></code>, <span class="math notranslate nohighlight">\(a [m]\)</span> is the radius of the sphere,  <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\hat{\theta}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\theta [^{\circ}]\)</span> is the angle between <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> increasing clockwise from <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <div class="line-block">
@@ -249,7 +253,7 @@
 <div class="line">For the derivation of the equation of the magnetic field <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>, outside a sphere of uniformly magnetized material we revisit <span class="math notranslate nohighlight">\(\mathbf{H}= -\nabla \psi\)</span>, eq. <a class="reference internal" href="#equation-hu">(14)</a>.</div>
 <div class="line">If situated outside of the magnetized sphere, <span class="math notranslate nohighlight">\(\mathbf{M}=0\)</span>, therefore, equation <a class="reference internal" href="#equation-eq-8">(16)</a> becomes <span class="math notranslate nohighlight">\(\mathbf{B}=\mu_0\mathbf{H}\)</span> outside the sphere.</div>
 <div class="line">The uniform magnetization results in <span class="math notranslate nohighlight">\(\nabla\cdot\mathbf{H}=0\)</span> and consequently <span class="math notranslate nohighlight">\(\nabla^2\psi^2=0\)</span> (Laplace’s equation). Hence, a solution of Laplace’s equation satisfying the boundary conditions is required.</div>
-<div class="line">If the coordinate system is chosen at the centre of the sphere and the direction of <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the polar direction (z-direction, <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>), the potential can be expanded in zonal harmonics. See <a class="reference internal" href="#sphere-si"><span class="std std-numref">Fig. 6</span></a>. Inside the material, <span class="math notranslate nohighlight">\(\psi_I\)</span>, and outside the material, <span class="math notranslate nohighlight">\(\psi_O\)</span>, are</div>
+<div class="line">If the coordinate system is chosen at the centre of the sphere and the direction of <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the polar direction (z-direction, <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>), the potential can be expanded in zonal harmonics. See <code class="xref std std-numref docutils literal notranslate"><span class="pre">sphere_si</span></code>. Inside the material, <span class="math notranslate nohighlight">\(\psi_I\)</span>, and outside the material, <span class="math notranslate nohighlight">\(\psi_O\)</span>, are</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-u1u2">
 <span class="eqno">(34)<a class="headerlink" href="#equation-u1u2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{equation}
@@ -304,7 +308,7 @@
 \end{split}
 \end{equation}\end{split}\]</div>
 <div class="line-block">
-<div class="line">for definitions of variables and visualization, see <a class="reference internal" href="#sphere-si"><span class="std std-numref">Fig. 6</span></a>.</div>
+<div class="line">for definitions of variables and visualization, see <code class="xref std std-numref docutils literal notranslate"><span class="pre">sphere_si</span></code>.</div>
 </div>
 </div>
 <div class="section" id="multipole-expansion">
@@ -351,6 +355,9 @@
   <h4>Previous topic</h4>
   <p class="topless"><a href="ref.html"
                         title="previous chapter">References</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="app2.html"
+                        title="next chapter">Coordinate systems of different components</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -378,6 +385,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="app2.html" title="Coordinate systems of different components"
+             >next</a> |</li>
         <li class="right" >
           <a href="ref.html" title="References"
              >previous</a> |</li>

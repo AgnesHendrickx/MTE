@@ -5,7 +5,7 @@ Computational approach
 | '*measurement points*' = the points and location at which in the field was '*measured*'. 
 | '*observation points*' = the points and location at which the model '*computed*' the values, can be equal to measurement points. 
 
-| First, a 3D domain :math:`\Omega` , containing an uniform magnetization, is tessellated into multiple elements, where the amount of elements in each direction define the resolution. This produces a mesh, composed of hexahedron elements defined by eight nodes and 6 surfaces, with nodes numbered in a clockwise fashion, see :doc:`app2`}. Each element now represents a volume of uniform magnetization. 
+| First, a 3D domain :math:`\Omega` , containing an uniform magnetization, is tessellated into multiple elements, where the amount of elements in each direction define the resolution. This produces a mesh, composed of hexahedron elements defined by eight nodes and 6 surfaces, with nodes numbered in a clockwise fashion, see :doc:`app2`. Each element now represents a volume of uniform magnetization. 
 
 | Next, as our main objective is to investigate the effect of the underlying topography, we simulate the domain's topography of the domain three different ways:
 

@@ -1,12 +1,12 @@
-loc1 = '/home/agnes/MTE/Main/Flanksim_Parameters/Benchmark 4/south/deptest/50_50_20/measurements_line.ascii'
-loc2 = '/home/agnes/MTE/Main/Flanksim_Parameters/Benchmark 4/south/deptest/50_50_40/measurements_line.ascii'
-loc3 = '/home/agnes/MTE/Main/Flanksim_Parameters/Benchmark 4/south/deptest/50_50_60/measurements_line.ascii'
-loc4 = '/home/agnes/MTE/Main/Flanksim_Parameters/Benchmark 4/south/deptest/50_50_80/measurements_line.ascii'
-loc5 = '/home/agnes/MTE/Main/Flanksim_Parameters/Benchmark 4/south/deptest/50_50_100/measurements_line.ascii'
-loc6 = '/home/agnes/MTE/Main/Flanksim_Parameters/Benchmark 4/south/deptest/50_50_120/measurements_line.ascii'
-loc7 = '/home/agnes/MTE/Main/Flanksim_Parameters/Benchmark 4/south/deptest/50_50_140/measurements_line.ascii'
+loc1 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/deptest/50_50_20/measurements_line.ascii'
+loc2 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/deptest/50_50_40/measurements_line.ascii'
+loc3 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/deptest/50_50_60/measurements_line.ascii'
+loc4 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/deptest/50_50_80/measurements_line.ascii'
+loc5 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/deptest/50_50_100/measurements_line.ascii'
+loc6 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/deptest/50_50_120/measurements_line.ascii'
+loc7 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/deptest/50_50_140/measurements_line.ascii'
 
-loc8 = '/home/agnes/MTE/Main/Flanksim_Parameters/Benchmark 4/south/deptest/50_50_140/measurements_line.ascii'
+loc8 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/deptest/50_50_140/measurements_line.ascii'
 
 set terminal pngcairo size 1800,900
 

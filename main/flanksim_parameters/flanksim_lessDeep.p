@@ -1,11 +1,11 @@
-loc1 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/north/250_250_20/measurements_line_plotfile.ascii'
-loc2 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/east/250_250_20/measurements_line_plotfile.ascii'
-loc3 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/south/250_250_20/measurements_line_plotfile.ascii'
-loc4 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/west/250_250_20/measurements_line_plotfile.ascii'
-loc5 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/north/250_250_20/measurements_path_refFieldIGRF.ascii'
-loc6 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/east/250_250_20/measurements_path_refFieldIGRF.ascii'
-loc7 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/south/250_250_20/measurements_path_refFieldIGRF.ascii'
-loc8 = '/home/agnes/MTE/fieldstone_138/Benchmark 4/west/250_250_20/measurements_path_refFieldIGRF.ascii'
+loc1 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/north/250_250_20/measurements_line_plotfile.ascii'
+loc2 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/east/250_250_20/measurements_line_plotfile.ascii'
+loc3 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/250_250_20/measurements_line_plotfile.ascii'
+loc4 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/west/250_250_20/measurements_line_plotfile.ascii'
+loc5 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/north/250_250_20/measurements_path_refFieldIGRF.ascii'
+loc6 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/east/250_250_20/measurements_path_refFieldIGRF.ascii'
+loc7 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/250_250_20/measurements_path_refFieldIGRF.ascii'
+loc8 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/west/250_250_20/measurements_path_refFieldIGRF.ascii'
 
 #IGRFx=26850.3e-9
 #IGRFy=1561.2e-9
