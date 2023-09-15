@@ -7,23 +7,22 @@ In these simulations, a wide range of parameters can be adjusted to investigate 
 
 For alignment with our case study, parameter estimates aiming to replicate the ridges and gullies of Mount Etna were derived from aerial images and Digital Elevation Models (DEMs). The estimated amplitude, wavelength, and angle for the slope were 8m, 25m, and 6 \degree, respectively. 
 
-Flank simulations were done using a domain of 250x250x20m with 375x375x10 elements (per predetermined required parameters), with computation done a path of 47 points located one meter above the center of the domain. The sine wave was shifted to create the exact same topography underneath the path at the center of each flanks.
+Flank simulations were done using a domain of 250x250x20m with 375x375x10 elements (upon careful consideration, see section :doc:`parameters`), with computation done a path of 47 points located one meter above the center of the domain. The sine wave was shifted to create the exact same topography underneath the path at the center of each flanks.
 
-\begin{figure}
-\centering
-   \includegraphics[width=0.5\textwidth]{Afbeeldingen/flanksim/flanks2edit.png}
-    \caption{Flank simulation on the Etna. ($\mathbf{M}$) = 7.5 $A/m$ (arrows). The slope ($a$ in Figure, $sf$ in code) is 0.15. The computations of the magnetic field ($\mathbf{B}$) above the flanks are done on a plane and path. The flanks are numbered as displayed. For visual display the size of the domain here is much smaller than in the test.}
-    \label{fig:flanksim}
-\end{figure}
-\begin{figure}
-\centering
-   \includegraphics[width=8cm]{Afbeeldingen/methods/bdegflank.png}
-    \caption{$bdeg$ is \ang{-31}, an example of a variation possible while doing flank simulations tests.}
-    \label{fig:bdeg}
-\end{figure}
-\begin{figure}
-\centering
-   \includegraphics[width=8cm]{Afbeeldingen/flanksim/s3_p1_pathdem3.png}
-    \caption{A topography based on field path of site 3, path 1, iterated 7 times, on the North flank of Mt. Etna. The surface is placed on a slope with $sf$=0.15 dipping north.}
-    \label{fig:dempath}
-\end{figure}
+.. _flanksim:
+.. figure:: figures/flanks2edit.png
+   :class: with-border
+   
+   Flank simulation on the Etna. (:math:`\mathbf{M}`) = :math:`7.5 [A/m]` (arrows). The slope (:math:`a` in :numref:`flanksim`) is  :math:`6 \degree`. The computations of the magnetic field (:math:`\mathbf{B}`) above the flanks are done at point composing either a path or a plane above each flank. The flanks are labeled as displayed. Please note, for visual purposes, a different extent and resolution of the mesh was chosen for the displayed mesh, not adhering the optimized testing setup outlined before and in section :ref:`parameters`.
+
+.. _bdeg:
+.. figure:: figures/bdegflank.png
+   :class: with-border
+   
+   Direction on south flank is :math:`-31 ^{\circ}`, an example of a variation possible while doing flank simulations tests.
+
+   .. _flanksim:
+.. figure:: figures/dempath.png
+   :class: with-border
+   
+   A topography based on field path of site 3, path 1, iterated 7 times, on the North flank of Mt. Etna. The surface is placed on a slope with :math:`6 ^{\circ}` dipping north.

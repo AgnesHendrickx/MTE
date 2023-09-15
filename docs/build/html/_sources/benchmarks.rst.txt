@@ -34,13 +34,13 @@ Results
 ^^^^^^^
 
 .. _figureB1:
-.. figure:: Benchmark\ 1/B1dipole.png
+.. figure:: benchmark_1/B1dipole.png
    :class: with-border
 
    Analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.
 
 .. _figureB1zoom:
-.. figure:: Benchmark\ 1/B1dipole_dif_zoom_withlines.png
+.. figure:: benchmark_1/B1dipole_dif_zoom_withlines.png
    :class: with-border
 
 
@@ -80,7 +80,7 @@ Reproduce
 
    .. code-block:: console
 
-      mkdir Benchmark\ 1/results_zoom && mv *.vtu *.ascii Benchmark\ 1/results_zoom
+      mkdir benchmark_1/results_zoom && mv *.vtu *.ascii benchmark_1/results_zoom
 
 3. Run regular setup & move files
 
@@ -101,13 +101,13 @@ Reproduce
 
    .. code-block:: console
 
-      mv *.vtu *.ascii Benchmark\ 1/
+      mv *.vtu *.ascii benchmark_1/
 
 4. Go to directory & plot
 
    .. code-block:: console
 
-      cd Benchmark\ 1
+      cd benchmark_1
 
    .. code-block:: console
 
@@ -147,7 +147,7 @@ Analytical solution
 | where :math:`r` is the distance from the center of the sphere to the observation point, :math:`a` is the radius of the sphere, :math:`\mathbf{\hat{r}}` is the unit vector in the direction of :math:`r`, :math:`\mathbf{\hat{\theta}}` is the unit vector in the direction of :math:`\theta`, :math:`\theta` is the angle between :math:`\mathbf{\hat{r}}`and :math:`\mathbf{\hat{k}}` increasing clockwise from :math:`\mathbf{\hat{k}}` and both :math:`\mathbf{M}` and :math:`\mathbf{B_0}` are in the direction of :math:`\mathbf{\hat{k}}`.
 
 .. _sphere_bench_setup:
-.. figure:: Benchmark\ 3/Model_setup.png
+.. figure:: benchmark_3/Model_setup.png
    :class: with-border
 
    Visualization of the model setup, numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. Numbering of the computation points start at the top of the sphere and circle down in a counterclockwise fashion. 
@@ -162,7 +162,7 @@ Results
 | The results are shown in the :numref:`sphere_bench`. As expected, closer to the surface the required resolution increases, however, at distances :math:`\sim 0.5m` above the sphere 3 el/m suffices. 
 
 .. _sphere_bench:
-.. figure:: Benchmark\ 3/B3sphere_dif_mp_splitcase_all.png
+.. figure:: benchmark_3/B3sphere_dif_mp_splitcase_all.png
    :class: with-border
 
    Difference between analytical solution and computed values for 100 difference computation points at either 0.25 or 0.5m above the surface of a sphere with a resolution of either 3 or 6 el/m. 

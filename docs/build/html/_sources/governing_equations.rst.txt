@@ -36,7 +36,7 @@ Governing equations
 | where :math:`\mathbf{B}` :math:`[T]` is the magnetic induction or magnetic flux density,  :math:`\mu_0` :math:`[NA^{-2}]` is the magnetic permeability of a vacuum, and :math:`\mathbf{r}` is the vector with length :math:`r` :math:`[m]` from the position of the dipole to the observation point.
 
 .. _figmodel:
-.. figure:: Figures/Model_final_pmag_light_shadow.png
+.. figure:: figures/Model_final_pmag_light_shadow.png
    :class: with-border
 
    At any given position :math:`\mathbf{r}` the resulting field :math:`\mathbf{B}` are the sum of the contribution of all elements in the object :math:`\Omega`. Axial orientation of model is given, and conventional paleomagnetism orientation is in brackets to visualize the required rotation. 
