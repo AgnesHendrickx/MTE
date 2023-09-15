@@ -229,8 +229,8 @@ Using :math:`\mathbf{B}=\nabla\times\mathbf{A}` (eq. :eq:`eq.BA`),  the vector i
 Uniformly magnetized sphere
 ---------------------------
 
-.. _sphere_si:
-.. figure:: Figures/Magnetized_sphere.png
+.. _sphere_si2:
+.. figure:: Figures/sf_image2.png
    :class: with-border
 
    The magnetized sphere (blue). :math:`\mathbf{M}` is in the direction of :math:`\mathbf{\hat{k}}`, :math:`r[m]`  is the distance from the center of the sphere to the observation point ``P``, :math:`a [m]` is the radius of the sphere,  :math:`\mathbf{\hat{r}}` is the unit vector in the direction of :math:`r`, :math:`\mathbf{\hat{\theta}}` is the unit vector in the direction of :math:`\theta`, :math:`\theta [^{\circ}]` is the angle between :math:`\mathbf{\hat{r}}`, and :math:`\mathbf{\hat{k}}` increasing clockwise from :math:`\mathbf{\hat{k}}`

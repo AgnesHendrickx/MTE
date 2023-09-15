@@ -22,12 +22,22 @@ Contents
    governing_equations
    computational_approach
    benchmarks
+   flanksim
+   parameters
+   etna
    functions
    ref
    app1
+   app2
 
-Check out the :doc:`usage` section for further information, including how to :ref:`install <installation>` the project. 
-First, in :doc:`governing_equations` the theoretical basis for the code are stated. Followed by the numerical framework in :doc:`computational_approach`. Next, we will delve into the three distinct :doc:`benchmarks` used to validate the computed values. We will demonstrate not only the results but also the methodology for reproducing them. In the section :doc:`flanksim` we present a case for a setup using synthetic topography, of which a simple setup is used for optimizing :doc:`parameters` of the model setup like mesh resolution, extent of the domain, etc. Lastly, we outline the final :doc:`etna` of reprocing field values from :cite:`Meyer23`, again, presenting both results and reproduction methods.  
+| Check out the :doc:`usage` section for further information, including how to :ref:`install <installation>` the project. 
+| First, in :doc:`governing_equations` the theoretical basis for the code are stated. 
+| Followed by the numerical framework in :doc:`computational_approach`. 
+| Next, we will delve into the three distinct :doc:`benchmarks` used to validate the computed values. 
+| We will demonstrate not only the results but also the methodology for reproducing them. 
+| In the section :doc:`flanksim` we present a case for a setup using synthetic topography.
+| A simplified setup of flanksim is used for optimizing :doc:`parameters` of the model setup like mesh resolution, extent of the domain, etc.
+| Lastly, we outline the final :doc:`etna` of reprocing field values from :cite:`Meyer23`, again, presenting both results and reproduction methods.  
 
 Reproduction
 ------------

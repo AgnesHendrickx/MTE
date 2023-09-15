@@ -5,21 +5,21 @@
 *.vtu
 
 #Ignore my folders
-/Overig/
-/Writing/
-/Lit/
-/Oude codes, versies, functions, subroutines/ 
-/Backup/
+/overig/
+/writing/
+/lit/
+/oude codes, versies, functions, subroutines/ 
+/backup/
 
 # Ignore .swp 
 *.swp
 
 # Ignore __pycache__
-/__pycache__/
+**/__pycache__
 
 
 # Ignore other results
-/Main/Path\ results/
-/Main/Tests/
+/main/path_results/
+/main/tests/
 **/other
 

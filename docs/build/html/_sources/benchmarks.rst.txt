@@ -47,7 +47,7 @@ Results
    Difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. 
 
 | As illustrated in :numref:`Figure %s <figureB1>`, the discrepancies between the analytical solution and computed values are minimal. 
-| Even at a height of, see :numref:`figureB1zoom`, :math:`0.25m`, the smallest height above the topography measured in the Etna case study :cite:`Meyer23`, the error remains approximately :math:`\sim |0.01| \mu T` . 
+| Even at a height of, see :numref:`figureB1zoom`, :math:`0.25m`, the smallest height above the topography measured in the Etna case study :cite:`Meyer23`, the error remains approximately :math:`\sim \abs{0.01} \muT` . 
 
 
 Reproduce
