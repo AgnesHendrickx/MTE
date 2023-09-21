@@ -3,6 +3,8 @@
 Governing equations
 ===================
 
+.. todo:: make sure somewhere it explains difference between B and H or magnetic field and induction
+
 | Required is the computation of the magnetic field produced by (permanently) magnetized matter outside the source body within an ambient magnetic field.
 | The total magnetic field :math:`\mathbf{B_t(r)}` at position :math:`\mathbf{r}` above the surface of magnetized matter consist of contributions from the initial field :math:`\mathbf{B_0}` and the anomalous field :math:`\mathbf{B_a}` produced by the underlying magnetized matter
 

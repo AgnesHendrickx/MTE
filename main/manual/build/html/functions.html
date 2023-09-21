@@ -55,7 +55,7 @@ at all points on a path by</p>
 <ol class="arabic simple">
 <li>rotating vector from model to Paleomagnetism coordinate system.</li>
 <li>adding a (global) reference field B0.</li>
-<li>computing standard PMAG equations <span id="id1">[<a class="reference internal" href="ref.html#id15" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tau10</a>]</span>.</li>
+<li>computing standard PMAG equations <span id="id1">[<a class="reference internal" href="ref.html#id17" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tau10</a>]</span>.</li>
 </ol>
 <p>Next, it writes individual(x,y,z) components of total magnetic field and intensity,
 inclination and declination into file named: <code class="docutils literal notranslate"><span class="pre">measurements_path_refField{BO_name}.ascii</span></code>.</p>
@@ -353,7 +353,7 @@ inclination and declination into file named: <code class="docutils literal notra
 <div class="line">Function plane computes the intersection (x,y,z) of a plane and a perpendicular line.</div>
 <div class="line">The plane is defined by three points (x1,y1,z1), (x2,y2,z2), and (x3,y3,z3), in facmag the (first 3) polygon corners are passed. The line passes through (x0,y0,z0), in facmag the observation point is passed. </div>
 <div class="line">Computation is done by a transformation and inverse transformation of coordinates systems. It defines three vectors N0, N2 and N3 in the process. N0 = vector from point 1 (x1,y1,z1) to point 0 (x0,y0,z0). N2 = vector from point 1 (x1,y1,z1) to point 2 (x2,y2,z2). N3 = vector from point 1 (x1,y1,z1) to point 3 (x3,y3,z3). </div>
-<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id2">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
+<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id2">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -394,7 +394,7 @@ inclination and declination into file named: <code class="docutils literal notra
 <dd><div class="line-block">
 <div class="line">Function LINE determines the intersection (x,y,z) of two lines.  First line is defined by points (x1,y1,z1) and (x2,y2,z2).</div>
 <div class="line">Second line is perpendicular to the first and passes through point (x0,y0,z0).Distance between (x,y,z) and (x0,y0,z0) is returned as r. Computation is done by a transformation of coordinate systems, and defining two vectors T0 and T2 in the process. T0 = vector from point 1 (x1,y1,z1) to point 0 (x0,y0,z0). T2 = vector from point 1 (x1,y1,z1) to point 2 (x2,y2,z2).</div>
-<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id3">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
+<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id3">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -432,9 +432,9 @@ inclination and declination into file named: <code class="docutils literal notra
 <dt class="sig sig-object py" id="magnetostatics.facmag">
 <code class="sig-prename descclassname"><span class="pre">magnetostatics.</span></code><code class="sig-name descname"><span class="pre">facmag</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">Mx</span></span></em>, <em><span class="n"><span class="pre">My</span></span></em>, <em><span class="n"><span class="pre">Mz</span></span></em>, <em><span class="n"><span class="pre">x0</span></span></em>, <em><span class="n"><span class="pre">y0</span></span></em>, <em><span class="n"><span class="pre">z0</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#facmag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.facmag" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
-<div class="line">Function FACMAG computes the magnetic field strength <strong>B</strong> due to surface charge on a polygonal face. Repeated calls on each face of a polyhedron build the field of said arbitrary polyhedron, algorithm from <span id="id4">[<a class="reference internal" href="ref.html#id21" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span>. </div>
+<div class="line">Function FACMAG computes the magnetic field strength <strong>B</strong> due to surface charge on a polygonal face. Repeated calls on each face of a polyhedron build the field of said arbitrary polyhedron, algorithm from <span id="id4">[<a class="reference internal" href="ref.html#id23" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span>. </div>
 <div class="line">The polygon is limited to 10 corners, the X axis is directed north, axis vertical down. Requires functions ROT, LINE, and PLANE as define above. Distance units are irrelevant but must be consistent. </div>
-<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id5">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
+<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id5">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -490,7 +490,7 @@ inclination and declination into file named: <code class="docutils literal notra
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at each point computed by surface integral method for a cuboid cell. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id6">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
+<li><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at each point computed by surface integral method for a cuboid cell. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id6">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
 </ul>
 </p>
 </td>
@@ -525,7 +525,7 @@ inclination and declination into file named: <code class="docutils literal notra
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at a point computed by surface integral method for a cuboid cell with topography on top and/or bottom surface. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id7">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
+<li><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at a point computed by surface integral method for a cuboid cell with topography on top and/or bottom surface. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id7">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
 </ul>
 </p>
 </td>
@@ -561,7 +561,7 @@ inclination and declination into file named: <code class="docutils literal notra
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at a point computed by surface integral method for a cuboid cell with topography on top and/or bottom surface and noise. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id8">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
+<li><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at a point computed by surface integral method for a cuboid cell with topography on top and/or bottom surface and noise. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id8">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
 </ul>
 </p>
 </td>

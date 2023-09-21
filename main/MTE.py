@@ -724,7 +724,7 @@ if do_line_measurements:
                                                             IGRFint,IGRFinc,IGRFdec,\
                                                             In_siB0[i],Ic_siB0[i],Dc_siB0[i]))
           linefile.write("%e %e %e %e %e %e %e %e %e \n" %(xm,ym,zm,\
-                                                           B_si[1,i],B_si[0,i],-B_si[2,i],\
+                                                           B_si[0,i],B_si[1,i],B_si[2,i],\
                                                            B_th[0,i],B_th[1,i],B_th[2,i]))
        else:
           linefile.write("%e %e %e %e %e %e %e %e %e \n" %(xm,ym,zm,\

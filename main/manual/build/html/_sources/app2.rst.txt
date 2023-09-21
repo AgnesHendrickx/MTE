@@ -9,3 +9,4 @@ Coordinate systems of different components
    
    Coordinate systems of different components in this study.
 
+.. todo:: Fix figure (add points and python)

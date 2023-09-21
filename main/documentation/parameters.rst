@@ -25,16 +25,9 @@ Results
    
    Three subplots containing the components of the computed magnetic field **B** for the resolution experiments. The initial domain size is 50x50x120 meter, ``DD`` relates to extended domain depth to 240 meter, the numbers in the key relate to the amount of elements in each direction. Please note, the y-axis varies between each subplot. 
 
-.. _restestmag:
-.. figure:: figures/restest_mag.png
-   :class: with-border
-   
-    The magnitude of the computed magnetic field **B** for the resolution experiments. The initial domain size is 50x50x120 meter, ``DD`` relates to extended domain depth to 240 meter, the numbers in the key relate to the amount of elements in each direction.
-
-| :numref:`restestmag` presents the findings of the resolution tests, whereas :numref:`restestcomp` illustrates that the trends observed in the magnitude closely resemble the trends found in individual components.  
-| As predicted by theory, the amount of elements in the z-direction does not affect the outcomes. For all subsequent tests, the amount of elements in the z-direction will be maintained at 10. 
+| :numref:`restestcomp` presents the findings of the resolution tests. As predicted by theory, the amount of elements in the z-direction does not affect the outcomes. For all subsequent tests, the amount of elements in the z-direction will be maintained at 10. 
 | In the xy-directions, allocating half an element per meter proves to be marginally adequate, with only minor deviations noted. When the resolution is reduced further, a distinctive pattern emerges; the computed values first exhibit instability at the highest slope, indicated by abrupt fluctuations in what was previously a smooth progression. Future tests will aim to maintain a standard of 1.5 elements per meter, wherever feasible, while staying observant of these distinctive errors. 
-| Furthermore, :numref:`restestmag` indicates that the depth extent of the domain does not alter the observed trends stemming from insufficient resolution, but instead generates a shift in the magnetic field strength.
+| Furthermore, :numref:`restestcomp` indicates that the depth extent of the domain does not alter the observed trends stemming from insufficient resolution, but instead generates a shift in the magnetic field strength.
 | It should be noted that a curved surface is particularly hard to accurately represent with hexahedron elements, hence, another arbitrary shape might require much less resolution to produce adequate results.
 
 Reproduce
@@ -43,9 +36,9 @@ Reproduce
 
 Size 
 ----
-| The size experiments will commence with a more compact domain and progressively expand it until the computed magnetic field at a point above the domain center stabilizes. The outcomes of changes in both the depth extent (z-direction) and spatial extent (xy-direction) will be analyzed, maintaining element resolution consistent with the previously established threshold. 
+| The size experiments will commence with a more compact domain and progressively expand it until the computed magnetic field at a point above the domain center stabilizes. The outcomes of changes in both the depth extent (z-direction) and spatial extent (xy-direction) will be analyzed, maintaining element resolution consistent with the previously established threshold at observation points along a line 1 meter above the surface. 
 |
-| However, a complication surfaces: the exact nature of the magnetization in the underlying flows and deeper is unknown. Nonetheless, we continue to assume a uniform magnetization. This assumption now expands deeper, eventually stretching to the full pile of volcanic flows of Mount Etna. To validate this assumption, we refer to the geomagnetic history of Mount Etna. The last reversal of Earth's magnetic field was dated around :math:`\sim795` ka ago :cite:`Singer19` and the first volcanic activity of Mount Etna was dated around :math:`\sim500` ka ago :cite:`Branca08`. 
+| However, upon adapting domain depth, a complication surfaces: the exact nature of the magnetization in the underlying flows and deeper is unknown. Nonetheless, we continue to assume a uniform magnetization. This assumption now expands deeper, eventually stretching to the full pile of volcanic flows of Mount Etna. To validate this assumption, we refer to the geomagnetic history of Mount Etna. The last reversal of Earth's magnetic field was dated around :math:`\sim795` ka ago :cite:`Singer19` and the first volcanic activity of Mount Etna was dated around :math:`\sim500` ka ago :cite:`Branca08`. 
 | Therefore, no reversals are anticipated within the accumulated layers, allowing us to extend the depth for experimental purposes without restrictions. Nonetheless, as the directly underlying flow is deemed to exert the most substantial influence, expanding the depth beyond a singular flow might be redundant. The thickness of the flows underneath the field sites mentioned in :cite:`Meyer23` fluctuate between 5-15 meter :cite:`Andro05, Mur00`. 
 | Consequently, our tests explore domain depth ranging from 10 to 140 meter. When it comes to spatial extent, no additional consideration are necessary, and so our experiments span a spatial extent from 50 to 1000 meters. 
 
@@ -58,11 +51,6 @@ Results
    
    Three subplots containing the components of the computed magnetic field **B** for the depth experiments. The spatial extent of the domain is 50x50 meter. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz). Please note, the y-axis varies between each subplot. 
 
-.. _deptestmag:
-.. figure:: figures/deptest.png
-   :class: with-border
-   
-    The magnitude of the computed magnetic field **B** for the depth experiments. The initial domain size is 50x50 meter. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz).
 
 .. _extestcomp:
 .. figure:: figures/extest_comp.png
@@ -70,42 +58,16 @@ Results
    
    Three subplots containing the components of the computed magnetic field **B** for the depth experiments. The spatial extent of the domain is 50x50 meter. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz). Please note, the y-axis varies between each subplot. 
 
-.. _extestmag:
-.. figure:: figures/extest.png
-   :class: with-border
-   
-    The magnitude of the computed magnetic field **B** for the depth experiments. The initial domain size is 50x50 meter. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz).
-
-From :numref:`deptestmag`, it becomes evident that a thickness of 10 meters in insufficient, at the lowest points along the observation line significant deviations are visible. Likely due to the impact of the bottom surface on the computations, so thickness should be at least 20 meters. 
-
-Another interesting observation from :numref:`deptestmag` is that expanding the domain in depth results in a shift of magnetic field strength, that stabilizes around 120 meter. This seems inconsistent with theory (magnetic field produced by an object decreases with distance cubed) and evidence  :cite:`Speranza06,Tanguy04`. Futhermore, in :numref:`deptestcomp` a downward trend for :math:`B_y` is observed at shallower depths, however, increasing depth does not produce a similar shift as we see in :math:`B_x`, :math:`B_z` and the magnitude. :numref:`extestcomp` shows that these trends persist for spatial extents up to 250x250 meter. Beyond this dimension, even minimal depths do not reproduce similar patterns, suggesting the observed trends may be attributed to the inadequate spatial domain size. Interestingly, these smaller thickness tests do not show the deviations at the lowest elevation points, suggesting if the domain extent is adequate the depth extent can be less. Henceforth, tests will maintain a minimum spatial extent of 250x250m. However, 
-shows that this is likely an edge effect due to insufficient spatial extent as it is no longer observed at a larger spatial extent of 250x250 meter. 
+| :numref:`extestcomp` and :numref:`deptestcomp` display the outcomes from testing the domain size constraints. From :numref:`deptestcomp`, it becomes evident that for a 50x50 meter domain, as the depth increases, the offset becomes smaller, stabilizing around 120 meter. Notably, at shallower depths, there is a downward trend for :math:`B_y`. This directional trend for the y- and z-components at these depths is not observed when the depth increases.
 
 
+| :numref:`extestcomp` shows that these trends persist for spatial extents up to 250x250 meter. Beyond this dimension, even minimal depths do not reproduce similar patterns, suggesting the observed trends may be attributed to the inadequate domain size. Henceforth, tests will maintain a minimum spatial extent of 250x250 meter.
+| Another salient observation pertains to the offset induced by depth variations. Irrespective of spatial extent, any increase of depth results in an offset for the :math:`B_x` and :math:`B_z` components. 
 
-Figure \ref{res:xy} shows that these trends persist for spatial extents up to 250x250m. at any spatial extent less than 250x250m. Beyond this dimension, even minimal depths do not reproduce similar patterns, suggesting the observed trends may be attributed to the inadequate domain size. Henceforth, tests will maintain a minimum spatial extent of 250x250m. \par
-Another salient observation pertains to the offset induced by depth variations. Irrespective of spatial extent, any increase of depth results in an offset for the $B_x$ and $B_z$ components. No equilibrium of this value was discernible even upon increasing depth in larger domains (details not shown in Figure \ref{res:xy}). Hereby insinuating that a mere expansion of the domain size to achieve stability in computed values might not be the optimal approach to identify the ideal parameters. Consequently, depth extent warrants reconsideration in subsequent tests, which can be confidently conducted as long as the spatial extent remains at or exceeds 250x250m. \par
-Furthermore, Figure \ref{res:xy} also presents repeated tests evaluating the number of elements across both spatial extents and depths, echoing the consistent findings mentioned above.
+| However, it is interesting to observe that it seems that both a too small domain or too large depth produce similar offsets. This seems inconsistent with theory (magnetic field produced by an object decreases with distance cubed) and evidence  :cite:`Speranza06,Tanguy04`. 
 
-
-
-
-Suggesting that might be an edge effect due to insufficient spatial extent. 
-
-
-Reproduce
-^^^^^^^^^
-
-
-Depth 
------
-However, some repeated tests for resolution and depth were 
-
-
-
-
-Results
-^^^^^^^
+| No equilibrium of this value was discernible even upon increasing depth in larger domains (details not shown in :numref:`extestcomp`). Hereby insinuating that a mere expansion of the domain size to achieve stability in computed values might not be the optimal approach to identify the ideal parameters. Consequently, depth extent warrants reconsideration in subsequent tests, which can be confidently conducted as long as the spatial extent remains at or exceeds 250x250 meter. 
+| Furthermore, :numref:`extestcomp` also presents repeated tests evaluating the number of elements across both spatial extents and depths, echoing the consistent findings mentioned above. 
 
 Reproduce
 ^^^^^^^^^
