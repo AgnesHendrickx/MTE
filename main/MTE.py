@@ -1,90 +1,11 @@
-#Final version for all checks
-
-
 import numpy as np
 from magnetostatics import *
+from support import *
 from tools import *
 import random
 import time as time
+
 from set_measurement_parameters import *
-
-###################################################################################################
-# this function adds reference field to measurements and computes Pmag Int,Inc,Dec
-
-def add_referencefield(B0_name,npath,B0,B_si):
-    linefile1=open(f"measurements_path_refField{B0_name}.ascii","w")
-    linefile1.write("# 1    , 2      , 3      , 4      , 5      , 6      , 7       \n")
-    linefile1.write("# dmeas, Bx_siB0, By_siB0, Bz_siB0, In_siB0, Ic_siB0, Dc_siB0 \n")
-
-    B_siB0=np.zeros((3,npath),dtype=np.float64)
-    In_siB0=np.zeros((npath),dtype=np.float64)
-    Ic_siB0=np.zeros((npath),dtype=np.float64)
-    Dc_siB0=np.zeros((npath),dtype=np.float64)
-    for i in range(0,npath):      
-        B_siB0[0,i]=B_si[1,i]+B0[0] #adding B0 in pmag coor + B_si in model coor
-        B_siB0[1,i]=B_si[0,i]+B0[1]
-        B_siB0[2,i]=-B_si[2,i]+B0[2]
-        
-        In_siB0[i]=np.sqrt(B_siB0[0,i]**2+B_siB0[1,i]**2+B_siB0[2,i]**2)
-        Ic_siB0[i]=np.arctan2(B_siB0[2,i],np.sqrt(B_siB0[0,i]**2+B_siB0[1,i]**2))/np.pi*180
-        Dc_siB0[i]=np.arctan2(B_siB0[1,i],B_siB0[0,i])/np.pi*180
-   
-        if benchmark=='4':
-           linefile1.write("%e %e %e %e %e %e \n" %(B_siB0[0,i], B_siB0[1,i], B_siB0[2,i],\
-                                                    In_siB0[i], Ic_siB0[i], Dc_siB0[i]))    #AEH))
-        else:
-           linefile1.write("%e %e %e %e %e %e %e \n" %(dmeas[i],\
-                                                       B_siB0[0,i], B_siB0[1,i], B_siB0[2,i],\
-                                                      In_siB0[i], Ic_siB0[i], Dc_siB0[i]))    #AEH))           
-    return B_siB0,In_siB0,Ic_siB0,Dc_siB0
-
-###################################################################################################
-# this function returns a topography value at each point x,y passed as argument
-
-def topography(x,y,A,llambda,cos_dir,sin_dir,slopex,slopey):
-    pert1=A*np.sin(2*np.pi/llambda*(x*cos_dir+y*sin_dir))
-    pert2=slopex*x+slopey*y 
-    return pert1+pert2
-
-###################################################################################################
-# returns analytical solution (vector B) 
-
-def compute_analytical_solution(x,y,z,R,Mx,My,Mz,xcenter,ycenter,zcenter,benchmark):
-
-   #-----------------------------------------------------------------
-   if benchmark=='1': 
-      mu0=4*np.pi #*1e-7
-      V=4/3*np.pi*R**3
-      r=np.sqrt((x-xcenter)**2+(y-ycenter)**2+(z-zcenter)**2)
-      Bx=0
-      By=0
-      Bz=2*mu0*V/4/np.pi/r**3*Mz
-
-   #-----------------------------------------------------------------
-   if benchmark=='2a' or benchmark=='2b' or benchmark=='4':
-      Bx=0
-      By=0
-      Bz=0
-
-   #-----------------------------------------------------------------
-   if benchmark=='3': 
-      r=np.sqrt((x-xcenter)**2+(y-ycenter)**2+(z-zcenter)**2)
-      theta=np.arccos((z-zcenter)/r)
-      phi=np.arctan2((y-ycenter),(x-xcenter))
-      mu0=4*np.pi #*1e-7
-      Q=(R/r)**3*mu0/3
-      rux=np.sin(theta)*np.cos(phi)
-      ruy=np.sin(theta)*np.sin(phi)
-      ruz=np.cos(theta)
-      thux=np.cos(theta)*np.cos(phi)
-      thuy=np.cos(theta)*np.sin(phi)
-      thuz=-np.sin(theta)
-      Bx=Q*Mz*(2*(rux*np.cos(theta))+thux*np.sin(theta))
-      By=Q*Mz*(2*(ruy*np.cos(theta))+thuy*np.sin(theta))
-      Bz=Q*Mz*(2*(ruz*np.cos(theta))+thuz*np.sin(theta))
-
-
-   return np.array([Bx,By,Bz],dtype=np.float64)
 
 print('========================================')
 print('=             ETNA project             =')
@@ -96,14 +17,21 @@ print('========================================')
 #2a: random perturbation internal nodes cubic-> checks cancellation of internal faces 
 #2b: random perturbation internal nodes pancake-> checks cancellation of internal faces 
 #3: sphere (larger sphere, anywhere in space) analytical
-#4: Synthetic shapes, wavy surface, domain with constant M vector, or box #AEH
+#4: Synthetic shapes, wavy surface, domain with constant M vector, or box.
 #-1: etna topography
 ###################################################################################################
+###################################################################################################
+benchmark='4'
 
-benchmark='-1'
+## ONLY BENCHMARK=-1 (ETNA) & BENCHMARK=4 (FLANKSIM) ##
+flat_bottom=False 
+
+## ONLY BENCHMARK=4 (FLANKSIM) ##
+subbench='south'
+
+## ONLY BENCHMARK=-1 (ETNA) ##
 add_noise=False
 Nf=2  #noise amplitude between -Nf and Nf 
-flat_bottom=True #only for benchmark=4 and etna (benchmark=-1)
 
 ###################################################################################################
 # be careful with the position of the measurement points for 
@@ -119,7 +47,6 @@ if benchmark=='1':
    nelz=100
    Mx0=0     # do not change
    My0=0     # do not change
-   #Mz0=1     # do not change
    Mz0=7.5
    nqdim=4
    sphere_R=1
@@ -156,9 +83,11 @@ if benchmark=='2a':
    nely=5
    nelz=5
    Mx0=0
-   My0=1
-   Mz0=0
+   My0=0
+   Mz0=7.5
    nqdim=6
+   #dz=0 #base setup
+   dz=0.1 #amplitude random
    #plane meas
    do_plane_measurements=True
    plane_x0=-Lx/2
@@ -168,7 +97,6 @@ if benchmark=='2a':
    plane_Ly=2*Ly
    plane_nnx=11
    plane_nny=11
-   dz=0.1 #amplitude random
    do_line_measurements=False
    sphere_R=0
    sphere_xc=0
@@ -181,13 +109,14 @@ if benchmark=='2b':
    Lx=10
    Ly=10
    Lz=10
-   nelx=5
-   nely=5
+   nelx=2
+   nely=10
    nelz=50
    Mx0=0
-   My0=1
-   Mz0=0
+   My0=0
+   Mz0=7.5
    nqdim=6
+   dz=0.1 #amplitude random
    #plane meas
    do_plane_measurements=True
    plane_x0=-Lx/2
@@ -197,7 +126,6 @@ if benchmark=='2b':
    plane_Ly=2*Ly
    plane_nnx=11
    plane_nny=11
-   dz=0.1 #amplitude random
    do_line_measurements=False
    sphere_R=0
    sphere_xc=0
@@ -210,18 +138,23 @@ if benchmark=='3':
    Lx=20
    Ly=20
    Lz=20
-   nelx=60
-   #nelx=120
+   nelx=60 # 3 el/m
+   #nelx=120 # 6 el/m
    nely=nelx
    nelz=nelx
    Mx0=0
    My0=0
    Mz0=7.5
-   sphere_R=10
+   sphere_R=10 # do not change, or change radius_spiral as well
    sphere_xc=Lx/2
    sphere_yc=Ly/2
    sphere_zc=-Lz/2
-   nqdim=6
+   #spiral meas
+   do_spiral_measurements=True
+   radius_spiral=1.025*sphere_R #25 cm above surface sphere
+   #radius_spiral=1.05*sphere_R #50 cm above surface sphere
+   npts_spiral=101 #keep odd
+   #nqdim=6
    #plane meas
    do_plane_measurements=False
    plane_x0=-Lx/2
@@ -232,27 +165,18 @@ if benchmark=='3':
    plane_nnx=30
    plane_nny=30
    do_line_measurements=False
-   do_spiral_measurements=True
-   radius_spiral=1.025*sphere_R
-   #radius_spiral=1.05*sphere_R
-   npts_spiral=101 #keep odd
    do_path_measurements=False
 
 if benchmark=='4':   
-#   Lx=100
-#   Ly=100
-#   Lz=50
-#   nelx=40
-#   nely=40
-#   nelz=8
-   Lx=250
-   Ly=250
-   Lz=20
-#   Lz=Lx*2.4
+   Lx=50
+   Ly=50
+   Lz=10
+   #Lx=250
+   #Ly=250
+   #Lz=20
    nelx=int(Lx*1.5)
    nely=int(Ly*1.5)
    nelz=10
-
    Mx0=0
    My0=4.085
    Mz0=-6.29
@@ -272,7 +196,7 @@ if benchmark=='4':
    xstart=0.23+((Lx-50)/2)
    #xstart=0.23
    ystart=Ly/2-0.221
-   zstart=1      #slightly above surface
+   zstart=1      #1m above surface
    xend=49.19+((Lx-50)/2)
    #xend=49.19
    yend=Ly/2-0.221
@@ -282,11 +206,8 @@ if benchmark=='4':
    sphere_xc=0
    sphere_yc=0
    sphere_zc=0
-   # to do: code line meas 
    do_spiral_measurements=False
    do_path_measurements=False
-
-   subbench='south'
 
    if subbench=='east':
       slopex=np.arctan(-6/180*np.pi)
@@ -320,8 +241,6 @@ if benchmark=='4':
 
    cos_dir=np.cos(direction)
    sin_dir=np.sin(direction)
-
-   do_path_measurements=False
 
    IGRF_E=1561.2e-9
    IGRF_N=26850.3e-9
@@ -364,7 +283,7 @@ nny=nely+1  # number of elements, y direction
 nnz=nelz+1  # number of elements, z direction
 NV=nnx*nny*nnz  # number of nodes
 
-###############################################################################
+###################################################################################################
 
 print('========================================')
 print('benchmark=',benchmark)
@@ -412,11 +331,11 @@ if do_path_measurements:
 
 print('========================================')
 
-###############################################################################
+###################################################################################################
 # grid point setup
 # if benchmark 2, a small random perturbation is added to the
 # z coordinate of the interior nodes.
-###############################################################################
+###################################################################################################
 start = time.time()
 
 x = np.empty(NV,dtype=np.float64)  # x coordinates
@@ -437,15 +356,12 @@ for i in range(0,nnx):
             if i!=0 and j!=0 and k!=0 and i!=nnx-1 and j!=nny-1 and k!=nnz-1 and (benchmark=='2a' or benchmark=='2b'):
                z[counter]+=random.uniform(-1,+1)*dz
             counter += 1
-        #end for
-    #end for
-#end for
-   
+
 print("grid points setup: %.3f s" % (time.time() - start))
 
-###############################################################################
+###################################################################################################
 # connectivity
-###############################################################################
+###################################################################################################
 start = time.time()
 
 icon =np.zeros((8,nel),dtype=np.int32)
@@ -464,13 +380,10 @@ for i in range(0,nelx):
             icon[6,counter]=nny*nnz*(i  +1)+nnz*(j  +1)+k+1
             icon[7,counter]=nny*nnz*(i-1+1)+nnz*(j  +1)+k+1
             counter += 1
-        #end for
-    #end for
-#end for
 
 print("grid connectivity setup: %.3f s" % (time.time() - start))
 
-###############################################################################
+###################################################################################################
 # adding synthetic topography to surface and deform the mesh accordingly
 
 if benchmark=='4':   
@@ -488,9 +401,6 @@ if benchmark=='4':
                   LLz=Lz+topography(x[counter]-Lx/2,y[counter]-Ly/2,A,wavelength,cos_dir,sin_dir,slopex,slopey)
                   z[counter]=k*LLz/float(nelz)-Lz
                   counter += 1
-              #end for
-          #end for
-      #end for
 
    else:
 
@@ -500,17 +410,13 @@ if benchmark=='4':
               for k in range(0,nnz):
                   z[counter]+=topography(x[counter]-Lx/2,y[counter]-Ly/2,A,wavelength,cos_dir,sin_dir,slopex,slopey)
                   counter += 1
-              #end for
-          #end for
-      #end for
-
 
    print('add synthetic topography')
 
-###############################################################################
+###################################################################################################
 # adding topography based on DEM, and reading in measurement points from field data
 # uses "etna.py" for importing values
-###############################################################################
+###################################################################################################
 
 if benchmark=='-1':
 
@@ -548,9 +454,6 @@ if benchmark=='-1':
                   zmin= min(ztopo)-Lz
                   z[counter]=k*(zmax-zmin)/float(nelz)+zmin-Lz
                   counter += 1
-              #end for
-          #end for
-      #end for
 
    else:
 
@@ -562,9 +465,6 @@ if benchmark=='-1':
                   zmin= 0+ztopo[j*nnx+i]
                   z[counter]=k*(zmax-zmin)/float(nelz)+zmin-Lz
                   counter += 1
-              #end for
-          #end for
-      #end for
 
    print('add etna topography')
 
@@ -583,8 +483,8 @@ if benchmark=='-1':
    In_m = np.empty(npath,dtype=np.float64)  # measured intensity (in microT)
    dmeas_m = np.empty(npath,dtype=np.float64)  # measured intensity (in microT)
    for i in range(0,npath):
-       #reading lines backwards bc of how file is built #AEH NO, only DEM backwards, these are the field meas files... 
-       line=lines_path[i].strip()   #AEH
+       #reading lines from pathfile 
+       line=lines_path[i].strip()   
        columns=line.split()
        xpath[i]=columns[1]
 #      xpath[i]-=xllcorner+(Lx/2) #(centering)
@@ -624,10 +524,6 @@ if benchmark=='-1':
                                   zpath_height
                       #end if
                       iel+=1
-                  #end for
-              #end for
-          #end for
-      #end for
 
       print("creating path points above DEM (zpath_option=2): %.3f s" % (time.time() - start))
 
@@ -635,15 +531,15 @@ if benchmark=='-1':
    print('ypath (min/max):',min(ypath),max(ypath))
    print('zpath (min/max):',min(zpath),max(zpath))
 
-   export_path_measurements(npath,xpath,ypath,zpath,'path.vtu')
+   # export_mesh_1D(npath,xpath,ypath,zpath,'path.vtu')
 
-###############################################################################
+###################################################################################################
 # prescribe M inside each cell
 # for benchmarks 1 and 3, M is zero everywhere except inside
 # a sphere of radius sphere_R at location (sphere_xc,sphere_yc,sphere_zc)
 # we use the center of an element as a representative point.
 # For benchmark 2a,2b,4 and Etna, M is constant in space and equal to (Mx0,My0,Mz0)
-###############################################################################
+###################################################################################################
 start = time.time()
 
 Mx=np.zeros(nel,dtype=np.float64)
@@ -673,14 +569,14 @@ export_mesh_3D(NV,nel,x,y,z,icon,'mesh.vtu',Mx,My,Mz,nnx,nny,nnz)
    
 print("prescribe M vector in domain: %.3f s" % (time.time() - start))
 
-###############################################################################
+###################################################################################################
 # plane measurements setup
 # the plane originates at (plane_x0,plane_y0,plane_z0) and extends 
 # in the x,y directions by plane_Lx,plane_Ly
 # note that a small perturbation is added to the x,y coordinates
 # so as to avoid that a measurement point lies in the plane
 # of an element (vertical) face. 
-###############################################################################
+###################################################################################################
 
 if do_plane_measurements: 
 
@@ -715,14 +611,14 @@ if do_plane_measurements:
            icon_meas[3,counter] = i + (j + 1) * (plane_nelx + 1)
            counter += 1
 
-   export_mesh_2D(plane_nmeas,plane_nel,x_meas,y_meas,z_meas,icon_meas,'mesh_plane_measurements.vtu')
+   #export_mesh_2D(plane_nmeas,plane_nel,x_meas,y_meas,z_meas,icon_meas,'mesh_plane_measurements.vtu')
 
-   np.savetxt('mesh_plane_measurements.ascii',np.array([x_meas,y_meas,z_meas]).T)
+   #np.savetxt('mesh_plane_measurements.ascii',np.array([x_meas,y_meas,z_meas]).T)
 
    print('setup plane measurement points ')
 
 
-###############################################################################
+###################################################################################################
 # measuring B on a plane
 # Nomenclature for variables/arrays:
 # _vi: volume integral
@@ -733,7 +629,7 @@ if do_plane_measurements:
 # Because the integrand is not a polynomial, the volume integral
 # remains a numerical solution (which depends on nqdim), while 
 # the surface integral is actually analytical (down to machine precision).
-###############################################################################
+###################################################################################################
    
 if do_plane_measurements:
    print('starting plane measurement ...')
@@ -745,9 +641,9 @@ if do_plane_measurements:
    for i in range(0,plane_nmeas):
        print('------------------------------')
        print('doing',i,'out of ',plane_nmeas) 
-    #   #print('x,y,z meas',x_meas[i],y_meas[i],z_meas[i])
-    #   B_th[:,i]=compute_analytical_solution(x_meas[i],y_meas[i],z_meas[i],sphere_R,Mx0,My0,Mz0,sphere_xc,sphere_yc,sphere_zc,benchmark)
-    #   #print('analytical ->',B_th[:,i])
+       print('x,y,z meas',x_meas[i],y_meas[i],z_meas[i])
+       B_th[:,i]=compute_analytical_solution(x_meas[i],y_meas[i],z_meas[i],sphere_R,Mx0,My0,Mz0,sphere_xc,sphere_yc,sphere_zc,benchmark)
+       #print('analytical ->',B_th[:,i])
 
      #  start = time.time()
      #  for iel in range(0,nel):
@@ -769,11 +665,11 @@ if do_plane_measurements:
 
    exit()
 
-###############################################################################
+###################################################################################################
 # measuring B on a line
 # the line starts at xstart,ystart,zstart and ends at 
 # xend,yend,zend, and is discretised by means of line_nmeas pts
-###############################################################################
+###################################################################################################
 
 print('========================================')
 
@@ -812,7 +708,7 @@ if do_line_measurements:
        x_meas[i]=xm
        y_meas[i]=ym
        z_meas[i]=zm
-       #print(xm,ym,zm)
+       print(xm,ym,zm)
        for iel in range(0,nel):
 #           B_vi[:,i]+=compute_B_quadrature      (xm,ym,zm,x,y,z,icon[:,iel],Mx[iel],My[iel],Mz[iel],nqdim)
            B_si[:,i]+=compute_B_surface_integral_wtopo(xm,ym,zm,x,y,z,icon[:,iel],Mx[iel],My[iel],Mz[iel])
@@ -820,12 +716,16 @@ if do_line_measurements:
 #       B_th[:,i]=compute_analytical_solution(xm,ym,zm,sphere_R,Mx0,My0,Mz0,sphere_xc,sphere_yc,sphere_zc,benchmark)
 
        if benchmark=='4':
+          dmeas=np.zeros((line_nmeas),dtype=np.float64)
           B0=np.array([IGRFx,IGRFy,IGRFz])
           B0_name="IGRF"
-          (B_siB0,In_siB0,Ic_siB0,Dc_siB0)=add_referencefield(B0_name,line_nmeas,B0,B_si)
+          (B_siB0,In_siB0,Ic_siB0,Dc_siB0)=add_referencefield(B0_name,line_nmeas,dmeas,B0,B_si,benchmark)
           linefile1.write("%e %e %e %e %e %e %e %e %e \n" %(xm, ym, zm,\
                                                             IGRFint,IGRFinc,IGRFdec,\
                                                             In_siB0[i],Ic_siB0[i],Dc_siB0[i]))
+          linefile.write("%e %e %e %e %e %e %e %e %e \n" %(xm,ym,zm,\
+                                                           B_si[1,i],B_si[0,i],-B_si[2,i],\
+                                                           B_th[0,i],B_th[1,i],B_th[2,i]))
        else:
           linefile.write("%e %e %e %e %e %e %e %e %e \n" %(xm,ym,zm,\
                                                            B_si[0,i],B_si[1,i],B_si[2,i],\
@@ -835,7 +735,7 @@ if do_line_measurements:
 #                                                       B_si[0,i],B_si[1,i],B_si[2,i],\
 #                                                       B_th[0,i],B_th[1,i],B_th[2,i]))       
 
-   export_line_measurements(line_nmeas,x_meas,y_meas,z_meas,'line_measurements.vtu',B_th,B_si,B_th)
+   export_line_measurements(line_nmeas,x_meas,y_meas,z_meas,'line_measurements.vtu',B_si,B_si,B_th)
 #   export_line_measurements(line_nmeas,x_meas,y_meas,z_meas,'line_measurements.vtu',B_vi,B_si,B_th)
 
 print('========================================')
@@ -917,7 +817,7 @@ if do_path_measurements:
 #  B0=np.array([Brefx,Brefy,Brefz])
 #  B0_name="Bref"
    print('starting processing: adding reference field and statistics ...')
-   (B_siB0,In_siB0,Ic_siB0,Dc_siB0)=add_referencefield(B0_name,npath,B0,B_si)
+   (B_siB0,In_siB0,Ic_siB0,Dc_siB0)=add_referencefield(B0_name,npath,dmeas,B0,B_si,benchmark)
     
    linefile1=open("statistics_IGRF.ascii","w")
    linefile1.write("# 1   , 2   , 3    , 4          , 5          , 6    , 7     \n")

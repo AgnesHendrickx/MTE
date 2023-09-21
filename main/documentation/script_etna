@@ -1,0 +1,42 @@
+#! /bin/bash
+
+#######################################################
+rdem=5
+#######################################################
+
+#rm -r results_site*
+
+for site in 6; do
+     for sdem in 6; do
+        for ipath in 1 ; do 
+            for ho in 1 ; do 
+
+                echo '********************************************************'
+                echo site= $site path=$ipath sDEM=$sdem ho=$ho rDEM=$rdem
+
+                sed -i "s/path=.*/path="$ipath"/" etna.py
+                sed -i "s/site=.*/site="$site"/" etna.py
+                sed -i "s/ho=.*/ho="$ho"/" etna.py
+                sed -i "s/sDEM=.*/sDEM="$sdem"/" etna.py
+                sed -i "s/rDEM=.*/rDEM="$rdem"/" etna.py
+
+                python3 stone.py  > opla
+
+                if test -f "opla"; then
+                   mkdir results
+                   mv *.vtu results/
+                   mv *.ascii results/
+                   mv opla results/
+                   mv results results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}
+                fi
+
+                rm -f *.vtu
+                rm -f *.ascii
+
+            done
+
+        done
+
+     done
+
+done

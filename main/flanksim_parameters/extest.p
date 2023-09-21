@@ -1,22 +1,24 @@
-loc1 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/extest/50_50_120/measurements_line.ascii'
-loc2 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/extest/100_100_240/measurements_line.ascii'
-loc3 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/extest/250_250_40/measurements_line.ascii'
-loc4 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/extest/250_250_600/measurements_line.ascii'
-loc5 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/extest/500_500_1200/measurements_line.ascii'
-loc6 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/extest/750_750_1800/measurements_line.ascii'
-loc7 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/extest/1000_1000_2400/measurements_line.ascii'
-loc8 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/extest/250_250_20/measurements_line.ascii'
+loc1 = '/home/agnes/MTE/main/flanksim_parameters/south/extest/50_50_120/measurements_line.ascii'
+loc2 = '/home/agnes/MTE/main/flanksim_parameters/south/extest/100_100_240/measurements_line.ascii'
+loc3 = '/home/agnes/MTE/main/flanksim_parameters/south/extest/250_250_40/measurements_line.ascii'
+loc4 = '/home/agnes/MTE/main/flanksim_parameters/south/extest/250_250_600/measurements_line.ascii'
+loc5 = '/home/agnes/MTE/main/flanksim_parameters/south/extest/500_500_1200/measurements_line.ascii'
+loc6 = '/home/agnes/MTE/main/flanksim_parameters/south/extest/750_750_1800/measurements_line.ascii'
+loc7 = '/home/agnes/MTE/main/flanksim_parameters/south/extest/1000_1000_2400/measurements_line.ascii'
+loc8 = '/home/agnes/MTE/main/flanksim_parameters/south/extest/250_250_20/measurements_line.ascii'
 
 set terminal pngcairo size 1800,900
 
 set key default
 set key box
-set xlabel font "courier,14" 'index '
+set xlabel font "courier,14" 'index'
+set y2label font "courier,14" 'height surface (m)' 
 set autoscale xy
 set ytics nomirror
 set style line 12 lc rgb '#aaaaaa' dt 2 lw 0.5
 set grid back ytics ls 12
 set tics out font "courier,14"
+
 set xrange[0:50]
 set y2range[-6:6]
 set y2tics -6,1

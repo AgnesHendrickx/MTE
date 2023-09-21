@@ -1,14 +1,14 @@
-loc1 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/north/250_250_20/measurements_line_plotfile.ascii'
-loc2 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/east/250_250_20/measurements_line_plotfile.ascii'
-loc3 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/250_250_20/measurements_line_plotfile.ascii'
-loc4 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/west/250_250_20/measurements_line_plotfile.ascii'
-loc5 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/north/250_250_20/measurements_path_refFieldIGRF.ascii'
-loc6 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/east/250_250_20/measurements_path_refFieldIGRF.ascii'
-loc7 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/250_250_20/measurements_path_refFieldIGRF.ascii'
-loc8 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/west/250_250_20/measurements_path_refFieldIGRF.ascii'
+loc1 = '/home/agnes/MTE/main/flanksim_parameters/north/250_250_20/measurements_line_plotfile.ascii'
+loc2 = '/home/agnes/MTE/main/flanksim_parameters/east/250_250_20/measurements_line_plotfile.ascii'
+loc3 = '/home/agnes/MTE/main/flanksim_parameters/south/250_250_20/measurements_line_plotfile.ascii'
+loc4 = '/home/agnes/MTE/main/flanksim_parameters/west/250_250_20/measurements_line_plotfile.ascii'
+loc5 = '/home/agnes/MTE/main/flanksim_parameters/north/250_250_20/measurements_path_refFieldIGRF.ascii'
+loc6 = '/home/agnes/MTE/main/flanksim_parameters/east/250_250_20/measurements_path_refFieldIGRF.ascii'
+loc7 = '/home/agnes/MTE/main/flanksim_parameters/south/250_250_20/measurements_path_refFieldIGRF.ascii'
+loc8 = '/home/agnes/MTE/main/flanksim_parameters/west/250_250_20/measurements_path_refFieldIGRF.ascii'
 
-loc9 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/250_250_20_SB/measurements_line_plotfile.ascii'
-loc10 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/250_250_20_SB/measurements_path_refFieldIGRF.ascii'
+loc9 = '/home/agnes/MTE/main/flanksim_parameters/south/250_250_20_SB/measurements_line_plotfile.ascii'
+loc10 = '/home/agnes/MTE/main/flanksim_parameters/south/250_250_20_SB/measurements_path_refFieldIGRF.ascii'
 
 #IGRFx=26850.3e-9
 #IGRFy=1561.2e-9
@@ -53,7 +53,7 @@ set style line 7 pt 8 lw 2 lc rgb '#f0e442'
 
 set key top right
 
-set output 'flanksimIn.png'
+set output 'flanksimIn_sbs.png'
 set ylabel font "courier,12" 'intensity ({/Symbol m}T)'
 
 plot loc1 u 1:($4*1e6) w l ls 1 t "IGRF int" axis x1y1,\
@@ -64,7 +64,7 @@ plot loc1 u 1:($4*1e6) w l ls 1 t "IGRF int" axis x1y1,\
      loc9 u 1:($7*1e6) w lp ls 15 t "South flank SB" axis x1y1,\
      loc4 u 2:($7*1e6) w lp ls 4 t "West flank" axis x1y1
 
-set output 'flanksimIc.png'
+set output 'flanksimIc_sbs.png'
 set ylabel font "courier,12" 'inclination (degree)'
 
 plot loc1 u 1:5 w l ls 1 t "IGRF inc" axis x1y1,\
@@ -76,7 +76,7 @@ plot loc1 u 1:5 w l ls 1 t "IGRF inc" axis x1y1,\
      loc4 u 2:8 w lp ls 4 t "West flank" axis x1y1
 
 
-set output 'flanksimDc.png'
+set output 'flanksimDc_sbs.png'
 
 set ylabel font "courier,12" 'declination (degree)'
 
@@ -89,7 +89,7 @@ plot loc1 u 1:6 w l ls 1 t "IGRF dec" axis x1y1,\
      loc4 u 2:9 w lp ls 4 t "West flank" axis x1y1
 ###########################################
 set terminal pngcairo size 1200,1800
-set output 'flanksim_mp.png'
+set output 'flanksim_mp_sbs.png'
 set multiplot layout 3,1
 
 set ylabel font "courier,12" 'intensity ({/Symbol m}T)'
@@ -120,15 +120,17 @@ plot loc1 u 1:6 w l ls 1 t "IGRF dec" axis x1y1,\
      loc9 u 1:9 w lp ls 15 t "South flank SB" axis x1y1,\
      loc4 u 2:9 w lp ls 4 t "West flank" axis x1y1
 unset multiplot
+
 ###########################################
 set terminal pngcairo size 1200,1800
-set output 'flanksim_comp_mp.png'
+set output 'flanksim_comp_mp_sbs.png'
 set xlabel font "courier,12" 'index'
 set xrange [0:47]
 set multiplot layout 3,1
 set title font "courier,14" 'flanksim components + IGRF'
 set ylabel font "courier,12" 'Bx (Northing) ({/Symbol m}T)'
-plot (26850.3e-3) w l ls 1 t "IGRFx" axis x1y1,\
+set key bottom right
+plot (26850.3e-3) w l ls 1 t "IGRF x" axis x1y1,\
      loc1 u 0:($3-1) w l ls 2 t "surface" axis x1y2,\
      loc5 u 0:($1*1e6) w lp ls 7 t "North flank" axis x1y1,\
      loc6 u 0:($1*1e6) w lp ls 6 t "East flank" axis x1y1,\
@@ -137,14 +139,14 @@ plot (26850.3e-3) w l ls 1 t "IGRFx" axis x1y1,\
      loc8 u 0:($1*1e6) w lp ls 4 t "West flank" axis x1y1
 
 set ylabel font "courier,12" 'By (Easting) ({/Symbol m}T)'
-plot (1561.2e-3) w l ls 1 t "IGRFy" axis x1y1,\
+plot (1561.2e-3) w l ls 1 t "IGRF y" axis x1y1,\
      loc1 u 0:($3-1) w l ls 2 t "surface" axis x1y2,\
      loc5 u 0:($2*1e6) w lp ls 7 t "North flank" axis x1y1,\
      loc6 u 0:($2*1e6) w lp ls 6 t "East flank" axis x1y1,\
      loc7 u 0:($2*1e6) w lp ls 5 t "South flank" axis x1y1,\
      loc10 u 0:($2*1e6) w lp ls 15 t "South flank SB" axis x1y1,\
      loc8 u 0:($2*1e6) w lp ls 4 t "West flank" axis x1y1
-
+set key top right
 set ylabel font "courier,12" 'Bz (Downing) ({/Symbol m}T)'
 plot (36305.7e-3) w l ls 1 t "IGRF z" axis x1y1,\
      loc1 u 0:($3-1) w l ls 2 t "surface" axis x1y2,\
@@ -152,6 +154,116 @@ plot (36305.7e-3) w l ls 1 t "IGRF z" axis x1y1,\
      loc6 u 0:($3*1e6) w lp ls 6 t "East flank" axis x1y1,\
      loc7 u 0:($3*1e6) w lp ls 5 t "South flank" axis x1y1,\
      loc10 u 0:($3*1e6) w lp ls 15 t "South flank SB" axis x1y1,\
+     loc8 u 0:($3*1e6) w lp ls 4 t "West flank" axis x1y1
+
+
+unset multiplot
+
+###########################################
+set terminal pngcairo size 1800,1200
+set output 'flanksimIn.png'
+set xlabel font "courier,12" 'distance (m)'
+set autoscale xy
+set ytics nomirror
+set style line 12 lc rgb '#aaaaaa' dt 2 lw 0.5
+set grid back ytics ls 12
+set y2range[-6:6]
+set y2tics -6,1
+set tics out font "courier,14"
+set xrange[100:150]
+
+set key top right
+
+set output 'flanksimIn.png'
+set ylabel font "courier,12" 'intensity ({/Symbol m}T)'
+
+plot loc1 u 1:($4*1e6) w l ls 1 t "IGRF int" axis x1y1,\
+     loc1 u 1:($3-1) w l ls 2 t "surface" axis x1y2,\
+     loc1 u 1:($7*1e6) w lp ls 7 t "North flank" axis x1y1,\
+     loc2 u 2:($7*1e6) w lp ls 6 t "East flank" axis x1y1,\
+     loc3 u 1:($7*1e6) w lp ls 5 t "South flank" axis x1y1,\
+     loc4 u 2:($7*1e6) w lp ls 4 t "West flank" axis x1y1
+
+set output 'flanksimIc.png'
+set ylabel font "courier,12" 'inclination (degree)'
+
+plot loc1 u 1:5 w l ls 1 t "IGRF inc" axis x1y1,\
+     loc1 u 1:($3-1) w l ls 2 t "surface" axis x1y2,\
+     loc1 u 1:8 w lp ls 7 t "North flank" axis x1y1,\
+     loc2 u 2:8 w lp ls 6 t "East flank" axis x1y1,\
+     loc3 u 1:8 w lp ls 5 t "South flank" axis x1y1,\
+     loc4 u 2:8 w lp ls 4 t "West flank" axis x1y1
+
+
+set output 'flanksimDc.png'
+
+set ylabel font "courier,12" 'declination (degree)'
+
+plot loc1 u 1:6 w l ls 1 t "IGRF dec" axis x1y1,\
+     loc1 u 1:($3-1) w l ls 2 t "surface" axis x1y2,\
+     loc1 u 1:9 w lp ls 7 t "North flank" axis x1y1,\
+     loc2 u 2:9 w lp ls 6 t "East flank" axis x1y1,\
+     loc3 u 1:9 w lp ls 5 t "South flank" axis x1y1,\
+     loc4 u 2:9 w lp ls 4 t "West flank" axis x1y1
+###########################################
+set terminal pngcairo size 1200,1800
+set output 'flanksim_mp.png'
+set multiplot layout 3,1
+
+set ylabel font "courier,12" 'intensity ({/Symbol m}T)'
+plot loc1 u 1:($4*1e6) w l ls 1 t "IGRF int" axis x1y1,\
+     loc1 u 1:($3-1) w l ls 2 t "surface" axis x1y2,\
+     loc1 u 1:($7*1e6) w lp ls 7 t "North flank" axis x1y1,\
+     loc2 u 2:($7*1e6) w lp ls 6 t "East flank" axis x1y1,\
+     loc3 u 1:($7*1e6) w lp ls 5 t "South flank" axis x1y1,\
+     loc4 u 2:($7*1e6) w lp ls 4 t "West flank" axis x1y1
+
+set ylabel font "courier,12" 'inclination (degree)'
+plot loc1 u 1:5 w l ls 1 t "IGRF inc" axis x1y1,\
+     loc1 u 1:($3-1) w l ls 2 t "surface" axis x1y2,\
+     loc1 u 1:8 w lp ls 7 t "North flank" axis x1y1,\
+     loc2 u 2:8 w lp ls 6 t "East flank" axis x1y1,\
+     loc3 u 1:8 w lp ls 5 t "South flank" axis x1y1,\
+     loc4 u 2:8 w lp ls 4 t "West flank" axis x1y1
+
+set ylabel font "courier,12" 'declination (degree)'
+plot loc1 u 1:6 w l ls 1 t "IGRF dec" axis x1y1,\
+     loc1 u 1:($3-1) w l ls 2 t "surface" axis x1y2,\
+     loc1 u 1:9 w lp ls 7 t "North flank" axis x1y1,\
+     loc2 u 2:9 w lp ls 6 t "East flank" axis x1y1,\
+     loc3 u 1:9 w lp ls 5 t "South flank" axis x1y1,\
+     loc4 u 2:9 w lp ls 4 t "West flank" axis x1y1
+unset multiplot
+###########################################
+set terminal pngcairo size 1200,1800
+set output 'flanksim_comp_mp.png'
+set xlabel font "courier,12" 'index'
+set xrange [0:47]
+set multiplot layout 3,1
+set title font "courier,14" 'flanksim components + IGRF'
+set ylabel font "courier,12" 'Bx (Northing) ({/Symbol m}T)'
+set key bottom right
+plot (26850.3e-3) w l ls 1 t "IGRF x" axis x1y1,\
+     loc1 u 0:($3-1) w l ls 2 t "surface" axis x1y2,\
+     loc5 u 0:($1*1e6) w lp ls 7 t "North flank" axis x1y1,\
+     loc6 u 0:($1*1e6) w lp ls 6 t "East flank" axis x1y1,\
+     loc7 u 0:($1*1e6) w lp ls 5 t "South flank" axis x1y1,\
+     loc8 u 0:($1*1e6) w lp ls 4 t "West flank" axis x1y1
+
+set ylabel font "courier,12" 'By (Easting) ({/Symbol m}T)'
+plot (1561.2e-3) w l ls 1 t "IGRF y" axis x1y1,\
+     loc1 u 0:($3-1) w l ls 2 t "surface" axis x1y2,\
+     loc5 u 0:($2*1e6) w lp ls 7 t "North flank" axis x1y1,\
+     loc6 u 0:($2*1e6) w lp ls 6 t "East flank" axis x1y1,\
+     loc7 u 0:($2*1e6) w lp ls 5 t "South flank" axis x1y1,\
+     loc8 u 0:($2*1e6) w lp ls 4 t "West flank" axis x1y1
+set key top right
+set ylabel font "courier,12" 'Bz (Downing) ({/Symbol m}T)'
+plot (36305.7e-3) w l ls 1 t "IGRF z" axis x1y1,\
+     loc1 u 0:($3-1) w l ls 2 t "surface" axis x1y2,\
+     loc5 u 0:($3*1e6) w lp ls 7 t "North flank" axis x1y1,\
+     loc6 u 0:($3*1e6) w lp ls 6 t "East flank" axis x1y1,\
+     loc7 u 0:($3*1e6) w lp ls 5 t "South flank" axis x1y1,\
      loc8 u 0:($3*1e6) w lp ls 4 t "West flank" axis x1y1
 
 

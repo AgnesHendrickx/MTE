@@ -1,0 +1,145 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Usage &#8212; MTE 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Governing equations" href="governing_equations.html" />
+    <link rel="prev" title="Welcome to MTE’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="governing_equations.html" title="Governing equations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MTE’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Usage</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="installation">
+<span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">To use MTE code, clone from <a class="reference external" href="https://github.com/AgnesHendrickx/MTE/">github</a>.</div>
+<div class="line">Make sure to have python3 and gnuplot installed and updated.</div>
+</div>
+</div>
+<div class="section" id="general-outline-hierarchy-of-code">
+<h2>General outline (hierarchy) of code<a class="headerlink" href="#general-outline-hierarchy-of-code" title="Permalink to this heading">¶</a></h2>
+<p>The main body of code is called <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, here one can change model setup for different benchmarks, modify meshing, etc.
+It calls upon two modules composed of various functions:</p>
+<ol class="arabic simple">
+<li>The computational module <code class="docutils literal notranslate"><span class="pre">magnetostatics.py</span></code>, containing mostly translation of original Fortran77 code from <span id="id2">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
+<li>The visualization module <code class="docutils literal notranslate"><span class="pre">tools.py</span></code>, containing functions to produce vtu files.</li>
+</ol>
+<p>Furthermore, two other (optional) modules are available only for the Mount Etna case study, where the field sites of <span id="id3">[<a class="reference internal" href="ref.html#id10" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span> are reproduced:</p>
+<ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">set_measurement_parameters</span> <span class="pre">import.py</span></code>, which contains one function (see <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a>) that returns DEM, site and path specific values like <code class="docutils literal notranslate"><span class="pre">pathfile</span></code>, number of points, IGRF, and more, see <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a>, from input.</li>
+<li><code class="docutils literal notranslate"><span class="pre">etna.py</span></code>, where one defines the input parameters, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>, to run different options to reproduce field paths, and calling <code class="docutils literal notranslate"><span class="pre">set_measurement_parameters</span> <span class="pre">import.py</span></code></li>
+</ol>
+<p>Lastly, there are two scripts that automatically modify <code class="docutils literal notranslate"><span class="pre">etna.py</span></code>, <code class="docutils literal notranslate"><span class="pre">script_etna_full.sh</span></code>, and <code class="docutils literal notranslate"><span class="pre">script_etna.sh</span></code>, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a> for more information.</p>
+<p>Please see each respective section for specific usage of the code: <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, <a class="reference internal" href="flanksim.html"><span class="doc">Synthetic topopography: flank simulations</span></a>, <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> and <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Usage</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#general-outline-hierarchy-of-code">General outline (hierarchy) of code</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to MTE’s documentation!</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="governing_equations.html"
+                          title="next chapter">Governing equations</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/usage.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="governing_equations.html" title="Governing equations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MTE’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Usage</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Agnes.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

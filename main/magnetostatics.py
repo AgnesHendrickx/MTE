@@ -1,14 +1,24 @@
-#copy
 import numpy as np
 from numba import jit
 
 epsilon=1e-20
 
 ###############################################################################
-# computes the vector product of two vectors; i.e.,
 
 @jit(nopython=True)
 def cross(a,b):
+    """
+    | Produces vector (cross) product of two vectors. :math:`\\vec{a} \\times \\vec{b} = \\vec{c}`
+ 
+    :param a: 1D array(3) containing 3 components (0=x;1=y;2=z) of vector **a**.
+    :type a: array_like(float)
+    :param b: 1D array(3) containing 3 components (0=x;1=y;2=z) of vector **b**.
+    :type b: array_like(float)
+ 
+    :return:
+      - **c** *(array_like(float))* - 1D array(3) containing 3 components (0=x;1=y;2=z) of vector **c**..
+ 
+    """
     cx=a[1]*b[2]-a[2]*b[1]
     cy=a[2]*b[0]-a[0]*b[2]
     cz=a[0]*b[1]-a[1]*b[0]
@@ -18,6 +28,16 @@ def cross(a,b):
 
 @jit(nopython=True)
 def qcoords_1D(nqpts):
+    """
+    Determines the coordinates of the quadrature points depending on the amount chosen. 
+ 
+    :param nqpts: the number of quadrature points per dimension.
+    :type nqpts: scalar(int)
+ 
+    :return:
+      - **coordsq** *(array_like(float))* - 1D array(nqpts) containing coordinates of quadrature points.
+ 
+    """
 
     if nqpts==1: 
        return np.array([0],dtype=np.float64)
@@ -95,7 +115,16 @@ def qcoords_1D(nqpts):
 
 @jit(nopython=True)
 def qweights_1D(nqpts):
-
+    """
+    Determines the weights of the quadrature points depending on the amount chosen. 
+ 
+    :param nqpts: the number of quadrature points per dimension.
+    :type nqpts: scalar(int)
+ 
+    :return:
+      - **weightsq** *(array_like(float))* - 1D array(nqpts) containing weights of quadrature points.
+ 
+    """
 
     if nqpts==1:
        return np.array([2],dtype=np.float64)
@@ -169,10 +198,24 @@ def qweights_1D(nqpts):
 
 
 ###############################################################################
-# Q1 basis functions inside the [-1:1]x[-1:1]x[-1:1] reference element/cell
 
-@jit(nopython=True)
+@jit(nopython=True) # TODO fill docstrings #CT
 def NNN(r,s,t):
+    """
+    {DESCRIPTION FUNCTION} Q1 basis functions inside the [-1:1]x[-1:1]x[-1:1] reference element/cell
+ 
+    :param r: ** - 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type r: (array_like(float))
+    :param s: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type s: (array_like(float))
+    :param t: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type t: (array_like(float))
+ 
+    :return:
+      - **N** *(array_like(float))* - 1D array(8) containing {DESCRIPTION RETURN PARAMETER}
+ 
+    """ 
+    
     N0=0.125*(1.-r)*(1.-s)*(1.-t)
     N1=0.125*(1.+r)*(1.-s)*(1.-t)
     N2=0.125*(1.+r)*(1.+s)*(1.-t)
@@ -184,7 +227,21 @@ def NNN(r,s,t):
     return np.array([N0,N1,N2,N3,N4,N5,N6,N7],dtype=np.float64)
 
 @jit(nopython=True)
-def dNNNdr(r,s,t):
+def dNNNdr(r,s,t): # TODO fill docstrings #CT
+    """
+    {DESCRIPTION FUNCTION}
+ 
+    :param r: ** - 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type r: (array_like(float))
+    :param s: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type s: (array_like(float))
+    :param t: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type t: (array_like(float))
+ 
+    :return:
+      - **dNdr** *(array_like(float))* - 1D array(8) containing {DESCRIPTION RETURN PARAMETER}
+ 
+    """ 
     dNdr0=-0.125*(1.-s)*(1.-t) 
     dNdr1=+0.125*(1.-s)*(1.-t)
     dNdr2=+0.125*(1.+s)*(1.-t)
@@ -196,7 +253,21 @@ def dNNNdr(r,s,t):
     return np.array([dNdr0,dNdr1,dNdr2,dNdr3,dNdr4,dNdr5,dNdr6,dNdr7],dtype=np.float64)
 
 @jit(nopython=True)
-def dNNNds(r,s,t):
+def dNNNds(r,s,t): # TODO fill docstrings #CT
+    """
+    {DESCRIPTION FUNCTION}
+ 
+    :param r: ** - 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type r: (array_like(float))
+    :param s: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type s: (array_like(float))
+    :param t: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type t: (array_like(float))
+ 
+    :return:
+      - **dNds** *(array_like(float))* - 1D array(8) containing {DESCRIPTION RETURN PARAMETER}
+ 
+    """ 
     dNds0=-0.125*(1.-r)*(1.-t) 
     dNds1=-0.125*(1.+r)*(1.-t)
     dNds2=+0.125*(1.+r)*(1.-t)
@@ -208,7 +279,21 @@ def dNNNds(r,s,t):
     return np.array([dNds0,dNds1,dNds2,dNds3,dNds4,dNds5,dNds6,dNds7],dtype=np.float64)
 
 @jit(nopython=True)
-def dNNNdt(r,s,t):
+def dNNNdt(r,s,t): # TODO fill docstrings #CT
+    """
+    {DESCRIPTION FUNCTION}
+ 
+    :param r: ** - 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type r: (array_like(float))
+    :param s: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type s: (array_like(float))
+    :param t: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
+    :type t: (array_like(float))
+ 
+    :return:
+      - **dNdt** *(array_like(float))* - 1D array(8) containing {DESCRIPTION RETURN PARAMETER}
+ 
+    """ 
     dNdt0=-0.125*(1.-r)*(1.-s) 
     dNdt1=-0.125*(1.+r)*(1.-s)
     dNdt2=-0.125*(1.+r)*(1.+s)
@@ -220,13 +305,40 @@ def dNNNdt(r,s,t):
     return np.array([dNdt0,dNdt1,dNdt2,dNdt3,dNdt4,dNdt5,dNdt6,dNdt7],dtype=np.float64)
 
 ###############################################################################
-# computes magnetic field components based on a 2^3 quadrature point integration
-# produced by a single hexahedron (cuboid) carrying a magnetisation
-# vector (Mx,My,Mz) assumed to be constant inside the element/cell.
-# TODO: allow for higher quadrature  
 
 @jit(nopython=True)
-def compute_B_quadrature(xmeas,ymeas,zmeas,x,y,z,icon,Mx,My,Mz,nqdim):
+def compute_B_quadrature(xmeas,ymeas,zmeas,x,y,z,icon,Mx,My,Mz,nqdim): # TODO check docstrings #CT
+    """
+    | Solves volume integral, numerical solution, as the volume integral is parameterised by the number of quadrature points per dimension (nqdim). Computes magnetic field components based on 2^3 quadrature point integration produced by a single hexahedron (cuboid) carrying a magnetisation vector (Mx,My,Mz) assumed to be constant inside the element/cell. # TODO: allow for higher quadrature  
+    # TODO: check if output B is in T.
+   
+    :param xmeas: x coordinate of observation point.
+    :type xmeas: scalar(float)   
+    :param ymeas:  y coordinate of observation point.
+    :type ymeas: scalar(float)    
+    :param zmeas: z coordinate of observation point.
+    :type zmeas: scalar(float)
+    :param x: 1D array(NV) containing x coordinate of each observation point.
+    :type x: array_like(float)    
+    :param y: 1D array(NV) containing y coordinate of each observation point.
+    :type y: array_like(float)    
+    :param z: 1D array(NV) containing z coordinate of each observation point.
+    :type z: array_like(float)
+    :param icon: 1D array(8), containing connectivity, marking nodes that define an element, see code. 
+    :type icon: array_like(int)
+    :param Mx: x component magnetization [A/m] of the cell.
+    :type Mx: scalar(float)
+    :param My: y component magnetization [A/m]  of the cell.
+    :type My: scalar(float)
+    :param Mz: z component magnetization [A/m] of the cell.
+    :type Mz: scalar(float)
+    :param nqpts: the number of quadrature points per dimension.
+    :type nqpts: scalar(int)
+
+    :return:
+      - **B_vi** *(array_like(float))* - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength [T] at a point computed by volume integral method.
+    
+    """
 
     hx=x[icon[6]]-x[icon[0]]
     hy=y[icon[6]]-y[icon[0]]
@@ -307,22 +419,54 @@ def compute_B_quadrature(xmeas,ymeas,zmeas,x,y,z,icon,Mx,My,Mz,nqdim):
     return np.array([Bx,By,Bz],dtype=np.float64)
 
 ###############################################################################
-# Subroutine plane computes the intersection (x,y,z) of a plane 
-# and a perpendicular line.  The plane is defined by three points 
-# (x1,y1,z1), (x2,y2,z2), and (x3,y3,z3).  The line passes through 
-# (x0,y0,z0).  Computation is done by a transformation and inverse 
-# transformation of coordinates systems.
-# Directly translated from Blakely 1995 book. 
 
 @jit(nopython=True)
 def plane(x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3):
-    x2n=x2-x1
+    """
+    | Function plane computes the intersection (x,y,z) of a plane and a perpendicular line.
+    | The plane is defined by three points (x1,y1,z1), (x2,y2,z2), and (x3,y3,z3), in facmag the (first 3) polygon corners are passed. The line passes through (x0,y0,z0), in facmag the observation point is passed. 
+    | Computation is done by a transformation and inverse transformation of coordinates systems. It defines three vectors N0, N2 and N3 in the process. N0 = vector from point 1 (x1,y1,z1) to point 0 (x0,y0,z0). N2 = vector from point 1 (x1,y1,z1) to point 2 (x2,y2,z2). N3 = vector from point 1 (x1,y1,z1) to point 3 (x3,y3,z3). 
+    | Directly translated from ANSI-standard FORTRAN 77 subroutines from :cite:`BLAKELY`. 
+   
+    :param x0: x coordinate of point 0.
+    :type x0: scalar(float)    
+    :param y0: y coordinate of point 0.
+    :type y0: scalar(float)    
+    :param z0: z coordinate of point 0.
+    :type z0: scalar(float)
+    :param x1: x coordinate of point 1.
+    :type x1: scalar(float)    
+    :param y1: y coordinate of point 1.
+    :type y1: scalar(float)    
+    :param z1: z coordinate of point 1.
+    :type z1: scalar(float)
+    :param x2: x coordinate of point 2.
+    :type x2: scalar(float)    
+    :param y2: y coordinate of point 2.
+    :type y2: scalar(float)    
+    :param z2: z coordinate of point 2.
+    :type z2: scalar(float)
+    :param x3: x coordinate of point 3.
+    :type x3: scalar(float)    
+    :param y3: y coordinate of point 3.
+    :type y3: scalar(float)    
+    :param z3: z coordinate of point 3.
+    :type z3: scalar(float)
+    
+    :return:
+      - **x** *(scalar(float))* - x coordinate of the intersection point (plane and line)
+      - **y** *(scalar(float))* - y coordinate of the intersection point (plane and line) 
+      - **z** *(scalar(float))* - z coordinate of the intersection point (plane and line)
+      - **r** *(scalar(float))* - distance between intersection point and point 0 (x0,y0,z0)
+    
+    """
+    x2n=x2-x1 # vector N2 from point 1 to point 2. 
     y2n=y2-y1
     z2n=z2-z1
-    x0n=x0-x1
+    x0n=x0-x1 # vector N0 from point 1 to point 0. 
     y0n=y0-y1
     z0n=z0-z1
-    x3n=x3-x1
+    x3n=x3-x1 # vector N3 from point 1 to point 3. 
     y3n=y3-y1
     z3n=z3-z1
 
@@ -364,67 +508,116 @@ def plane(x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3):
     return x,y,z,r
 
 ###############################################################################
-# Subroutine LINE determines the intersection (x,y,z) of two 
-# lines.  First line is defined by points (x1,y1,z1) and 
-# (x2,y2,z2).  Second line is perpendicular to the first and 
-# passes through point (x0,y0,z0).  Distance between (x,y,z) 
-# and (x0,y0,z0) is returned as r.  Computation is done by a 
-# transformation of coordinate systems.
-# Directly translated from Blakely 1995 book. 
 
 @jit(nopython=True)
 def line(x0,y0,z0,x1,y1,z1,x2,y2,z2):
-      tx0=x0-x1
-      ty0=y0-y1
-      tz0=z0-z1
-      tx2=x2-x1
-      ty2=y2-y1
-      tz2=z2-z1
-      a=np.sqrt(tx2**2+ty2**2+tz2**2)
-
-      T2 = np.array([tx2,ty2,tz2],dtype=np.float64)
-      T0 = np.array([tx0,ty0,tz0],dtype=np.float64)
-      C = cross(T2,T0)
-      cx = C[0]
-      cy = C[1]
-      cz = C[2]
-      c=np.sqrt(cx**2+cy**2+cz**2)
-
-      D = cross(C,T2)
-      dx = D[0]
-      dy = D[1]
-      dz = D[2]
-      d=np.sqrt(dx**2+dy**2+dz**2)
-
-      tt11=tx2/a
-      tt12=ty2/a
-      tt13=tz2/a
-      tt21=dx/d
-      tt22=dy/d
-      tt23=dz/d
-      tt31=cx/c
-      tt32=cy/c
-      tt33=cz/c
-      u0=tt11*tx0+tt12*ty0+tt13*tz0
-      r=tt21*tx0+tt22*ty0+tt23*tz0
-      x=tt11*u0+x1
-      y=tt12*u0+y1
-      z=tt13*u0+z1
-      v1=-u0
-      v2=a-u0
-      return x,y,z,v1,v2,r
-
-
+    """
+    | Function LINE determines the intersection (x,y,z) of two lines.  First line is defined by points (x1,y1,z1) and (x2,y2,z2).
+    | Second line is perpendicular to the first and passes through point (x0,y0,z0).Distance between (x,y,z) and (x0,y0,z0) is returned as r. Computation is done by a transformation of coordinate systems, and defining two vectors T0 and T2 in the process. T0 = vector from point 1 (x1,y1,z1) to point 0 (x0,y0,z0). T2 = vector from point 1 (x1,y1,z1) to point 2 (x2,y2,z2).
+    | Directly translated from ANSI-standard FORTRAN 77 subroutines from :cite:`BLAKELY`. 
+    
+   
+    :param x0: x coordinate of point 0.
+    :type x0: scalar(float)    
+    :param y0: y coordinate of point 0.
+    :type y0: scalar(float)    
+    :param z0: z coordinate of point 0.
+    :type z0: scalar(float)
+    :param x1: x coordinate of point 1.
+    :type x1: array_like(float)    
+    :param y1: y coordinate of point 1.
+    :type y1: array_like(float)    
+    :param z1: z coordinate of point 1.
+    :type z1: array_like(float)
+    :param x2: x coordinate of point 2.
+    :type x2: array_like(float)    
+    :param y2: y coordinate of point 2.
+    :type y2: array_like(float)    
+    :param z2: z coordinate of point 2.
+    :type z2: array_like(float)
+    
+    :return:
+      - **x** *(scalar(float))* - x coordinate of intersection point between the lines
+      - **y** *(scalar(float))* - y coordinate of intersection point between the lines
+      - **z** *(scalar(float))* - z coordinate of intersection point between the lines
+      - **v1** *(scalar(float))* - the negative of the projection of vector T0 on T2 (dot product of normalized T2 and T0).  
+      - **v2** *(scalar(float))* - the length of vector T2 minus the projection of vector T0 on T2. 
+      - **r** *(scalar(float))* - distance between intersection point and point 0 (x0,y0,z0)
+    """
+    tx0=x0-x1 #T0= vector from point 1 to point 0. 
+    ty0=y0-y1  
+    tz0=z0-z1 
+    tx2=x2-x1 #T2= vector from point 1 to point 2. 
+    ty2=y2-y1 
+    tz2=z2-z1 
+    a=np.sqrt(tx2**2+ty2**2+tz2**2) #length of T2 vector.
+    T2 = np.array([tx2,ty2,tz2],dtype=np.float64)
+    T0 = np.array([tx0,ty0,tz0],dtype=np.float64)
+    C = cross(T2,T0)
+    cx = C[0]
+    cy = C[1]
+    cz = C[2]
+    c=np.sqrt(cx**2+cy**2+cz**2)
+    D = cross(C,T2)
+    dx = D[0]
+    dy = D[1]
+    dz = D[2]
+    d=np.sqrt(dx**2+dy**2+dz**2)
+    tt11=tx2/a #normalized vector T2
+    tt12=ty2/a 
+    tt13=tz2/a 
+    tt21=dx/d
+    tt22=dy/d
+    tt23=dz/d
+    tt31=cx/c
+    tt32=cy/c
+    tt33=cz/c
+    u0=tt11*tx0+tt12*ty0+tt13*tz0 # dot product of normalized T2 vector and T0 vector (i.e. projection)
+    r=tt21*tx0+tt22*ty0+tt23*tz0
+    x=tt11*u0+x1
+    y=tt12*u0+y1
+    z=tt13*u0+z1
+    v1=-u0
+    v2=a-u0
+    return x,y,z,v1,v2,r
 ###############################################################################
-# Subroutine ROT finds the sense of rotation of the vector 
-# from (ax,ay,az) to (bx,by,bz) with respect to a second 
-# vector through point (px,py,pz).  The second vector has 
-# components given by (nx,ny,nz).  Returned parameter s is 
-# 1 if anticlockwise, -1 if clockwise, or 0 if colinear.
-# Directly translated from Blakely 1995 book. 
 
 @jit(nopython=True)
 def rot(ax,ay,az,bx,by,bz,nx,ny,nz,px,py,pz):
+    """
+    | Function ROT finds the sense of rotation of the vector from (ax,ay,az) to (bx,by,bz) with respect to a second vector through point (px,py,pz). The second vector has components given by (nx,ny,nz). 
+    | Returned parameter s is 1 if anticlockwise, -1 if clockwise, or 0 if colinear.
+    | Directly translated from ANSI-standard FORTRAN 77 subroutines from :cite:`BLAKELY`. 
+    
+    :param ax: x coordinate of point a, defines start of the first vector.
+    :type ax: scalar(float)    
+    :param ay: y coordinate of point a, defines start of the first vector.
+    :type ay: scalar(float)     
+    :param az: y coordinate of point a, defines start of the first vector.
+    :type az: scalar(float) 
+    :param bx: y coordinate of point b, defines end of the first vector.
+    :type bx: scalar(float)    
+    :param by: y coordinate of point b, defines end of the first vector.
+    :type by: scalar(float)     
+    :param bz: z coordinate of point b, defines end of the first vector.
+    :type bz: scalar(float) 
+    :param nx: x component of second vector. 
+    :type nx: scalar(float)     
+    :param ny: y component of second vector.
+    :type ny: scalar(float)     
+    :param nz: z component of second vector.
+    :type nz: scalar(float) 
+    :param px: x coordinate of point p, second vector passes through.
+    :type px: scalar(float)     
+    :param py: y coordinate of point p, second vector passes through.
+    :type py: scalar(float)     
+    :param pz: z coordinate of point p, second vector passes through.
+    :type pz: scalar(float) 
+    
+    :return:
+      - **s** *(scalar(int))* - parameter that defines sense of rotation of a vector w.r.t. a second vector 
+    """
+        
     x=bx-ax
     y=by-ay
     z=bz-az
@@ -452,128 +645,131 @@ def rot(ax,ay,az,bx,by,bz,nx,ny,nz,px,py,pz):
     return s
 
 ###############################################################################
-# Subroutine FACMAG computes the magnetic field due to surface 
-# charge  on a polygonal face.  Repeated calls can build the 
-# field of an arbitrary polyhedron.  X axis is directed north, 
-# z axis vertical down.  Requires functions ROT, LINE, 
-# and PLANE as define above.  Algorithm from Bott (1963).
-# Input parameters:
-#  Observation point is (x0,y0,z0). Polygon corners defined 
-#  by arrays x, y, and z of length n. Magnetization given by 
-#  Mx,My,Mz. Distance units are irrelevant but must be consistent; 
-#  magnetization in A/m. 
-# Output parameters: Three components of magnetic field (Bx,By,Bz), in T.
-# Directly translated from Blakely 1995 book. 
+
 
 @jit(nopython=True)
 def facmag(Mx,My,Mz,x0,y0,z0,x,y,z,n):
-      #x,y,z of size n+1!
+    """
+    | Function FACMAG computes the magnetic field strength **B** due to surface charge on a polygonal face. Repeated calls on each face of a polyhedron build the field of said arbitrary polyhedron, algorithm from :cite:`Bott63`. 
+    | The polygon is limited to 10 corners, the X axis is directed north, axis vertical down. Requires functions ROT, LINE, and PLANE as define above. Distance units are irrelevant but must be consistent. 
+    | Directly translated from ANSI-standard FORTRAN 77 subroutines from :cite:`BLAKELY`.
 
-      Bx=0.
-      By=0.
-      Bz=0.
+    :param Mx: x component magnetization [A/m] of the cell.
+    :type Mx: scalar(float)
+    :param My: y component magnetization [A/m] of the cell.
+    :type My: scalar(float)
+    :param Mz: z component magnetization [A/m] of the cell.
+    :type Mz: scalar(float)
+    :param x0: x coordinate of observation point (xmeas).
+    :type x0: scalar(float)   
+    :param y0:  y coordinate of observation point (ymeas).
+    :type y0: scalar(float)    
+    :param z0: z coordinate of observation point (zmeas).
+    :type z0: scalar(float)
+    :param x: 1D array(n+1) containing x coordinate for each polygon corner (and wrapping around).
+    :type x: array_like(float)    
+    :param y: 1D array(n+1) containing y coordinate for each polygon corner (and wrapping around).
+    :type y: array_like(float)    
+    :param z: 1D array(n+1) containing z coordinate for each polygon corner (and wrapping around).
+    :type z: array_like(float)
+    :param n: amount of corners defining the polygon surface
+    :type n: scalar(int)     
+ 
+    :return:
+       - **B** *(array_like(float))* - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength [T] at a point due to the surface charges of a polygon surface.
+    """
+    #x,y,z of size n+1! 
+    Bx=0.
+    By=0.
+    Bz=0. 
+    xl=np.zeros(n,dtype=np.float64)
+    yl=np.zeros(n,dtype=np.float64)
+    zl=np.zeros(n,dtype=np.float64)
+    #------------------------
+    for i in range(0,n):
+       xl[i]=x[i+1]-x[i]
+       yl[i]=y[i+1]-y[i]
+       zl[i]=z[i+1]-z[i]
+       rl=np.sqrt(xl[i]**2+yl[i]**2+zl[i]**2)
+       xl[i]=xl[i]/rl
+       yl[i]=yl[i]/rl
+       zl[i]=zl[i]/rl
+    #end for 
+    L1=np.array([xl[1],yl[1],zl[1]],dtype=np.float64)
+    L0=np.array([xl[0],yl[0],zl[0]],dtype=np.float64)
+    N=cross(L1,L0)
+    nx=N[0]
+    ny=N[1]
+    nz=N[2]
+    rn=np.sqrt(nx**2+ny**2+nz**2)
+    nx=nx/rn
+    ny=ny/rn
+    nz=nz/rn 
+    dot=Mx*nx+My*ny+Mz*nz 
+    if abs(dot)<epsilon:
+       return np.array([0.,0.,0.]) 
+    px,py,pz,w=plane(x0,y0,z0,x[0],y[0],z[0],x[1],y[1],z[1],x[2],y[2],z[2]) 
+    #------------------------
+    s=np.zeros(n,dtype=np.int32)
+    u=np.zeros(n,dtype=np.float64)
+    xk=np.zeros(n,dtype=np.float64)
+    yk=np.zeros(n,dtype=np.float64)
+    zk=np.zeros(n,dtype=np.float64)
+    v1=np.zeros(n,dtype=np.float64)
+    v2=np.zeros(n,dtype=np.float64)
+    for i in range(0,n):
+        s[i]=rot(x[i],y[i],z[i],x[i+1],y[i+1],z[i+1],nx,ny,nz,px,py,pz) 
+        if s[i]==0:
+           continue 
+        u1,v,w1,v1[i],v2[i],u[i]=line(px,py,pz,x[i],y[i],z[i],x[i+1],y[i+1],z[i+1])
+       
+        rk=np.sqrt((u1-px)**2+(v-py)**2+(w1-pz)**2)
+        xk[i]=(u1-px)/rk
+        yk[i]=(v-py)/rk
+        zk[i]=(w1-pz)/rk
+    #end for 
+    #------------------------
+    for j in range(0,n):
+        if s[j]==0:
+           continue 
+        us=u[j]**2
+        v2s=v2[j]**2
+        v1s=v1[j]**2
+        a2=v2[j]/u[j]
+        a1=v1[j]/u[j]
+        f2=np.sqrt(1.+a2*a2)
+        f1=np.sqrt(1.+a1*a1)
+        rho2=np.sqrt(us+v2s)
+        rho1=np.sqrt(us+v1s)
+        r2=np.sqrt(us+v2s+w**2)
+        r1=np.sqrt(us+v1s+w**2)
+        if abs(w)>epsilon:
+           fu2=(a2/f2)*np.log((r2+rho2)/abs(w))-.5*np.log((r2+v2[j])/(r2-v2[j]))
+           fu1=(a1/f1)*np.log((r1+rho1)/abs(w))-.5*np.log((r1+v1[j])/(r1-v1[j]))
+           fv2=(1./f2)*np.log((r2+rho2)/abs(w))
+           fv1=(1./f1)*np.log((r1+rho1)/abs(w))
+           fw2=np.arctan2((a2*(r2-abs(w))),(r2+a2*a2*abs(w)))
+           fw1=np.arctan2((a1*(r1-abs(w))),(r1+a1*a1*abs(w)))
+           fu=dot*(fu2-fu1)
+           fv=-dot*(fv2-fv1)
+           fw=(-w*dot/abs(w))*(fw2-fw1)
+        else:
+           fu2=(a2/f2)*(1.+np.log((r2+rho2)/epsilon))-.5*np.log((r2+v2[j])/(r2-v2[j]))
+           fu1=(a1/f1)*(1.+np.log((r1+rho1)/epsilon))-.5*np.log((r1+v1[j])/(r1-v1[j]))
+           fv2=(1./f2)*(1.+np.log((r2+rho2)/epsilon))
+           fv1=(1./f1)*(1.+np.log((r1+rho1)/epsilon))
+           fu=dot*(fu2-fu1)
+           fv=-dot*(fv2-fv1)
+           fw=0.
+        #end if
+        Bx-=s[j]*(fu*xk[j]+fv*xl[j]+fw*nx)
+        By-=s[j]*(fu*yk[j]+fv*yl[j]+fw*ny)
+        Bz-=s[j]*(fu*zk[j]+fv*zl[j]+fw*nz)
+    #end for 
+    return np.array([Bx,By,Bz],dtype=np.float64) 
 
-      xl=np.zeros(n,dtype=np.float64)
-      yl=np.zeros(n,dtype=np.float64)
-      zl=np.zeros(n,dtype=np.float64)
-      #------------------------
-      for i in range(0,n):
-         xl[i]=x[i+1]-x[i]
-         yl[i]=y[i+1]-y[i]
-         zl[i]=z[i+1]-z[i]
-         rl=np.sqrt(xl[i]**2+yl[i]**2+zl[i]**2)
-         xl[i]=xl[i]/rl
-         yl[i]=yl[i]/rl
-         zl[i]=zl[i]/rl
-      #end for
-
-      L1=np.array([xl[1],yl[1],zl[1]],dtype=np.float64)
-      L0=np.array([xl[0],yl[0],zl[0]],dtype=np.float64)
-      N=cross(L1,L0)
-      nx=N[0]
-      ny=N[1]
-      nz=N[2]
-      rn=np.sqrt(nx**2+ny**2+nz**2)
-      nx=nx/rn
-      ny=ny/rn
-      nz=nz/rn
-
-      dot=Mx*nx+My*ny+Mz*nz
-
-      if abs(dot)<epsilon:
-         return np.array([0.,0.,0.])
-
-      px,py,pz,w=plane(x0,y0,z0,x[0],y[0],z[0],x[1],y[1],z[1],x[2],y[2],z[2])
-
-      #------------------------
-      s=np.zeros(n,dtype=np.int32)
-      u=np.zeros(n,dtype=np.float64)
-      xk=np.zeros(n,dtype=np.float64)
-      yk=np.zeros(n,dtype=np.float64)
-      zk=np.zeros(n,dtype=np.float64)
-      v1=np.zeros(n,dtype=np.float64)
-      v2=np.zeros(n,dtype=np.float64)
-      for i in range(0,n):
-          s[i]=rot(x[i],y[i],z[i],x[i+1],y[i+1],z[i+1],nx,ny,nz,px,py,pz)
-
-          if s[i]==0:
-             continue
-
-          u1,v,w1,v1[i],v2[i],u[i]=line(px,py,pz,x[i],y[i],z[i],x[i+1],y[i+1],z[i+1])
-         
-          rk=np.sqrt((u1-px)**2+(v-py)**2+(w1-pz)**2)
-          xk[i]=(u1-px)/rk
-          yk[i]=(v-py)/rk
-          zk[i]=(w1-pz)/rk
-      #end for
-
-      #------------------------
-      for j in range(0,n):
-          if s[j]==0:
-             continue
-
-          us=u[j]**2
-          v2s=v2[j]**2
-          v1s=v1[j]**2
-          a2=v2[j]/u[j]
-          a1=v1[j]/u[j]
-          f2=np.sqrt(1.+a2*a2)
-          f1=np.sqrt(1.+a1*a1)
-          rho2=np.sqrt(us+v2s)
-          rho1=np.sqrt(us+v1s)
-          r2=np.sqrt(us+v2s+w**2)
-          r1=np.sqrt(us+v1s+w**2)
-          if abs(w)>epsilon:
-             fu2=(a2/f2)*np.log((r2+rho2)/abs(w))-.5*np.log((r2+v2[j])/(r2-v2[j]))
-             fu1=(a1/f1)*np.log((r1+rho1)/abs(w))-.5*np.log((r1+v1[j])/(r1-v1[j]))
-             fv2=(1./f2)*np.log((r2+rho2)/abs(w))
-             fv1=(1./f1)*np.log((r1+rho1)/abs(w))
-             fw2=np.arctan2((a2*(r2-abs(w))),(r2+a2*a2*abs(w)))
-             fw1=np.arctan2((a1*(r1-abs(w))),(r1+a1*a1*abs(w)))
-             fu=dot*(fu2-fu1)
-             fv=-dot*(fv2-fv1)
-             fw=(-w*dot/abs(w))*(fw2-fw1)
-          else:
-             fu2=(a2/f2)*(1.+np.log((r2+rho2)/epsilon))-.5*np.log((r2+v2[j])/(r2-v2[j]))
-             fu1=(a1/f1)*(1.+np.log((r1+rho1)/epsilon))-.5*np.log((r1+v1[j])/(r1-v1[j]))
-             fv2=(1./f2)*(1.+np.log((r2+rho2)/epsilon))
-             fv1=(1./f1)*(1.+np.log((r1+rho1)/epsilon))
-             fu=dot*(fu2-fu1)
-             fv=-dot*(fv2-fv1)
-             fw=0.
-          #end if
-          Bx-=s[j]*(fu*xk[j]+fv*xl[j]+fw*nx)
-          By-=s[j]*(fu*yk[j]+fv*yl[j]+fw*ny)
-          Bz-=s[j]*(fu*zk[j]+fv*zl[j]+fw*nz)
-      #end for
-
-      return np.array([Bx,By,Bz],dtype=np.float64)
-
-###############################################################################
-# this function computes the magnetic field produced by a cuboid cell
-# using facmag function on each face. Here again the magnetisation vector 
-# (Mx,My,Mz) is assumed to be constant inside the cell.
-# The internal numbering of nodes is as follows: 
+##############################################################################
+# internal node numbering:
 #     z
 #     |
 #     4---7---y  
@@ -584,11 +780,40 @@ def facmag(Mx,My,Mz,x0,y0,z0,x,y,z,n):
 #    /   /
 #   1---2
 #  /
-# x
-
+# x 
+###########
 
 @jit(nopython=True)
 def compute_B_surface_integral_cuboid(xmeas,ymeas,zmeas,x,y,z,icon,Mx,My,Mz):
+    """
+    | This function computes the magnetic field produced by a cuboid cell using facmag function on each face. Here again the magnetisation vector (Mx,My,Mz) is assumed to be constant inside the cell. 
+    | Distance units are irrelevant but must be consistent.  For numbering of the nodes, see :doc:`app2`.
+    
+    :param xmeas: x coordinate of observation point.
+    :type xmeas: scalar(float)   
+    :param ymeas:  y coordinate of observation point.
+    :type ymeas: scalar(float)    
+    :param zmeas: z coordinate of observation point.
+    :type zmeas: scalar(float)
+    :param x: 1D array(NV) containing x coordinate of each node.
+    :type x: array_like(float)    
+    :param y: 1D array(NV) containing y coordinate of each node.
+    :type y: array_like(float)    
+    :param z: 1D array(NV) containing z coordinate of each node.
+    :type z: array_like(float)
+    :param icon: 1D array(8), containing connectivity, marking nodes that define an element, see code. 
+    :type icon: array_like(int)
+    :param Mx: x component magnetization [A/m] of the cell.
+    :type Mx: scalar(float)
+    :param My: y component magnetization [A/m] of the cell.
+    :type My: scalar(float)
+    :param Mz: z component magnetization [A/m] of the cell.
+    :type Mz: scalar(float)
+    
+    :return:
+       - **B_si** *(array_like(float))* - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at each point computed by surface integral method for a cuboid cell. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in :cite:`BLAKELY`.
+    
+    """
 
     Bx=0
     By=0
@@ -668,16 +893,52 @@ def compute_B_surface_integral_cuboid(xmeas,ymeas,zmeas,x,y,z,icon,Mx,My,Mz):
     return np.array([Bx,By,Bz],dtype=np.float64)
 
 ###############################################################################
-# this function computes the magnetic field produced by a hexahedron cell
-# which vertical sides are planar. Only the top and bottom faces can 
-# contain 4 nodes which are not co-planar.
-# In light thereof we subdivide the top and bottom faces into two triangles
-# This feature is needed in the case when topography is prescribed at the
-# top of the domain and the vertical position of the nodes accomodates this.
+# internal node numbering:
+#     z
+#     |
+#     4---7---y  
+#    / 9 /
+#   5---6
+#     |
+#     0---3---y  
+#    / 8 /
+#   1---2
+#  /
+# x 
+###########
 
 @jit(nopython=True)
 def compute_B_surface_integral_wtopo(xmeas,ymeas,zmeas,x,y,z,icon,Mx,My,Mz):
+    """
 
+    | This function computes the magnetic field produced by a hexahedron cell which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar.
+    | In light thereof we subdivide the top and bottom faces into four triangles. This feature is needed in the case when topography is prescribed at the top of the domain and the vertical position of the nodes accomodates this. Distance units are irrelevant but must be consistent. For numbering of the nodes, see :doc:`app2`. 
+
+    :param xmeas: x coordinate of observation point.
+    :type xmeas: scalar(float)   
+    :param ymeas:  y coordinate of observation point.
+    :type ymeas: scalar(float)    
+    :param zmeas: z coordinate of observation point.
+    :type zmeas: scalar(float)
+    :param x: 1D array(NV) containing x coordinate of each node.
+    :type x: array_like(float)    
+    :param y: 1D array(NV) containing y coordinate of each node.
+    :type y: array_like(float)    
+    :param z: 1D array(NV) containing z coordinate of each node.
+    :type z: array_like(float)
+    :param icon: 1D array(8), containing connectivity, marking nodes that define an element, see code. 
+    :type icon: array_like(int)
+    :param Mx: x component magnetization [A/m] of the cell.
+    :type Mx: scalar(float)
+    :param My: y component magnetization [A/m] of the cell.
+    :type My: scalar(float)
+    :param Mz: z component magnetization [A/m] of the cell.
+    :type Mz: scalar(float)
+    
+    :return:
+       - **B_si** *(array_like(float))* - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at a point computed by surface integral method for a cuboid cell with topography on top and/or bottom surface. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in :cite:`BLAKELY`.
+    
+    """
     Bx=0
     By=0
     Bz=0
@@ -837,7 +1098,37 @@ def compute_B_surface_integral_wtopo(xmeas,ymeas,zmeas,x,y,z,icon,Mx,My,Mz):
 
 @jit(nopython=True)
 def compute_B_surface_integral_wtopo_noise(xmeas,ymeas,zmeas,x,y,z,icon,Mx,My,Mz,noise):
-
+    """
+    | This function computes the magnetic field produced by a hexahedron cell which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar, and are therefor subdivided into four triangles. 
+    | Numbering of nodes is same as previous function. Distance units are irrelevant but must be consistent. The noise is added to the extra node on the top/bottom surface. 
+         
+    :param xmeas: x coordinate of observation point.
+    :type xmeas: scalar(float)   
+    :param ymeas:  y coordinate of observation point.
+    :type ymeas: scalar(float)    
+    :param zmeas: z coordinate of observation point.
+    :type zmeas: scalar(float)
+    :param x: 1D array(NV) containing x coordinate of each node.
+    :type x: array_like(float)    
+    :param y: 1D array(NV) containing y coordinate of each node.
+    :type y: array_like(float)    
+    :param z: 1D array(NV) containing z coordinate of each node.
+    :type z: array_like(float)
+    :param icon: 1D array(8), containing connectivity, marking nodes that define an element, see code. 
+    :type icon: array_like(int)
+    :param Mx: x component magnetization [A/m] of the cell.
+    :type Mx: scalar(float)
+    :param My: y component magnetization [A/m] of the cell.
+    :type My: scalar(float)
+    :param Mz: z component magnetization [A/m] of the cell.
+    :type Mz: scalar(float)
+    :param noise: the height substracted or added to the middle node on the top and/or bottom surface of each cell representing noise potentially smoothed by the DEM. 
+    :type noise: scalar(float)
+    
+    :return:
+       - **B_si** *(array_like(float))* - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at a point computed by surface integral method for a cuboid cell with topography on top and/or bottom surface and noise. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in :cite:`BLAKELY`.
+    
+    """
     Bx=0
     By=0
     Bz=0
