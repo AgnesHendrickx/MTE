@@ -1,24 +1,29 @@
-loc1 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/restest/10_10_10/measurements_line.ascii'
-loc2 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/restest/10_10_10_DD/measurements_line.ascii'
-loc3 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/restest/25_25_10/measurements_line.ascii'
-loc4 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/restest/50_50_10/measurements_line.ascii'
-loc5 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/restest/75_75_10/measurements_line.ascii'
-loc6 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/restest/75_75_10_DD/measurements_line.ascii'
-loc7 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/restest/75_75_100/measurements_line.ascii'
+loc1 = '/home/agnes/MTE/main/flanksim_parameters/south/restest/10_10_10/measurements_line.ascii'
+loc2 = '/home/agnes/MTE/main/flanksim_parameters/south/restest/10_10_10_DD/measurements_line.ascii'
+loc3 = '/home/agnes/MTE/main/flanksim_parameters/south/restest/25_25_10/measurements_line.ascii'
+loc4 = '/home/agnes/MTE/main/flanksim_parameters/south/restest/50_50_10/measurements_line.ascii'
+loc5 = '/home/agnes/MTE/main/flanksim_parameters/south/restest/75_75_10/measurements_line.ascii'
+loc6 = '/home/agnes/MTE/main/flanksim_parameters/south/restest/75_75_10_DD/measurements_line.ascii'
+loc7 = '/home/agnes/MTE/main/flanksim_parameters/south/restest/75_75_100/measurements_line.ascii'
 
-loc8 = '/home/agnes/MTE/main/flanksim_parameters/benchmark_4/south/restest/10_10_10/measurements_line.ascii'
+loc8 = '/home/agnes/MTE/main/flanksim_parameters/south/restest/10_10_10/measurements_line.ascii'
 
 set terminal pngcairo size 1800,900
 
 set key default
 set key box
+set key opaque
 set xlabel font "courier,14" 'distance (m)'
+set y2label font "courier,14" 'height surface (m)' 
 set autoscale xy
 set ytics nomirror
 set style line 12 lc rgb '#aaaaaa' dt 2 lw 0.5
 set grid back ytics ls 12
 set tics out font "courier,14"
-set xrange[0:50]
+#set xrange[0:50]
+
+set y2range[-6:6]
+set y2tics -6,1
 
 set style line 1 lw 2 lc "grey40"
 set style line 2 pt 12 lw 2 lc rgb '#000000' 
@@ -41,11 +46,13 @@ set style line 9 pt 16 lw 2 lc rgb '#56b4e9'
 #lc rgb 0xd55e00 #dark orange (vermillon)
 #lc rgb 0xcc79a7 # reddish purple
 
+#################################
 set output 'restest_mag.png'
 set key top right
 set ylabel font "courier,14" '|B_{a}| ({/Symbol m}T)'
 
-plot loc1 u 1:(sqrt(($4)**2+($5)**2+($6)**2)*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
+plot loc1 u 1:($3-1) w l ls 1 t "surface" axis x1y2,\
+     loc1 u 1:(sqrt(($4)**2+($5)**2+($6)**2)*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
      loc2 u 1:(sqrt(($4)**2+($5)**2+($6)**2)*1e6) w lp ls 4 t "10x10x10xDD" axis x1y1,\
      loc3 u 1:(sqrt(($4)**2+($5)**2+($6)**2)*1e6) w lp ls 5 t "25x25x10" axis x1y1,\
      loc4 u 1:(sqrt(($4)**2+($5)**2+($6)**2)*1e6) w lp ls 6 t "50x50x10" axis x1y1,\
@@ -53,6 +60,7 @@ plot loc1 u 1:(sqrt(($4)**2+($5)**2+($6)**2)*1e6) w lp ls 3 t "10x10x10" axis x1
      loc6 u 1:(sqrt(($4)**2+($5)**2+($6)**2)*1e6) w lp ls 7 t "75x75x10xDD" axis x1y1,\
      loc7 u 1:(sqrt(($4)**2+($5)**2+($6)**2)*1e6) w lp ls 8 t "75x75x100" axis x1y1
 
+#################################
 set output 'restest_comp.png'
 set multiplot layout 1,3
 #unset title
@@ -61,7 +69,8 @@ set xlabel font "courier,14" 'distance (m)'
 set ylabel font "courier,14" 'Bx_a ({/Symbol m}T)'
 set grid back ytics ls 12
 
-plot loc1 u 1:($4*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
+plot loc1 u 1:($3-1) w l ls 1 t "surface" axis x1y2,\
+     loc1 u 1:($4*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
      loc2 u 1:($4*1e6) w lp ls 4 t "10x10x10xDD" axis x1y1,\
      loc3 u 1:($4*1e6) w lp ls 5 t "25x25x10" axis x1y1,\
      loc4 u 1:($4*1e6) w lp ls 6 t "50x50x10" axis x1y1,\
@@ -70,7 +79,8 @@ plot loc1 u 1:($4*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
      loc7 u 1:($4*1e6) w lp ls 8 t "75x75x100" axis x1y1
 
 set ylabel font "courier,14" 'By_a ({/Symbol m}T)'
-plot loc1 u 1:($5*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
+plot loc1 u 1:($3-1) w l ls 1 t "surface" axis x1y2,\
+     loc1 u 1:($5*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
      loc2 u 1:($5*1e6) w lp ls 4 t "10x10x10xDD" axis x1y1,\
      loc3 u 1:($5*1e6) w lp ls 5 t "25x25x10" axis x1y1,\
      loc4 u 1:($5*1e6) w lp ls 6 t "50x50x10" axis x1y1,\
@@ -79,7 +89,8 @@ plot loc1 u 1:($5*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
      loc7 u 1:($5*1e6) w lp ls 8 t "75x75x100" axis x1y1
 
 set ylabel font "courier,14" 'Bz_a ({/Symbol m}T)'
-plot loc1 u 1:($6*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
+plot loc1 u 1:($3-1) w l ls 1 t "surface" axis x1y2,\
+     loc1 u 1:($6*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
      loc2 u 1:($6*1e6) w lp ls 4 t "10x10x10xDD" axis x1y1,\
      loc3 u 1:($6*1e6) w lp ls 5 t "25x25x10" axis x1y1,\
      loc4 u 1:($6*1e6) w lp ls 6 t "50x50x10" axis x1y1,\
@@ -87,5 +98,43 @@ plot loc1 u 1:($6*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
      loc6 u 1:($6*1e6) w lp ls 7 t "75x75x10xDD" axis x1y1,\
      loc7 u 1:($6*1e6) w lp ls 8 t "75x75x100" axis x1y1
 unset multiplot
+#################################
+set output 'restest_comp_scaled.png'
+set multiplot layout 1,3
+#unset title
 
+set xlabel font "courier,14" 'distance (m)'
+set ylabel font "courier,14" 'Bx_a ({/Symbol m}T)'
+set grid back ytics ls 12
+set yrange[-6:6]
+
+plot loc1 u 1:($3-1) w l ls 1 t "surface" axis x1y2,\
+     loc1 u 1:($4*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
+     loc2 u 1:($4*1e6) w lp ls 4 t "10x10x10xDD" axis x1y1,\
+     loc3 u 1:($4*1e6) w lp ls 5 t "25x25x10" axis x1y1,\
+     loc4 u 1:($4*1e6) w lp ls 6 t "50x50x10" axis x1y1,\
+     loc5 u 1:($4*1e6) w lp ls 2 t "75x75x10" axis x1y1,\
+     loc6 u 1:($4*1e6) w lp ls 7 t "75x75x10xDD" axis x1y1,\
+     loc7 u 1:($4*1e6) w lp ls 8 t "75x75x100" axis x1y1
+
+set ylabel font "courier,14" 'By_a ({/Symbol m}T)'
+plot loc1 u 1:($3-1) w l ls 1 t "surface" axis x1y2,\
+     loc1 u 1:($5*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
+     loc2 u 1:($5*1e6) w lp ls 4 t "10x10x10xDD" axis x1y1,\
+     loc3 u 1:($5*1e6) w lp ls 5 t "25x25x10" axis x1y1,\
+     loc4 u 1:($5*1e6) w lp ls 6 t "50x50x10" axis x1y1,\
+     loc5 u 1:($5*1e6) w lp ls 2 t "75x75x10" axis x1y1,\
+     loc6 u 1:($5*1e6) w lp ls 7 t "75x75x10xDD" axis x1y1,\
+     loc7 u 1:($5*1e6) w lp ls 8 t "75x75x100" axis x1y1
+
+set ylabel font "courier,14" 'Bz_a ({/Symbol m}T)'
+plot loc1 u 1:($3-1) w l ls 1 t "surface" axis x1y2,\
+     loc1 u 1:($6*1e6) w lp ls 3 t "10x10x10" axis x1y1,\
+     loc2 u 1:($6*1e6) w lp ls 4 t "10x10x10xDD" axis x1y1,\
+     loc3 u 1:($6*1e6) w lp ls 5 t "25x25x10" axis x1y1,\
+     loc4 u 1:($6*1e6) w lp ls 6 t "50x50x10" axis x1y1,\
+     loc5 u 1:($6*1e6) w lp ls 2 t "75x75x10" axis x1y1,\
+     loc6 u 1:($6*1e6) w lp ls 7 t "75x75x10xDD" axis x1y1,\
+     loc7 u 1:($6*1e6) w lp ls 8 t "75x75x100" axis x1y1
+unset multiplot
 

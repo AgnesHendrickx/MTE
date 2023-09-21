@@ -1,0 +1,213 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to MTE’s documentation! &#8212; MTE 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to MTE’s documentation!</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-mte-s-documentation">
+<h1>Welcome to MTE’s documentation!<a class="headerlink" href="#welcome-to-mte-s-documentation" title="Permalink to this heading">¶</a></h1>
+<p><strong>MTE</strong> is a Python library written to compute the magnetic field just above (~1m) topography, prescribed by an equation or a DEM.
+Code on <a class="reference external" href="https://github.com/AgnesHendrickx/MTE/">github</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">this project is under active development.</p>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#general-outline-hierarchy-of-code">General outline (hierarchy) of code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="governing_equations.html">Governing equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computational_approach.html">Computational approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html#benchmark-1-a-single-dipole">Benchmark 1: a single dipole</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#analytical-solution">Analytical solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#model-setup">Model setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#results">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#reproduce">Reproduce</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html#benchmark-2-internal-cancellation">Benchmark 2: internal cancellation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#id5">Analytical solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#id7">Model setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#id8">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#id9">Reproduce</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html#benchmark-3-a-magnetized-sphere">Benchmark 3: a magnetized sphere</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#id10">Analytical solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#id12">Model setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#id13">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#id14">Reproduce</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#resolution">Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#size">Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#bottom-boundary">Bottom boundary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flanksim.html#model-setup">Model setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flanksim.html#reproduce">Reproduce</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="etna.html#parameters-of-etnean-lava-flows">Parameters of Etnean lava flows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#support">Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#visualization">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#magnetostatics">Magnetostatics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="app1.html#uniformly-magnetized-sphere">Uniformly magnetized sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app1.html#multipole-expansion">Multipole expansion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
+</ul>
+</div>
+<div class="line-block">
+<div class="line">Check out the <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> section for further information, including how to <a class="reference internal" href="usage.html#installation"><span class="std std-ref">install</span></a> the project.</div>
+<div class="line">First, in <a class="reference internal" href="governing_equations.html"><span class="doc">Governing equations</span></a> the theoretical basis for the code are stated.</div>
+<div class="line">Followed by the numerical framework in <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>.</div>
+<div class="line">Next, we will delve into the three distinct <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a> used to validate the computed values.</div>
+<div class="line">We will demonstrate not only the results but also the methodology for reproducing them.</div>
+<div class="line">In the section <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> we present a case for a setup using synthetic topography.</div>
+<div class="line">A simplified setup of flanksim is used for optimizing <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> of the model setup like mesh resolution, extent of the domain, etc.</div>
+<div class="line">Lastly, we outline the final <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a> of reprocing field values from <span id="id1">[<a class="reference internal" href="ref.html#id10" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>, again, presenting both results and reproduction methods.</div>
+</div>
+</div>
+<div class="section" id="reproduction">
+<h2>Reproduction<a class="headerlink" href="#reproduction" title="Permalink to this heading">¶</a></h2>
+<p>For more information on how to run different setups and reproduce results, see associated sections: <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, :doc:``</p>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">Todo</p>
+<p class="last">highlighting differnent colours, numbering</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="benchmarks.html#id15"><em>original entry</em></a> is located in /home/agnes/MTE/main/documentation/benchmarks.rst, line 510.)</p>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="#">
+              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Welcome to MTE’s documentation!</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#reproduction">Reproduction</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="usage.html"
+                          title="next chapter">Usage</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to MTE’s documentation!</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Agnes.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

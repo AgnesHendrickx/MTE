@@ -1,0 +1,169 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parameters &#8212; MTE 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Synthetic topopography: flank simulations" href="flanksim.html" />
+    <link rel="prev" title="Benchmarks" href="benchmarks.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="flanksim.html" title="Synthetic topopography: flank simulations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="benchmarks.html" title="Benchmarks"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Parameters</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="parameters">
+<h1>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h1>
+<div class="line-block">
+<div class="line">Certain limitations exist in reproducing any shape with a discretized domain and can lead to errors in computed values. To be able to compute accurate anomalies above topographies certain parameters of the domain need to be determined first; the minimum amount of elements to accurately represent volcanic terrain and the minimum size of the domain to limit the edge effect. This effect at the edges of the simulated domain results from the cutoff, the edge, producing its own (magnetic) anomaly. Our objective is to limit the edge effect, whilst also constraining the absolute size and resolution of the domain to keep computation time and effort as low as possible. These parameters were determined using a domain with a synthetic topography, as using a DEM limits certain parameters, and implemented both for the <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> as the <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</div>
+</div>
+<div class="section" id="resolution">
+<h2>Resolution<a class="headerlink" href="#resolution" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">The test will start at a high resolution, while continuously decreasing the amount of elements we expect to find a threshold at which decreasing the amount further would result in erroneous values.</div>
+</div>
+</div>
+<div class="section" id="size">
+<h2>Size<a class="headerlink" href="#size" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">We will therefore continually increase the size of the domain until the computed magnitude of the magnetic field at a point above the center of the domain is constant.</div>
+<div class="line"><br /></div>
+<div class="line">Upon doing so in depth, a problem arises; the exact nature of the magnetization in the underlying flows and deeper is unknown, but a constant magnetization is still assumed. The assumption of constant magnetization now expands deeper, eventually stretching to the full pile of volcanic flows of the Etna. To validate this assumption we refer to the geomagnetic history of Mount Etna. The last reversal of Earth’s magnetic field was dated around <span class="math notranslate nohighlight">\(\sim795\)</span> ka ago <span id="id1">[<a class="reference internal" href="ref.html#id41" title="Brad S. Singer, Brian R. Jicha, Nobutatsu Mochizuki, and Robert S. Coe. Synchronizing volcanic, sedimentary, and ice core records of Earth's last magnetic polarity reversal. Science advances, 8 2019. URL: https://doi.org/10.1126/sciadv.aaw4621, doi:10.1126/sciadv.aaw4621.">SJMC19</a>]</span> and the first volcanic activity of Mount Etna was dated around <span class="math notranslate nohighlight">\(\sim500\)</span> ka ago <span id="id2">[<a class="reference internal" href="ref.html#id22" title="Stefano Branca, Mauro Coltelli, Emanuela De Beni, and Jan Wijbrans. Geological evolution of Mount Etna volcano (Italy) from earliest products until the first central volcanism (between 500 and 100 ka ago) inferred from geochronological and stratigraphic data. International Journal of Earth Sciences, 97(1):135-152, 2 2008. URL: https://doi.org/10.1007/s00531-006-0152-0, doi:10.1007/s00531-006-0152-0.">BCDBW08</a>]</span>.</div>
+<div class="line">Hence, no reversals are expected to be present in the pile, so, the depth can be increased for testing without limitation. Considering the amount of elements in depth, it is expected that changing this has no influence on the results. Again, as all internal forces should cancel, increasing this number should only result in a longer computation time.</div>
+</div>
+</div>
+<div class="section" id="bottom-boundary">
+<h2>Bottom boundary<a class="headerlink" href="#bottom-boundary" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">One last issue to contemplate, is the shape of the bottom of the mesh. The topography on the bottom can be simulated in two ways:</div>
+</div>
+<ol class="arabic simple">
+<li>use the same topography as the top surface</li>
+<li>produce a flat bottom.</li>
+</ol>
+<div class="figure align-default" id="id4">
+<span id="sb-fb"></span><img alt="_images/sb_fb_250_250_20.png" class="with-border" src="_images/sb_fb_250_250_20.png" />
+<p class="caption"><span class="caption-number">Figure 9 </span><span class="caption-text">The resulting mesh using either the same topography as the top surface (on the right) or a flat bottom (on the left) for the setup as outlined in <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a>.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="line-block">
+<div class="line">See <a class="reference internal" href="#sb-fb"><span class="std std-numref">Figure 9</span></a> for the visualization of the different options.</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">As our computational solution is a surface integral and the interior contributions should cancel out, we can understand the possible repercussion of this predicament. Neither is an accurate representation of reality and from theory we know the effect could be significant. Therefore, the differences need to be investigated and both methods will be used and compared.</div>
+<div class="line"><br /></div>
+<div class="line">The tests were done on a path with an elevation 1 m above the surface, the height of lowest path for most sites. As the lowest elevation requires the largest resolutions and domain size, this setup will define the threshold. The test were done using the south flank setup as described in the section <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a>. It is uncertain if the parameters determined by these test translate directly to the required threshold when computing above the DEM. The real topography on Mount Etna is likely to include more complex and larger structures. A larger structure to introduce a larger anomaly that could therefore carry further; as the strength of a magnetic anomaly produced by an object is proportionally related to its size (volume or weight) and restrained by the distance <span id="id3">[<a class="reference internal" href="ref.html#id12" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span>.  Therefore, these parameters need to be revisited in future DEM tests.</div>
+</div>
+<div class="line-block">
+<div class="line">It should be noted that the flat bottom setup of the <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> is different from the <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>. For <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> the input value for depth of the domain is added in the middle of the domain (exactly below the observation path) to the topography simulated by the slope and sine wave (see <a class="reference internal" href="functions.html#support.topography" title="support.topography"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.topography()</span></code></a>). In this fashion, when testing using a flat bottom, the chosen depth value actually relates to the depth value underneath the path regardless of other parameters of the domain (desirable for parameter testing). However, as the slope and wave topography is also anchored in the middle of the domain, it is possible to create a setup where the base of the flat bottom intersects with the surface topography. An example: run base setup for flank simulations with domain size of 250x250x10m. Even though this intersection happens at a significant distance from the path, the results are not tested or verified and this situation should be avoided.</div>
+<div class="line">To avoid this situation, in <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>, the depth of the domain is added to the lowest value of the surface topography from the DEM. However, this does result in varying depth extent underneath the path depending on the extent of the section of the DEM used.</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Parameters</a><ul>
+<li><a class="reference internal" href="#resolution">Resolution</a></li>
+<li><a class="reference internal" href="#size">Size</a></li>
+<li><a class="reference internal" href="#bottom-boundary">Bottom boundary</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="benchmarks.html"
+                          title="previous chapter">Benchmarks</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="flanksim.html"
+                          title="next chapter">Synthetic topopography: flank simulations</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/parameters.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="flanksim.html" title="Synthetic topopography: flank simulations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="benchmarks.html" title="Benchmarks"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Parameters</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Agnes.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

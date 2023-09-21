@@ -1,0 +1,146 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Computational approach &#8212; MTE 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Benchmarks" href="benchmarks.html" />
+    <link rel="prev" title="Governing equations" href="governing_equations.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="benchmarks.html" title="Benchmarks"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="governing_equations.html" title="Governing equations"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Computational approach</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="computational-approach">
+<h1>Computational approach<a class="headerlink" href="#computational-approach" title="Permalink to this heading">¶</a></h1>
+<div class="line-block">
+<div class="line">From the <a class="reference internal" href="governing_equations.html#ge"><span class="std std-ref">previous section</span></a>, we know the generated magnetic field <span class="math notranslate nohighlight">\(\mathbf{B_a}\)</span> of an object with volume <span class="math notranslate nohighlight">\(V\)</span> can be defined as the surface integral of each volume element <span class="math notranslate nohighlight">\(\mathit{dv'}\)</span> holding a dipole moment equal to <span class="math notranslate nohighlight">\(\mathbf{M} \mathit{dv'}\)</span>. What follows is the general outline and the step wise procedure of the Finite Element Model (FEM) presented in this study that solves this integral equation. As terminology can be confusing when comparing (field) data to (model) data, we will use the following terms and nouns to refer to each:</div>
+<div class="line">‘<em>measurement points</em>’ = the points and location at which in the field was ‘<em>measured</em>’.</div>
+<div class="line">‘<em>observation points</em>’ = the points and location at which the model ‘<em>computed</em>’ the values, can be equal to measurement points.</div>
+</div>
+<div class="line-block">
+<div class="line">First, a 3D domain <span class="math notranslate nohighlight">\(\Omega\)</span> , containing an uniform magnetization, is tessellated into multiple elements, where the amount of elements in each direction define the resolution. This produces a mesh, composed of hexahedron elements defined by eight nodes and 6 surfaces, with nodes numbered in a clockwise fashion, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>. Each element now represents a volume of uniform magnetization.</div>
+</div>
+<div class="line-block">
+<div class="line">Next, as our main objective is to investigate the effect of the underlying topography, we simulate the domain’s topography of the domain three different ways:</div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li>An (approximation by) equation (in this study: flank simulations of wavy topography on a volcano)</li>
+<li>Obtaining elevation data from a DEM (in this study: a 2x2m and 5x5m DEM)</li>
+<li>Obtaining elevation data from a field measurements (in this study: field data     from <span id="id1">[<a class="reference internal" href="ref.html#id10" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>)</li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">The first method allows for model output validation (see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>), parameter determination for further testing and flank simulations. The other two methods serve to compare computed results to field data, with the last method only used if an adequate DEM was absent. Once the 2D surface topography is generated, the 3D domain is placed below and cells are reshaped if necessary. In the second method the resolution of the domain is limited by the resolution of the DEM used.</div>
+<div class="line"><br /></div>
+<div class="line">Next, the magnetic anomaly at observation point <code class="docutils literal notranslate"><span class="pre">P</span></code> produced by an element is computed using the surface integral (second part of eq. <a class="reference internal" href="governing_equations.html#equation-bsumfinal">(5)</a>) with the method proposed by <span id="id2">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. A Python function, mirroring their original Fortran 77 subroutine, calculates the magnetic anomaly of an arbitrary polyhedron when iteratively applied to all its faces. The approach, grounded largely in <span id="id3">[<a class="reference internal" href="ref.html#id21" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span>’s work, resolves the surface integral by projecting onto triangles connecting the facet intersection with a perpendicular line through <code class="docutils literal notranslate"><span class="pre">P</span></code> (illustrated in <span id="id4">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>), weighting triangles by their proximity to <code class="docutils literal notranslate"><span class="pre">P</span></code>.</div>
+<div class="line">A spatial problem, where <code class="docutils literal notranslate"><span class="pre">P</span></code> lies on the facet plane, is mitigated by introducing a small (<span class="math notranslate nohighlight">\(\epsilon=1e^{-20}\)</span>)  as the ‘distance’ from the face for computations <span id="id5">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. Despite sufficing in simple scenarios, this could yield cumulative errors if <code class="docutils literal notranslate"><span class="pre">P</span></code> is positioned precisely over an element boundary. Therefore, such situations are avoided in all our tests.</div>
+<div class="line">Ultimately, the subroutine’s repeated calls for every side of all elements sums the magnetic contribution across the 3D domain to calculate (<span class="math notranslate nohighlight">\(\mathbf{B_a (r)}\)</span>) in <code class="docutils literal notranslate"><span class="pre">P</span></code>, see <a class="reference internal" href="governing_equations.html#figmodel"><span class="std std-numref">Figure 1</span></a>.</div>
+<div class="line">After generating topography on both (or either) the top and bottom surfaces, nodes of these elements might not reside in one plane. So, each element’s top and bottom surface is subdivided into four additional triangles, for a total of 12 faces and 10 nodes defining an element.</div>
+<div class="line"><br /></div>
+<div class="line">Once the ambient field produced by the underlying lava flow is obtained, the induction of the Earth’s magnetic field at <code class="docutils literal notranslate"><span class="pre">P</span></code> can be added. Finally, the intensity (<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>), inclination (<span class="math notranslate nohighlight">\(I\)</span>) and declination (<span class="math notranslate nohighlight">\(D\)</span>) of the (total) magnetic field above the flow were calculated from the magnetic field components  <span id="id6">[<a class="reference internal" href="ref.html#id15" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tau10</a>]</span>.</div>
+</div>
+<div class="line-block">
+<div class="line">Rooted in defining an element as a single dipole (eq. <a class="reference internal" href="governing_equations.html#equation-sd">(3)</a>), this method assumes that volume elements are ‘small enough’ and the distance to <code class="docutils literal notranslate"><span class="pre">P</span></code> is ‘large’ <span id="id7">[<a class="reference internal" href="ref.html#id12" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span>, with its applicability, particularly for mesh elements closest to <code class="docutils literal notranslate"><span class="pre">P</span></code>, hinging on a constant magnetization assumption, which theoretically renders the elemental size irrelevant <span id="id8">[<a class="reference internal" href="ref.html#id11" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. Distance-related concerns are negligible unless <code class="docutils literal notranslate"><span class="pre">P</span></code> lies within a few molecular diameters of a uniformly magnetized element, as determined by <span id="id9">[<a class="reference internal" href="ref.html#id13" title="John David Jackson. Classical electrodynamics. Wiley, New York, NY, 3rd ed. edition, 1999. ISBN 9780471309321. URL: http://cdsweb.cern.ch/record/490457.">Jac99</a>]</span>, rendering the assumption a valid one, in line with comparable studies <span id="id10">[<a class="reference internal" href="ref.html#id18" title="C. Baag, C. E. Helsley, Shi-zhe Xu, and B. R. Lienert. Deflection of paleomagnetic directions due to magnetization of the underlying terrain. Journal of Geophysical Research: Solid Earth, 100(B6):10013-10027, 1995. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/95JB00148, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/95JB00148, doi:10.1029/95JB00148.">BHXL95</a>]</span>.</div>
+</div>
+<div class="line-block">
+<div class="line">It is important to mention that <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code> contains sections of commented-out code that implement a volume integral computation method, a fully functional segment of the code. This approach solves <a class="reference internal" href="governing_equations.html#equation-sd">(3)</a> after inserting <a class="reference internal" href="governing_equations.html#equation-magnetization">(2)</a> by using a Gaussian quadrature method. The results using this method were similar to those computed using the surface integral method when testing the <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>. Nevertheless, the substantial computational demands of resolving a volume integral, when compared to a surface integral, resulted in the discontinuation of this method for reproducing the field sites. Please note that there are also lines of code to include the volume integral values when exporting the computed values for visualization and plotting for the relevant sections.</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="governing_equations.html"
+                          title="previous chapter">Governing equations</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="benchmarks.html"
+                          title="next chapter">Benchmarks</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/computational_approach.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="benchmarks.html" title="Benchmarks"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="governing_equations.html" title="Governing equations"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Computational approach</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Agnes.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

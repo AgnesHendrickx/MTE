@@ -1,0 +1,40 @@
+Parameters
+==========
+
+| Certain limitations exist in reproducing any shape with a discretized domain and can lead to errors in computed values. To be able to compute accurate anomalies above topographies certain parameters of the domain need to be determined first; the minimum amount of elements to accurately represent volcanic terrain and the minimum size of the domain to limit the edge effect. This effect at the edges of the simulated domain results from the cutoff, the edge, producing its own (magnetic) anomaly. Our objective is to limit the edge effect, whilst also constraining the absolute size and resolution of the domain to keep computation time and effort as low as possible. These parameters were determined using a domain with a synthetic topography, as using a DEM limits certain parameters, and implemented both for the :ref:`flank simulations <flanksim>` as the :doc:`etna`.  
+
+Resolution
+----------
+| The test will start at a high resolution, while continuously decreasing the amount of elements we expect to find a threshold at which decreasing the amount further would result in erroneous values.
+
+Size 
+----
+| We will therefore continually increase the size of the domain until the computed magnitude of the magnetic field at a point above the center of the domain is constant. 
+|
+| Upon doing so in depth, a problem arises; the exact nature of the magnetization in the underlying flows and deeper is unknown, but a constant magnetization is still assumed. The assumption of constant magnetization now expands deeper, eventually stretching to the full pile of volcanic flows of the Etna. To validate this assumption we refer to the geomagnetic history of Mount Etna. The last reversal of Earth's magnetic field was dated around :math:`\sim795` ka ago :cite:`Singer19` and the first volcanic activity of Mount Etna was dated around :math:`\sim500` ka ago :cite:`Branca08`. 
+| Hence, no reversals are expected to be present in the pile, so, the depth can be increased for testing without limitation. Considering the amount of elements in depth, it is expected that changing this has no influence on the results. Again, as all internal forces should cancel, increasing this number should only result in a longer computation time.
+
+Bottom boundary
+---------------
+| One last issue to contemplate, is the shape of the bottom of the mesh. The topography on the bottom can be simulated in two ways: 
+
+1. use the same topography as the top surface
+2. produce a flat bottom. 
+
+
+.. _sb_fb:
+.. figure:: figures/sb_fb_250_250_20.png
+   :class: with-border
+
+   The resulting mesh using either the same topography as the top surface (on the right) or a flat bottom (on the left) for the setup as outlined in :ref:`flank simulations <flanksim>`.
+
+| See :numref:`sb_fb` for the visualization of the different options. 
+
+| 
+| As our computational solution is a surface integral and the interior contributions should cancel out, we can understand the possible repercussion of this predicament. Neither is an accurate representation of reality and from theory we know the effect could be significant. Therefore, the differences need to be investigated and both methods will be used and compared.  
+| 
+| The tests were done on a path with an elevation 1 m above the surface, the height of lowest path for most sites. As the lowest elevation requires the largest resolutions and domain size, this setup will define the threshold. The test were done using the south flank setup as described in the section :ref:`flank simulations <flanksim>`. It is uncertain if the parameters determined by these test translate directly to the required threshold when computing above the DEM. The real topography on Mount Etna is likely to include more complex and larger structures. A larger structure to introduce a larger anomaly that could therefore carry further; as the strength of a magnetic anomaly produced by an object is proportionally related to its size (volume or weight) and restrained by the distance :cite:`GRIFFITHS`.  Therefore, these parameters need to be revisited in future DEM tests. 
+
+| It should be noted that the flat bottom setup of the :ref:`flank simulations <flanksim>` is different from the :doc:`etna`. For :ref:`flank simulations <flanksim>` the input value for depth of the domain is added in the middle of the domain (exactly below the observation path) to the topography simulated by the slope and sine wave (see :py:func:`support.topography`). In this fashion, when testing using a flat bottom, the chosen depth value actually relates to the depth value underneath the path regardless of other parameters of the domain (desirable for parameter testing). However, as the slope and wave topography is also anchored in the middle of the domain, it is possible to create a setup where the base of the flat bottom intersects with the surface topography. An example: run base setup for flank simulations with domain size of 250x250x10m. Even though this intersection happens at a significant distance from the path, the results are not tested or verified and this situation should be avoided. 
+| To avoid this situation, in :doc:`etna`, the depth of the domain is added to the lowest value of the surface topography from the DEM. However, this does result in varying depth extent underneath the path depending on the extent of the section of the DEM used. 
+

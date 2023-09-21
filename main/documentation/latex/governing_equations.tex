@@ -1,0 +1,42 @@
+\subsection{Governing equations}
+Required is the computation of the magnetic field produced by (permanently) magnetized matter outside the source body within an ambient magnetic field.
+The total magnetic field $\mathbf{B_t(r)}$ at position $\mathbf{r}$ above the surface of magnetized matter consist of contributions from the initial field $\mathbf{B_0}$ and the anomalous field $\mathbf{B_a}$ produced by the underlying magnetized matter
+\begin{equation}
+    \label{eq:Bsum}
+    \mathbf{B_t(r)} =  \mathbf{B_0} + \mathbf{B_a} 
+\end{equation}
+We assume the initial field ($\mathbf{B_0}$ ) to be solely the Earth's magnetic field, uniform and constant above the surface. Thereby disregarding any contribution of solar-induced fields, as these are considered to be insignificant compared to the topography induced anomalies in regular conditions (i.e. absence of geomagnetic storms, etc.) \parencite{Baag95}. \\
+Additionally, we assume the underlying flows to be uniformly magnetized ($\nabla \cdot \mathbf{M} = 0$).  In doing so, we ignore any mineralogical or spatial variations within the flow. While we acknowledge the potential significance of such variations, as other studies have demonstrated their effect \parencite{Knudsen03}, our current focus is solely on topographical influences. Thus, from now on, any use of the term "magnetization" in this manner will imply "uniform magnetization".
+ \par 
+The anomalous field  ($\mathbf{B_a}$) is produced by permanently magnetized matter, in this case the volcanic rock. The igneous rock contains magnetic iron-bearing minerals, which form during solidification. During the cooling of the lava flow certain minerals become magnetic and their moments continually flip among the easy axes with a statistical preference for the applied magnetic field. As the lava cools further and the moments become fixed, a thermal remanence (TRM) parallel to the applied field is preserved \parencite{TAUXE}. If these grains are small and the distance is large (i.e. outside of source), the grains can be considered tiny dipoles with a net alignment along some direction \parencite{REITZ}. Thus, the magnetization (\textbf{M} $[Am^{-1}]$) of a material, is equal to the magnetic dipole moment (\textbf{m $[Am^{2}]$}) per unit volume (V)
+\begin{equation} \label{eq:Magnetization}
+\mathbf{m} = \int\int\int \mathbf{M} \; dV
+\end{equation}
+The magnetic field produced by a single dipole outside the magnetized source is \parencite{GRIFFITHS}
+\begin{equation} \label{eq:singledipole}
+{\mathbf {B}_{dip} ({\mathbf {r} })={\frac {\mu _{0}}{4\pi }}\left[{\frac {3\mathbf {r} (\mathbf {m} \cdot \mathbf {r} )}{r^{5}}}-{\frac {\mathbf {m} }{r^{3}}}\right]}
+\end{equation}
+where \textbf{B} [\textit{T}] is the magnetic induction or magnetic flux density,  $\mu_0$ $[NA^{-2}]$ is the magnetic permeability of a vacuum, and $\mathbf{r}$ is the vector with length $r$ $[m]$ from the position of the dipole to the observation point.
+\begin{figure}
+  \centering
+   \includegraphics[width=0.5\textwidth]{Afbeeldingen/methods/Model_final_pmag_light.png}
+    \caption{At any given position $\mathbf{r}$ the resulting field $\mathbf{B}$ are the sum of the contribution of all elements in the object $\Omega$.}
+    \label{fig:model_cells}
+\end{figure}
+Following eq. \ref{eq:Magnetization}, the potential due to a magnetized object can be defined as a summation of the magnetic contribution of the magnetic moments of all volume elements ($dv'$) in this object (Figure \ref{fig:model_cells}). So, after substituting eq. \ref{eq:Magnetization} in eq. \ref{eq:singledipole}, see appendix \ref{app1} for complete derivations, the magnetic induction $\mathbf{B_a(r)}$ of a magnetized object can be defined as \parencite{REITZ} 
+\begin{equation}
+ \label{eq:Btrans}
+      \mathbf{B_a(r)} =  \frac{\mu_{0}}{4\pi}\int_V \frac{(-\nabla'\cdot\mathbf{M(r')})\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}dv' 
+     + \frac{\mu_{0}}{4\pi}\oint_S \frac{\left(\mathbf{M(r')}\cdot\mathbf{\hat{n}}\right)\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}ds'
+\end{equation}
+ where $\mathbf{\hat{n}}$ is the unit vector normal to the surface $S$, $\mathbf{r-r'}$ is the distance between the observation point and $ds'$ and $dv'$ are the surface and volume of the element (Figure \ref{fig:model_cells}).
+\newline
+$\nabla \cdot \mathbf{M} = 0$ reduces $\mathbf{B}$ in  eq. \ref{eq:Btrans} to only the surface integral, the second term of the right hand side \parencite{GRIFFITHS,REITZ}.\\ Physically this can be viewed as the cancellation of the current of the neighboring atomic dipoles, which happens everywhere inside of uniform magnetized object except on the edges of the body \parencite{GRIFFITHS}.  
+\newline 
+Finally, we can define the total magnetic field (eq. \ref{eq:Bsumfinal}) at a position $\mathbf{r}$ above the surface as
+\begin{equation}
+    \label{eq:Bsumfinal}
+   \mathbf{B_t(r)} =  \mathbf{B_0} + \frac{\mu_{0}}{4\pi}\oint_S \frac{\left(\mathbf{M(r')}\cdot\mathbf{\hat{n}}\right)\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}ds'
+\end{equation}
+where $\mathbf{B_0} $ is the reference field outside the body. 
+
