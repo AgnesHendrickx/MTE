@@ -59,7 +59,7 @@ set grid back ytics ls 12
 set grid back xtics ls 12
 set key default opaque box
 set key right top vertical
-set ylabel font "courier,14" '{/Symbol D}Bz ({/Symbol m}T)' offset 1,0
+set ylabel font "courier,14" '{/Symbol D}Bi_a ({/Symbol m}T)' offset 1,0
 plot loc.'measurements_line.ascii' u 0:($7-$4)*1e-3 w lp ls 3 t '(Bx_{analytical} - Bx_{computed})',\
      loc.'measurements_line.ascii' u 0:($8-$5)*1e-3 w lp ls 4 t '(By_{analytical} - By_{computed})',\
      loc.'measurements_line.ascii' u 0:($9-$6)*1e-3 w lp ls 5 t '(Bz_{analytical} - Bz_{computed})'  
