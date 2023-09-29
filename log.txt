@@ -1,0 +1,129 @@
+========================================
+=             ETNA project             =
+========================================
+reference field and IGRF site 1
+reading from 2x2 DEM site 1 400
+reading from 1-3-2
+========================================
+benchmark= -1
+Bottom surface of domain chosen: Repeat topography of the top
+Lx,Ly,Lz= 476 462 20
+nelx,nely,nelz= 238 231 10
+nnx,nny,nnz= 239 232 11
+nel= 549780
+do_plane_measurements= False
+do_line_measurements= False
+do_spiral_measurements= False
+do_path_measurements= True
+site= 1
+path= 3
+height= 2 1.8
+npts path= 36
+zpath_option= 2
+resolution DEM= 2
+size cut DEM= 5
+IGRFx, Brefx= 2.68874e-05 2.6233285120044505e-05
+IGRFy, Brefy= 1.5601e-06 2.4520613771653516e-06
+IGRFz, Brefz= 3.62436e-05 3.634438397900101e-05
+magnetization (Mx,My,Mz) 0 4.085 -6.29
+noise added to DEM with a noise factor of: 2
+========================================
+grid points setup: 3.104 s
+grid connectivity setup: 3.439 s
+DEMS/dem2m_site1_400.asc counts  232  lines 232
+topo (min/max): 1535.508 1663.303
+read topo file ok
+add etna topography
+sites/1-3-2.txt counts  36  lines
+creating path points above DEM (zpath_option=2): 4.720 s
+xpath (min/max): 501730.6902 501777.3775
+ypath (min/max): 4171088.976 4171121.837
+zpath (min/max): 1607.877196224519 1610.7341518716823
+prescribe M vector in domain: 14.276 s
+========================================
+========================================
+========================================
+starting path measurement ...
+starting path measurement for Box ...
+Box: doing 1 out of  36
+Obs point number= 1 Bx (North)= -1.0100597331606617e-07 By= 9.018546935708166e-10 Bz= 3.0727997101597884e-07
+Intensity Path: 3.2345633488153387e-07 Inclination Path: 71.80311552433626 Declination Path: 179.488435258845
+Box: doing 2 out of  36
+Obs point number= 2 Bx (North)= -1.0092427047080508e-07 By= 7.374812857942619e-10 Bz= 3.0689506982072234e-07
+Intensity Path: 3.230647553184611e-07 Inclination Path: 71.7957880438906 Declination Path: 179.5813314984155
+Box: doing 3 out of  36
+Obs point number= 3 Bx (North)= -1.0085946743890382e-07 By= 6.611978734645327e-10 Bz= 3.066185175776422e-07
+Intensity Path: 3.2278163621277784e-07 Inclination Path: 71.79146827674955 Declination Path: 179.62439515252956
+Box: doing 4 out of  36
+Obs point number= 4 Bx (North)= -1.0083243801954462e-07 By= 4.3002001421716226e-10 Bz= 3.064062775954451e-07
+Intensity Path: 3.2257118969938233e-07 Inclination Path: 71.78445995803547 Declination Path: 179.75565221832224
+Box: doing 5 out of  36
+Obs point number= 5 Bx (North)= -1.0076934330717426e-07 By= 1.7943623577966928e-10 Bz= 3.060862489225364e-07
+Intensity Path: 3.2224724130299513e-07 Inclination Path: 71.77745701665631 Declination Path: 179.89797563625638
+Box: doing 6 out of  36
+Obs point number= 6 Bx (North)= -1.0074190336187682e-07 By= 5.4779301078491525e-11 Bz= 3.0595749318325265e-07
+Intensity Path: 3.221163170792899e-07 Inclination Path: 71.77495583331782 Declination Path: 179.96884491614315
+Box: doing 7 out of  36
+Obs point number= 7 Bx (North)= -1.0065288948300253e-07 By= -8.738007612658784e-11 Bz= 3.0555704003861443e-07
+Intensity Path: 3.217081231702343e-07 Inclination Path: 71.76770452682928 Declination Path: -179.95025966622939
+Box: doing 8 out of  36
+Obs point number= 8 Bx (North)= -1.0061483728025474e-07 By= -2.631453797340698e-10 Bz= 3.054004120289841e-07
+Intensity Path: 3.2154754919591016e-07 Inclination Path: 71.76536078212241 Declination Path: -179.8501504779206
+Box: doing 9 out of  36
+Obs point number= 9 Bx (North)= -1.0056299995398835e-07 By= -3.726648392512417e-10 Bz= 3.0515517693778817e-07
+Intensity Path: 3.2129851828285963e-07 Inclination Path: 71.76039778239807 Declination Path: -179.78767514164429
+Box: doing 10 out of  36
+Obs point number= 10 Bx (North)= -1.0051626575069033e-07 By= -4.931704881534575e-10 Bz= 3.0492458486598876e-07
+Intensity Path: 3.2106504847661224e-07 Inclination Path: 71.75535097652062 Declination Path: -179.71888767844553
+Box: doing 11 out of  36
+Obs point number= 11 Bx (North)= -1.0046742960612104e-07 By= -6.476483676335377e-10 Bz= 3.046706186625267e-07
+Intensity Path: 3.208088367490455e-07 Inclination Path: 71.7492852680203 Declination Path: -179.63065638062287
+Box: doing 12 out of  36
+Obs point number= 12 Bx (North)= -1.0043779868719771e-07 By= -7.846878900203221e-10 Bz= 3.0454558447333173e-07
+Intensity Path: 3.206811191236834e-07 Inclination Path: 71.74715090892943 Declination Path: -179.552375796623
+Box: doing 13 out of  36
+Obs point number= 13 Bx (North)= -1.0042156988958751e-07 By= -8.747863719283412e-10 Bz= 3.0450297496998306e-07
+Intensity Path: 3.2063580385829643e-07 Inclination Path: 71.74739375889627 Declination Path: -179.5009010574903
+Box: doing 14 out of  36
+Obs point number= 14 Bx (North)= -1.0039913842424595e-07 By= -1.0140630511026744e-09 Bz= 3.045021066078604e-07
+Intensity Path: 3.206283646978653e-07 Inclination Path: 71.75092946400339 Declination Path: -179.4213141840497
+Box: doing 15 out of  36
+Obs point number= 15 Bx (North)= -1.0039227438149417e-07 By= -1.0216706868930976e-09 Bz= 3.0434061389077583e-07
+Intensity Path: 3.2047287222149705e-07 Inclination Path: 71.74304039946864 Declination Path: -179.41693324461792
+Box: doing 16 out of  36
+Obs point number= 16 Bx (North)= -1.0037707806765403e-07 By= -1.1210094716741498e-09 Bz= 3.042926881081081e-07
+Intensity Path: 3.204229306708461e-07 Inclination Path: 71.7427560194011 Declination Path: -179.36014832612267
+Box: doing 17 out of  36
+Obs point number= 17 Bx (North)= -1.0037332167631045e-07 By= -1.2028491858896487e-09 Bz= 3.0412743466543387e-07
+Intensity Path: 3.202651199657525e-07 Inclination Path: 71.73397129605526 Declination Path: -179.3134143440313
+Box: doing 18 out of  36
+Obs point number= 18 Bx (North)= -1.0036556023638655e-07 By= -1.3444549625882903e-09 Bz= 3.040866755111899e-07
+Intensity Path: 3.202245453805156e-07 Inclination Path: 71.73269886056725 Declination Path: -179.2325356640345
+Box: doing 19 out of  36
+Obs point number= 19 Bx (North)= -1.0036773020790841e-07 By= -1.419280500277425e-09 Bz= 3.0406064988243083e-07
+Intensity Path: 3.202008345260083e-07 Inclination Path: 71.73069541574108 Declination Path: -179.18984555234204
+Box: doing 20 out of  36
+Obs point number= 20 Bx (North)= -1.0036621454574559e-07 By= -1.5419536363919617e-09 Bz= 3.040882124191754e-07
+Intensity Path: 3.2022710000177836e-07 Inclination Path: 71.73219142873789 Declination Path: -179.11981849602452
+Box: doing 21 out of  36
+Obs point number= 21 Bx (North)= -1.0033238696847259e-07 By= -1.6978463010469217e-09 Bz= 3.04262271148201e-07
+Intensity Path: 3.203825841101771e-07 Inclination Path: 71.74726537086075 Declination Path: -179.03052098972788
+Box: doing 22 out of  36
+Obs point number= 22 Bx (North)= -1.0033096976993273e-07 By= -1.7992408153074547e-09 Bz= 3.0432601338289215e-07
+Intensity Path: 3.204432292684788e-07 Inclination Path: 71.75077568303134 Declination Path: -178.97262174907192
+Box: doing 23 out of  36
+Obs point number= 23 Bx (North)= -1.0028505063080223e-07 By= -1.9771479396541726e-09 Bz= 3.0457188268180925e-07
+Intensity Path: 3.2066342512725023e-07 Inclination Path: 71.77175546179588 Declination Path: -178.8705439363668
+Box: doing 24 out of  36
+Obs point number= 24 Bx (North)= -1.0037103588697104e-07 By= -1.9932322666604507e-09 Bz= 3.0446750132217524e-07
+Intensity Path: 3.205912930527922e-07 Inclination Path: 71.75127293114512 Declination Path: -178.8623332784311
+Box: doing 25 out of  36
+Obs point number= 25 Bx (North)= -1.0036834581380911e-07 By= -2.141726350016431e-09 Bz= 3.046921134298181e-07
+Intensity Path: 3.208047316039585e-07 Inclination Path: 71.76377236379119 Declination Path: -178.77757016248853
+Box: doing 26 out of  36
+Obs point number= 26 Bx (North)= -1.0026270651967078e-07 By= -2.333381132352386e-09 Bz= 3.050707048471155e-07
+Intensity Path: 3.211326671985806e-07 Inclination Path: 71.80208295243047 Declination Path: -178.66681474531907
+Box: doing 27 out of  36
+Obs point number= 27 Bx (North)= -1.0026669787730673e-07 By= -2.415197763569074e-09 Bz= 3.0522188530357426e-07
+Intensity Path: 3.212781398597242e-07 Inclination Path: 71.8094987467803 Declination Path: -178.6201412124768
+Box: doing 
