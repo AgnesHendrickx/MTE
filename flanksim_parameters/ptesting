@@ -1,0 +1,21 @@
+# parameter testing
+
+L=100,
+D=
+
+
+subbench='south'
+Lx=L
+Ly=L
+Lz=D
+nelx=int(Lx*1.5)
+nely=int(Ly*1.5)
+nelz=10
+
+Lx=250
+   Ly=250
+   Lz=20
+#   Lz=Lx*2.4
+   nelx=int(Lx*1.5)
+   nely=int(Ly*1.5)
+   nelz=10

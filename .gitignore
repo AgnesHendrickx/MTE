@@ -1,15 +1,16 @@
 #Ignore DEMS folder (due to unauthorized)
 **/DEMS
 
-#Ignore VTU files
+#Ignore VTU files (due to size)
 *.vtu
 
-#Ignore my folders
+#Ignore personal folders
 /overig/
 /writing/
 /lit/
 /oude codes, versies, functions, subroutines/ 
 /backup/
+/copy*/
 
 # Ignore .swp 
 *.swp
@@ -18,8 +19,8 @@
 **/__pycache__
 
 
-# Ignore other results
-/main/path_results/
-/main/tests/
+# Ignore results that contain untested or unauthorized data 
+/path_results/
+/tests/
 **/other
 
