@@ -24,3 +24,5 @@
 /tests/
 **/other
 
+# Ignore admin files
+push_changes.sh
