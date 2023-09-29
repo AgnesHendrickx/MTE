@@ -7,4 +7,4 @@ git add .
 
 git commit -m "update_"$d""
 
-git push
+git push origin main
