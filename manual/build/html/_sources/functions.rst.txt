@@ -10,6 +10,11 @@ Support
 
 .. autofunction:: support.compute_analytical_solution
 
+.. autofunction:: support.is_point_near_diagonal
+
+.. autofunction:: support.shift_observation_points_edge
+
+
 Visualization
 -------------
 
@@ -41,3 +46,12 @@ Magnetostatics
 .. autofunction:: magnetostatics.compute_B_surface_integral_wtopo
 
 .. autofunction:: magnetostatics.compute_B_surface_integral_wtopo_noise
+
+Set measurement parameters
+--------------------------
+.. autofunction:: set_measurement_parameters.set_measurement_parameters
+
+
+.. rubric:: Footnotes
+
+.. [#] These rough sizes are rounded off values, in case the DEM cut was not square, the value denotes the rounded length of the **shortest** side of the DEM.

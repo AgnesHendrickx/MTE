@@ -2,9 +2,9 @@ Case study: Mount Etna
 ======================
 | To run all (optimized) setups for case study Mount Etna (reproducing) field sites use ``script_etna_full``.
 
-.. code-block:: console
+.. code-block:: 
 
-   ./script_etna_full > log.txt
+   ./script_etna_full 
 
 
 Parameters of Etnean lava flows

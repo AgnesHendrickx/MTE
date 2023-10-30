@@ -1,0 +1,2 @@
+tee ./0_5_above/model_setup.pvsm ./0_5_2_above/model_setup.pvsm ./0_25_2_above/model_setup.pvsm ./0_25_above/model_setup.pvsm < ./model_setup.pvsm >/dev/null
+paraview --state=0_5_2_above/model_setup.pvsm

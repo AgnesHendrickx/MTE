@@ -6,8 +6,8 @@ rdem=5
 
 #rm -r results_site*
 
-for site in 6; do
-     for sdem in 6; do
+for site in 1; do
+     for sdem in 2; do
         for ipath in 1 ; do 
             for ho in 1 ; do 
 
@@ -27,7 +27,7 @@ for site in 6; do
                    mv *.vtu results/
                    mv *.ascii results/
                    mv log.txt results/
-                   mv results results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}
+                   mv results path_results/results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}_fb
                 fi
 
                 rm -f *.vtu

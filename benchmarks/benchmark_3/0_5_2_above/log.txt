@@ -1,0 +1,228 @@
+========================================
+=             ETNA project             =
+========================================
+========================================
+benchmark= 3
+Lx,Ly,Lz= 20 20 20
+nelx,nely,nelz= 120 120 120
+nnx,nny,nnz= 121 121 121
+nel= 1728000
+Mx,My,Mz= 0 0 7.5
+do_plane_measurements= False
+do_line_measurements= False
+do_spiral_measurements= True
+npts_spiral 101
+radius_spiral 10.5
+do_path_measurements= False
+========================================
+grid points setup: 2.498 s
+grid connectivity setup: 5.793 s
+prescribe M vector in domain: 28.350 s
+========================================
+========================================
+========================================
+========================================
+========================================
+doing 0 out of  101
+surf int: 24.155 s
+doing 1 out of  101
+surf int: 22.032 s
+doing 2 out of  101
+surf int: 21.079 s
+doing 3 out of  101
+surf int: 20.379 s
+doing 4 out of  101
+surf int: 20.666 s
+doing 5 out of  101
+surf int: 20.690 s
+doing 6 out of  101
+surf int: 20.172 s
+doing 7 out of  101
+surf int: 20.292 s
+doing 8 out of  101
+surf int: 22.152 s
+doing 9 out of  101
+surf int: 22.531 s
+doing 10 out of  101
+surf int: 21.197 s
+doing 11 out of  101
+surf int: 20.043 s
+doing 12 out of  101
+surf int: 20.480 s
+doing 13 out of  101
+surf int: 20.419 s
+doing 14 out of  101
+surf int: 21.317 s
+doing 15 out of  101
+surf int: 20.944 s
+doing 16 out of  101
+surf int: 21.220 s
+doing 17 out of  101
+surf int: 22.980 s
+doing 18 out of  101
+surf int: 21.552 s
+doing 19 out of  101
+surf int: 21.651 s
+doing 20 out of  101
+surf int: 21.314 s
+doing 21 out of  101
+surf int: 21.755 s
+doing 22 out of  101
+surf int: 21.299 s
+doing 23 out of  101
+surf int: 22.422 s
+doing 24 out of  101
+surf int: 21.389 s
+doing 25 out of  101
+surf int: 20.836 s
+doing 26 out of  101
+surf int: 22.228 s
+doing 27 out of  101
+surf int: 21.410 s
+doing 28 out of  101
+surf int: 21.838 s
+doing 29 out of  101
+surf int: 20.769 s
+doing 30 out of  101
+surf int: 20.556 s
+doing 31 out of  101
+surf int: 20.250 s
+doing 32 out of  101
+surf int: 20.975 s
+doing 33 out of  101
+surf int: 21.146 s
+doing 34 out of  101
+surf int: 20.348 s
+doing 35 out of  101
+surf int: 20.968 s
+doing 36 out of  101
+surf int: 22.067 s
+doing 37 out of  101
+surf int: 21.002 s
+doing 38 out of  101
+surf int: 21.382 s
+doing 39 out of  101
+surf int: 21.879 s
+doing 40 out of  101
+surf int: 21.020 s
+doing 41 out of  101
+surf int: 20.743 s
+doing 42 out of  101
+surf int: 20.737 s
+doing 43 out of  101
+surf int: 20.227 s
+doing 44 out of  101
+surf int: 20.037 s
+doing 45 out of  101
+surf int: 21.383 s
+doing 46 out of  101
+surf int: 20.169 s
+doing 47 out of  101
+surf int: 21.921 s
+doing 48 out of  101
+surf int: 21.427 s
+doing 49 out of  101
+surf int: 20.424 s
+doing 50 out of  101
+surf int: 22.295 s
+doing 51 out of  101
+surf int: 21.790 s
+doing 52 out of  101
+surf int: 21.585 s
+doing 53 out of  101
+surf int: 21.573 s
+doing 54 out of  101
+surf int: 21.807 s
+doing 55 out of  101
+surf int: 23.395 s
+doing 56 out of  101
+surf int: 20.803 s
+doing 57 out of  101
+surf int: 21.309 s
+doing 58 out of  101
+surf int: 21.421 s
+doing 59 out of  101
+surf int: 20.951 s
+doing 60 out of  101
+surf int: 21.097 s
+doing 61 out of  101
+surf int: 21.496 s
+doing 62 out of  101
+surf int: 22.094 s
+doing 63 out of  101
+surf int: 23.002 s
+doing 64 out of  101
+surf int: 23.130 s
+doing 65 out of  101
+surf int: 21.586 s
+doing 66 out of  101
+surf int: 20.346 s
+doing 67 out of  101
+surf int: 21.137 s
+doing 68 out of  101
+surf int: 20.444 s
+doing 69 out of  101
+surf int: 21.389 s
+doing 70 out of  101
+surf int: 21.260 s
+doing 71 out of  101
+surf int: 21.454 s
+doing 72 out of  101
+surf int: 23.083 s
+doing 73 out of  101
+surf int: 22.091 s
+doing 74 out of  101
+surf int: 21.563 s
+doing 75 out of  101
+surf int: 20.354 s
+doing 76 out of  101
+surf int: 20.416 s
+doing 77 out of  101
+surf int: 20.098 s
+doing 78 out of  101
+surf int: 19.961 s
+doing 79 out of  101
+surf int: 19.988 s
+doing 80 out of  101
+surf int: 19.993 s
+doing 81 out of  101
+surf int: 20.055 s
+doing 82 out of  101
+surf int: 19.945 s
+doing 83 out of  101
+surf int: 19.996 s
+doing 84 out of  101
+surf int: 20.099 s
+doing 85 out of  101
+surf int: 20.334 s
+doing 86 out of  101
+surf int: 21.049 s
+doing 87 out of  101
+surf int: 22.625 s
+doing 88 out of  101
+surf int: 21.530 s
+doing 89 out of  101
+surf int: 23.213 s
+doing 90 out of  101
+surf int: 22.973 s
+doing 91 out of  101
+surf int: 25.152 s
+doing 92 out of  101
+surf int: 21.666 s
+doing 93 out of  101
+surf int: 20.904 s
+doing 94 out of  101
+surf int: 21.474 s
+doing 95 out of  101
+surf int: 23.735 s
+doing 96 out of  101
+surf int: 26.571 s
+doing 97 out of  101
+surf int: 22.164 s
+doing 98 out of  101
+surf int: 21.347 s
+doing 99 out of  101
+surf int: 20.465 s
+doing 100 out of  101
+surf int: 20.854 s
+========================================

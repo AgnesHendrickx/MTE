@@ -3,8 +3,6 @@
 Governing equations
 ===================
 
-.. todo:: make sure somewhere it explains difference between B and H or magnetic field and induction
-
 | Required is the computation of the magnetic field produced by (permanently) magnetized matter outside the source body within an ambient magnetic field.
 | The total magnetic field :math:`\mathbf{B_t(r)}` at position :math:`\mathbf{r}` above the surface of magnetized matter consist of contributions from the initial field :math:`\mathbf{B_0}` and the anomalous field :math:`\mathbf{B_a}` produced by the underlying magnetized matter
 
@@ -35,10 +33,13 @@ Governing equations
    \end{equation}
    :label: sd
 
-| where :math:`\mathbf{B}` :math:`[T]` is the magnetic induction or magnetic flux density,  :math:`\mu_0` :math:`[NA^{-2}]` is the magnetic permeability of a vacuum, and :math:`\mathbf{r}` is the vector with length :math:`r` :math:`[m]` from the position of the dipole to the observation point.
+| where :math:`\mathbf{B}` :math:`[T]` is the magnetic induction or magnetic flux density,  :math:`\mu_0` :math:`[NA^{-2}]` is the magnetic permeability of a vacuum, and :math:`\mathbf{r}` is the vector with length :math:`r` :math:`[m]` from the position of the dipole to the observation point. In this study :math:`\mathbf{B}` will be referred to as the *magnetic field strength*, see :doc:`app` for further information. 
+
+.. todo:: figure, look at E/Y
 
 .. _figmodel:
 .. figure:: figures/Model_final_pmag_light_shadow.png
+   :scale: 50%
    :class: with-border
 
    At any given position :math:`\mathbf{r}` the resulting field :math:`\mathbf{B}` are the sum of the contribution of all elements in the object :math:`\Omega`. Axial orientation of model is given, and conventional paleomagnetism orientation is in brackets to visualize the required rotation. 

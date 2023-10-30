@@ -1,137 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Case study: Mount Etna &#8212; MTE 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case study: Mount Etna &mdash; MTE 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Functions" href="functions.html" />
     <link rel="prev" title="Synthetic topopography: flank simulations" href="flanksim.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="functions.html" title="Functions"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="flanksim.html" title="Synthetic topopography: flank simulations"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Case study: Mount Etna</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html">
             
-  <div class="section" id="case-study-mount-etna">
-<h1>Case study: Mount Etna<a class="headerlink" href="#case-study-mount-etna" title="Permalink to this heading">¶</a></h1>
+              <img src="_static/Logo2r2.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governing_equations.html">Governing equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computational_approach.html">Computational approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Case study: Mount Etna</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-of-etnean-lava-flows">Parameters of Etnean lava flows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MTE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Case study: Mount Etna</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="case-study-mount-etna">
+<h1>Case study: Mount Etna<a class="headerlink" href="#case-study-mount-etna" title="Permalink to this heading"></a></h1>
 <div class="line-block">
 <div class="line">To run all (optimized) setups for case study Mount Etna (reproducing) field sites use <code class="docutils literal notranslate"><span class="pre">script_etna_full</span></code>.</div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./script_etna_full &gt; log.txt</span>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">script_etna_full</span>
 </pre></div>
-</div>
-<div class="section" id="parameters-of-etnean-lava-flows">
-<h2>Parameters of Etnean lava flows<a class="headerlink" href="#parameters-of-etnean-lava-flows" title="Permalink to this heading">¶</a></h2>
+</div><section id="parameters-of-etnean-lava-flows">
+<h2>Parameters of Etnean lava flows<a class="headerlink" href="#parameters-of-etnean-lava-flows" title="Permalink to this heading"></a></h2>
 <div class="line-block">
-<div class="line">For both the <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> and the final reproduction of the field sites of <span id="id1">[<a class="reference internal" href="ref.html#id10" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span> several values were chosen aiming to best simulate Etnean lava flows. What follows is the rationale for these choises.</div>
-<div class="line">The uniform remnant magnetization intensity assigned to the matter was: <span class="math notranslate nohighlight">\(7.5\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span>. This value compares well with both the TRM found in samples taken from the lava flows in the field <span id="id2">[<a class="reference internal" href="ref.html#id10" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span> and with previous paleomagnetic studies of Etnean lavas <span id="id3">[<a class="reference internal" href="ref.html#id37" title="I. Nicolosi, F. D'Ajello Caracciolo, S. Branca, G. Ventura, and M. Chiappini. Volcanic conduit migration over a basement landslide at Mount Etna (Italy). Scientific Reports, 4(1):5293, 6 2014. URL: https://doi.org/10.1038/srep05293, doi:10.1038/srep05293.">NCB+14</a>]</span>; a bulk magnetization intensity of <span class="math notranslate nohighlight">\(8\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> was measured, with values ranging between <span class="math notranslate nohighlight">\(5\)</span> and <span class="math notranslate nohighlight">\(13\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span>. However, both much lower and higher values have also been reported in other studies, <span class="math notranslate nohighlight">\(0.1-1\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> and <span class="math notranslate nohighlight">\(20\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> by <span id="id4">[<a class="reference internal" href="ref.html#id7" title="Fabio Speranza, Stefano Branca, Mauro Coltelli, Francesca D'Ajello Caracciolo, and Luigi Vigliotti. How accurate is “paleomagnetic dating”? new evidence from historical lavas from mount etna. Journal of Geophysical Research: Solid Earth, 2006.">SBC+06</a>, <a class="reference internal" href="ref.html#id43" title="Jean-Claude Tanguy and Maxime Le Goff. Distortion of the geomagnetic field in volcanic terrains: an experimental study of the Mount Etna stratovolcano. Physics of the Earth and Planetary Interiors, 141(1):59 - 70, 2004. URL: http://www.sciencedirect.com/science/article/pii/S003192010300253X, doi:https://doi.org/10.1016/j.pepi.2003.10.003.">TLG04</a>]</span>, respectively. Clearly displaying the large dispersion of the measurements or values of the magnetization in Etnean lavas. The inclination of the magnetization used in this study is <span class="math notranslate nohighlight">\(57 ^{\circ}\)</span>. This value was computed from Mount Etna’s average latitude using the Geocentric Axial Dipole hypothesis, (<span class="math notranslate nohighlight">\(\tan{I} = 2\tan({lat})\)</span>). The declination was assumed to be <span class="math notranslate nohighlight">\(0 ^{\circ}\)</span> (parallel to the present geomagnetic field) and from this the components of the magnetization were calculated.</div>
+<div class="line">For both the <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> and the final reproduction of the field sites of <span id="id1">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span> several values were chosen aiming to best simulate Etnean lava flows. What follows is the rationale for these choises.</div>
+<div class="line">The uniform remnant magnetization intensity assigned to the matter was: <span class="math notranslate nohighlight">\(7.5\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span>. This value compares well with both the TRM found in samples taken from the lava flows in the field <span id="id2">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span> and with previous paleomagnetic studies of Etnean lavas <span id="id3">[<a class="reference internal" href="ref.html#id42" title="I. Nicolosi, F. D'Ajello Caracciolo, S. Branca, G. Ventura, and M. Chiappini. Volcanic conduit migration over a basement landslide at Mount Etna (Italy). Scientific Reports, 4(1):5293, 6 2014. URL: https://doi.org/10.1038/srep05293, doi:10.1038/srep05293.">NCB+14</a>]</span>; a bulk magnetization intensity of <span class="math notranslate nohighlight">\(8\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> was measured, with values ranging between <span class="math notranslate nohighlight">\(5\)</span> and <span class="math notranslate nohighlight">\(13\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span>. However, both much lower and higher values have also been reported in other studies, <span class="math notranslate nohighlight">\(0.1-1\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> and <span class="math notranslate nohighlight">\(20\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> by <span id="id4">[<a class="reference internal" href="ref.html#id12" title="Fabio Speranza, Stefano Branca, Mauro Coltelli, Francesca D'Ajello Caracciolo, and Luigi Vigliotti. How accurate is “paleomagnetic dating”? new evidence from historical lavas from mount etna. Journal of Geophysical Research: Solid Earth, 2006.">SBC+06</a>, <a class="reference internal" href="ref.html#id48" title="Jean-Claude Tanguy and Maxime Le Goff. Distortion of the geomagnetic field in volcanic terrains: an experimental study of the Mount Etna stratovolcano. Physics of the Earth and Planetary Interiors, 141(1):59 - 70, 2004. URL: http://www.sciencedirect.com/science/article/pii/S003192010300253X, doi:https://doi.org/10.1016/j.pepi.2003.10.003.">TLG04</a>]</span>, respectively. Clearly displaying the large dispersion of the measurements or values of the magnetization in Etnean lavas. The inclination of the magnetization used in this study is <span class="math notranslate nohighlight">\(57 ^{\circ}\)</span>. This value was computed from Mount Etna’s average latitude using the Geocentric Axial Dipole hypothesis, (<span class="math notranslate nohighlight">\(\tan{I} = 2\tan({lat})\)</span>). The declination was assumed to be <span class="math notranslate nohighlight">\(0 ^{\circ}\)</span> (parallel to the present geomagnetic field) and from this the components of the magnetization were calculated.</div>
 <div class="line"><br /></div>
 <div class="line">When a flat bottom is chosen for the <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a>, the input value for depth of the domain is added in the lowest value from the DEM for the area chosen, to avoid intersection situations as outlined in the note in <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a>, however, this does if one increases domain depth, it depends on the size of the DEM cut chosen (and thus included features), how much depth is added underneath the path.</div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
-            </a></p>
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Case study: Mount Etna</a><ul>
-<li><a class="reference internal" href="#parameters-of-etnean-lava-flows">Parameters of Etnean lava flows</a></li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="flanksim.html" class="btn btn-neutral float-left" title="Synthetic topopography: flank simulations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functions.html" class="btn btn-neutral float-right" title="Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Agnes.</p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="flanksim.html"
-                          title="previous chapter">Synthetic topopography: flank simulations</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="functions.html"
-                          title="next chapter">Functions</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/etna.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="functions.html" title="Functions"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="flanksim.html" title="Synthetic topopography: flank simulations"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Case study: Mount Etna</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, Agnes.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<style type="text/css">
+    .scrollToTop {
+        text-align: center;
+        font-weight: bold;
+        position: fixed;
+        bottom: 60px;
+        right: 40px;
+        display: none;
+    }
+</style>
+<a href="#" class="scrollToTop">Scroll To Top</a>
+<script type="text/javascript">
+$(document).ready(function() {
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    $('.scrollToTop').click(function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+});
+</script>
+<style>
+  /* Sidebar header (and topbar for mobile) */
+  .wy-side-nav-search, .wy-nav-top {
+    background: #3ae23a;
+  }
+  /* Sidebar */
+  .wy-nav-side {
+    background: #0c3303;
+  }
+</style>
+
+
+
+</body>
 </html>

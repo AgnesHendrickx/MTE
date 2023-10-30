@@ -1,0 +1,428 @@
+========================================
+=             ETNA project             =
+========================================
+========================================
+benchmark= 1
+Lx,Ly,Lz= 2 2 2
+nelx,nely,nelz= 100 100 100
+nnx,nny,nnz= 101 101 101
+nel= 1000000
+Mx,My,Mz= 0 0 7.5
+do_plane_measurements= False
+do_line_measurements= True
+xstart,ystart,zstart= 1.0 1.0 0.01
+xend,yend,zend= 1.0 1.0 2
+line_nmeas= 100
+do_spiral_measurements= False
+do_path_measurements= False
+========================================
+grid points setup: 1.349 s
+grid connectivity setup: 3.239 s
+prescribe M vector in domain: 13.547 s
+========================================
+starting line measurement ...
+doing 0 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999950823778 0.9999999925721109 0.01
+surf int: 26.499 s
+doing 1 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999925723613 0.9999999933077541 0.0301010101010101
+surf int: 22.172 s
+doing 2 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999981633353 0.9999999938563154 0.050202020202020206
+surf int: 24.900 s
+doing 3 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.000000007119784 0.9999999922791499 0.0703030303030303
+surf int: 25.219 s
+doing 4 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000060746512 0.9999999991498297 0.0904040404040404
+surf int: 22.809 s
+doing 5 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999919149231 1.0000000028163616 0.11050505050505051
+surf int: 22.859 s
+doing 6 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.000000001149896 1.000000002702631 0.13060606060606061
+surf int: 22.587 s
+doing 7 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000059240903 1.0000000073990947 0.15070707070707073
+surf int: 23.387 s
+doing 8 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000091047943 0.9999999991861047 0.17080808080808083
+surf int: 24.086 s
+doing 9 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000054838127 0.9999999951571809 0.19090909090909092
+surf int: 23.493 s
+doing 10 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000055000051 0.9999999940918275 0.21101010101010104
+surf int: 25.474 s
+doing 11 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999994225627 1.00000000810887 0.23111111111111113
+surf int: 29.910 s
+doing 12 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000064101944 0.9999999939606184 0.2512121212121212
+surf int: 24.867 s
+doing 13 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999995567085 1.0000000090605037 0.27131313131313134
+surf int: 22.559 s
+doing 14 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000022981785 0.9999999964584545 0.29141414141414146
+surf int: 22.497 s
+doing 15 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000095642547 1.0000000092877355 0.3115151515151515
+surf int: 23.086 s
+doing 16 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999987728894 1.0000000005120684 0.33161616161616164
+surf int: 22.449 s
+doing 17 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000027475549 0.9999999902900036 0.35171717171717176
+surf int: 22.529 s
+doing 18 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999960925546 0.9999999916159977 0.3718181818181818
+surf int: 21.864 s
+doing 19 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000086032044 1.000000003732782 0.39191919191919194
+surf int: 24.581 s
+doing 20 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999987977952 1.000000005761412 0.41202020202020206
+surf int: 22.864 s
+doing 21 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.00000000932224 1.0000000083878837 0.43212121212121213
+surf int: 23.579 s
+doing 22 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000045799273 1.0000000068002914 0.45222222222222225
+surf int: 22.098 s
+doing 23 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999955793488 0.9999999982399649 0.47232323232323237
+surf int: 23.000 s
+doing 24 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999947872342 1.0000000000174576 0.49242424242424243
+surf int: 24.776 s
+doing 25 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999980846341 1.0000000064621848 0.5125252525252526
+surf int: 23.604 s
+doing 26 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000020521926 1.0000000091879813 0.5326262626262627
+surf int: 25.015 s
+doing 27 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000016505175 1.000000006369366 0.5527272727272727
+surf int: 27.390 s
+doing 28 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000026702414 1.0000000088136873 0.5728282828282829
+surf int: 27.466 s
+doing 29 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999943850572 1.0000000067799801 0.592929292929293
+surf int: 29.763 s
+doing 30 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.000000002353823 0.9999999956655714 0.613030303030303
+surf int: 25.641 s
+doing 31 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000023451474 0.9999999952476781 0.6331313131313132
+surf int: 28.142 s
+doing 32 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000062862264 0.9999999967880706 0.6532323232323233
+surf int: 29.095 s
+doing 33 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000090706007 0.9999999925937914 0.6733333333333333
+surf int: 26.933 s
+doing 34 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000057883474 0.9999999927516384 0.6934343434343435
+surf int: 28.749 s
+doing 35 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000013535113 0.9999999909623369 0.7135353535353536
+surf int: 24.927 s
+doing 36 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999959894286 0.9999999902332865 0.7336363636363636
+surf int: 25.634 s
+doing 37 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999957584521 0.9999999987151867 0.7537373737373738
+surf int: 26.631 s
+doing 38 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999989736201 0.9999999974467774 0.7738383838383839
+surf int: 25.584 s
+doing 39 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000019079045 0.9999999946626073 0.793939393939394
+surf int: 26.106 s
+doing 40 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000056261213 0.999999991411141 0.8140404040404041
+surf int: 23.705 s
+doing 41 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999904331548 0.9999999957036482 0.8341414141414142
+surf int: 23.585 s
+doing 42 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999928526971 0.9999999947707263 0.8542424242424242
+surf int: 22.869 s
+doing 43 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999925609876 0.9999999960599945 0.8743434343434344
+surf int: 22.626 s
+doing 44 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000004505802 0.999999991133636 0.8944444444444445
+surf int: 22.460 s
+doing 45 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999987063645 1.000000002203819 0.9145454545454546
+surf int: 23.278 s
+doing 46 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000094594341 1.0000000066520003 0.9346464646464647
+surf int: 23.051 s
+doing 47 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000009798096 1.0000000010246142 0.9547474747474748
+surf int: 22.954 s
+doing 48 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000066288381 1.0000000060304084 0.9748484848484849
+surf int: 22.947 s
+doing 49 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999927061273 0.9999999922452645 0.994949494949495
+surf int: 22.612 s
+doing 50 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.999999999728242 1.0000000032003686 1.0150505050505052
+surf int: 23.247 s
+doing 51 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.000000001895759 0.9999999929667596 1.0351515151515152
+surf int: 23.438 s
+doing 52 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000028922957 1.0000000010647467 1.0552525252525253
+surf int: 22.934 s
+doing 53 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000094893844 1.0000000075396038 1.0753535353535355
+surf int: 23.071 s
+doing 54 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999942612304 0.999999996672425 1.0954545454545455
+surf int: 22.943 s
+doing 55 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.999999999994401 0.9999999903889097 1.1155555555555556
+surf int: 23.172 s
+doing 56 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999967553976 0.999999999027556 1.1356565656565658
+surf int: 22.861 s
+doing 57 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000094509267 0.9999999951239593 1.1557575757575758
+surf int: 24.038 s
+doing 58 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.00000000989972 0.999999992363241 1.175858585858586
+surf int: 22.622 s
+doing 59 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000066587185 0.9999999943129873 1.1959595959595961
+surf int: 24.431 s
+doing 60 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999920062884 1.0000000006724956 1.216060606060606
+surf int: 24.964 s
+doing 61 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999980998124 0.99999999275954 1.2361616161616162
+surf int: 25.201 s
+doing 62 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999944901733 0.9999999975872084 1.2562626262626264
+surf int: 23.333 s
+doing 63 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000046653132 0.9999999992013726 1.2763636363636364
+surf int: 23.129 s
+doing 64 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999938375156 0.9999999965375138 1.2964646464646465
+surf int: 22.963 s
+doing 65 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999901582974 1.0000000097954844 1.3165656565656567
+surf int: 23.271 s
+doing 66 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000089484822 1.00000000490381 1.3366666666666667
+surf int: 23.268 s
+doing 67 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000073062347 1.0000000051882432 1.3567676767676768
+surf int: 24.152 s
+doing 68 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.000000008541197 1.0000000076632214 1.376868686868687
+surf int: 22.764 s
+doing 69 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000020149762 1.000000008301877 1.396969696969697
+surf int: 23.443 s
+doing 70 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999950796686 1.000000000464275 1.4170707070707071
+surf int: 23.345 s
+doing 71 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000009919596 1.0000000040962114 1.4371717171717173
+surf int: 23.329 s
+doing 72 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999925097718 1.0000000053673634 1.4572727272727273
+surf int: 23.150 s
+doing 73 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999958660724 1.0000000065850192 1.4773737373737375
+surf int: 22.489 s
+doing 74 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999972206556 1.0000000078989006 1.4974747474747476
+surf int: 22.494 s
+doing 75 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000053881792 1.0000000083340406 1.5175757575757576
+surf int: 22.909 s
+doing 76 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.000000002062895 1.0000000046119475 1.5376767676767678
+surf int: 22.541 s
+doing 77 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999923225841 0.9999999982153314 1.557777777777778
+surf int: 21.727 s
+doing 78 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000054977165 1.0000000026033788 1.5778787878787879
+surf int: 21.711 s
+doing 79 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999932192739 0.9999999976211082 1.597979797979798
+surf int: 21.711 s
+doing 80 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999954804683 0.9999999903326628 1.6180808080808082
+surf int: 21.687 s
+doing 81 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000007090795 1.0000000076240823 1.6381818181818182
+surf int: 23.182 s
+doing 82 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.000000009357294 0.999999991959106 1.6582828282828284
+surf int: 23.141 s
+doing 83 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999971618384 1.000000004881798 1.6783838383838385
+surf int: 22.299 s
+doing 84 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999968519339 1.0000000030600136 1.6984848484848485
+surf int: 23.124 s
+doing 85 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999931002631 1.0000000010269936 1.7185858585858587
+surf int: 23.736 s
+doing 86 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000071784434 0.9999999933815942 1.7386868686868688
+surf int: 23.187 s
+doing 87 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000012201937 1.0000000020564275 1.7587878787878788
+surf int: 22.691 s
+doing 88 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999980368872 1.0000000093777088 1.778888888888889
+surf int: 23.323 s
+doing 89 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000057071519 0.9999999926321929 1.7989898989898991
+surf int: 23.079 s
+doing 90 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999909816676 0.99999999479495 1.819090909090909
+surf int: 22.154 s
+doing 91 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999912066371 1.000000005311867 1.8391919191919193
+surf int: 22.486 s
+doing 92 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999931804353 0.9999999960705452 1.8592929292929294
+surf int: 23.205 s
+doing 93 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999959665478 1.0000000060701102 1.8793939393939394
+surf int: 23.423 s
+doing 94 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999910430548 0.9999999986120114 1.8994949494949496
+surf int: 22.546 s
+doing 95 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999960721762 0.9999999907335022 1.9195959595959597
+surf int: 21.793 s
+doing 96 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000068244217 1.000000005192664 1.9396969696969697
+surf int: 22.123 s
+doing 97 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.00000000385588 0.9999999991157955 1.9597979797979799
+surf int: 21.816 s
+doing 98 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+0.9999999950813143 0.9999999919580735 1.97989898989899
+surf int: 22.851 s
+doing 99 out of  100
+1000000 These observation points have been shifted:x-coordinate was shifted by 1e-08 meters, due to diagonal alignment.
+1.0000000093390133 0.9999999926313878 2.0
+surf int: 22.929 s
+========================================
+========================================
+========================================
+========================================
+========================================

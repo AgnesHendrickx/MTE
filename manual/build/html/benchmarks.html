@@ -1,241 +1,326 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Benchmarks &#8212; MTE 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benchmarks &mdash; MTE 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Parameters" href="parameters.html" />
     <link rel="prev" title="Computational approach" href="computational_approach.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="parameters.html" title="Parameters"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="computational_approach.html" title="Computational approach"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Benchmarks</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html">
             
-  <div class="section" id="benchmarks">
-<h1>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this heading">¶</a></h1>
+              <img src="_static/Logo2r2.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governing_equations.html">Governing equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computational_approach.html">Computational approach</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-1-a-single-dipole">Benchmark 1: a single dipole</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#analytical-solution">Analytical solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-setup">Model setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reproduce">Reproduce</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-2-internal-cancellation">Benchmark 2: internal cancellation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Analytical solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Model setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Reproduce</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-3-a-magnetized-sphere">Benchmark 3: a magnetized sphere</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Analytical solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Model setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Reproduce</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-4-a-prismatic-body">Benchmark 4: a prismatic body</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Analytical solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Model setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Reproduce</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MTE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Benchmarks</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="benchmarks">
+<span id="id1"></span><h1>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this heading"></a></h1>
 <div class="line-block">
 <div class="line">Several different benchmarks are available to verify computed values of MTE code.</div>
 <div class="line"><br /></div>
 <div class="line">Verification aims of the benchmarks:</div>
 </div>
 <ol class="arabic simple">
-<li>Assumption that the contribution of a cell can be represented by a single dipole “far” away from source  (see <a class="reference internal" href="governing_equations.html"><span class="doc">Governing equations</span></a>).</li>
-<li>Shape / orientation of the magnetic field outside source body, verifying rotation of vector components in translation from original <code class="docutils literal notranslate"><span class="pre">facmag</span></code> FORTRAN77 subroutine <span id="id1">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>, to current function embedded in MTE.</li>
-<li>Assumption that volume elements are <em>small enough</em> and distance to <code class="docutils literal notranslate"><span class="pre">P</span></code> is <em>large enough</em> (see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>).</li>
-<li>Solving spatial problem with introduction of a small <span class="math notranslate nohighlight">\(\epsilon\)</span> suffices.</li>
+<li><p>Assumption that the contribution of an element can be represented by a single dipole “far” away from source  (see <a class="reference internal" href="governing_equations.html"><span class="doc">Governing equations</span></a>).</p></li>
+<li><p>Shape / orientation of the magnetic field outside source body, verifying rotation of vector components in translation from original <code class="docutils literal notranslate"><span class="pre">facmag</span></code> FORTRAN77 subroutine <span id="id2">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>, to current function embedded in MTE.</p></li>
+<li><p>Assumption that volume elements are <em>small enough</em> and distance to <code class="docutils literal notranslate"><span class="pre">P</span></code> is <em>large enough</em> (see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>).</p></li>
+<li><p>Solving spatial problem with introduction of a small <span class="math notranslate nohighlight">\(\epsilon\)</span> suffices.</p></li>
 </ol>
-<div class="section" id="benchmark-1-a-single-dipole">
-<h2>Benchmark 1: a single dipole<a class="headerlink" href="#benchmark-1-a-single-dipole" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="analytical-solution">
-<h3>Analytical solution<a class="headerlink" href="#analytical-solution" title="Permalink to this heading">¶</a></h3>
 <div class="line-block">
-<div class="line">Equation <a class="reference internal" href="governing_equations.html#equation-sd">(3)</a>, provides us with a solution for the magnetic field produced by a single dipole <span id="id2">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>, <a class="reference internal" href="ref.html#id14" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span>.</div>
-<div class="line">At very large distances, a sphere of uniform magnetization can be seen as a single dipole of volume <span class="math notranslate nohighlight">\(V=\frac{4}{3}\pi r^3\)</span>, where <span class="math notranslate nohighlight">\(r\)</span> is the distance from <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> to the center of the sphere <span class="math notranslate nohighlight">\(z-z_s\)</span> <span id="id3">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
+<div class="line">If the analytical solution takes the form of an equation, its solution will be generated using the function <a class="reference internal" href="functions.html#support.compute_analytical_solution" title="support.compute_analytical_solution"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.compute_analytical_solution()</span></code></a>. All benchmarks outlined here do not require modification of the z-coordinate of nodes on the top and bottom surfaces and, consequently, do not call for a setup with additional triangles (see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>). Therefore, unless otherwise specified, the function <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a> computes the contribution of each element to the magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> for all benchmarks.</div>
+</div>
+<section id="benchmark-1-a-single-dipole">
+<h2>Benchmark 1: a single dipole<a class="headerlink" href="#benchmark-1-a-single-dipole" title="Permalink to this heading"></a></h2>
+<section id="analytical-solution">
+<h3>Analytical solution<a class="headerlink" href="#analytical-solution" title="Permalink to this heading"></a></h3>
+<div class="line-block">
+<div class="line">Equation <a class="reference internal" href="governing_equations.html#equation-sd">(3)</a>, provides us with a solution for the magnetic field produced by a single dipole <span id="id3">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>, <a class="reference internal" href="ref.html#id17" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span>.</div>
+<div class="line">At very large distances, a sphere of uniform magnetization can be seen as a single dipole of volume <span class="math notranslate nohighlight">\(V=\frac{4}{3}\pi r^3\)</span>, where <span class="math notranslate nohighlight">\(r\)</span> is the distance from <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> to the center of the sphere <span class="math notranslate nohighlight">\(z-z_s\)</span> <span id="id4">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
 <div class="line">If we align the magnetization of the sphere with one of the axes, <span class="math notranslate nohighlight">\(\mathbf{M}=(0,0,M_{z0})\)</span> and compute values on a line above the center of the sphere, <span class="math notranslate nohighlight">\(\mathbf{r}=(0,0,z-z_s), r=z-z_s\)</span>,  eq.  <a class="reference internal" href="governing_equations.html#equation-sd">(3)</a> reduces to</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-sds">
-<span class="eqno">(6)<a class="headerlink" href="#equation-sds" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(6)<a class="headerlink" href="#equation-sds" title="Permalink to this equation"></a></span>\[\begin{equation}
    \mathbf{B}_{dip}(\mathbf{r}) = \frac{\mu_0 V}{2\pi} \frac{M_{z0}}{r^3}   \mathbf{e}_z
 \end{equation}\]</div>
-</div>
-<div class="section" id="model-setup">
-<h3>Model setup<a class="headerlink" href="#model-setup" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="model-setup">
+<h3>Model setup<a class="headerlink" href="#model-setup" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line">The model setup was as follows: A spherical inclusion of radius <span class="math notranslate nohighlight">\(ds=1m\)</span> and <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span> in a domain of 2x2x2m with a resolution of 100 elements in each direction.</div>
 <div class="line">The magnetic field values were computed along a vertical line positioned directly above the sphere’s center, where the distance <span class="math notranslate nohighlight">\(r\)</span> was progressively increased to exceed <span class="math notranslate nohighlight">\(100m\)</span>.</div>
 </div>
-</div>
-<div class="section" id="results">
-<h3>Results<a class="headerlink" href="#results" title="Permalink to this heading">¶</a></h3>
-<div class="figure align-default" id="id16">
-<span id="figureb1"></span><img alt="_images/B1dipole.png" class="with-border" src="_images/B1dipole.png" />
-<p class="caption"><span class="caption-number">Figure 2 </span><span class="caption-text">Analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="id17">
-<span id="figureb1zoom"></span><img alt="_images/B1dipole_dif_zoom_withlines.png" class="with-border" src="_images/B1dipole_dif_zoom_withlines.png" />
-<p class="caption"><span class="caption-number">Figure 3 </span><span class="caption-text">Difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
-</div>
+</section>
+<section id="results">
+<h3>Results<a class="headerlink" href="#results" title="Permalink to this heading"></a></h3>
+<figure class="align-default" id="id27">
+<span id="figureb1"></span><a class="with-border reference internal image-reference" href="_images/B1dipole.png"><img alt="_images/B1dipole.png" class="with-border" src="_images/B1dipole.png" style="width: 1080.0px; height: 540.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 2 </span><span class="caption-text">Analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.</span><a class="headerlink" href="#id27" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id28">
+<span id="figureb1zoom"></span><a class="with-border reference internal image-reference" href="_images/B1dipole_dif_zoom_withlines.png"><img alt="_images/B1dipole_dif_zoom_withlines.png" class="with-border" src="_images/B1dipole_dif_zoom_withlines.png" style="width: 1080.0px; height: 540.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 3 </span><span class="caption-text">Difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.</span><a class="headerlink" href="#id28" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <div class="line-block">
 <div class="line">As illustrated in <a class="reference internal" href="#figureb1"><span class="std std-numref">Figure 2</span></a>, the discrepancies between the analytical solution and computed values are minimal.</div>
-<div class="line">Even at a height of, see <a class="reference internal" href="#figureb1zoom"><span class="std std-numref">Figure 3</span></a>, <span class="math notranslate nohighlight">\(0.25m\)</span>, the smallest height above the topography measured in the Etna case study <span id="id4">[<a class="reference internal" href="ref.html#id12" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>, the error remains approximately <span class="math notranslate nohighlight">\(\sim \lvert 0.01 \rvert \mu T\)</span> .</div>
+<div class="line">Even at a height of, see <a class="reference internal" href="#figureb1zoom"><span class="std std-numref">Figure 3</span></a>, <span class="math notranslate nohighlight">\(0.25m\)</span>, the smallest height above the topography measured in the Etna case study <span id="id5">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>, the error remains approximately <span class="math notranslate nohighlight">\(\sim \lvert 0.01 \rvert \mu T\)</span> .</div>
 </div>
-</div>
-<div class="section" id="reproduce">
-<h3>Reproduce<a class="headerlink" href="#reproduce" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="reproduce">
+<h3>Reproduce<a class="headerlink" href="#reproduce" title="Permalink to this heading"></a></h3>
 <details class="summary-how-to-reproduce-the-results-and-figures">
 <summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
 <ol class="arabic">
-<li><p class="first">In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id18">
-<div class="code-block-caption"><span class="caption-number">1 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
-</pre></div>
-</div>
-</div>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
+</span></pre></div>
+</div></div>
 </li>
-<li><p class="first">Run “zoomed” setup &amp; rename/move files</p>
-<div class="literal-block-wrapper docutils container" id="id19">
-<div class="code-block-caption"><span class="caption-number">2 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">41</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">:</span>
+<li><p>Run “zoomed” setup &amp; rename/move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">41</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">:</span>
 <span class="linenos">42</span>   <span class="n">do_line_measurements</span><span class="o">=</span><span class="kc">True</span>
-<span class="linenos">43</span>   <span class="n">xstart</span><span class="o">=</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">1e-9</span>
-<span class="linenos">44</span>   <span class="n">ystart</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">1e-10</span>
+<span class="linenos">43</span>   <span class="n">xstart</span><span class="o">=</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span>
+<span class="linenos">44</span>   <span class="n">ystart</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">45</span>   <span class="n">zstart</span><span class="o">=</span><span class="mf">0.01</span>      <span class="c1">#slightly above surface</span>
-<span class="linenos">46</span>   <span class="n">xend</span><span class="o">=</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">1e-9</span>
-<span class="linenos">47</span>   <span class="n">yend</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">1e-10</span>
+<span class="linenos">46</span>   <span class="n">xend</span><span class="o">=</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span>
+<span class="linenos">47</span>   <span class="n">yend</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span>
 <span class="hll"><span class="linenos">48</span>   <span class="n">zend</span><span class="o">=</span><span class="mi">2</span>  <span class="c1">#&quot;zoomed&quot;-data (i.e. close to surface)</span>
 </span><span class="linenos">49</span>   <span class="c1">#zend=100  #regular setup</span>
 <span class="linenos">50</span>   <span class="n">line_nmeas</span><span class="o">=</span><span class="mi">100</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id20">
-<div class="code-block-caption"><span class="caption-number">3 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id21">
-<div class="code-block-caption"><span class="caption-number">4 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir benchmark_1/results_zoom <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii benchmark_1/results_zoom
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_1</span><span class="o">/</span><span class="n">results_zoom</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_1</span><span class="o">/</span><span class="n">results_zoom</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Run regular setup &amp; move files</p>
-<div class="literal-block-wrapper docutils container" id="id22">
-<div class="code-block-caption"><span class="caption-number">5 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id22" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">41</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">:</span>
+<li><p>Run regular setup &amp; move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">41</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">:</span>
 <span class="linenos">42</span>   <span class="n">do_line_measurements</span><span class="o">=</span><span class="kc">True</span>
-<span class="linenos">43</span>   <span class="n">xstart</span><span class="o">=</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">1e-9</span>
-<span class="linenos">44</span>   <span class="n">ystart</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">1e-10</span>
+<span class="linenos">43</span>   <span class="n">xstart</span><span class="o">=</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span>
+<span class="linenos">44</span>   <span class="n">ystart</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">45</span>   <span class="n">zstart</span><span class="o">=</span><span class="mf">0.01</span>      <span class="c1">#slightly above surface</span>
-<span class="linenos">46</span>   <span class="n">xend</span><span class="o">=</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">1e-9</span>
-<span class="linenos">47</span>   <span class="n">yend</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mf">1e-10</span>
+<span class="linenos">46</span>   <span class="n">xend</span><span class="o">=</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span>
+<span class="linenos">47</span>   <span class="n">yend</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span>
 <span class="hll"><span class="linenos">48</span>   <span class="c1">#zend=2  #&quot;zoomed&quot;-data (i.e. close to surface)</span>
 </span><span class="hll"><span class="linenos">49</span>   <span class="n">zend</span><span class="o">=</span><span class="mi">100</span>  <span class="c1">#regular setup</span>
 </span><span class="linenos">50</span>   <span class="n">line_nmeas</span><span class="o">=</span><span class="mi">100</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id23">
-<div class="code-block-caption"><span class="caption-number">6 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id23" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id24">
-<div class="code-block-caption"><span class="caption-number">7 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id24" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mv log.txt *.vtu *.ascii benchmark_1/
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_1</span><span class="o">/</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Go to directory &amp; plot</p>
-<div class="literal-block-wrapper docutils container" id="id25">
-<div class="code-block-caption"><span class="caption-number">8 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id25" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> benchmark_1
+<li><p>Go to directory &amp; plot</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_1</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id26">
-<div class="code-block-caption"><span class="caption-number">9 </span><span class="caption-text">/main/benchmark_1$</span><a class="headerlink" href="#id26" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gnuplot plot_script_B1.p
+</div></div>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_1/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">plot_script_B1</span><span class="o">.</span><span class="n">p</span>
 </pre></div>
-</div>
-</div>
+</div></div>
+</td>
+<td><div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_1/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">plot_script_B1</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div></div>
+</td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
-</details></div>
-</div>
-<div class="section" id="benchmark-2-internal-cancellation">
-<span id="b2"></span><h2>Benchmark 2: internal cancellation<a class="headerlink" href="#benchmark-2-internal-cancellation" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="id5">
-<h3>Analytical solution<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+</details></section>
+</section>
+<section id="benchmark-2-internal-cancellation">
+<span id="b2"></span><h2>Benchmark 2: internal cancellation<a class="headerlink" href="#benchmark-2-internal-cancellation" title="Permalink to this heading"></a></h2>
+<section id="id6">
+<h3>Analytical solution<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <div class="line-block">
-<div class="line">According to theory, all internal magnetic forces, or contributions, on the surfaces within the magnetized object should cancel out <span id="id6">[<a class="reference internal" href="ref.html#id15" title="John David Jackson. Classical electrodynamics. Wiley, New York, NY, 3rd ed. edition, 1999. ISBN 9780471309321. URL: http://cdsweb.cern.ch/record/490457.">Jac99</a>]</span>. Hence, regardless of variations on the internal surfaces of elements in our domain, the computed values at any point above the surface should be consistent.</div>
+<div class="line">According to theory, all internal magnetic forces, or contributions, on the surfaces within the magnetized object should cancel out <span id="id7">[<a class="reference internal" href="ref.html#id18" title="John David Jackson. Classical electrodynamics. Wiley, New York, NY, 3rd ed. edition, 1999. ISBN 9780471309321. URL: http://cdsweb.cern.ch/record/490457.">Jac99</a>]</span>. Hence, regardless of variations on the internal surfaces of elements in our domain, the computed values at any point above the surface should be consistent.</div>
 </div>
-</div>
-<div class="section" id="id7">
-<h3>Model setup<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
-<div class="figure align-default" id="id27">
-<span id="deformationsetups"></span><img alt="_images/result_b2_frames_only_3.png" class="with-border" src="_images/result_b2_frames_only_3.png" />
-<p class="caption"><span class="caption-number">Figure 4 </span><span class="caption-text">Visualization of different model szetups by cross sectional planes trough middle of each mesh, on the left the undeformed base mesh, in the middle deformation setup (1), on the right deformation setup (2).</span><a class="headerlink" href="#id27" title="Permalink to this image">¶</a></p>
-</div>
+</section>
+<section id="id8">
+<h3>Model setup<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<figure class="align-default" id="id29">
+<span id="deformationsetups"></span><a class="with-border reference internal image-reference" href="_images/result_b2_frames_only_3.png"><img alt="_images/result_b2_frames_only_3.png" class="with-border" src="_images/result_b2_frames_only_3.png" style="width: 701.0px; height: 267.5px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 4 </span><span class="caption-text">Visualization of different model setups by cross sectional planes trough middle of each mesh, on the left the undeformed base mesh, in the middle deformation setup (1), on the right deformation setup (2).</span><a class="headerlink" href="#id29" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <div class="line-block">
 <div class="line">To verify this, a domain of 10x10x10m, with an initial element size of 2x2x2m and <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span>, was deformed in two ways:</div>
 </div>
 <ol class="arabic simple">
-<li>a random value between <span class="math notranslate nohighlight">\(-0.1\)</span> and <span class="math notranslate nohighlight">\(0.1\)</span> was added to the z coordinates of internal nodes</li>
-<li>situation in (1) was combined with elements of a very high aspect ratio (5x1x0.2m).</li>
+<li><p>a random value between <span class="math notranslate nohighlight">\(-0.1\)</span> and <span class="math notranslate nohighlight">\(0.1\)</span> was added to the z coordinates of internal nodes</p></li>
+<li><p>situation in (1) was combined with elements of a very high aspect ratio (5x1x0.2m).</p></li>
 </ol>
 <div class="line-block">
 <div class="line">The original domain and results will be referred to as the base setup, see <a class="reference internal" href="#deformationsetups"><span class="std std-numref">Figure 4</span></a> for visualization of the deformation setups.</div>
 </div>
-</div>
-<div class="section" id="id8">
-<h3>Results<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
-<div class="figure align-default" id="id28">
-<span id="figureb2base"></span><img alt="_images/result_b2_base_lines.png" class="with-border" src="_images/result_b2_base_lines.png" />
-<p class="caption"><span class="caption-number">Figure 5 </span><span class="caption-text">The magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> on a plane <span class="math notranslate nohighlight">\(1m\)</span> above the surface of a box with a spatial extent that is twice as large as the (undeformed) domain beneath.</span><a class="headerlink" href="#id28" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="id29">
-<span id="figureb2"></span><img alt="_images/result_b2.png" class="with-border" src="_images/result_b2.png" />
-<p class="caption"><span class="caption-number">Figure 6 </span><span class="caption-text">Difference between <a class="reference internal" href="#figureb2base"><span class="std std-numref">Figure 5</span></a> and results from the deformed domain setups. On the left the difference between deformation setup (1) and the base, on the right the difference between deformation setup (2) and the base. See model setup section.</span><a class="headerlink" href="#id29" title="Permalink to this image">¶</a></p>
-</div>
+</section>
+<section id="id9">
+<h3>Results<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<figure class="align-default" id="id30">
+<span id="figureb2base"></span><a class="with-border reference internal image-reference" href="_images/result_b2_base_lines.png"><img alt="_images/result_b2_base_lines.png" class="with-border" src="_images/result_b2_base_lines.png" style="width: 853.8px; height: 470.4px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 5 </span><span class="caption-text">The magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> on a plane <span class="math notranslate nohighlight">\(1m\)</span> above the surface of a box with a spatial extent that is twice as large as the (undeformed) domain beneath.</span><a class="headerlink" href="#id30" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id31">
+<span id="figureb2"></span><a class="reference internal image-reference" href="_images/result_b2.png"><img alt="_images/result_b2.png" src="_images/result_b2.png" style="width: 1141.6000000000001px; height: 627.2px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 6 </span><span class="caption-text">Difference between <a class="reference internal" href="#figureb2base"><span class="std std-numref">Figure 5</span></a> and results from the deformed domain setups. On the left the difference between deformation setup (1) and the base, on the right the difference between deformation setup (2) and the base. See model setup section.</span><a class="headerlink" href="#id31" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <div class="line-block">
 <div class="line">As expected and observable in <a class="reference internal" href="#figureb2"><span class="std std-numref">Figure 6</span></a>, the computed values of the magnetic field on the observation plane, located one meter above the domain, remained consistent (up to machine precision) across these scenarios.</div>
 </div>
-</div>
-<div class="section" id="id9">
-<h3>Reproduce<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="id10">
+<h3>Reproduce<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
 <details class="summary-how-to-reproduce-the-results-and-figures">
 <summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
 <ol class="arabic">
-<li><p class="first">In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">2a</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id30">
-<div class="code-block-caption"><span class="caption-number">10 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id30" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;2a&#39;</span>
-</pre></div>
-</div>
-</div>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">2a</span></code>:</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;2a&#39;</span>
+</span></pre></div>
+</div></div>
 </li>
-<li><p class="first">Run base setup &amp; rename/move files</p>
-<div class="literal-block-wrapper docutils container" id="id31">
-<div class="code-block-caption"><span class="caption-number">11 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id31" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">78</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;2a&#39;</span><span class="p">:</span>
+<li><p>Run base setup &amp; rename/move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">78</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;2a&#39;</span><span class="p">:</span>
 <span class="linenos">79</span>   <span class="n">Lx</span><span class="o">=</span><span class="mi">10</span>
 <span class="linenos">80</span>   <span class="n">Ly</span><span class="o">=</span><span class="mi">10</span>
 <span class="linenos">81</span>   <span class="n">Lz</span><span class="o">=</span><span class="mi">10</span>
@@ -249,25 +334,22 @@
 <span class="hll"><span class="linenos">89</span>   <span class="n">dz</span><span class="o">=</span><span class="mi">0</span> <span class="c1">#base setup</span>
 </span><span class="linenos">90</span>   <span class="c1">#dz=0.1 #amplitude random</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id32">
-<div class="code-block-caption"><span class="caption-number">12 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id32" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id33">
-<div class="code-block-caption"><span class="caption-number">13 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id33" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir benchmark_2/d0 <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii benchmark_2/d0
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Run deformation setup (1) &amp; move files</p>
-<div class="literal-block-wrapper docutils container" id="id34">
-<div class="code-block-caption"><span class="caption-number">14 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id34" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">78</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;2a&#39;</span><span class="p">:</span>
+<li><p>Run deformation setup (1) &amp; move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">78</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;2a&#39;</span><span class="p">:</span>
 <span class="linenos">79</span>   <span class="n">Lx</span><span class="o">=</span><span class="mi">10</span>
 <span class="linenos">80</span>   <span class="n">Ly</span><span class="o">=</span><span class="mi">10</span>
 <span class="linenos">81</span>   <span class="n">Lz</span><span class="o">=</span><span class="mi">10</span>
@@ -281,116 +363,126 @@
 <span class="hll"><span class="linenos">89</span>   <span class="c1">#dz=0 #base setup</span>
 </span><span class="hll"><span class="linenos">90</span>   <span class="n">dz</span><span class="o">=</span><span class="mf">0.1</span> <span class="c1">#amplitude random</span>
 </span></pre></div>
-</div>
-</div>
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0_1</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0_1</span>
+</pre></div>
+</div></div>
+</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">2b</span></code>:</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;2b&#39;</span>
+</span></pre></div>
+</div></div>
+</li>
+<li><p>Run deformation setup (2) &amp; move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0_1_2_10_50</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0_1_2_10_50</span>
+</pre></div>
+</div></div>
+</li>
+<li><p>Go to directory &amp; use paraview or plotting to visualize</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span>
+</pre></div>
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_2/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">paraview</span> <span class="o">--</span><span class="n">state</span><span class="o">=</span><span class="n">plot_result_b2_final</span><span class="o">.</span><span class="n">pvsm</span>
+</pre></div>
+</div></div>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_2/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">plot_script_B2</span><span class="o">.</span><span class="n">p</span>
+</pre></div>
+</div></div>
+</td>
+<td><div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_2/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">plot_script_B2</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div></div>
+</td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
-<div class="literal-block-wrapper docutils container" id="id35">
-<div class="code-block-caption"><span class="caption-number">15 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id35" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id36">
-<div class="code-block-caption"><span class="caption-number">16 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id36" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir benchmark_2/d0_1 <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii benchmark_2/d0_1
-</pre></div>
-</div>
-</div>
-<ol class="arabic" start="4">
-<li><p class="first">In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">2b</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id37">
-<div class="code-block-caption"><span class="caption-number">17 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id37" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;2b&#39;</span>
-</pre></div>
-</div>
-</div>
-</li>
-<li><p class="first">Run deformation setup (2) &amp; move files</p>
-<div class="literal-block-wrapper docutils container" id="id38">
-<div class="code-block-caption"><span class="caption-number">18 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id38" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id39">
-<div class="code-block-caption"><span class="caption-number">19 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id39" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir benchmark_2/d0_1_2_10_50 <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii benchmark_2/d0_1_2_10_50
-</pre></div>
-</div>
-</div>
-</li>
-<li><p class="first">Go to directory &amp; use paraview to visualize</p>
-<div class="literal-block-wrapper docutils container" id="id40">
-<div class="code-block-caption"><span class="caption-number">20 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id40" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> benchmark_2
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id41">
-<div class="code-block-caption"><span class="caption-number">21 </span><span class="caption-text">/main/benchmark_2$</span><a class="headerlink" href="#id41" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>paraview --state<span class="o">=</span>plot_result_b2_final.pvsm
-</pre></div>
-</div>
-</div>
-</li>
-</ol>
-</details></div>
-</div>
-<div class="section" id="benchmark-3-a-magnetized-sphere">
-<h2>Benchmark 3: a magnetized sphere<a class="headerlink" href="#benchmark-3-a-magnetized-sphere" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="id10">
-<h3>Analytical solution<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+</details></section>
+</section>
+<section id="benchmark-3-a-magnetized-sphere">
+<h2>Benchmark 3: a magnetized sphere<a class="headerlink" href="#benchmark-3-a-magnetized-sphere" title="Permalink to this heading"></a></h2>
+<section id="id11">
+<h3>Analytical solution<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line">Using the boundary conditions of a magnetized sphere present in a magnetic field <span class="math notranslate nohighlight">\(\mathbf{B_0}\)</span>, equation <a class="reference internal" href="governing_equations.html#equation-bsumfinal">(5)</a> can be simplified (see appendix <a class="reference internal" href="app1.html"><span class="doc">Complete derivation of the equations</span></a>).</div>
-<div class="line">This is applicable if the sphere is uniformly magnetized with <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> parallel to <span class="math notranslate nohighlight">\(\hat{k}\)</span>, the polar direction and if the origin of the coordinate system is placed at the center of the sphere (see <a class="reference internal" href="app1.html#sphere-si2"><span class="std std-numref">Figure 19</span></a> in <a class="reference internal" href="app1.html"><span class="doc">Complete derivation of the equations</span></a> for visualization).</div>
-<div class="line">Then, the magnetic field outside this sphere is defined as <span id="id11">[<a class="reference internal" href="ref.html#id16" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span></div>
+<div class="line">This is applicable if the sphere is uniformly magnetized with <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> parallel to <span class="math notranslate nohighlight">\(\hat{k}\)</span>, the polar direction and if the origin of the coordinate system is placed at the center of the sphere (see <a class="reference internal" href="app1.html#sphere-si2"><span class="std std-numref">Figure 21</span></a> in <a class="reference internal" href="app1.html"><span class="doc">Complete derivation of the equations</span></a> for visualization).</div>
+<div class="line">Then, the magnetic field outside this sphere is defined as <span id="id12">[<a class="reference internal" href="ref.html#id19" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span></div>
 </div>
 <div class="math notranslate nohighlight" id="equation-bsumsphere">
-<span class="eqno">(7)<a class="headerlink" href="#equation-bsumsphere" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(7)<a class="headerlink" href="#equation-bsumsphere" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{B_t(r)} =  B_0\mathbf{\hat{k}} + \frac{\mu_{0}}{3}M\left(\frac{a^3}{r^3}\right) \left(2\mathbf{\hat{r}}\cos{\theta}+\mathbf{{\hat{\theta}}}\sin{\theta}\right)
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">where <span class="math notranslate nohighlight">\(r\)</span> is the distance from the center of the sphere to the observation point, <span class="math notranslate nohighlight">\(a\)</span> is the radius of the sphere, <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\hat{\theta}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\theta\)</span> is the angle between <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> increasing clockwise from <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> and both <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B_0}\)</span> are in the direction of <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>.</div>
 </div>
-<div class="figure align-default" id="id42">
-<span id="sphere-bench-setup"></span><img alt="_images/Model_setup.png" class="with-border" src="_images/Model_setup.png" />
-<p class="caption"><span class="caption-number">Figure 7 </span><span class="caption-text">Visualization of the model setup, numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. Numbering of the computation points start at the top of the sphere and circle down in a counterclockwise fashion.</span><a class="headerlink" href="#id42" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="id12">
-<h3>Model setup<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default" id="id32">
+<span id="sphere-bench-setup"></span><a class="with-border reference internal image-reference" href="_images/Model_setup.png"><img alt="_images/Model_setup.png" class="with-border" src="_images/Model_setup.png" style="width: 795.6px; height: 705.6px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 7 </span><span class="caption-text">Visualization of the model setup, numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. Numbering of the computation points start at the top of the sphere and circle down in a counterclockwise fashion.</span><a class="headerlink" href="#id32" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id13">
+<h3>Model setup<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
 <div class="line-block">
-<div class="line">The model setup was as follows, see <a class="reference internal" href="#sphere-bench-setup"><span class="std std-numref">Figure 7</span></a>: A spherical inclusion similar to the first benchmark, but now with a radius of <span class="math notranslate nohighlight">\(a=10m\)</span> was placed in a domain of 20x20x20m and <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span>. Since a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements were anticipated to be necessary to produce adequate results. A Fibonacci spiral was used to uniformly distribute 101 computation points at <span class="math notranslate nohighlight">\(0.25m\)</span> and <span class="math notranslate nohighlight">\(0.5m\)</span> above the surface of a sphere with a domain resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> elements per meter.</div>
+<div class="line">The model setup was as follows, see <a class="reference internal" href="#sphere-bench-setup"><span class="std std-numref">Figure 7</span></a>: A spherical inclusion similar to the first benchmark, but now with a radius of <span class="math notranslate nohighlight">\(a=10m\)</span> was placed in a domain of 20x20x20m with a magnetization of <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span> assigned only to elements within the spherical inclusion. Since a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements were anticipated to be necessary to produce adequate results. A Fibonacci spiral was used to uniformly distribute 101 computation points at <span class="math notranslate nohighlight">\(0.25m\)</span> and <span class="math notranslate nohighlight">\(0.5m\)</span> above the surface of a sphere with a domain resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> elements per meter.</div>
 </div>
-</div>
-<div class="section" id="id13">
-<h3>Results<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="id14">
+<h3>Results<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
 <div class="line-block">
 <div class="line">The results are shown in the <a class="reference internal" href="#sphere-bench"><span class="std std-numref">Figure 8</span></a>. As expected, closer to the surface the required resolution increases, however, at a distance of <span class="math notranslate nohighlight">\(0.5m\)</span> above the sphere <span class="math notranslate nohighlight">\(3\)</span> elements per meter suffices.</div>
 </div>
-<div class="figure align-default" id="id43">
-<span id="sphere-bench"></span><img alt="_images/B3sphere_dif_mp_splitcase_all.png" class="with-border" src="_images/B3sphere_dif_mp_splitcase_all.png" />
-<p class="caption"><span class="caption-number">Figure 8 </span><span class="caption-text">Difference between analytical solution and computed values for 100 difference computation points at either 0.25 or 0.5m above the surface of a sphere with a resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> <span class="math notranslate nohighlight">\(el/m\)</span>.</span><a class="headerlink" href="#id43" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="id14">
-<h3>Reproduce<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default" id="id33">
+<span id="sphere-bench"></span><a class="with-border reference internal image-reference" href="_images/B3sphere_dif_mp_splitcase_all.png"><img alt="_images/B3sphere_dif_mp_splitcase_all.png" class="with-border" src="_images/B3sphere_dif_mp_splitcase_all.png" style="width: 1260.0px; height: 630.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 8 </span><span class="caption-text">Difference between analytical solution and computed values for 100 difference computation points at either 0.25 or 0.5m above the surface of a sphere with a resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> <span class="math notranslate nohighlight">\(el/m\)</span>.</span><a class="headerlink" href="#id33" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id15">
+<h3>Reproduce<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
 <details class="summary-how-to-reproduce-the-results-and-figures">
 <summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
 <ol class="arabic">
-<li><p class="first">In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">3</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id44">
-<div class="code-block-caption"><span class="caption-number">22 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id44" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;3&#39;</span>
-</pre></div>
-</div>
-</div>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">3</span></code>:</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;3&#39;</span>
+</span></pre></div>
+</div></div>
 </li>
-<li><p class="first">Run 25cm above setup &amp; rename/move files</p>
-<div class="literal-block-wrapper docutils container" id="id45">
-<div class="code-block-caption"><span class="caption-number">23 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id45" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;3&#39;</span><span class="p">:</span>
+<li><p>Run 25cm above setup &amp; rename/move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;3&#39;</span><span class="p">:</span>
 <span class="linenos">138</span>   <span class="n">Lx</span><span class="o">=</span><span class="mi">20</span>
 <span class="linenos">139</span>   <span class="n">Ly</span><span class="o">=</span><span class="mi">20</span>
 <span class="linenos">140</span>   <span class="n">Lz</span><span class="o">=</span><span class="mi">20</span>
@@ -406,30 +498,27 @@
 <span class="linenos">150</span>   <span class="n">sphere_yc</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">151</span>   <span class="n">sphere_zc</span><span class="o">=-</span><span class="n">Lz</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">152</span>   <span class="c1">#spiral meas</span>
-<span class="hll"><span class="linenos">153</span>   <span class="n">do_spiral_measurements</span><span class="o">=</span><span class="kc">True</span>
-</span><span class="linenos">154</span>   <span class="n">radius_spiral</span><span class="o">=</span><span class="mf">1.025</span><span class="o">*</span><span class="n">sphere_R</span>
-<span class="linenos">155</span>   <span class="c1">#radius_spiral=1.05*sphere_R</span>
+<span class="linenos">153</span>   <span class="n">do_spiral_measurements</span><span class="o">=</span><span class="kc">True</span>
+<span class="hll"><span class="linenos">154</span>   <span class="n">radius_spiral</span><span class="o">=</span><span class="mf">1.025</span><span class="o">*</span><span class="n">sphere_R</span>
+</span><span class="linenos">155</span>   <span class="c1">#radius_spiral=1.05*sphere_R</span>
 <span class="linenos">156</span>   <span class="n">npts_spiral</span><span class="o">=</span><span class="mi">101</span> <span class="c1">#keep odd</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id46">
-<div class="code-block-caption"><span class="caption-number">24 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id46" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id47">
-<div class="code-block-caption"><span class="caption-number">25 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id47" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir benchmark_3/0_25_above <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii benchmark_3/0_25_above
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_25</span><span class="n">_above</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_25</span><span class="n">_above</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Run 25cm above setup with double amount of elements &amp; rename/move files</p>
-<div class="literal-block-wrapper docutils container" id="id48">
-<div class="code-block-caption"><span class="caption-number">26 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id48" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;3&#39;</span><span class="p">:</span>
+<li><p>Run 25cm above setup with double amount of elements &amp; rename/move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;3&#39;</span><span class="p">:</span>
 <span class="linenos">138</span>   <span class="n">Lx</span><span class="o">=</span><span class="mi">20</span>
 <span class="linenos">139</span>   <span class="n">Ly</span><span class="o">=</span><span class="mi">20</span>
 <span class="linenos">140</span>   <span class="n">Lz</span><span class="o">=</span><span class="mi">20</span>
@@ -445,30 +534,27 @@
 <span class="linenos">150</span>   <span class="n">sphere_yc</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">151</span>   <span class="n">sphere_zc</span><span class="o">=-</span><span class="n">Lz</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">152</span>   <span class="c1">#spiral meas</span>
-<span class="hll"><span class="linenos">153</span>   <span class="n">do_spiral_measurements</span><span class="o">=</span><span class="kc">True</span>
-</span><span class="linenos">154</span>   <span class="n">radius_spiral</span><span class="o">=</span><span class="mf">1.025</span><span class="o">*</span><span class="n">sphere_R</span>
-<span class="linenos">155</span>   <span class="c1">#radius_spiral=1.05*sphere_R</span>
+<span class="linenos">153</span>   <span class="n">do_spiral_measurements</span><span class="o">=</span><span class="kc">True</span>
+<span class="hll"><span class="linenos">154</span>   <span class="n">radius_spiral</span><span class="o">=</span><span class="mf">1.025</span><span class="o">*</span><span class="n">sphere_R</span>
+</span><span class="linenos">155</span>   <span class="c1">#radius_spiral=1.05*sphere_R</span>
 <span class="linenos">156</span>   <span class="n">npts_spiral</span><span class="o">=</span><span class="mi">101</span> <span class="c1">#keep odd</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id49">
-<div class="code-block-caption"><span class="caption-number">27 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id49" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id50">
-<div class="code-block-caption"><span class="caption-number">28 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id50" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir benchmark_3/0_25_2_above <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii benchmark_3/0_25_2_above
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_25_2</span><span class="n">_above</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_25_2</span><span class="n">_above</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Run 50cm above setup &amp; rename/move files</p>
-<div class="literal-block-wrapper docutils container" id="id51">
-<div class="code-block-caption"><span class="caption-number">29 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id51" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;3&#39;</span><span class="p">:</span>
+<li><p>Run 50cm above setup &amp; rename/move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;3&#39;</span><span class="p">:</span>
 <span class="linenos">138</span>   <span class="n">Lx</span><span class="o">=</span><span class="mi">20</span>
 <span class="linenos">139</span>   <span class="n">Ly</span><span class="o">=</span><span class="mi">20</span>
 <span class="linenos">140</span>   <span class="n">Lz</span><span class="o">=</span><span class="mi">20</span>
@@ -484,30 +570,27 @@
 <span class="linenos">150</span>   <span class="n">sphere_yc</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">151</span>   <span class="n">sphere_zc</span><span class="o">=-</span><span class="n">Lz</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">152</span>   <span class="c1">#spiral meas</span>
-<span class="hll"><span class="linenos">153</span>   <span class="n">do_spiral_measurements</span><span class="o">=</span><span class="kc">True</span>
-</span><span class="hll"><span class="linenos">154</span>   <span class="c1">#radius_spiral=1.025*sphere_R #25 cm above surface sphere</span>
-</span><span class="linenos">155</span>   <span class="n">radius_spiral</span><span class="o">=</span><span class="mf">1.05</span><span class="o">*</span><span class="n">sphere_R</span> <span class="c1">#50 cm above surface sphere</span>
-<span class="linenos">156</span>   <span class="n">npts_spiral</span><span class="o">=</span><span class="mi">101</span> <span class="c1">#keep odd</span>
+<span class="linenos">153</span>   <span class="n">do_spiral_measurements</span><span class="o">=</span><span class="kc">True</span>
+<span class="hll"><span class="linenos">154</span>   <span class="c1">#radius_spiral=1.025*sphere_R #25 cm above surface sphere</span>
+</span><span class="hll"><span class="linenos">155</span>   <span class="n">radius_spiral</span><span class="o">=</span><span class="mf">1.05</span><span class="o">*</span><span class="n">sphere_R</span> <span class="c1">#50 cm above surface sphere</span>
+</span><span class="linenos">156</span>   <span class="n">npts_spiral</span><span class="o">=</span><span class="mi">101</span> <span class="c1">#keep odd</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id52">
-<div class="code-block-caption"><span class="caption-number">30 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id52" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id53">
-<div class="code-block-caption"><span class="caption-number">31 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id53" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir benchmark_3/0_5_above <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii benchmark_3/0_5_above
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_5</span><span class="n">_above</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_5</span><span class="n">_above</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Run 50cm above setup with double amount of elements &amp; rename/move files</p>
-<div class="literal-block-wrapper docutils container" id="id54">
-<div class="code-block-caption"><span class="caption-number">32 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id54" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;3&#39;</span><span class="p">:</span>
+<li><p>Run 50cm above setup with double amount of elements &amp; rename/move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">137</span><span class="k">if</span> <span class="n">benchmark</span><span class="o">==</span><span class="s1">&#39;3&#39;</span><span class="p">:</span>
 <span class="linenos">138</span>   <span class="n">Lx</span><span class="o">=</span><span class="mi">20</span>
 <span class="linenos">139</span>   <span class="n">Ly</span><span class="o">=</span><span class="mi">20</span>
 <span class="linenos">140</span>   <span class="n">Lz</span><span class="o">=</span><span class="mi">20</span>
@@ -523,139 +606,231 @@
 <span class="linenos">150</span>   <span class="n">sphere_yc</span><span class="o">=</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">151</span>   <span class="n">sphere_zc</span><span class="o">=-</span><span class="n">Lz</span><span class="o">/</span><span class="mi">2</span>
 <span class="linenos">152</span>   <span class="c1">#spiral meas</span>
-<span class="hll"><span class="linenos">153</span>   <span class="n">do_spiral_measurements</span><span class="o">=</span><span class="kc">True</span>
-</span><span class="hll"><span class="linenos">154</span>   <span class="c1">#radius_spiral=1.025*sphere_R #25 cm above surface sphere</span>
-</span><span class="linenos">155</span>   <span class="n">radius_spiral</span><span class="o">=</span><span class="mf">1.05</span><span class="o">*</span><span class="n">sphere_R</span> <span class="c1">#50 cm above surface sphere</span>
-<span class="linenos">156</span>   <span class="n">npts_spiral</span><span class="o">=</span><span class="mi">101</span> <span class="c1">#keep odd</span>
+<span class="linenos">153</span>   <span class="n">do_spiral_measurements</span><span class="o">=</span><span class="kc">True</span>
+<span class="hll"><span class="linenos">154</span>   <span class="c1">#radius_spiral=1.025*sphere_R #25 cm above surface sphere</span>
+</span><span class="hll"><span class="linenos">155</span>   <span class="n">radius_spiral</span><span class="o">=</span><span class="mf">1.05</span><span class="o">*</span><span class="n">sphere_R</span> <span class="c1">#50 cm above surface sphere</span>
+</span><span class="linenos">156</span>   <span class="n">npts_spiral</span><span class="o">=</span><span class="mi">101</span> <span class="c1">#keep odd</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id55">
-<div class="code-block-caption"><span class="caption-number">33 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id55" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id56">
-<div class="code-block-caption"><span class="caption-number">34 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id56" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir benchmark_3/0_5_2_above <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii benchmark_3/0_5_2_above
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_5_2</span><span class="n">_above</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_5_2</span><span class="n">_above</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Go to directory &amp; plot</p>
-<div class="literal-block-wrapper docutils container" id="id57">
-<div class="code-block-caption"><span class="caption-number">35 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id57" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> benchmark_3
+<li><p>Go to directory &amp; plot</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id58">
-<div class="code-block-caption"><span class="caption-number">36 </span><span class="caption-text">/main/benchmark_3$</span><a class="headerlink" href="#id58" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gnuplot plot_script_B3.p
+</div></div>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_3/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">plot_script_B3</span><span class="o">.</span><span class="n">p</span>
 </pre></div>
+</div></div>
+</td>
+<td><div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_3/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">plot_script_B3</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div></div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>(OPTIONAL) Use paraview to visualize model setups</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_3/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">tee</span> <span class="o">./</span><span class="mi">0_5</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">./</span><span class="mi">0_5_2</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">./</span><span class="mi">0_25_2</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">./</span><span class="mi">0_25</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">&lt;</span> <span class="o">./</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+</pre></div>
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_3/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">paraview</span> <span class="o">--</span><span class="n">state</span><span class="o">=</span><span class="mi">0_5_2</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span>
+</pre></div>
+</div></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">paraview</span> <span class="o">--</span><span class="n">state</span><span class="o">=</span><span class="mi">0_5</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span>
+</pre></div>
+</div><div class="highlight"><div class="highlight"><pre><span></span><span class="n">paraview</span> <span class="o">--</span><span class="n">state</span><span class="o">=</span><span class="mi">0_25</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span>
+</pre></div>
+</div><div class="highlight"><div class="highlight"><pre><span></span><span class="n">paraview</span> <span class="o">--</span><span class="n">state</span><span class="o">=</span><span class="mi">0_25_2</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span>
+</pre></div>
+</div></li>
+</ol>
+</details></section>
+</section>
+<section id="benchmark-4-a-prismatic-body">
+<h2>Benchmark 4: a prismatic body<a class="headerlink" href="#benchmark-4-a-prismatic-body" title="Permalink to this heading"></a></h2>
+<section id="id16">
+<h3>Analytical solution<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h3>
+<div class="line-block">
+<div class="line">In this benchmark, rather than relying on theoretically derived analytical solutions for specific scenarios, we will assess our model against the numerical outcomes of another study presenting a (similar) closed-form analytical solution for a homogeneous polyhedral magnetic target <span id="id17">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">RCC+19</a>]</span>. The findings of this study have been corroborated against <span id="id18">[<a class="reference internal" href="ref.html#id4" title="Stewart Greenhalgh Philip J. Heath and Nicholas G. Direen. Modelling gravity and magnetic gradient tensor responses for exploration within the regolith. Exploration Geophysics, 36(4):357-364, 2005. doi:10.1071/EG05357.">PJHD05</a>]</span> using a prismatic body model setup. It’s essential to note that only gradient tensor component results were incorporated in the published findings. However, full access to the code and accompanying datasets was provided, (<a class="reference external" href="https://github.com/renzhengyong-geo/Magnetic_homogeneous_polyhedron/tree/master/">github</a>), enabling us to perform the comparison for this numerical configuration.</div>
 </div>
+</section>
+<section id="id19">
+<h3>Model setup<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
+<div class="line-block">
+<div class="line">Our model setup was designed to mirror the configuration delineated by <span id="id20">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">RCC+19</a>]</span>. Nevertheless, certain parameters were adjusted to align optimally with our coding framework.</div>
+<div class="line">The evaluations were conducted on an equilateral cuboid with side lengths  of <span class="math notranslate nohighlight">\(L=10m\)</span>, centrally positioned at <span class="math notranslate nohighlight">\((0,0,-5 m)\)</span>.  The top face of this cuboid intersects the plane at a height of <span class="math notranslate nohighlight">\(z=0m\)</span>. Each element within the cuboid was assigned a homogeneous magnetization of <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,200)\)</span>. 21 observation points were equally distributed along a line on the top surface of the prism at <span class="math notranslate nohighlight">\(z = 0 m\)</span>, with an x-coordinate of <span class="math notranslate nohighlight">\(x = 6 m\)</span> and y-coordinates ranging from <span class="math notranslate nohighlight">\([-25:25]\)</span>.</div>
+<div class="line"><span id="id21">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">RCC+19</a>]</span>’s model setup section stated that the prism was discretized into eight tetrahedral elements. Contrarily, the code contained a division into just six elements. Given this disparity, our modeling approach segmented the domain into ten elements. Nonetheless, theoretical understanding posits that the resolution in this configuration is irrelevant, as shown in the <a class="reference internal" href="parameters.html#parameters"><span class="std std-ref">parameter section</span></a>.</div>
+</div>
+<div class="line-block">
+<div class="line">Another key distinction to note: the analytical solution proposed by <span id="id22">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">RCC+19</a>]</span> was engineered to counteract numerical instabilities occurring when the observation point aligns with an element’s edge. Our model does exhibit this instability (see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>). To closely replicate their observation points, minor adjustments to the positioning of our study’s observation points were done.</div>
+</div>
+<div class="line-block">
+<div class="line">It should be noted, that while this model setup does not necessitate modifications to the top or bottom surface (absence of topography), employing <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a> would suffice. Nonetheless, to validate the proposed solution (see <a class="reference internal" href="functions.html#support.shift_observation_points_edge" title="support.shift_observation_points_edge"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.shift_observation_points_edge()</span></code></a>) for additional singularities on diagonals of domain elements, function <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a> was utilized.</div>
+</div>
+</section>
+<section id="id23">
+<h3>Results<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h3>
+<figure class="align-default" id="id34">
+<span id="b4"></span><a class="reference internal image-reference" href="_images/B4.png"><img alt="_images/B4.png" src="_images/B4.png" style="width: 1170.0px; height: 585.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 9 </span><span class="caption-text">Comparison of magnetic field components <span class="math notranslate nohighlight">\(\mathbf{B_x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_y}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_z}\)</span> for the prismatic body. As observation site location were displaced from <span id="id24">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">RCT+17</a>]</span>, the x-axis now refers to index relating to the observation point rather than a specific distance.</span><a class="headerlink" href="#id34" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#b4"><span class="std std-numref">Figure 9</span></a> shows a near-perfect alignment of the two numerical outputs, down to machine precision. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain’s source edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in <span id="id25">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">RCT+17</a>]</span>.</div>
+</div>
+</section>
+<section id="id26">
+<h3>Reproduce<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h3>
+<details class="summary-how-to-reproduce-the-results-and-figures">
+<summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
+<ol class="arabic">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">4</span></code>:</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
+</span></pre></div>
+</div></div>
+</li>
+<li><p>Run setup &amp; rename/move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_4</span><span class="o">/</span>
+</pre></div>
+</div></div>
+</li>
+<li><p>Go to directory &amp; plot</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_4</span>
+</pre></div>
+</div></div>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_4/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">plot_script_B4</span><span class="o">.</span><span class="n">p</span>
+</pre></div>
+</div></div>
+</td>
+<td><div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_4/</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">plot_script_B4</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div></div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The results are in <span class="math notranslate nohighlight">\(nT\)</span>, instead of <span class="math notranslate nohighlight">\(\mu T\)</span>.</p>
 </div>
 </li>
 </ol>
-</details><div class="admonition-todo admonition" id="id15">
-<p class="first admonition-title">Todo</p>
-<p class="last">highlighting differnent colours, numbering</p>
-</div>
-</div>
-</div>
-</div>
+</details></section>
+</section>
+</section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
-            </a></p>
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Benchmarks</a><ul>
-<li><a class="reference internal" href="#benchmark-1-a-single-dipole">Benchmark 1: a single dipole</a><ul>
-<li><a class="reference internal" href="#analytical-solution">Analytical solution</a></li>
-<li><a class="reference internal" href="#model-setup">Model setup</a></li>
-<li><a class="reference internal" href="#results">Results</a></li>
-<li><a class="reference internal" href="#reproduce">Reproduce</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#benchmark-2-internal-cancellation">Benchmark 2: internal cancellation</a><ul>
-<li><a class="reference internal" href="#id5">Analytical solution</a></li>
-<li><a class="reference internal" href="#id7">Model setup</a></li>
-<li><a class="reference internal" href="#id8">Results</a></li>
-<li><a class="reference internal" href="#id9">Reproduce</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#benchmark-3-a-magnetized-sphere">Benchmark 3: a magnetized sphere</a><ul>
-<li><a class="reference internal" href="#id10">Analytical solution</a></li>
-<li><a class="reference internal" href="#id12">Model setup</a></li>
-<li><a class="reference internal" href="#id13">Results</a></li>
-<li><a class="reference internal" href="#id14">Reproduce</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="computational_approach.html" class="btn btn-neutral float-left" title="Computational approach" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parameters.html" class="btn btn-neutral float-right" title="Parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Agnes.</p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="computational_approach.html"
-                          title="previous chapter">Computational approach</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="parameters.html"
-                          title="next chapter">Parameters</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/benchmarks.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="parameters.html" title="Parameters"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="computational_approach.html" title="Computational approach"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Benchmarks</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, Agnes.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<style type="text/css">
+    .scrollToTop {
+        text-align: center;
+        font-weight: bold;
+        position: fixed;
+        bottom: 60px;
+        right: 40px;
+        display: none;
+    }
+</style>
+<a href="#" class="scrollToTop">Scroll To Top</a>
+<script type="text/javascript">
+$(document).ready(function() {
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    $('.scrollToTop').click(function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+});
+</script>
+<style>
+  /* Sidebar header (and topbar for mobile) */
+  .wy-side-nav-search, .wy-nav-top {
+    background: #3ae23a;
+  }
+  /* Sidebar */
+  .wy-nav-side {
+    background: #0c3303;
+  }
+</style>
+
+
+
+</body>
 </html>

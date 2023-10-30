@@ -1,650 +1,1044 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Functions &#8212; MTE 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Functions &mdash; MTE 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="References" href="ref.html" />
     <link rel="prev" title="Case study: Mount Etna" href="etna.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="ref.html" title="References"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="etna.html" title="Case study: Mount Etna"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Functions</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html">
             
-  <div class="section" id="functions">
-<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+              <img src="_static/Logo2r2.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governing_equations.html">Governing equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computational_approach.html">Computational approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#support.add_referencefield"><code class="docutils literal notranslate"><span class="pre">add_referencefield()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#support.topography"><code class="docutils literal notranslate"><span class="pre">topography()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#support.compute_analytical_solution"><code class="docutils literal notranslate"><span class="pre">compute_analytical_solution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#support.is_point_near_diagonal"><code class="docutils literal notranslate"><span class="pre">is_point_near_diagonal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#support.shift_observation_points_edge"><code class="docutils literal notranslate"><span class="pre">shift_observation_points_edge()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visualization">Visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tools.export_mesh_3D"><code class="docutils literal notranslate"><span class="pre">export_mesh_3D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools.export_mesh_2D"><code class="docutils literal notranslate"><span class="pre">export_mesh_2D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools.export_mesh_1D"><code class="docutils literal notranslate"><span class="pre">export_mesh_1D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools.export_plane_measurements"><code class="docutils literal notranslate"><span class="pre">export_plane_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools.export_line_measurements"><code class="docutils literal notranslate"><span class="pre">export_line_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tools.export_spiral_measurements"><code class="docutils literal notranslate"><span class="pre">export_spiral_measurements()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#magnetostatics">Magnetostatics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#magnetostatics.cross"><code class="docutils literal notranslate"><span class="pre">cross()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#magnetostatics.plane"><code class="docutils literal notranslate"><span class="pre">plane()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#magnetostatics.line"><code class="docutils literal notranslate"><span class="pre">line()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#magnetostatics.facmag"><code class="docutils literal notranslate"><span class="pre">facmag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#magnetostatics.compute_B_surface_integral_cuboid"><code class="docutils literal notranslate"><span class="pre">compute_B_surface_integral_cuboid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#magnetostatics.compute_B_surface_integral_wtopo"><code class="docutils literal notranslate"><span class="pre">compute_B_surface_integral_wtopo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#magnetostatics.compute_B_surface_integral_wtopo_noise"><code class="docutils literal notranslate"><span class="pre">compute_B_surface_integral_wtopo_noise()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#set-measurement-parameters">Set measurement parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set_measurement_parameters.set_measurement_parameters"><code class="docutils literal notranslate"><span class="pre">set_measurement_parameters()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MTE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Functions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h1>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="support.add_referencefield">
-<code class="sig-prename descclassname"><span class="pre">support.</span></code><code class="sig-name descname"><span class="pre">add_referencefield</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">B0_name</span></span></em>, <em><span class="n"><span class="pre">npath</span></span></em>, <em><span class="n"><span class="pre">dmeas</span></span></em>, <em><span class="n"><span class="pre">B0</span></span></em>, <em><span class="n"><span class="pre">B_si</span></span></em>, <em><span class="n"><span class="pre">benchmark</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#add_referencefield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.add_referencefield" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">add_referencefield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B0_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_si</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#add_referencefield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.add_referencefield" title="Permalink to this definition"></a></dt>
 <dd><p>Returns total computed magnetic field, intensity, inclination and declination
 at all points on a path by</p>
 <ol class="arabic simple">
-<li>rotating vector from model to Paleomagnetism coordinate system.</li>
-<li>adding a (global) reference field B0.</li>
-<li>computing standard PMAG equations <span id="id1">[<a class="reference internal" href="ref.html#id17" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tau10</a>]</span>.</li>
+<li><p>rotating vector from model to Paleomagnetism coordinate system.</p></li>
+<li><p>adding a (global) reference field B0.</p></li>
+<li><p>computing standard PMAG equations <span id="id1">[<a class="reference internal" href="ref.html#id20" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tau10</a>]</span>.</p></li>
 </ol>
 <p>Next, it writes individual(x,y,z) components of total magnetic field and intensity,
 inclination and declination into file named: <code class="docutils literal notranslate"><span class="pre">measurements_path_refField{BO_name}.ascii</span></code>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>B0_name</strong> (<em>string</em>) – name of reference field (used in writing file).</li>
-<li><strong>npath</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – amount of points on path.</li>
-<li><strong>dmeas</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing distance between two points of the path (from meyer), used for plotting.</li>
-<li><strong>B0</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(3) containing 3 components (0=x;1=y;2=z), components of reference field to be added.</li>
-<li><strong>B_si</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,npath), containing components (0=x;1=y;2=z,npath) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each point of the path.</li>
-<li><strong>benchmark</strong> (<em>string</em>) – number associated with benchmark, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>B0_name</strong> (<em>str</em>) – name of reference field (used in writing file).</p></li>
+<li><p><strong>npath</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – amount of points on path.</p></li>
+<li><p><strong>dmeas</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing distance between two points of the path (from meyer), used for plotting.</p></li>
+<li><p><strong>B0</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(3) containing 3 components (0=x;1=y;2=z), components of reference field to be added.</p></li>
+<li><p><strong>B_si</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,npath), containing components (0=x;1=y;2=z,npath) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each point of the path.</p></li>
+<li><p><strong>benchmark</strong> (<em>str</em>) – number associated with benchmark, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>B_siB0</strong> <em>(array_like(float))</em> - 2D array(3,npath), containing components (0=x;1=y;2=z,npath) of the total magnetic field (anomalous + reference field) at each point of the path.</li>
-<li><strong>In_siB0</strong> <em>(array_like(float))</em> - 1D array(npath), containing intensity of the total magnetic field (anomalous + reference field) at each point of the path.</li>
-<li><strong>Ic_siB0</strong> <em>(array_like(float))</em> - 1D array(npath), containing inclination of the total magnetic field (anomalous + reference field) at each point of the path.</li>
-<li><strong>Dc_siB0</strong> <em>(array_like(float))</em> - 1D array(npath), containing declination of total magnetic field (anomalous + reference field) at each point of the path.</li>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>B_siB0</strong> <em>(array_like(float))</em> - 2D array(3,npath), containing components (0=x;1=y;2=z,npath) of the total magnetic field (anomalous + reference field) at each point of the path.</p></li>
+<li><p><strong>In_siB0</strong> <em>(array_like(float))</em> - 1D array(npath), containing intensity of the total magnetic field (anomalous + reference field) at each point of the path.</p></li>
+<li><p><strong>Ic_siB0</strong> <em>(array_like(float))</em> - 1D array(npath), containing inclination of the total magnetic field (anomalous + reference field) at each point of the path.</p></li>
+<li><p><strong>Dc_siB0</strong> <em>(array_like(float))</em> - 1D array(npath), containing declination of total magnetic field (anomalous + reference field) at each point of the path.</p></li>
 </ul>
 </p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="support.topography">
-<code class="sig-prename descclassname"><span class="pre">support.</span></code><code class="sig-name descname"><span class="pre">topography</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">A</span></span></em>, <em><span class="n"><span class="pre">llambda</span></span></em>, <em><span class="n"><span class="pre">cos_dir</span></span></em>, <em><span class="n"><span class="pre">sin_dir</span></span></em>, <em><span class="n"><span class="pre">slopex</span></span></em>, <em><span class="n"><span class="pre">slopey</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#topography"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.topography" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">topography</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llambda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cos_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sin_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slopex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slopey</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#topography"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.topography" title="Permalink to this definition"></a></dt>
 <dd><p>Returns topography (height) value at each point defined by x,y coordinates passed.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of computation point.</li>
-<li><strong>y</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of computation point.</li>
-<li><strong>A</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – amplitude of sine function used to approximate wavy topography of ridges and gullies.</li>
-<li><strong>llambda</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – wavelength of sine function used to approximate wavy topography of ridges and gullies.</li>
-<li><strong>cos_dir</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – cosine of <code class="docutils literal notranslate"><span class="pre">direction</span></code>, that defines the direction of the wave function along the surface (default = perpendicular to slope).</li>
-<li><strong>sin_dir</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – sine of <code class="docutils literal notranslate"><span class="pre">direction</span></code>, that defines the direction of the wave function along the surface (default = perpendicular to slope).</li>
-<li><strong>slopex</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – the tangent of the angle (in rad) of the surface that defines the slope in x direction for each respective side.</li>
-<li><strong>slopey</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – the tangent of the angle (in rad) of the surface that defines the slope in y direction for each respective side.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of computation point.</p></li>
+<li><p><strong>y</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of computation point.</p></li>
+<li><p><strong>A</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – amplitude of sine function used to approximate wavy topography of ridges and gullies.</p></li>
+<li><p><strong>llambda</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – wavelength of sine function used to approximate wavy topography of ridges and gullies.</p></li>
+<li><p><strong>cos_dir</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – cosine of <code class="docutils literal notranslate"><span class="pre">direction</span></code>, that defines the direction of the wave function along the surface (default = perpendicular to slope).</p></li>
+<li><p><strong>sin_dir</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – sine of <code class="docutils literal notranslate"><span class="pre">direction</span></code>, that defines the direction of the wave function along the surface (default = perpendicular to slope).</p></li>
+<li><p><strong>slopex</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – the tangent of the angle (in rad) of the surface that defines the slope in x direction for each respective side.</p></li>
+<li><p><strong>slopey</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – the tangent of the angle (in rad) of the surface that defines the slope in y direction for each respective side.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>h_fs</strong> <em>(scalar(float))</em> - the height value for the point passed to function for the respective position on the flank (chosen by <code class="docutils literal notranslate"><span class="pre">subbench</span></code>).</li>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>h_fs</strong> <em>(scalar(float))</em> - the height value for the point passed to function for the respective position on the flank (chosen by <code class="docutils literal notranslate"><span class="pre">subbench</span></code>).</p></li>
 </ul>
 </p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="support.compute_analytical_solution">
-<code class="sig-prename descclassname"><span class="pre">support.</span></code><code class="sig-name descname"><span class="pre">compute_analytical_solution</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">R</span></span></em>, <em><span class="n"><span class="pre">Mx</span></span></em>, <em><span class="n"><span class="pre">My</span></span></em>, <em><span class="n"><span class="pre">Mz</span></span></em>, <em><span class="n"><span class="pre">xcenter</span></span></em>, <em><span class="n"><span class="pre">ycenter</span></span></em>, <em><span class="n"><span class="pre">zcenter</span></span></em>, <em><span class="n"><span class="pre">benchmark</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#compute_analytical_solution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.compute_analytical_solution" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">compute_analytical_solution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xcenter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycenter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zcenter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#compute_analytical_solution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.compute_analytical_solution" title="Permalink to this definition"></a></dt>
 <dd><p>Returns analytical solution, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, of the components of the magnetic field for each benchmark.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing x coordinate of each computation point.</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing y coordinate of each computation point.</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing z coordinate of each computation point.</li>
-<li><strong>R</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – radius of the sphere (if applicable)</li>
-<li><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization of magnetized body (constant).</li>
-<li><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization of magnetized body (constant).</li>
-<li><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization of magnetized body (constant).</li>
-<li><strong>xcenter</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of center of the sphere.</li>
-<li><strong>ycenter</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of center of the sphere.</li>
-<li><strong>zcenter</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of center of the sphere.</li>
-<li><strong>benchmark</strong> (<em>string</em>) – number associated with benchmark, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing x coordinate of each computation point.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing y coordinate of each computation point.</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing z coordinate of each computation point.</p></li>
+<li><p><strong>R</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – radius of the sphere (if applicable)</p></li>
+<li><p><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization of magnetized body (constant).</p></li>
+<li><p><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization of magnetized body (constant).</p></li>
+<li><p><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization of magnetized body (constant).</p></li>
+<li><p><strong>xcenter</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of center of the sphere.</p></li>
+<li><p><strong>ycenter</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of center of the sphere.</p></li>
+<li><p><strong>zcenter</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of center of the sphere.</p></li>
+<li><p><strong>benchmark</strong> (<em>str</em>) – number associated with benchmark, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>h_fs</strong> <em>(array_like(float))</em> - 2D array(3,npath) containing components (0=x;1=y;2=z) produced by the analytical solution for the magnetic field for chosen benchmark (and model setup) and each point.</li>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>h_fs</strong> <em>(array_like(float))</em> - 2D array(3,npath) containing components (0=x;1=y;2=z) produced by the analytical solution for the magnetic field for chosen benchmark (and model setup) and each point.</p></li>
 </ul>
 </p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="support.is_point_near_diagonal">
+<span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">is_point_near_diagonal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#is_point_near_diagonal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.is_point_near_diagonal" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">This function checks if a point (x, y) is near to either of the two diagonals of a rectangle with sides of length Lx and Ly. </div>
+<div class="line">Distance units are irrelevant but must be consistent. </div>
 </div>
-<div class="section" id="visualization">
-<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">¶</a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x-coordinate of the observation point.</p></li>
+<li><p><strong>y</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y-coordinate of the observation point.</p></li>
+<li><p><strong>Lx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – length of the edge of a rectangle along the x-axis.</p></li>
+<li><p><strong>Ly</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – length of the edge of a rectangle along the y-axis.</p></li>
+<li><p><strong>eps</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – tolerance value for proximity check.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>bool</strong> <em>(bool)</em> - True if (x, y) is near (&lt;eps) to either diagonal, False otherwise.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="support.shift_observation_points_edge">
+<span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">shift_observation_points_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nely</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ym</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#shift_observation_points_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.shift_observation_points_edge" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">The original subroutine of <span id="id2">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>, was initially designed exclusively for use with the faces of a polyhedron. In contrast, our model s subdivides the top and bottom of the hexahedron elements into four triangles, see <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a>. This introduces additional singularities, and thus spatial issues, if the observation point <code class="docutils literal notranslate"><span class="pre">p</span></code> lies on the diagonal of the top or bottom face of an element.</div>
+<div class="line">This function adjusts observation points positioned near the diagonal of additional triangles on the top (or bottom) of a hexahedron cell. </div>
+<div class="line">This function uses <a class="reference internal" href="#support.is_point_near_diagonal" title="support.is_point_near_diagonal"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.is_point_near_diagonal()</span></code></a>, passing the length of an element in the x- and y-direction, and the x- and y- coordinates of each observation point with the x-coordinate and y-coordinate of each node on the top surface (see nnz-1) subtracted. This ensures testing of proximity to the diagonals of all elements. The function is designed to stop after first modification, as within macroscopic purposes we do not expect an observation point to be shifted to another diagonal. Afterwards, it states any modification within the “message”.</div>
+<div class="line">Both x- and y-coordinates are shifted using a random value between -1 and 1 times the artificial distance (factor).</div>
+<div class="line">This spatial problem isn’t restricted to the domain bounds. While generating an artificial distance for singularities within the main calculation function (<a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.facmag()</span></code></a>) similar to the solution of <span id="id3">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>, <a class="reference internal" href="ref.html#id26" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span> for edge alignment, would be preferred. The problem emerges from our decision to utilize the <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.facmag()</span></code></a> in this particular manner (by subdividing the top and bottom into additional triangles). Since this setup is invoked via an external function, and because it falls outside the scope of the function’s original intention (to handle planes as polyhedron sides), we have opted to create this external function as well. Furthermore, there are several setups that do not require subdivision, and subsequently use the <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a>, hence shifting there could only potentially introduce inaccuracies. This is avoided by the introduction of this function, only called for in case function <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a> is employed, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>,:doc:<cite>flanksim</cite>,:doc:<cite>etna</cite>. </div>
+</div>
+<div class="line-block">
+<div class="line">Benchmarks have established that the epsilon should be at least of a factor <strong>1e-8</strong> or larger. </div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing the x-coordinate of each domain nodes.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing the y-coordinate of each domain nodes.</p></li>
+<li><p><strong>Lx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – length of domain along the x-axis.</p></li>
+<li><p><strong>Ly</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – length of domain along the y-axis.</p></li>
+<li><p><strong>nelx</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – amount of elements (domain) in x-direction.</p></li>
+<li><p><strong>nely</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – amount of elements (domain) in y-direction.</p></li>
+<li><p><strong>nelz</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – amount of elements (domain) in z-direction.</p></li>
+<li><p><strong>xm</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x-coordinate of the observation point.</p></li>
+<li><p><strong>ym</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y-coordinate of the observation point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>xm</strong> <em>(scalar(float))</em> - adjusted x coordinate of the observation point.</p></li>
+<li><p><strong>ym</strong> <em>(scalar(float))</em> - adjusted x coordinate of the observation point.</p></li>
+<li><p><strong>message</strong> <em>(str))</em> - message indicating any adjustments made to the observation point.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.export_mesh_3D">
-<code class="sig-prename descclassname"><span class="pre">tools.</span></code><code class="sig-name descname"><span class="pre">export_mesh_3D</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">NV</span></span></em>, <em><span class="n"><span class="pre">nel</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">icon</span></span></em>, <em><span class="n"><span class="pre">filename</span></span></em>, <em><span class="n"><span class="pre">Mx</span></span></em>, <em><span class="n"><span class="pre">My</span></span></em>, <em><span class="n"><span class="pre">Mz</span></span></em>, <em><span class="n"><span class="pre">nnx</span></span></em>, <em><span class="n"><span class="pre">nny</span></span></em>, <em><span class="n"><span class="pre">nnz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_mesh_3D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_mesh_3D" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tools.</span></span><span class="sig-name descname"><span class="pre">export_mesh_3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nnx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nnz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_mesh_3D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_mesh_3D" title="Permalink to this definition"></a></dt>
 <dd><p>Export 3D mesh to vtu file (plot with paraview) with z (height of surface) as point data, and magnetization vector (and components) as cell data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>NV</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of nodes.</li>
-<li><strong>nel</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of elements.</li>
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each node.</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each node.</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each node.</li>
-<li><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 2D array(8,nel), containing connectivity, marking nodes that define an element, see code.</li>
-<li><strong>filename</strong> (<em>string</em>) – the name of the output file (default: <cite>mesh.vtu</cite>)</li>
-<li><strong>Mx</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(nel) x component magnetization of each cell.</li>
-<li><strong>My</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(nel) y component magnetization of each cell.</li>
-<li><strong>Mz</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(nel) z component magnetization of each cell.</li>
-<li><strong>nnx</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of nodes, x direction.</li>
-<li><strong>nny</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of nodes, y direction.</li>
-<li><strong>nnz</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of nodes, z direction.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NV</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of nodes.</p></li>
+<li><p><strong>nel</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of elements.</p></li>
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each node.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each node.</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each node.</p></li>
+<li><p><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 2D array(8,nel), containing connectivity, marking nodes that define an element, see code.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – the name of the output file (default: <cite>mesh.vtu</cite>)</p></li>
+<li><p><strong>Mx</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(nel) x component magnetization of each cell.</p></li>
+<li><p><strong>My</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(nel) y component magnetization of each cell.</p></li>
+<li><p><strong>Mz</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(nel) z component magnetization of each cell.</p></li>
+<li><p><strong>nnx</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of nodes, x direction.</p></li>
+<li><p><strong>nny</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of nodes, y direction.</p></li>
+<li><p><strong>nnz</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of nodes, z direction.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.export_mesh_2D">
-<code class="sig-prename descclassname"><span class="pre">tools.</span></code><code class="sig-name descname"><span class="pre">export_mesh_2D</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">NV</span></span></em>, <em><span class="n"><span class="pre">nel</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">icon</span></span></em>, <em><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_mesh_2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_mesh_2D" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tools.</span></span><span class="sig-name descname"><span class="pre">export_mesh_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_mesh_2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_mesh_2D" title="Permalink to this definition"></a></dt>
 <dd><p>Export 2D mesh (surface) to vtu file (plot with paraview), can be used in main for visualizing plane measurement po.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>NV</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of points.</li>
-<li><strong>nel</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of elements.</li>
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each point.</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each point.</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each point.</li>
-<li><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 2D array(4,nel), containing connectivity, marking points that define an element, see code.</li>
-<li><strong>filename</strong> (<em>string</em>) – the name of the output file (default: <cite>mesh_plane_measurements.vtu</cite>)</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NV</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of points.</p></li>
+<li><p><strong>nel</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of elements.</p></li>
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each point.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each point.</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each point.</p></li>
+<li><p><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 2D array(4,nel), containing connectivity, marking points that define an element, see code.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – the name of the output file (default: <cite>mesh_plane_measurements.vtu</cite>)</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.export_mesh_1D">
-<code class="sig-prename descclassname"><span class="pre">tools.</span></code><code class="sig-name descname"><span class="pre">export_mesh_1D</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">npath</span></span></em>, <em><span class="n"><span class="pre">xpath</span></span></em>, <em><span class="n"><span class="pre">ypath</span></span></em>, <em><span class="n"><span class="pre">zpath</span></span></em>, <em><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_mesh_1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_mesh_1D" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tools.</span></span><span class="sig-name descname"><span class="pre">export_mesh_1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">npath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xpath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ypath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zpath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_mesh_1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_mesh_1D" title="Permalink to this definition"></a></dt>
 <dd><p>Export 1D path to vtu file (plot with paraview), can be used in main visualize measurement path.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>npath</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of measurement points of the line.</li>
-<li><strong>xpath</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing x coordinate of each measurement point.</li>
-<li><strong>ypath</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing y coordinate of each measurement point.</li>
-<li><strong>zpath</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing z coordinate of each measurement point.</li>
-<li><strong>filename</strong> (<em>string</em>) – the name of the output file (default: <cite>path.vtu</cite>)</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>npath</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of measurement points of the line.</p></li>
+<li><p><strong>xpath</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing x coordinate of each measurement point.</p></li>
+<li><p><strong>ypath</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing y coordinate of each measurement point.</p></li>
+<li><p><strong>zpath</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(npath) containing z coordinate of each measurement point.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – the name of the output file (default: <cite>path.vtu</cite>)</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.export_plane_measurements">
-<code class="sig-prename descclassname"><span class="pre">tools.</span></code><code class="sig-name descname"><span class="pre">export_plane_measurements</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">NV</span></span></em>, <em><span class="n"><span class="pre">nel</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">icon</span></span></em>, <em><span class="n"><span class="pre">filename</span></span></em>, <em><span class="n"><span class="pre">B_vi</span></span></em>, <em><span class="n"><span class="pre">B_si</span></span></em>, <em><span class="n"><span class="pre">B_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_plane_measurements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_plane_measurements" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tools.</span></span><span class="sig-name descname"><span class="pre">export_plane_measurements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_vi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_si</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_plane_measurements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_plane_measurements" title="Permalink to this definition"></a></dt>
 <dd><p>Export 2D plane measurements to vtu file (plot with paraview), used for exporting plane measurements with magnetic field strength (<strong>B</strong>) computed by analytical solution, surface integral or volume integral as vectors. If this function is used, but the volume integral is not used (default = not used, see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>), or a setup does not have an analytical solution (<a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> and <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>), the values from surface integral computation are duplicated.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>NV</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of measurement points of the plane.</li>
-<li><strong>nel</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of elements of the measurement plane.</li>
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each measurement point.</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each measurement point.</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each measurement point.</li>
-<li><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 2D array(4,nel), containing connectivity, marking point that define an element, see code.</li>
-<li><strong>filename</strong> (<em>string</em>) – the name of the output file (default: <cite>plane_measurements.vtu</cite>)</li>
-<li><strong>B_vi</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,NV), containing components (0=x;1=y;2=z,NV) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by volume integral.</li>
-<li><strong>B_si</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,NV), containing components (0=x;1=y;2=z,NV) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by surface integral.</li>
-<li><strong>B_th</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,NV), containing components (0=x;1=y;2=z,NV) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by analytical solution.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NV</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of measurement points of the plane.</p></li>
+<li><p><strong>nel</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of elements of the measurement plane.</p></li>
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each measurement point.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each measurement point.</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each measurement point.</p></li>
+<li><p><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 2D array(4,nel), containing connectivity, marking point that define an element, see code.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – the name of the output file (default: <cite>plane_measurements.vtu</cite>)</p></li>
+<li><p><strong>B_vi</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,NV), containing components (0=x;1=y;2=z,NV) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by volume integral.</p></li>
+<li><p><strong>B_si</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,NV), containing components (0=x;1=y;2=z,NV) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by surface integral.</p></li>
+<li><p><strong>B_th</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,NV), containing components (0=x;1=y;2=z,NV) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by analytical solution.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.export_line_measurements">
-<code class="sig-prename descclassname"><span class="pre">tools.</span></code><code class="sig-name descname"><span class="pre">export_line_measurements</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">N</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">filename</span></span></em>, <em><span class="n"><span class="pre">B_vi</span></span></em>, <em><span class="n"><span class="pre">B_si</span></span></em>, <em><span class="n"><span class="pre">B_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_line_measurements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_line_measurements" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tools.</span></span><span class="sig-name descname"><span class="pre">export_line_measurements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_vi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_si</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_line_measurements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_line_measurements" title="Permalink to this definition"></a></dt>
 <dd><p>Export 1D line measurements to vtu file (plot with paraview), used for exporting line measurements with magnetic field strength (<strong>B</strong>) computed by analytical solution, surface integral or volume integral as vectors. If this function is used, but the volume integral is not used (default = not used, see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>), or a setup does not have an analytical solution (<a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> and <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>), the values from surface integral computation are duplicated.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>N</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of measurement points of the line or path.</li>
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing x coordinate of each measurement point.</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing y coordinate of each measurement point.</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing z coordinate of each measurement point.</li>
-<li><strong>filename</strong> (<em>string</em>) – the name of the output file (default: <cite>line_measurements.vtu</cite>)</li>
-<li><strong>B_vi</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,NV), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by volume integral.</li>
-<li><strong>B_si</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by surface integral.</li>
-<li><strong>B_th</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by analytical solution.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of measurement points of the line or path.</p></li>
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing x coordinate of each measurement point.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing y coordinate of each measurement point.</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing z coordinate of each measurement point.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – the name of the output file (default: <cite>line_measurements.vtu</cite>)</p></li>
+<li><p><strong>B_vi</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,NV), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by volume integral.</p></li>
+<li><p><strong>B_si</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by surface integral.</p></li>
+<li><p><strong>B_th</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by analytical solution.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.export_spiral_measurements">
-<code class="sig-prename descclassname"><span class="pre">tools.</span></code><code class="sig-name descname"><span class="pre">export_spiral_measurements</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">N</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">filename</span></span></em>, <em><span class="n"><span class="pre">B_vi</span></span></em>, <em><span class="n"><span class="pre">B_si</span></span></em>, <em><span class="n"><span class="pre">B_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_spiral_measurements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_spiral_measurements" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tools.</span></span><span class="sig-name descname"><span class="pre">export_spiral_measurements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_vi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_si</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_spiral_measurements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_spiral_measurements" title="Permalink to this definition"></a></dt>
 <dd><p>Export 1D spiral measurements to vtu file (plot with paraview), used for exporting spiral measurements with magnetic field strength (<strong>B</strong>) computed by analytical solution, surface integral or volume integral as vectors. If this function is used, but the volume integral is not used (default = not used, see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>), or a setup does not have an analytical solution (<a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> and <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>), the values from surface integral computation are duplicated.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>N</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of measurement points of the spiral.</li>
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing x coordinate of each measurement point.</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing y coordinate of each measurement point.</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing z coordinate of each measurement point.</li>
-<li><strong>filename</strong> (<em>string</em>) – the name of the output file (default: <cite>line_measurements.vtu</cite>)</li>
-<li><strong>B_vi</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by volume integral.</li>
-<li><strong>B_si</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by surface integral.</li>
-<li><strong>B_th</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by analytical solution.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – number of measurement points of the spiral.</p></li>
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing x coordinate of each measurement point.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing y coordinate of each measurement point.</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(N) containing z coordinate of each measurement point.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – the name of the output file (default: <cite>line_measurements.vtu</cite>)</p></li>
+<li><p><strong>B_vi</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by volume integral.</p></li>
+<li><p><strong>B_si</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by surface integral.</p></li>
+<li><p><strong>B_th</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array(3,N), containing components (0=x;1=y;2=z,N) of the computed magnetic field due to the underlying magnetized matter (anomalous field) at each measurement point computed by analytical solution.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
-<div class="section" id="magnetostatics">
-<h2>Magnetostatics<a class="headerlink" href="#magnetostatics" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="magnetostatics">
+<h2>Magnetostatics<a class="headerlink" href="#magnetostatics" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="magnetostatics.cross">
-<code class="sig-prename descclassname"><span class="pre">magnetostatics.</span></code><code class="sig-name descname"><span class="pre">cross</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">a</span></span></em>, <em><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#cross"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.cross" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#cross"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.cross" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
 <div class="line">Produces vector (cross) product of two vectors. <span class="math notranslate nohighlight">\(\vec{a} \times \vec{b} = \vec{c}\)</span></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>a</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(3) containing 3 components (0=x;1=y;2=z) of vector <strong>a</strong>.</li>
-<li><strong>b</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(3) containing 3 components (0=x;1=y;2=z) of vector <strong>b</strong>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(3) containing 3 components (0=x;1=y;2=z) of vector <strong>a</strong>.</p></li>
+<li><p><strong>b</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(3) containing 3 components (0=x;1=y;2=z) of vector <strong>b</strong>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>c</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of vector <strong>c</strong>..</li>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>c</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of vector <strong>c</strong>..</p></li>
 </ul>
 </p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="magnetostatics.plane">
-<code class="sig-prename descclassname"><span class="pre">magnetostatics.</span></code><code class="sig-name descname"><span class="pre">plane</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">x0</span></span></em>, <em><span class="n"><span class="pre">y0</span></span></em>, <em><span class="n"><span class="pre">z0</span></span></em>, <em><span class="n"><span class="pre">x1</span></span></em>, <em><span class="n"><span class="pre">y1</span></span></em>, <em><span class="n"><span class="pre">z1</span></span></em>, <em><span class="n"><span class="pre">x2</span></span></em>, <em><span class="n"><span class="pre">y2</span></span></em>, <em><span class="n"><span class="pre">z2</span></span></em>, <em><span class="n"><span class="pre">x3</span></span></em>, <em><span class="n"><span class="pre">y3</span></span></em>, <em><span class="n"><span class="pre">z3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#plane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.plane" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#plane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.plane" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
 <div class="line">Function plane computes the intersection (x,y,z) of a plane and a perpendicular line.</div>
 <div class="line">The plane is defined by three points (x1,y1,z1), (x2,y2,z2), and (x3,y3,z3), in facmag the (first 3) polygon corners are passed. The line passes through (x0,y0,z0), in facmag the observation point is passed. </div>
 <div class="line">Computation is done by a transformation and inverse transformation of coordinates systems. It defines three vectors N0, N2 and N3 in the process. N0 = vector from point 1 (x1,y1,z1) to point 0 (x0,y0,z0). N2 = vector from point 1 (x1,y1,z1) to point 2 (x2,y2,z2). N3 = vector from point 1 (x1,y1,z1) to point 3 (x3,y3,z3). </div>
-<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id2">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
+<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id4">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 0.</li>
-<li><strong>y0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 0.</li>
-<li><strong>z0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 0.</li>
-<li><strong>x1</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 1.</li>
-<li><strong>y1</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 1.</li>
-<li><strong>z1</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 1.</li>
-<li><strong>x2</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 2.</li>
-<li><strong>y2</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 2.</li>
-<li><strong>z2</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 2.</li>
-<li><strong>x3</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 3.</li>
-<li><strong>y3</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 3.</li>
-<li><strong>z3</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 3.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 0.</p></li>
+<li><p><strong>y0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 0.</p></li>
+<li><p><strong>z0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 0.</p></li>
+<li><p><strong>x1</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 1.</p></li>
+<li><p><strong>y1</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 1.</p></li>
+<li><p><strong>z1</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 1.</p></li>
+<li><p><strong>x2</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 2.</p></li>
+<li><p><strong>y2</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 2.</p></li>
+<li><p><strong>z2</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 2.</p></li>
+<li><p><strong>x3</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 3.</p></li>
+<li><p><strong>y3</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 3.</p></li>
+<li><p><strong>z3</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 3.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>x</strong> <em>(scalar(float))</em> - x coordinate of the intersection point (plane and line)</li>
-<li><strong>y</strong> <em>(scalar(float))</em> - y coordinate of the intersection point (plane and line)</li>
-<li><strong>z</strong> <em>(scalar(float))</em> - z coordinate of the intersection point (plane and line)</li>
-<li><strong>r</strong> <em>(scalar(float))</em> - distance between intersection point and point 0 (x0,y0,z0)</li>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x</strong> <em>(scalar(float))</em> - x coordinate of the intersection point (plane and line)</p></li>
+<li><p><strong>y</strong> <em>(scalar(float))</em> - y coordinate of the intersection point (plane and line)</p></li>
+<li><p><strong>z</strong> <em>(scalar(float))</em> - z coordinate of the intersection point (plane and line)</p></li>
+<li><p><strong>r</strong> <em>(scalar(float))</em> - distance between intersection point and point 0 (x0,y0,z0)</p></li>
 </ul>
 </p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="magnetostatics.line">
-<code class="sig-prename descclassname"><span class="pre">magnetostatics.</span></code><code class="sig-name descname"><span class="pre">line</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">x0</span></span></em>, <em><span class="n"><span class="pre">y0</span></span></em>, <em><span class="n"><span class="pre">z0</span></span></em>, <em><span class="n"><span class="pre">x1</span></span></em>, <em><span class="n"><span class="pre">y1</span></span></em>, <em><span class="n"><span class="pre">z1</span></span></em>, <em><span class="n"><span class="pre">x2</span></span></em>, <em><span class="n"><span class="pre">y2</span></span></em>, <em><span class="n"><span class="pre">z2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.line" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.line" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
 <div class="line">Function LINE determines the intersection (x,y,z) of two lines.  First line is defined by points (x1,y1,z1) and (x2,y2,z2).</div>
 <div class="line">Second line is perpendicular to the first and passes through point (x0,y0,z0).Distance between (x,y,z) and (x0,y0,z0) is returned as r. Computation is done by a transformation of coordinate systems, and defining two vectors T0 and T2 in the process. T0 = vector from point 1 (x1,y1,z1) to point 0 (x0,y0,z0). T2 = vector from point 1 (x1,y1,z1) to point 2 (x2,y2,z2).</div>
-<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id3">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
+<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id5">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 0.</li>
-<li><strong>y0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 0.</li>
-<li><strong>z0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 0.</li>
-<li><strong>x1</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 1.</li>
-<li><strong>y1</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 1.</li>
-<li><strong>z1</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 1.</li>
-<li><strong>x2</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 2.</li>
-<li><strong>y2</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 2.</li>
-<li><strong>z2</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 2.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 0.</p></li>
+<li><p><strong>y0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 0.</p></li>
+<li><p><strong>z0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 0.</p></li>
+<li><p><strong>x1</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 1.</p></li>
+<li><p><strong>y1</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 1.</p></li>
+<li><p><strong>z1</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 1.</p></li>
+<li><p><strong>x2</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – x coordinate of point 2.</p></li>
+<li><p><strong>y2</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – y coordinate of point 2.</p></li>
+<li><p><strong>z2</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – z coordinate of point 2.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>x</strong> <em>(scalar(float))</em> - x coordinate of intersection point between the lines</li>
-<li><strong>y</strong> <em>(scalar(float))</em> - y coordinate of intersection point between the lines</li>
-<li><strong>z</strong> <em>(scalar(float))</em> - z coordinate of intersection point between the lines</li>
-<li><strong>v1</strong> <em>(scalar(float))</em> - the negative of the projection of vector T0 on T2 (dot product of normalized T2 and T0).</li>
-<li><strong>v2</strong> <em>(scalar(float))</em> - the length of vector T2 minus the projection of vector T0 on T2.</li>
-<li><strong>r</strong> <em>(scalar(float))</em> - distance between intersection point and point 0 (x0,y0,z0)</li>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x</strong> <em>(scalar(float))</em> - x coordinate of intersection point between the lines</p></li>
+<li><p><strong>y</strong> <em>(scalar(float))</em> - y coordinate of intersection point between the lines</p></li>
+<li><p><strong>z</strong> <em>(scalar(float))</em> - z coordinate of intersection point between the lines</p></li>
+<li><p><strong>v1</strong> <em>(scalar(float))</em> - the negative of the projection of vector T0 on T2 (dot product of normalized T2 and T0).</p></li>
+<li><p><strong>v2</strong> <em>(scalar(float))</em> - the length of vector T2 minus the projection of vector T0 on T2.</p></li>
+<li><p><strong>r</strong> <em>(scalar(float))</em> - distance between intersection point and point 0 (x0,y0,z0)</p></li>
 </ul>
 </p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="magnetostatics.facmag">
-<code class="sig-prename descclassname"><span class="pre">magnetostatics.</span></code><code class="sig-name descname"><span class="pre">facmag</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">Mx</span></span></em>, <em><span class="n"><span class="pre">My</span></span></em>, <em><span class="n"><span class="pre">Mz</span></span></em>, <em><span class="n"><span class="pre">x0</span></span></em>, <em><span class="n"><span class="pre">y0</span></span></em>, <em><span class="n"><span class="pre">z0</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#facmag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.facmag" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">facmag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#facmag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.facmag" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
-<div class="line">Function FACMAG computes the magnetic field strength <strong>B</strong> due to surface charge on a polygonal face. Repeated calls on each face of a polyhedron build the field of said arbitrary polyhedron, algorithm from <span id="id4">[<a class="reference internal" href="ref.html#id23" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span>. </div>
-<div class="line">The polygon is limited to 10 corners, the X axis is directed north, axis vertical down. Requires functions ROT, LINE, and PLANE as define above. Distance units are irrelevant but must be consistent. </div>
-<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id5">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
+<div class="line">Function FACMAG computes the magnetic field strength <strong>B</strong> due to surface charge on a polygonal face. Repeated calls on each face of a polyhedron builds the field of said arbitrary polyhedron, algorithm from <span id="id6">[<a class="reference internal" href="ref.html#id26" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span>. </div>
+<div class="line">The polygon is limited to 10 corners (n). Requires functions <code class="xref py py-func docutils literal notranslate"><span class="pre">rot()</span></code>, <a class="reference internal" href="#magnetostatics.line" title="magnetostatics.line"><code class="xref py py-func docutils literal notranslate"><span class="pre">line()</span></code></a>, <a class="reference internal" href="#magnetostatics.plane" title="magnetostatics.plane"><code class="xref py py-func docutils literal notranslate"><span class="pre">plane()</span></code></a> as define above. Distance units are irrelevant but must be consistent. </div>
+<div class="line">A spatial problem, see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>, is mitigated due to the introduction of a small (1e-20) artificial distance for <code class="docutils literal notranslate"><span class="pre">p</span></code>, in case <code class="docutils literal notranslate"><span class="pre">p</span></code> lies on a plane aligning with an edge of an element.</div>
+<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id7">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization [A/m] of the cell.</li>
-<li><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization [A/m] of the cell.</li>
-<li><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization [A/m] of the cell.</li>
-<li><strong>x0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of observation point (xmeas).</li>
-<li><strong>y0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of observation point (ymeas).</li>
-<li><strong>z0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of observation point (zmeas).</li>
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(n+1) containing x coordinate for each polygon corner (and wrapping around).</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(n+1) containing y coordinate for each polygon corner (and wrapping around).</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(n+1) containing z coordinate for each polygon corner (and wrapping around).</li>
-<li><strong>n</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – amount of corners defining the polygon surface</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization [A/m] of the element.</p></li>
+<li><p><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization [A/m] of the element.</p></li>
+<li><p><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization [A/m] of the element.</p></li>
+<li><p><strong>x0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of observation point (xmeas).</p></li>
+<li><p><strong>y0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of observation point (ymeas).</p></li>
+<li><p><strong>z0</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of observation point (zmeas).</p></li>
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(n+1) containing x coordinate for each polygon corner (and wrapping around).</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(n+1) containing y coordinate for each polygon corner (and wrapping around).</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(n+1) containing z coordinate for each polygon corner (and wrapping around).</p></li>
+<li><p><strong>n</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – amount of corners defining the polygon surface, max 10.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>B</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength [T] at a point due to the surface charges of a polygon surface.</li>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>B</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength [T] at a point due to the surface charges of a polygon surface.</p></li>
 </ul>
 </p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="magnetostatics.compute_B_surface_integral_cuboid">
-<code class="sig-prename descclassname"><span class="pre">magnetostatics.</span></code><code class="sig-name descname"><span class="pre">compute_B_surface_integral_cuboid</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">xmeas</span></span></em>, <em><span class="n"><span class="pre">ymeas</span></span></em>, <em><span class="n"><span class="pre">zmeas</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">icon</span></span></em>, <em><span class="n"><span class="pre">Mx</span></span></em>, <em><span class="n"><span class="pre">My</span></span></em>, <em><span class="n"><span class="pre">Mz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#compute_B_surface_integral_cuboid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.compute_B_surface_integral_cuboid" title="Permalink to this definition">¶</a></dt>
-<dd><div class="line-block">
-<div class="line">This function computes the magnetic field produced by a cuboid cell using facmag function on each face. Here again the magnetisation vector (Mx,My,Mz) is assumed to be constant inside the cell. </div>
-<div class="line">Distance units are irrelevant but must be consistent.  For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>.</div>
+<span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">compute_B_surface_integral_cuboid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#compute_B_surface_integral_cuboid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.compute_B_surface_integral_cuboid" title="Permalink to this definition"></a></dt>
+<dd><blockquote>
+<div><div class="line-block">
+<div class="line">This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a cuboid element employing <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a> function on each face. Here again the magnetization vector (Mx,My,Mz) is assumed to be constant inside the element. It uses the <code class="docutils literal notranslate"><span class="pre">icon</span></code> array to identify the x-,y-,z-coordinates associated with each node, before calling <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a>, to compute the total magnetic field strength for each face.  </div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>xmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of observation point.</li>
-<li><strong>ymeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of observation point.</li>
-<li><strong>zmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of observation point.</li>
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each node.</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each node.</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each node.</li>
-<li><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 1D array(8), containing connectivity, marking nodes that define an element, see code.</li>
-<li><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization [A/m] of the cell.</li>
-<li><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization [A/m] of the cell.</li>
-<li><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization [A/m] of the cell.</li>
+</div></blockquote>
+<div class="line-block">
+<div class="line">Magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id8">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.
+| Distance units are irrelevant but must be consistent.  For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>.</div>
+</div>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param xmeas<span class="colon">:</span></dt>
+<dd class="field-odd"><p>x coordinate of observation point.</p>
+</dd>
+<dt class="field-even">type xmeas<span class="colon">:</span></dt>
+<dd class="field-even"><p>scalar(float)</p>
+</dd>
+<dt class="field-odd">param ymeas<span class="colon">:</span></dt>
+<dd class="field-odd"><p>y coordinate of observation point.</p>
+</dd>
+<dt class="field-even">type ymeas<span class="colon">:</span></dt>
+<dd class="field-even"><p>scalar(float)</p>
+</dd>
+<dt class="field-odd">param zmeas<span class="colon">:</span></dt>
+<dd class="field-odd"><p>z coordinate of observation point.</p>
+</dd>
+<dt class="field-even">type zmeas<span class="colon">:</span></dt>
+<dd class="field-even"><p>scalar(float)</p>
+</dd>
+<dt class="field-odd">param x<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1D array(NV) containing x coordinate of each node.</p>
+</dd>
+<dt class="field-even">type x<span class="colon">:</span></dt>
+<dd class="field-even"><p>array_like(float)</p>
+</dd>
+<dt class="field-odd">param y<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1D array(NV) containing y coordinate of each node.</p>
+</dd>
+<dt class="field-even">type y<span class="colon">:</span></dt>
+<dd class="field-even"><p>array_like(float)</p>
+</dd>
+<dt class="field-odd">param z<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1D array(NV) containing z coordinate of each node.</p>
+</dd>
+<dt class="field-even">type z<span class="colon">:</span></dt>
+<dd class="field-even"><p>array_like(float)</p>
+</dd>
+<dt class="field-odd">param icon<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1D array(8), containing connectivity, marking nodes that define an element, see code.</p>
+</dd>
+<dt class="field-even">type icon<span class="colon">:</span></dt>
+<dd class="field-even"><p>array_like(int)</p>
+</dd>
+<dt class="field-odd">param Mx<span class="colon">:</span></dt>
+<dd class="field-odd"><p>x component magnetization [A/m] of the element.</p>
+</dd>
+<dt class="field-even">type Mx<span class="colon">:</span></dt>
+<dd class="field-even"><p>scalar(float)</p>
+</dd>
+<dt class="field-odd">param My<span class="colon">:</span></dt>
+<dd class="field-odd"><p>y component magnetization [A/m] of the element.</p>
+</dd>
+<dt class="field-even">type My<span class="colon">:</span></dt>
+<dd class="field-even"><p>scalar(float)</p>
+</dd>
+<dt class="field-odd">param Mz<span class="colon">:</span></dt>
+<dd class="field-odd"><p>z component magnetization [A/m] of the element.</p>
+</dd>
+<dt class="field-even">type Mz<span class="colon">:</span></dt>
+<dd class="field-even"><p>scalar(float)</p>
+</dd>
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at each point computed by surface integral method for a cuboid element.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at each point computed by surface integral method for a cuboid cell. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id6">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="magnetostatics.compute_B_surface_integral_wtopo">
-<code class="sig-prename descclassname"><span class="pre">magnetostatics.</span></code><code class="sig-name descname"><span class="pre">compute_B_surface_integral_wtopo</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">xmeas</span></span></em>, <em><span class="n"><span class="pre">ymeas</span></span></em>, <em><span class="n"><span class="pre">zmeas</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">icon</span></span></em>, <em><span class="n"><span class="pre">Mx</span></span></em>, <em><span class="n"><span class="pre">My</span></span></em>, <em><span class="n"><span class="pre">Mz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#compute_B_surface_integral_wtopo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.compute_B_surface_integral_wtopo" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">compute_B_surface_integral_wtopo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#compute_B_surface_integral_wtopo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.compute_B_surface_integral_wtopo" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
-<div class="line">This function computes the magnetic field produced by a hexahedron cell which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar.</div>
-<div class="line">In light thereof we subdivide the top and bottom faces into four triangles. This feature is needed in the case when topography is prescribed at the top of the domain and the vertical position of the nodes accomodates this. Distance units are irrelevant but must be consistent. For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>. </div>
+<div class="line">This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a hexahedron element which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar.</div>
+<div class="line">In light thereof we subdivide the top and bottom faces into four triangles. This feature is needed in the case topography is prescribed at the top (or bottom) of the domain and the vertical position of the nodes are modified. </div>
+<div class="line">It uses the <code class="docutils literal notranslate"><span class="pre">icon</span></code> array to identify the x-,y-,z-coordinates associated with each node, before calling <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a>, to compute the total magnetic field strength for each face and triangle. </div>
+<div class="line">Magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id9">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
+<div class="line">Distance units are irrelevant but must be consistent. For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>. </div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>xmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of observation point.</li>
-<li><strong>ymeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of observation point.</li>
-<li><strong>zmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of observation point.</li>
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each node.</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each node.</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each node.</li>
-<li><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 1D array(8), containing connectivity, marking nodes that define an element, see code.</li>
-<li><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization [A/m] of the cell.</li>
-<li><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization [A/m] of the cell.</li>
-<li><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization [A/m] of the cell.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of observation point.</p></li>
+<li><p><strong>ymeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of observation point.</p></li>
+<li><p><strong>zmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of observation point.</p></li>
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each node.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each node.</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each node.</p></li>
+<li><p><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 1D array(8), containing connectivity, marking nodes that define an element, see code.</p></li>
+<li><p><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization [A/m] of the element.</p></li>
+<li><p><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization [A/m] of the element.</p></li>
+<li><p><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization [A/m] of the element.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at a point computed by surface integral method for a cuboid cell with topography on top and/or bottom surface. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id7">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in tesla [T] at a point computed by surface integral method for a cuboid element with topography on top and/or bottom surface.</p></li>
 </ul>
 </p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="magnetostatics.compute_B_surface_integral_wtopo_noise">
-<code class="sig-prename descclassname"><span class="pre">magnetostatics.</span></code><code class="sig-name descname"><span class="pre">compute_B_surface_integral_wtopo_noise</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">xmeas</span></span></em>, <em><span class="n"><span class="pre">ymeas</span></span></em>, <em><span class="n"><span class="pre">zmeas</span></span></em>, <em><span class="n"><span class="pre">x</span></span></em>, <em><span class="n"><span class="pre">y</span></span></em>, <em><span class="n"><span class="pre">z</span></span></em>, <em><span class="n"><span class="pre">icon</span></span></em>, <em><span class="n"><span class="pre">Mx</span></span></em>, <em><span class="n"><span class="pre">My</span></span></em>, <em><span class="n"><span class="pre">Mz</span></span></em>, <em><span class="n"><span class="pre">noise</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#compute_B_surface_integral_wtopo_noise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.compute_B_surface_integral_wtopo_noise" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">compute_B_surface_integral_wtopo_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#compute_B_surface_integral_wtopo_noise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.compute_B_surface_integral_wtopo_noise" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
-<div class="line">This function computes the magnetic field produced by a hexahedron cell which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar, and are therefor subdivided into four triangles. </div>
-<div class="line">Numbering of nodes is same as previous function. Distance units are irrelevant but must be consistent. The noise is added to the extra node on the top/bottom surface. </div>
+<div class="line">This function computes the magnetic field produced by a hexahedron element which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar, and are therefor subdivided into four triangles. </div>
+<div class="line">Numbering of nodes is same as previous function. The noise is added to the extra node on the top/bottom surface. </div>
+<div class="line">Note that when computation are caried out and noise is added to this middle point, it could be that the observation point is then location within the domain, but we do not correct for it nor test it. So, this situation must be avoided during setup of any testing employing this function. </div>
+<div class="line">Distance units are irrelevant but must be consistent.</div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>xmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of observation point.</li>
-<li><strong>ymeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of observation point.</li>
-<li><strong>zmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of observation point.</li>
-<li><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each node.</li>
-<li><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each node.</li>
-<li><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each node.</li>
-<li><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 1D array(8), containing connectivity, marking nodes that define an element, see code.</li>
-<li><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization [A/m] of the cell.</li>
-<li><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization [A/m] of the cell.</li>
-<li><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization [A/m] of the cell.</li>
-<li><strong>noise</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – the height substracted or added to the middle node on the top and/or bottom surface of each cell representing noise potentially smoothed by the DEM.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of observation point.</p></li>
+<li><p><strong>ymeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of observation point.</p></li>
+<li><p><strong>zmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of observation point.</p></li>
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each node.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each node.</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each node.</p></li>
+<li><p><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 1D array(8), containing connectivity, marking nodes that define an element, see code.</p></li>
+<li><p><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization [A/m] of the element.</p></li>
+<li><p><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization [A/m] of the element.</p></li>
+<li><p><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization [A/m] of the element.</p></li>
+<li><p><strong>noise</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – the height substracted or added to the middle node on the top and/or bottom surface of each element representing noise potentially smoothed by the DEM.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at a point computed by surface integral method for a cuboid cell with topography on top and/or bottom surface and noise. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id8">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</li>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at a point computed by surface integral method for a cuboid element with topography on top and/or bottom surface and noise.</p></li>
 </ul>
 </p>
-</td>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="set-measurement-parameters">
+<h2>Set measurement parameters<a class="headerlink" href="#set-measurement-parameters" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="set_measurement_parameters.set_measurement_parameters">
+<span class="sig-prename descclassname"><span class="pre">set_measurement_parameters.</span></span><span class="sig-name descname"><span class="pre">set_measurement_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rDEM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sDEM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ho</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/set_measurement_parameters.html#set_measurement_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#set_measurement_parameters.set_measurement_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Returns measurement parameters from <span id="id10">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span> of the chosen (passed) parameters.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rDEM</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – number associated with resolution of the DEM, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</p></li>
+<li><p><strong>sDEM</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – number associated with size of the DEM, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</p></li>
+<li><p><strong>site</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – number associated with resolution of the domain, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</p></li>
+<li><p><strong>path</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – number associated with specific paths of a site, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</p></li>
+<li><p><strong>ho</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – number associated with height option for the path, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Range<span class="colon">:</span></dt>
+<dd class="field-even"><ul>
+<li><p><strong>rDEM</strong> - for all sites except site 3: either <code class="docutils literal notranslate"><span class="pre">2</span></code> meter or <code class="docutils literal notranslate"><span class="pre">5</span></code> meter, for site 3, only <code class="docutils literal notranslate"><span class="pre">2</span></code> meter available.</p></li>
+<li><dl>
+<dt><strong>sDEM</strong> - different for most sites/rDEM combinations. </dt><dd><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>site</p></th>
+<th class="head"><p>rDEM</p></th>
+<th class="head"><p>sDEM</p></th>
+<th class="head"><p>~size <a class="footnote-reference brackets" href="#id15" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>2m</p></td>
+<td><p>1</p></td>
+<td><p>2100</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2m</p></td>
+<td><p>2</p></td>
+<td><p>1500</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>2m</p></td>
+<td><p>3</p></td>
+<td><p>1100</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2m</p></td>
+<td><p>4</p></td>
+<td><p>700</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>2m</p></td>
+<td><p>5</p></td>
+<td><p>500</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2m</p></td>
+<td><p>6</p></td>
+<td><p>50 (0m around)</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>2m</p></td>
+<td><p>7</p></td>
+<td><p>4000</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2m</p></td>
+<td><p>8</p></td>
+<td><p>6000</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>5m</p></td>
+<td><p>1</p></td>
+<td><p>2100</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>5m</p></td>
+<td><p>2</p></td>
+<td><p>300</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>5m</p></td>
+<td><p>3</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>2/5</p></td>
+<td><p>2m</p></td>
+<td><p>n/a</p></td>
+<td><p>2100</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>2/5</p></td>
+<td><p>5m</p></td>
+<td><p>1</p></td>
+<td><p>2100</p></td>
+</tr>
+<tr class="row-odd"><td><p>2/5</p></td>
+<td><p>5m</p></td>
+<td><p>2</p></td>
+<td><p>300</p></td>
+</tr>
+<tr class="row-even"><td><p>2/5</p></td>
+<td><p>5m</p></td>
+<td><p>3</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>2m</p></td>
+<td><p>1</p></td>
+<td><p>2100</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>2m</p></td>
+<td><p>2</p></td>
+<td><p>300</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>2m</p></td>
+<td><p>3</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>4/6</p></td>
+<td><p>2m</p></td>
+<td><p>n/a</p></td>
+<td><p>2100</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>4/6</p></td>
+<td><p>5m</p></td>
+<td><p>1</p></td>
+<td><p>2100</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>5m</p></td>
+<td><p>2</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>5m</p></td>
+<td><p>3</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>2m</p></td>
+<td><p>2</p></td>
+<td><p>1100</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>5m</p></td>
+<td><p>3</p></td>
+<td><p>500</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>5m</p></td>
+<td><p>4</p></td>
+<td><p>300</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>5m</p></td>
+<td><p>5</p></td>
+<td><p>200 (50m arnd)</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>5m</p></td>
+<td><p>6</p></td>
+<td><p>100 (20m arnd)</p></td>
 </tr>
 </tbody>
 </table>
+</dd>
+</dl>
+</li>
+<li><p><strong>site</strong> - [1:6].</p></li>
+<li><p><strong>path</strong> - for all sites except site 6: [1:3], for site 6, only <code class="docutils literal notranslate"><span class="pre">1</span></code> available.</p></li>
+<li><p><strong>ho</strong> - for all sites except site 6: [1:2], where <code class="docutils literal notranslate"><span class="pre">1</span></code> relates to 1 meter above the surface and <code class="docutils literal notranslate"><span class="pre">2</span></code> relates to 1.8 meter above the surface. For site 6, only <code class="docutils literal notranslate"><span class="pre">1</span></code> available.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>Lx</strong> <em>(scalar(float))</em> - length of domain in x-direction in meters.</p></li>
+<li><p><strong>Ly</strong> <em>(scalar(float))</em> - length of domain in y-direction in meters.</p></li>
+<li><p><strong>Lz</strong> <em>(scalar(float))</em> - length of domain in x-direction in meters.</p></li>
+<li><p><strong>nelx</strong> <em>(scalar(int))</em> - amount of elements in x-direction of domain.</p></li>
+<li><p><strong>nely</strong> <em>(scalar(int))</em> - amount of elements in y-direction of domain.</p></li>
+<li><p><strong>nelz</strong> <em>(scalar(int))</em> - amount of elements in z-direction of domain.</p></li>
+<li><p><strong>xllcorner</strong> <em>(scalar(float))</em> - x-coordinate of the DEM cut corner, used to align domain with field measurement coordinates in (WGS84) UTM Easting (meters), zone 33N.</p></li>
+<li><p><strong>yllcorner</strong> <em>(scalar(float))</em> - y-coordinate of the DEM cut corner, used to align domain with field measurement coordinates in (WGS84) UTM Northing (meters), zone 33N.</p></li>
+<li><p><strong>npath</strong> <em>(scalar(int))</em> - amount of measurement points for the field path from <span id="id12">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>.</p></li>
+<li><p><strong>zpath_height</strong> <em>(scalar(float))</em> - height of the field measurement path above the surface from <span id="id13">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span> in meters.</p></li>
+<li><p><strong>pathfile</strong> <em>(string)</em> - name of the file associated with the field path from <span id="id14">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>, containing all coordinates of measurement points and magnetic field strength measurement data (converted to UTM).</p></li>
+<li><p><strong>pathfile</strong> <em>(string)</em> - name of the file associated with the DEM cut chosen.</p></li>
+<li><p><strong>IGRFx</strong> <em>(scalar(float))</em> - x-component of the IGRF (global reference field) in Tesla.</p></li>
+<li><p><strong>IGRFy</strong> <em>(scalar(float))</em> - y-component of the IGRF (global reference field) in Tesla.</p></li>
+<li><p><strong>IGRFz</strong> <em>(scalar(float))</em> - z-component of the IGRF (global reference field) in Tesla.</p></li>
+<li><p><strong>Brefx</strong> <em>(scalar(float))</em> - x-component of Bref, the average of all measurements from :cite`Meyer23` at this site, (local reference field) in Tesla.</p></li>
+<li><p><strong>Brefy</strong> <em>(scalar(float))</em> - y-component of Bref, the average of all measurements from :cite`Meyer23` at this site, (local reference field) in Tesla.</p></li>
+<li><p><strong>Brefz</strong> <em>(scalar(float))</em> - z-component of Bref, the average of all measurements from :cite`Meyer23` at this site, (local reference field) in Tesla.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
-</div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id15" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">1</a><span class="fn-bracket">]</span></span>
+<p>These rough sizes are rounded off values, in case the DEM cut was not square, the value denotes the rounded length of the <strong>shortest</strong> side of the DEM.</p>
+</aside>
+</aside>
+</section>
+</section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
-            </a></p>
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Functions</a><ul>
-<li><a class="reference internal" href="#support">Support</a></li>
-<li><a class="reference internal" href="#visualization">Visualization</a></li>
-<li><a class="reference internal" href="#magnetostatics">Magnetostatics</a></li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="etna.html" class="btn btn-neutral float-left" title="Case study: Mount Etna" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ref.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Agnes.</p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="etna.html"
-                          title="previous chapter">Case study: Mount Etna</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="ref.html"
-                          title="next chapter">References</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/functions.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="ref.html" title="References"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="etna.html" title="Case study: Mount Etna"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Functions</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, Agnes.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<style type="text/css">
+    .scrollToTop {
+        text-align: center;
+        font-weight: bold;
+        position: fixed;
+        bottom: 60px;
+        right: 40px;
+        display: none;
+    }
+</style>
+<a href="#" class="scrollToTop">Scroll To Top</a>
+<script type="text/javascript">
+$(document).ready(function() {
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    $('.scrollToTop').click(function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+});
+</script>
+<style>
+  /* Sidebar header (and topbar for mobile) */
+  .wy-side-nav-search, .wy-nav-top {
+    background: #3ae23a;
+  }
+  /* Sidebar */
+  .wy-nav-side {
+    background: #0c3303;
+  }
+</style>
+
+
+
+</body>
 </html>

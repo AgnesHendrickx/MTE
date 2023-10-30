@@ -1,0 +1,269 @@
+========================================
+=             ETNA project             =
+========================================
+========================================
+benchmark= 5
+Lx,Ly,Lz= 250 250 20
+nelx,nely,nelz= 375 375 10
+nnx,nny,nnz= 376 376 11
+nel= 1406250
+Mx,My,Mz= 0 4.085 -6.29
+do_plane_measurements= False
+do_line_measurements= True
+xstart,ystart,zstart= 100.23 124.779 1
+xend,yend,zend= 149.19 124.779 1
+line_nmeas= 47
+subbench, flank= south
+do_spiral_measurements= False
+do_path_measurements= False
+Zero topography removed from final results.
+========================================
+grid points setup: 3.763 s
+grid connectivity setup: 4.988 s
+min topo: -17.13715214210894
+add synthetic topography: 9.713 s
+prescribe M vector in domain: 29.051 s
+========================================
+starting line measurement ...
+doing 1 out of  47
+100.23 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 62.607 s
+surf int: 56.604 s
+doing 2 out of  47
+101.29434782608696 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 56.751 s
+surf int: 55.632 s
+doing 3 out of  47
+102.35869565217392 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.485 s
+surf int: 54.932 s
+doing 4 out of  47
+103.42304347826088 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.813 s
+surf int: 54.683 s
+doing 5 out of  47
+104.48739130434782 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.978 s
+surf int: 54.786 s
+doing 6 out of  47
+105.55173913043478 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.911 s
+surf int: 56.844 s
+doing 7 out of  47
+106.61608695652174 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 55.505 s
+surf int: 54.859 s
+doing 8 out of  47
+107.6804347826087 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 55.278 s
+surf int: 54.948 s
+doing 9 out of  47
+108.74478260869566 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.828 s
+surf int: 56.023 s
+doing 10 out of  47
+109.80913043478262 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 58.578 s
+surf int: 56.723 s
+doing 11 out of  47
+110.87347826086958 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.946 s
+surf int: 54.716 s
+doing 12 out of  47
+111.93782608695652 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.578 s
+surf int: 54.749 s
+doing 13 out of  47
+113.00217391304348 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.774 s
+surf int: 54.569 s
+doing 14 out of  47
+114.06652173913044 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.533 s
+surf int: 54.651 s
+doing 15 out of  47
+115.1308695652174 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.555 s
+surf int: 54.851 s
+doing 16 out of  47
+116.19521739130435 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.833 s
+surf int: 54.598 s
+doing 17 out of  47
+117.2595652173913 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.557 s
+surf int: 54.592 s
+doing 18 out of  47
+118.32391304347826 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.591 s
+surf int: 54.673 s
+doing 19 out of  47
+119.38826086956522 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.534 s
+surf int: 54.568 s
+doing 20 out of  47
+120.45260869565217 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.432 s
+surf int: 54.558 s
+doing 21 out of  47
+121.51695652173913 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.423 s
+surf int: 54.850 s
+doing 22 out of  47
+122.58130434782609 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.628 s
+surf int: 54.483 s
+doing 23 out of  47
+123.64565217391305 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.479 s
+surf int: 54.553 s
+doing 24 out of  47
+124.71000000000001 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.426 s
+surf int: 54.408 s
+doing 25 out of  47
+125.77434782608695 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.454 s
+surf int: 54.478 s
+doing 26 out of  47
+126.83869565217391 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.615 s
+surf int: 54.887 s
+doing 27 out of  47
+127.90304347826087 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.633 s
+surf int: 54.669 s
+doing 28 out of  47
+128.9673913043478 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.515 s
+surf int: 54.573 s
+doing 29 out of  47
+130.03173913043477 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.528 s
+surf int: 54.672 s
+doing 30 out of  47
+131.09608695652173 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.706 s
+surf int: 54.753 s
+doing 31 out of  47
+132.1604347826087 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.657 s
+surf int: 54.604 s
+doing 32 out of  47
+133.22478260869565 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.632 s
+surf int: 54.603 s
+doing 33 out of  47
+134.2891304347826 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.469 s
+surf int: 54.541 s
+doing 34 out of  47
+135.35347826086957 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.412 s
+surf int: 54.553 s
+doing 35 out of  47
+136.41782608695652 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.637 s
+surf int: 54.635 s
+doing 36 out of  47
+137.48217391304348 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.391 s
+surf int: 54.599 s
+doing 37 out of  47
+138.54652173913044 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.460 s
+surf int: 54.515 s
+doing 38 out of  47
+139.6108695652174 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.451 s
+surf int: 54.524 s
+doing 39 out of  47
+140.67521739130433 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.607 s
+surf int: 54.564 s
+doing 40 out of  47
+141.73956521739132 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.659 s
+surf int: 54.824 s
+doing 41 out of  47
+142.80391304347825 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.612 s
+surf int: 54.615 s
+doing 42 out of  47
+143.8682608695652 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.514 s
+surf int: 54.574 s
+doing 43 out of  47
+144.93260869565216 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.545 s
+surf int: 54.723 s
+doing 44 out of  47
+145.99695652173912 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.593 s
+surf int: 54.574 s
+doing 45 out of  47
+147.06130434782608 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.523 s
+surf int: 54.584 s
+doing 46 out of  47
+148.12565217391304 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.596 s
+surf int: 54.583 s
+doing 47 out of  47
+149.19 124.779 1.0
+starting path measurement for zerotopo ...
+surf zt int: 54.805 s
+surf int: 55.020 s
+all line measurement done: 5183.017 s
+========================================
+========================================
+========================================
+========================================
+========================================
+full run time: 5230.532 s
