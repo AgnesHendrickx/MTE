@@ -1,274 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Synthetic topopography: flank simulations &#8212; MTE 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synthetic topopography: flank simulations &mdash; MTE 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Case study: Mount Etna" href="etna.html" />
     <link rel="prev" title="Parameters" href="parameters.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="etna.html" title="Case study: Mount Etna"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="parameters.html" title="Parameters"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Synthetic topopography: flank simulations</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html">
             
-  <div class="section" id="synthetic-topopography-flank-simulations">
-<span id="flanksim"></span><h1>Synthetic topopography: flank simulations<a class="headerlink" href="#synthetic-topopography-flank-simulations" title="Permalink to this heading">¶</a></h1>
-<div class="figure align-default" id="id4">
-<span id="fflanksim"></span><img alt="_images/flanks2edit.png" class="with-border" src="_images/flanks2edit.png" />
-<p class="caption"><span class="caption-number">Figure 18 </span><span class="caption-text">Flank simulation on the Etna. (<span class="math notranslate nohighlight">\(\mathbf{M}\)</span>) = <span class="math notranslate nohighlight">\(7.5 [A/m]\)</span> (arrows). The slope (<span class="math notranslate nohighlight">\(a\)</span> in <a class="reference internal" href="#fflanksim"><span class="std std-numref">Figure 18</span></a>) is  <span class="math notranslate nohighlight">\(6 ^{\circ}\)</span>. The computations of the magnetic field (<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>) above the flanks are done at point composing either a path or a plane above each flank. The flanks are labeled as displayed. Please note, for visual purposes, a different extent and resolution of the mesh was chosen for the displayed mesh, not adhering the optimized testing setup outlined before and in section <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a>.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+              <img src="_static/Logo2r2.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governing_equations.html">Governing equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computational_approach.html">Computational approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Synthetic topopography: flank simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#model-setup">Model setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reproduce">Reproduce</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MTE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Synthetic topopography: flank simulations</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="synthetic-topopography-flank-simulations">
+<span id="flanksim"></span><h1>Synthetic topopography: flank simulations<a class="headerlink" href="#synthetic-topopography-flank-simulations" title="Permalink to this heading"></a></h1>
+<figure class="align-default" id="id4">
+<span id="fflanksim"></span><img alt="_images/flanks2edit.png" class="with-border" src="_images/flanks2edit.png" />
+<figcaption>
+<p><span class="caption-number">Figure 19 </span><span class="caption-text">Flank simulation on the Etna. (<span class="math notranslate nohighlight">\(\mathbf{M}\)</span>) = <span class="math notranslate nohighlight">\(7.5 [A/m]\)</span> (arrows). The slope (<span class="math notranslate nohighlight">\(a\)</span> in <a class="reference internal" href="#fflanksim"><span class="std std-numref">Figure 19</span></a>) is  <span class="math notranslate nohighlight">\(6 ^{\circ}\)</span>. The computations of the magnetic field (<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>) above the flanks are done at point composing either a path or a plane above each flank. The flanks are labeled as displayed. Please note, for visual purposes, a different extent and resolution of the mesh was chosen for the displayed mesh, not adhering the optimized testing setup outlined before and in section <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a>.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <div class="line-block">
 <div class="line">Given that the majority of lava flows are located on the flanks of volcanoes, simulating volcanic flanks is a relevant and intuitive starting point for our initial generic modeling setup. While the magnetization direction remains consistent, the dip direction of the surfaces on these flanks varies.</div>
 <div class="line"><br /></div>
-<div class="line">To explore the impact of these variances, we established a model setup dedicated to flank simulations, as illustrated in <a class="reference internal" href="#fflanksim"><span class="std std-numref">Figure 18</span></a>. In our approach, the flank topography is emulated by a sine function running perpendicular to the sloped surface. The sine wave resemble the characteristic ridges and gullies of volcanic topography.</div>
+<div class="line">To explore the impact of these variances, we established a model setup dedicated to flank simulations, as illustrated in <a class="reference internal" href="#fflanksim"><span class="std std-numref">Figure 19</span></a>. In our approach, the flank topography is emulated by a sine function propagating perpendicular to the sloped surface, see function <a class="reference internal" href="functions.html#support.topography" title="support.topography"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.topography()</span></code></a>. The sine wave resemble the characteristic ridges and gullies of volcanic topography.</div>
 </div>
-<div class="figure align-default" id="id5">
+<figure class="align-default" id="id5">
 <span id="bdeg"></span><img alt="_images/bdegflank.png" class="with-border" src="_images/bdegflank.png" />
-<p class="caption"><span class="caption-number">Figure 19 </span><span class="caption-text">Direction on south flank is <span class="math notranslate nohighlight">\(-31 ^{\circ}\)</span>, an example of a variation possible while doing flank simulations tests.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
-<div class="section" id="model-setup">
-<h2>Model setup<a class="headerlink" href="#model-setup" title="Permalink to this heading">¶</a></h2>
+<figcaption>
+<p><span class="caption-number">Figure 20 </span><span class="caption-text">Direction on south flank is <span class="math notranslate nohighlight">\(-31 ^{\circ}\)</span>, an example of a variation possible while doing flank simulations tests.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="model-setup">
+<h2>Model setup<a class="headerlink" href="#model-setup" title="Permalink to this heading"></a></h2>
 <div class="line-block">
-<div class="line">In these simulations, a wide range of parameters can be adjusted to investigate their influence on the magnetic field. These include the surface slope, the amplitude and wavelength of the sine function, and the angle between the sine wave’s direction and either the x-axis or y-axis—depending on the flank, as depicted in <a class="reference internal" href="#bdeg"><span class="std std-numref">Figure 19</span></a>.</div>
+<div class="line">In these simulations, a wide range of parameters can be adjusted to investigate their influence on the magnetic field. These include the surface slope, the amplitude and wavelength of the sine function, and the angle between the sine wave’s direction and either the x-axis or y-axis—depending on the flank, as depicted in <a class="reference internal" href="#bdeg"><span class="std std-numref">Figure 20</span></a>.</div>
 <div class="line"><br /></div>
-<div class="line">For alignment with the <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>, parameter used to define the synthetic topography aim to replicate the ridges and gullies of Mount Etna. The estimated amplitude, wavelength, and angle for the slope were <span class="math notranslate nohighlight">\(4m\)</span>, <span class="math notranslate nohighlight">\(25m\)</span>, and <span class="math notranslate nohighlight">\(6 ^{\circ}\)</span>, respectively, were derived from aerial images and Digital Elevation Models (DEMs) of the area around the field sites of <span id="id1">[<a class="reference internal" href="ref.html#id12" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>.</div>
-<div class="line">Furthermore, the uniform remanent magnetization intensity chosen was <span class="math notranslate nohighlight">\(7.5\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> with a inclination of <span class="math notranslate nohighlight">\(57 ^{\circ}\)</span> and a declination of <span class="math notranslate nohighlight">\(0 ^{\circ}\)</span>. For the rationale of chosen magnetization, see section <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>. The Earth’s magnetic field for the flank simulation was estimated using an average of all site (<span id="id2">[<a class="reference internal" href="ref.html#id12" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>) values of the IGRF <span id="id3">[<a class="reference internal" href="ref.html#id5" title="Patrick Alken, Erwan Thébault, Ciarán D Beggan, Hagay Amit, J Aubert, J Baerenzung, TN Bondar, WJ Brown, S Califf, A Chambodut, and others. International geomagnetic reference field: the thirteenth generation. Earth, Planets and Space, 73(1):1–25, 2021.">AThebaultB+21</a>]</span>.</div>
+<div class="line">For alignment with the <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>, parameter used to define the synthetic topography aim to replicate the ridges and gullies of Mount Etna. The estimated amplitude, wavelength, and angle for the slope were <span class="math notranslate nohighlight">\(4m\)</span>, <span class="math notranslate nohighlight">\(25m\)</span>, and <span class="math notranslate nohighlight">\(6 ^{\circ}\)</span>, respectively, were derived from aerial images and Digital Elevation Models (DEMs) of the area around the field sites of <span id="id1">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>.</div>
+<div class="line">Furthermore, the uniform remanent magnetization intensity chosen was <span class="math notranslate nohighlight">\(7.5\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> with a inclination of <span class="math notranslate nohighlight">\(57 ^{\circ}\)</span> and a declination of <span class="math notranslate nohighlight">\(0 ^{\circ}\)</span>. For the rationale of chosen magnetization, see section <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>. The Earth’s magnetic field for the flank simulation was estimated using an average of all site (<span id="id2">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>) values of the IGRF <span id="id3">[<a class="reference internal" href="ref.html#id8" title="Patrick Alken, Erwan Thébault, Ciarán D Beggan, Hagay Amit, J Aubert, J Baerenzung, TN Bondar, WJ Brown, S Califf, A Chambodut, and others. International geomagnetic reference field: the thirteenth generation. Earth, Planets and Space, 73(1):1–25, 2021.">AThebaultB+21</a>]</span>.</div>
 <div class="line"><br /></div>
 <div class="line">Flank simulations were done using a domain of 250x250x20m with 375x375x10 elements (chosen upon careful consideration, see section <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a>), with computation done a path of 47 points located one meter above the center of the domain. The sine wave was shifted to create the exact same topography underneath the path at the center of each flanks.</div>
 </div>
-<div class="section" id="reproduce">
-<h3>Reproduce<a class="headerlink" href="#reproduce" title="Permalink to this heading">¶</a></h3>
+<section id="reproduce">
+<h3>Reproduce<a class="headerlink" href="#reproduce" title="Permalink to this heading"></a></h3>
 <details class="summary-how-to-reproduce-the-results-and-figures">
 <summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
 <ol class="arabic">
-<li><p class="first">In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">4</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">37 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">4</span></code>:</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>south</strong> &amp; move results</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">38 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>south</strong> &amp; move results</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
 <span class="linenos">25</span><span class="c1">## ONLY BENCHMARK=-1 (ETNA) &amp; BENCHMARK=4 (FLANKSIM) ##</span>
 <span class="linenos">26</span><span class="n">flat_bottom</span><span class="o">=</span><span class="kc">True</span>
 <span class="linenos">27</span><span class="c1">## ONLY BENCHMARK=4 (FLANKSIM) ##</span>
 <span class="hll"><span class="linenos">28</span><span class="n">subbench</span><span class="o">=</span><span class="s1">&#39;south&#39;</span>
 </span></pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-number">39 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">python3 -u MTE.py | tee log.txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-number">40 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir flanksim_parameters/south flanksim_parameters/south/250_250_20 <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii flanksim_parameters/south/250_250_20
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">mkdir flanksim_parameters/south flanksim_parameters/south/250_250_20 &amp;&amp; mv log.txt *.vtu *.ascii flanksim_parameters/south/250_250_20</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>east</strong> &amp; move results</p>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-number">41 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>east</strong> &amp; move results</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
 <span class="linenos">25</span><span class="c1">## ONLY BENCHMARK=-1 (ETNA) &amp; BENCHMARK=4 (FLANKSIM) ##</span>
 <span class="linenos">26</span><span class="n">flat_bottom</span><span class="o">=</span><span class="kc">True</span>
 <span class="linenos">27</span><span class="c1">## ONLY BENCHMARK=4 (FLANKSIM) ##</span>
 <span class="hll"><span class="linenos">28</span><span class="n">subbench</span><span class="o">=</span><span class="s1">&#39;east&#39;</span>
 </span></pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-number">42 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">python3 -u MTE.py | tee log.txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id12">
-<div class="code-block-caption"><span class="caption-number">43 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir flanksim_parameters/east flanksim_parameters/east/250_250_20 <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii flanksim_parameters/east/250_250_20
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">mkdir flanksim_parameters/east flanksim_parameters/east/250_250_20 &amp;&amp; mv log.txt *.vtu *.ascii flanksim_parameters/east/250_250_20</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>north</strong> &amp; move results</p>
-<div class="literal-block-wrapper docutils container" id="id13">
-<div class="code-block-caption"><span class="caption-number">44 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>north</strong> &amp; move results</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
 <span class="linenos">25</span><span class="c1">## ONLY BENCHMARK=-1 (ETNA) &amp; BENCHMARK=4 (FLANKSIM) ##</span>
 <span class="linenos">26</span><span class="n">flat_bottom</span><span class="o">=</span><span class="kc">True</span>
 <span class="linenos">27</span><span class="c1">## ONLY BENCHMARK=4 (FLANKSIM) ##</span>
 <span class="hll"><span class="linenos">28</span><span class="n">subbench</span><span class="o">=</span><span class="s1">&#39;north&#39;</span>
 </span></pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id14">
-<div class="code-block-caption"><span class="caption-number">45 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">python3 -u MTE.py | tee log.txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id15">
-<div class="code-block-caption"><span class="caption-number">46 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir flanksim_parameters/north flanksim_parameters/north/250_250_20 <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii flanksim_parameters/north/250_250_20
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">mkdir flanksim_parameters/north flanksim_parameters/north/250_250_20 &amp;&amp; mv log.txt *.vtu *.ascii flanksim_parameters/north/250_250_20</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>west</strong> &amp; move results</p>
-<div class="literal-block-wrapper docutils container" id="id16">
-<div class="code-block-caption"><span class="caption-number">47 </span><span class="caption-text">/main/MTE.py</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>west</strong> &amp; move results</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
 <span class="linenos">25</span><span class="c1">## ONLY BENCHMARK=-1 (ETNA) &amp; BENCHMARK=4 (FLANKSIM) ##</span>
 <span class="linenos">26</span><span class="n">flat_bottom</span><span class="o">=</span><span class="kc">True</span>
 <span class="linenos">27</span><span class="c1">## ONLY BENCHMARK=4 (FLANKSIM) ##</span>
 <span class="hll"><span class="linenos">28</span><span class="n">subbench</span><span class="o">=</span><span class="s1">&#39;west&#39;</span>
 </span></pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id17">
-<div class="code-block-caption"><span class="caption-number">48 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 MTE.py &gt; log.txt
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">python3 -u MTE.py | tee log.txt</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id18">
-<div class="code-block-caption"><span class="caption-number">49 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir flanksim_parameters/west flanksim_parameters/west/250_250_20 <span class="o">&amp;&amp;</span> mv log.txt *.vtu *.ascii flanksim_parameters/west/250_250_20
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">mkdir flanksim_parameters/west flanksim_parameters/west/250_250_20 &amp;&amp; mv log.txt *.vtu *.ascii flanksim_parameters/west/250_250_20</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
-<li><p class="first">Go to directory &amp; plot</p>
-<div class="literal-block-wrapper docutils container" id="id19">
-<div class="code-block-caption"><span class="caption-number">50 </span><span class="caption-text">/main$</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> flanksim_parameters
+<li><p>Go to directory &amp; plot</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">cd flanksim_parameters</span>
 </pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id20">
-<div class="code-block-caption"><span class="caption-number">51 </span><span class="caption-text">/main/flanksim_parameters$</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gnuplot flanksim.p
+</div></div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text">/main/flanksim_parameters$</span></div>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="go">gnuplot flanksim.p</span>
 </pre></div>
-</div>
-</div>
+</div></div>
 </li>
 </ol>
-</details></div>
-</div>
-</div>
+</details></section>
+</section>
+</section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
-            </a></p>
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Synthetic topopography: flank simulations</a><ul>
-<li><a class="reference internal" href="#model-setup">Model setup</a><ul>
-<li><a class="reference internal" href="#reproduce">Reproduce</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="parameters.html" class="btn btn-neutral float-left" title="Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="etna.html" class="btn btn-neutral float-right" title="Case study: Mount Etna" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Agnes.</p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="parameters.html"
-                          title="previous chapter">Parameters</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="etna.html"
-                          title="next chapter">Case study: Mount Etna</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/flanksim.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="etna.html" title="Case study: Mount Etna"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="parameters.html" title="Parameters"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Synthetic topopography: flank simulations</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, Agnes.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<style type="text/css">
+    .scrollToTop {
+        text-align: center;
+        font-weight: bold;
+        position: fixed;
+        bottom: 60px;
+        right: 40px;
+        display: none;
+    }
+</style>
+<a href="#" class="scrollToTop">Scroll To Top</a>
+<script type="text/javascript">
+$(document).ready(function() {
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    $('.scrollToTop').click(function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+});
+</script>
+<style>
+  /* Sidebar header (and topbar for mobile) */
+  .wy-side-nav-search, .wy-nav-top {
+    background: #3ae23a;
+  }
+  /* Sidebar */
+  .wy-nav-side {
+    background: #0c3303;
+  }
+</style>
+
+
+
+</body>
 </html>

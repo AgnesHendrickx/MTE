@@ -11,7 +11,7 @@ Synthetic topopography: flank simulations
 
 | Given that the majority of lava flows are located on the flanks of volcanoes, simulating volcanic flanks is a relevant and intuitive starting point for our initial generic modeling setup. While the magnetization direction remains consistent, the dip direction of the surfaces on these flanks varies. 
 | 
-| To explore the impact of these variances, we established a model setup dedicated to flank simulations, as illustrated in :numref:`fflanksim`. In our approach, the flank topography is emulated by a sine function running perpendicular to the sloped surface. The sine wave resemble the characteristic ridges and gullies of volcanic topography.
+| To explore the impact of these variances, we established a model setup dedicated to flank simulations, as illustrated in :numref:`fflanksim`. In our approach, the flank topography is emulated by a sine function propagating perpendicular to the sloped surface, see function :func:`support.topography`. The sine wave resemble the characteristic ridges and gullies of volcanic topography.
 
 .. _bdeg:
 .. figure:: figures/bdegflank.png
@@ -60,12 +60,12 @@ Reproduce
       .. code-block:: console
          :caption: /main$
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
       .. code-block:: console
          :caption: /main$
 
-         $ mkdir flanksim_parameters/south flanksim_parameters/south/250_250_20 && mv log.txt *.vtu *.ascii flanksim_parameters/south/250_250_20
+         mkdir flanksim_parameters/south flanksim_parameters/south/250_250_20 && mv log.txt *.vtu *.ascii flanksim_parameters/south/250_250_20
 
    3. Run ``subbench`` **east** & move results
 
@@ -84,12 +84,12 @@ Reproduce
       .. code-block:: console
          :caption: /main$
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
       .. code-block:: console
          :caption: /main$
 
-         $ mkdir flanksim_parameters/east flanksim_parameters/east/250_250_20 && mv log.txt *.vtu *.ascii flanksim_parameters/east/250_250_20
+         mkdir flanksim_parameters/east flanksim_parameters/east/250_250_20 && mv log.txt *.vtu *.ascii flanksim_parameters/east/250_250_20
 
    4. Run ``subbench`` **north** & move results
 
@@ -108,12 +108,12 @@ Reproduce
       .. code-block:: console
          :caption: /main$
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
       .. code-block:: console
          :caption: /main$
 
-         $ mkdir flanksim_parameters/north flanksim_parameters/north/250_250_20 && mv log.txt *.vtu *.ascii flanksim_parameters/north/250_250_20
+         mkdir flanksim_parameters/north flanksim_parameters/north/250_250_20 && mv log.txt *.vtu *.ascii flanksim_parameters/north/250_250_20
 
    5. Run ``subbench`` **west** & move results
 
@@ -132,21 +132,21 @@ Reproduce
       .. code-block:: console
          :caption: /main$
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
       .. code-block:: console
          :caption: /main$
 
-         $ mkdir flanksim_parameters/west flanksim_parameters/west/250_250_20 && mv log.txt *.vtu *.ascii flanksim_parameters/west/250_250_20
+         mkdir flanksim_parameters/west flanksim_parameters/west/250_250_20 && mv log.txt *.vtu *.ascii flanksim_parameters/west/250_250_20
 
    6. Go to directory & plot 
 
       .. code-block:: console
          :caption: /main$
 
-         $ cd flanksim_parameters
+         cd flanksim_parameters
 
       .. code-block:: console
          :caption: /main/flanksim_parameters$
 
-         $ gnuplot flanksim.p
+         gnuplot flanksim.p

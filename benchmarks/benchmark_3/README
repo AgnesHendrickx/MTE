@@ -1,0 +1,1 @@
+Please note, the paraview state that visualizes the model setup requires the vtu files (of the domain and observation points) to be located within the same directory (not within a subdirectory). So, the state file is copied into each subdirectory and can be loaded from within a subdirectory or from outside subdirectory like described in code snippet. 

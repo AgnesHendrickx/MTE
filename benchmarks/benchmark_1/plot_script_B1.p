@@ -1,66 +1,89 @@
 loc = './'
-set terminal pngcairo size 1800,900
-set key default
-set key font "courier,14"
+set terminal epscairo enhanced size 9,4.5
 
-set style line 1 pt 1 lw 2 ps 0.2 lc "royalblue"
-set style line 2 pt 3 lw 2 ps 0.2 lc "green" 
-set style line 3 pt 5 lw 2 ps 0.5 lc "coral"
-set style line 12 lc rgb '#aaaaaa' dt 2 lw 0.5
-set xtics font "courier,14"
-set ytics font "courier,14"
+set style line 1 lw 2 lc "black"
+set style line 2 lw 1 lc 'grey40'
+set style line 3 pt 7 lw 3 ps 0.6 lc "royalblue"
+set style line 4 pt 5 lw 2 ps 0.4 lc "web-green" 
+set style line 5 pt 9 lw 3 ps 0.5 lc "orange-red"
+set style line 6 pt 11 ps 2 lw 2 lc "gold"
 
-set xlabel font "courier,14" 'distance to sphere (m)'
-set ylabel font "courier,14" 'B_z ({/Symbol m}T)'
+set style line 12 lc 'grey80' dt 2 lw 0.5
+
+set key default font "times,14" box lc 'grey60' opaque fc 'grey90' vertical top right 
+
+set xtics out font "times,14"
+set ytics out font "times,14"
+set grid back ytics ls 12
+
+set xlabel font "times,14" 'distance to sphere [m]'
+set ylabel font "times,14" 'B_z [{/Symbol m}T]'
 
 
 ##############################
-set output 'B1dipole.png'
+set output 'B1dipole.eps'
+
+set key height 0.5
+
 set log xy
 set autoscale xy
 set format y "%.0e"
-plot loc.'measurements_line.ascii' u 3:($6*1e7) w lp ls 1 t 'computed' ,\
-loc.'measurements_line.ascii' u 3:9 w lp ls 2 t 'analytical' 
 
-##############################
-set output 'B1dipole_zoom.png'
+plot loc.'measurements_line.ascii' u 3:($9*1e6) w lp ls 3 t 'computed' ,\
+loc.'measurements_line.ascii' u 3:($12*1e6) w lp ls 4 t 'analytical' 
+
 unset log xy
-set autoscale xy
-set format y
-plot loc.'results_zoom/measurements_line.ascii' u 3:($6*1e7) w lp ls 1 t 'computed' ,\
-loc.'results_zoom/measurements_line.ascii' u 3:9 w lp  ls 2 t 'analytical' 
-
 ##############################
-set output 'B1dipole_dif.png'
-set autoscale xy
+set output 'B1dipole_zoom.eps'
 
-set tics out
-set grid back ytics ls 12
 set grid back xtics ls 12
 
-set ylabel font "courier,14" '{/Symbol D}Bz ({/Symbol m}T)' offset 1,0
-plot loc.'measurements_line.ascii' u 3:(($9*1e-1)-($6*1e6)) w lp ls 3 t '(Bz_{analytical} - Bz_{computed})' 
+set autoscale xy
+set format y
+set format y "%.0f"
+set yrange [0:6.5]
+
+plot loc.'results_zoom/measurements_line.ascii' u 3:($9*1e6) w lp ls 3 t 'computed' ,\
+loc.'results_zoom/measurements_line.ascii' u 3:($12*1e6) w lp  ls 4 t 'analytical' 
 
 ##############################
-set output 'B1dipole_dif_zoom.png'
+set output 'B1dipole_dif.eps'
+
+unset grid 
+set grid back ytics ls 12
+
+set autoscale xy
+set format y "%.2f"
+set yrange [-0.02:0.2]
+set ytics font "times,14" -1,.05,1
+set ylabel font "times,14" '{/Symbol D}B_z [{/Symbol m}T]'
+set xrange [0:100]
+set xtics font "times,14" 0,10,100
+
+plot loc.'measurements_line.ascii' u 3:(($12*1e6)-($9*1e6)) w lp ls 3 t 'B@_z^{analytical} - B@_z^{computed}' 
+
+##############################
+set output 'B1dipole_dif_zoom.eps'
+
+set grid back xtics ls 12
+
 set xrange [0:2]
-set yrange [-0.05:0.2]
+set format x "%.1f"
+set xtics font "times,14" 0,0.2,2
+set xzeroaxis lt 3 lc "black" lw 1 
+set yrange [-0.05:0.20]
+set ytics font "times,14" -0.05,0.05,0.2
 
-set xzeroaxis lt 3 lc "black" lw 1 dt (50,10)
-set xtics font "courier,14" 0,0.2,2
-set ytics font "courier,14" -0.05,0.05,0.2
-
-plot loc.'results_zoom/measurements_line.ascii' u 3:(($9*1e-1)-($6*1e6)) w lp ls 3 t '(Bz_{analytical} - Bz_{computed})' 
+plot loc.'results_zoom/measurements_line.ascii' u 3:(($12*1e6)-($9*1e6)) w lp ls 3 t 'B@_z^{analytical} - B@_z^{computed}'  
 
 ##############################
-set output 'B1dipole_dif_zoom_withlines.png'
+set output 'B1dipole_dif_zoom_withlines.eps'
 
 set arrow from 0.25,-0.0093181 to -0.008,-0.0093181 nohead lc "grey20" lw 0.5
 set arrow from 0.25,-0.0093181 to 0.25,-0.052 nohead lc "grey20" lw 0.5
-set label font "courier,12" "-0.0093" right at 0,-0.009 offset -0.9, 0
-set label font "courier,12" "  0.25" center at 0.25,-0.05 offset 0,-0.75
+set label font "times,12" "-0.0093" right at 0,-0.009 offset -0.9, 0
+set label font "times,12" "  0.25" center at 0.25,-0.05 offset 0,-0.75
 
-plot loc.'results_zoom/measurements_line.ascii' u 3:(($9*1e-1)-($6*1e6)) w lp ls 3 t '(Bz_{analytical} - Bz_{computed})' 
+plot loc.'results_zoom/measurements_line.ascii' u 3:(($12*1e6)-($9*1e6)) w lp ls 3 t 'B@_z^{analytical} - B@_z^{computed}' 
 
-##############################
 

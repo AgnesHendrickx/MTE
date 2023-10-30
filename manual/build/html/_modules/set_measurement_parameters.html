@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>set_measurement_parameters &mdash; MTE 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/Logo2r2.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../governing_equations.html">Governing equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computational_approach.html">Computational approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etna.html">Case study: Mount Etna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app1.html">Complete derivation of the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app2.html">Coordinate systems of different components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MTE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">set_measurement_parameters</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for set_measurement_parameters</h1><div class="highlight"><pre>
+<span></span><span class="c1">#copy</span>
+<span class="c1">#TODO: clean &#39;&#39; stuf around options</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>     
+
+<div class="viewcode-block" id="set_measurement_parameters"><a class="viewcode-back" href="../functions.html#set_measurement_parameters.set_measurement_parameters">[docs]</a><span class="k">def</span> <span class="nf">set_measurement_parameters</span><span class="p">(</span><span class="n">rDEM</span><span class="p">,</span><span class="n">sDEM</span><span class="p">,</span><span class="n">site</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">ho</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Returns measurement parameters from :cite:`Meyer23` of the chosen (passed) parameters.</span>
+
+<span class="sd">   :param rDEM: number associated with resolution of the DEM, see :doc:`etna`.</span>
+<span class="sd">   :type rDEM: scalar(float)</span>
+<span class="sd">   :param sDEM: number associated with size of the DEM, see :doc:`etna`.</span>
+<span class="sd">   :type sDEM: scalar(float)</span>
+<span class="sd">   :param site: number associated with resolution of the domain, see :doc:`etna`.</span>
+<span class="sd">   :type site: scalar(float)</span>
+<span class="sd">   :param path: number associated with specific paths of a site, see :doc:`etna`.</span>
+<span class="sd">   :type path: scalar(float)</span>
+<span class="sd">   :param ho: number associated with height option for the path, see :doc:`etna`.</span>
+<span class="sd">   :type ho: scalar(float)</span>
+<span class="sd">   :range:</span>
+<span class="sd">        - **rDEM** - for all sites except site 3: either ``2`` meter or ``5`` meter, for site 3, only ``2`` meter available.</span>
+<span class="sd">        - **sDEM** - different for most sites/rDEM combinations. </span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | site | rDEM     | sDEM     | ~size [#]_    |</span>
+<span class="sd">             +======+==========+==========+===============+</span>
+<span class="sd">             | 1    | 2m       | 1        | 2100          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 2m       | 2        | 1500          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 2m       | 3        | 1100          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 2m       | 4        | 700           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 2m       | 5        | 500           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 2m       | 6        | 50 (0m around)|</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 2m       | 7        | 4000          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 2m       | 8        | 6000          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             |      |          |          |               |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 5m       | 1        | 2100          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 5m       | 2        | 300           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 1    | 5m       | 3        | 200           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 2/5  | 2m       | n/a      | 2100          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 2/5  | 5m       | 1        | 2100          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 2/5  | 5m       | 2        | 300           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 2/5  | 5m       | 3        | 200           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 3    | 2m       | 1        | 2100          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 3    | 2m       | 2        | 300           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 3    | 2m       | 3        | 200           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 4/6  | 2m       | n/a      | 2100          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 4/6  | 5m       | 1        | 2100          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 4    | 5m       | 2        | 200           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 4    | 5m       | 3        | 100           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 6    | 2m       | 2        | 1100          |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 6    | 5m       | 3        | 500           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 6    | 5m       | 4        | 300           |</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 6    | 5m       | 5        | 200 (50m arnd)|</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">             | 6    | 5m       | 6        | 100 (20m arnd)|</span>
+<span class="sd">             +------+----------+----------+---------------+</span>
+<span class="sd">        - **site** - [1:6]. </span>
+<span class="sd">        - **path** - for all sites except site 6: [1:3], for site 6, only ``1`` available.  </span>
+<span class="sd">        - **ho** - for all sites except site 6: [1:2], where ``1`` relates to 1 meter above the surface and ``2`` relates to 1.8 meter above the surface. For site 6, only ``1`` available. </span>
+
+<span class="sd">   :return:</span>
+<span class="sd">        - **Lx** *(scalar(float))* - length of domain in x-direction in meters.</span>
+<span class="sd">        - **Ly** *(scalar(float))* - length of domain in y-direction in meters.</span>
+<span class="sd">        - **Lz** *(scalar(float))* - length of domain in x-direction in meters.</span>
+<span class="sd">        - **nelx** *(scalar(int))* - amount of elements in x-direction of domain. </span>
+<span class="sd">        - **nely** *(scalar(int))* - amount of elements in y-direction of domain. </span>
+<span class="sd">        - **nelz** *(scalar(int))* - amount of elements in z-direction of domain. </span>
+<span class="sd">        - **xllcorner** *(scalar(float))* - x-coordinate of the DEM cut corner, used to align domain with field measurement coordinates in (WGS84) UTM Easting (meters), zone 33N.</span>
+<span class="sd">        - **yllcorner** *(scalar(float))* - y-coordinate of the DEM cut corner, used to align domain with field measurement coordinates in (WGS84) UTM Northing (meters), zone 33N.</span>
+<span class="sd">        - **npath** *(scalar(int))* - amount of measurement points for the field path from :cite:`Meyer23`.</span>
+<span class="sd">        - **zpath_height** *(scalar(float))* - height of the field measurement path above the surface from :cite:`Meyer23` in meters.</span>
+<span class="sd">        - **pathfile** *(string)* - name of the file associated with the field path from :cite:`Meyer23`, containing all coordinates of measurement points and magnetic field strength measurement data (converted to UTM).</span>
+<span class="sd">        - **pathfile** *(string)* - name of the file associated with the DEM cut chosen. </span>
+<span class="sd">        - **IGRFx** *(scalar(float))* - x-component of the IGRF (global reference field) in Tesla. </span>
+<span class="sd">        - **IGRFy** *(scalar(float))* - y-component of the IGRF (global reference field) in Tesla.</span>
+<span class="sd">        - **IGRFz** *(scalar(float))* - z-component of the IGRF (global reference field) in Tesla.</span>
+<span class="sd">        - **Brefx** *(scalar(float))* - x-component of Bref, the average of all measurements from :cite`Meyer23` at this site, (local reference field) in Tesla.</span>
+<span class="sd">        - **Brefy** *(scalar(float))* - y-component of Bref, the average of all measurements from :cite`Meyer23` at this site, (local reference field) in Tesla.</span>
+<span class="sd">        - **Brefz** *(scalar(float))* - z-component of Bref, the average of all measurements from :cite`Meyer23` at this site, (local reference field) in Tesla.   </span>
+
+<span class="sd">   &quot;&quot;&quot;</span>
+   <span class="n">npath</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">Lx</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">Ly</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">Lz</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">nelx</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">nely</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">nelz</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">xllcorner</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">yllcorner</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;nope_error&#39;</span>
+   <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;nope_error&#39;</span>
+   <span class="n">IGRFx</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">IGRFy</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">IGRFz</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">Brefx</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">Brefy</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">Brefz</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1">#-------------------------------------------------------------------</span>
+<span class="c1">#IGRF on sites and average</span>
+<span class="c1">#-------------------------------------------------------------------</span>
+   <span class="k">if</span> <span class="n">site</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+      <span class="n">IGRF_E</span> <span class="o">=</span> <span class="mf">1560.1e-9</span>
+      <span class="n">IGRF_N</span> <span class="o">=</span> <span class="mf">26887.4e-9</span>
+      <span class="n">IGRF_D</span> <span class="o">=</span> <span class="mf">36243.6e-9</span>
+      <span class="n">Bref_inc</span> <span class="o">=</span> <span class="mf">54.06</span>
+      <span class="n">Bref_dec</span> <span class="o">=</span> <span class="mf">5.34</span>
+      <span class="n">Bref_int</span> <span class="o">=</span> <span class="mf">44.89e-6</span>
+      <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;reference field and IGRF site 1&#39;</span><span class="p">)</span>
+
+   <span class="k">elif</span> <span class="n">site</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+      <span class="n">IGRF_E</span> <span class="o">=</span> <span class="mf">1557.8e-9</span>
+      <span class="n">IGRF_N</span> <span class="o">=</span> <span class="mf">26881e-9</span>
+      <span class="n">IGRF_D</span> <span class="o">=</span> <span class="mf">36243.1e-9</span>
+      <span class="n">Bref_inc</span> <span class="o">=</span> <span class="mf">52.46</span>
+      <span class="c1">#Bref_dec = -10.8318d0</span>
+      <span class="n">Bref_dec</span> <span class="o">=</span> <span class="mf">0.59</span>
+      <span class="n">Bref_int</span> <span class="o">=</span> <span class="mf">44.00e-6</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reference field and IGRF site 2&#39;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">site</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
+      <span class="n">IGRF_E</span> <span class="o">=</span> <span class="mf">1565.3e-9</span>
+      <span class="n">IGRF_N</span> <span class="o">=</span> <span class="mf">26804.1e-9</span>
+      <span class="n">IGRF_D</span> <span class="o">=</span> <span class="mf">36407.4e-9</span>
+      <span class="n">Bref_inc</span> <span class="o">=</span> <span class="mf">53.03</span>
+      <span class="n">Bref_dec</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.65</span>
+      <span class="n">Bref_int</span> <span class="o">=</span> <span class="mf">44.39e-6</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reference field and IGRF site 3&#39;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">site</span><span class="o">==</span><span class="mi">4</span><span class="p">:</span>   
+      <span class="n">IGRF_E</span> <span class="o">=</span> <span class="mf">1563e-9</span>
+      <span class="n">IGRF_N</span> <span class="o">=</span> <span class="mf">26824.3e-9</span>
+      <span class="n">IGRF_D</span> <span class="o">=</span> <span class="mf">36348.6e-9</span>
+      <span class="n">Bref_inc</span> <span class="o">=</span> <span class="mf">52.18</span>
+      <span class="c1">#Bref_dec = -41.42892</span>
+      <span class="n">Bref_dec</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.36</span>
+      <span class="c1">#Bref_dec = -1.02</span>
+      <span class="n">Bref_int</span> <span class="o">=</span> <span class="mf">43.36e-6</span>
+      <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;reference field and IGRF site 4&#39;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">site</span><span class="o">==</span><span class="mi">5</span><span class="p">:</span>  
+      <span class="n">IGRF_E</span> <span class="o">=</span> <span class="mf">1557.9e-9</span>
+      <span class="n">IGRF_N</span> <span class="o">=</span> <span class="mf">26881.1e-9</span>
+      <span class="n">IGRF_D</span> <span class="o">=</span> <span class="mf">36243.3e-9</span>
+      <span class="n">Bref_inc</span> <span class="o">=</span> <span class="mf">52.13</span>
+      <span class="n">Bref_dec</span> <span class="o">=</span> <span class="mf">1.03</span>
+      <span class="n">Bref_int</span> <span class="o">=</span> <span class="mf">43.85e-6</span>
+      <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;reference field and IGRF site 5&#39;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">site</span><span class="o">==</span><span class="mi">6</span><span class="p">:</span>       
+      <span class="n">IGRF_E</span> <span class="o">=</span> <span class="mf">1562.9e-9</span>
+      <span class="n">IGRF_N</span> <span class="o">=</span> <span class="mf">26824.1e-9</span>
+      <span class="n">IGRF_D</span> <span class="o">=</span> <span class="mf">36348.3e-9</span>
+      <span class="n">Bref_inc</span> <span class="o">=</span> <span class="mf">53.69</span>
+      <span class="n">Bref_dec</span> <span class="o">=</span> <span class="mf">0.36</span>
+      <span class="n">Bref_int</span> <span class="o">=</span> <span class="mf">43.85e-6</span>
+      <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;reference field and IGRF site 6&#39;</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">IGRF_E</span> <span class="o">=</span> <span class="mf">1561.2e-9</span>
+      <span class="n">IGRF_N</span> <span class="o">=</span> <span class="mf">26850.3e-9</span>
+      <span class="n">IGRF_D</span> <span class="o">=</span> <span class="mf">36305.7e-9</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reference field is IGRF average&#39;</span><span class="p">)</span>
+
+   <span class="c1">#coordinate switch from ref to pmag model</span>
+   <span class="n">IGRFx</span> <span class="o">=</span> <span class="n">IGRF_N</span>
+   <span class="n">IGRFy</span> <span class="o">=</span> <span class="n">IGRF_E</span>
+   <span class="n">IGRFz</span> <span class="o">=</span> <span class="n">IGRF_D</span>
+   
+   <span class="n">Brefy</span> <span class="o">=</span> <span class="n">Bref_int</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">Bref_inc</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">Bref_dec</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>
+   <span class="n">Brefx</span> <span class="o">=</span> <span class="n">Bref_int</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">Bref_inc</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">Bref_dec</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>
+   <span class="n">Brefz</span> <span class="o">=</span> <span class="p">(</span><span class="n">Bref_int</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">Bref_inc</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>
+   
+   <span class="c1">#Brefint = np.sqrt(Brefx**2 + Brefy**2 + Brefz**2)</span>
+   <span class="c1">#Brefinc = np.arctan2(Brefz, np.sqrt(Brefx**2 + Brefy**2)) / np.pi * 180</span>
+   <span class="c1">#Brefdec = np.arctan2(Brefy, Brefx) / np.pi * 180</span>
+   <span class="c1">#IGRFint = np.sqrt(IGRFx**2 + IGRFy**2 + IGRFz**2)        </span>
+   <span class="c1">#IGRFinc = np.arctan2(IGRFz, np.sqrt(IGRFx**2 + IGRFy**2)) / np.pi * 180</span>
+   <span class="c1">#IGRFdec = np.arctan2(IGRFy, IGRFx) / np.pi * 180</span>
+   
+   <span class="c1">#print(&quot;IGRF Int = &quot;,IGRFint)</span>
+   <span class="c1">#print(&quot;IGRF Inc = &quot;,IGRFinc)</span>
+   <span class="c1">#print(&quot;IGRF Dec = &quot;,IGRFdec)</span>
+   <span class="c1">#print(&quot;Bref Int = &quot;,Brefint)</span>
+   <span class="c1">#print(&quot;Bref Inc = &quot;,Brefinc)</span>
+   <span class="c1">#print(&quot;Bref Dec = &quot;,Brefdec)</span>
+   
+   <span class="c1">#----------------------------------------   </span>
+   <span class="k">if</span> <span class="n">site</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>        <span class="c1">#age:1892,flank:SF</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;./DEMS/2m_utm_bili_site1.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 regular size (2100)&#39;</span><span class="p">)</span>
+         <span class="c1"># size of domain, Lz is the added depth under the DEM</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">1038</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nelx                    </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">1031</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells                      </span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">1038</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">1031</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">500700.44188544</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4170086.9789642</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem2m_site1_1500.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 1400&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">738</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nelx                    </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">731</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">738</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">731</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">501000.44188544</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4170386.9789642</span>  
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem2m_site1_1100.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 1000&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">538</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nelx                    </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">531</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">538</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">531</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">501200.44188544</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4170586.9789642</span>  
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">4</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem2m_site1_700.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 600&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">338</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nelx                    </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">331</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">338</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">331</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">501400.44188544</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4170786.9789642</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">5</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem2m_site1_500.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 400&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">238</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nelx                       </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">231</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">238</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">231</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">501500.44188544</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4170886.9789642</span> 
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">6</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem2m_site1_0.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 0-around paths&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">38</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nelx                    </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">31</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">38</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">31</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">501700.44188544</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4171086.9789642</span>  
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">7</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem2m_site1_4000.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 4000 around paths&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">2038</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nelx                    </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">2019</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">2038</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">2019</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">499700.44188544</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4169086.9789642</span>       
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">8</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem2m_site1_6000.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 6000 around paths&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">3038</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nelx                    </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">3019</span><span class="o">*</span><span class="mi">2</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">3038</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">3019</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">498700.44188544</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4168086.9789642</span>  
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/5m_site1.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 1 2100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">415</span><span class="o">*</span><span class="mi">5</span>                              
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">412</span><span class="o">*</span><span class="mi">5</span>                               
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">415</span>                               
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">412</span>                               
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">500698.81984712</span>            
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4170088.3580075</span>  
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site1_300.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 1 300&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">55</span><span class="o">*</span><span class="mi">5</span> <span class="c1">#2x nelx                    </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">52</span><span class="o">*</span><span class="mi">5</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">55</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">52</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">501598.81984712</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4170988.3580075</span>   
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site1_200.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 1 200&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">35</span><span class="o">*</span><span class="mi">5</span> <span class="c1">#2x nelx                    </span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">32</span><span class="o">*</span><span class="mi">5</span> <span class="c1">#2x nely                    </span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">35</span> <span class="c1">#ncols - 1                    </span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">32</span> <span class="c1">#nrows - 1                   </span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">501648.81984712</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4171038.3580075</span>
+      <span class="k">else</span><span class="p">:</span>
+         <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 1&quot;</span><span class="p">)</span>
+
+   <span class="c1">#----------------------------------------   </span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">2</span> <span class="ow">or</span> <span class="n">site</span><span class="o">==</span><span class="mi">5</span><span class="p">)</span> <span class="p">:</span> <span class="c1">#1983,SF</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/2m_utm_bili_site2_5.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 2 and 5 2100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">1050</span><span class="o">*</span><span class="mi">2</span>                             
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">1039</span><span class="o">*</span><span class="mi">2</span>                             
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">1050</span>                             
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">1039</span>                             
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">498322.44188544</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4170900.9789642</span>     
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/5m_site2_5.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 2 and 5 2100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">420</span><span class="o">*</span><span class="mi">5</span>                              
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">415</span><span class="o">*</span><span class="mi">5</span>                              
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">420</span>                              
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">415</span>                              
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">498318.81984712</span>           
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4170903.3580075</span>     
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site2_5_300.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 2 and 5 300&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">55</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">60</span> <span class="c1">#ncols - 1</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">55</span> <span class="c1">#nrows-1</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">499218.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4171803.3580075</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site2_5_200.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 2 and 5 200&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">40</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">35</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">40</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">35</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">499268.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4171853.3580075</span>
+      <span class="k">else</span><span class="p">:</span>
+         <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 2 and/or 5&quot;</span><span class="p">)</span>
+
+   <span class="c1">#----------------------------------------   </span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span> <span class="c1">#1923,NEF</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/2m_utm_bili_site3.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 2100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">1053</span><span class="o">*</span><span class="mi">2</span>                             
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">1052</span><span class="o">*</span><span class="mi">2</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">1053</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">1052</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">506076.44188544</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4187572.9789642</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem2m_site3_300.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 300&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">153</span><span class="o">*</span><span class="mi">2</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">152</span><span class="o">*</span><span class="mi">2</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">153</span> <span class="c1">#ncols - 1</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">152</span>  <span class="c1">#nrows-1</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">506976.44188544</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4188472.9789642</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem2m_site3_200.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 1 200&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">103</span><span class="o">*</span><span class="mi">2</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">107</span><span class="o">*</span><span class="mi">2</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">103</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">107</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">507026.44188544</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4188522.9789642</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span><span class="p">):</span>
+         <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;site 3 is not on the 5x5 DEM&quot;</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span> 
+         <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 3&quot;</span><span class="p">)</span>
+
+   <span class="c1">#----------------------------------------   </span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">4</span><span class="p">):</span> <span class="c1">#2002,NEF</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/2m_utm_bili_site4_6.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 4 and 6 2100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">1043</span><span class="o">*</span><span class="mi">2</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">1112</span><span class="o">*</span><span class="mi">2</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">1043</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">1112</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">504334.44188544</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4182130.9789642</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/5m_site4_6.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 4 and 6 2100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">417</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">444</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">417</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">444</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">504333.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4182133.3580075</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site4_300.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 4 specific 200&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">44</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">53</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">44</span> 
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">53</span> 
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">505233.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4183088.3580075</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site4_200.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 4 specific 100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">24</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">33</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">24</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">33</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">505283.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4183138.3580075</span>
+      <span class="k">else</span><span class="p">:</span> 
+         <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 4&quot;</span><span class="p">)</span>
+  
+  <span class="c1">#----------------------------------------   </span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">6</span><span class="p">):</span> <span class="c1">#2002,NEF</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/2m_utm_bili_site4_6.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2x2 DEM site 4 and 6 2100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">1043</span><span class="o">*</span><span class="mi">2</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">1112</span><span class="o">*</span><span class="mi">2</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">1043</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">1112</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">504334.44188544</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4182130.9789642</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/5m_site4_6.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 6 2100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">417</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">444</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">417</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">444</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">504333.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4182133.3580075</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site4_6_1100.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 6 1100&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">217</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">244</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">217</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">244</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">504833.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4182633.3580075</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site4_6_500.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 6 500&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">97</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">124</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">97</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">124</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">505133.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4182933.3580075</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">4</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site4_6_300.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 6 300&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">57</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">84</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">57</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">84</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">505233.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4183033.3580075</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">5</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/dem5m_site4_6_50r.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 6 50 m around&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">35</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">35</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">60</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">505313.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4183083.3580075</span>
+      <span class="k">elif</span> <span class="p">(</span><span class="n">rDEM</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">sDEM</span><span class="o">==</span><span class="mi">6</span><span class="p">):</span>
+         <span class="n">topofile</span> <span class="o">=</span> <span class="s1">&#39;DEMS/site6_20r.asc&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5x5 DEM site 6 20 m around&#39;</span><span class="p">)</span>
+         <span class="n">Lx</span> <span class="o">=</span> <span class="mi">23</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Ly</span> <span class="o">=</span> <span class="mi">48</span><span class="o">*</span><span class="mi">5</span>
+         <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
+         <span class="c1">#number of cells</span>
+         <span class="n">nelx</span> <span class="o">=</span> <span class="mi">23</span>
+         <span class="n">nely</span> <span class="o">=</span> <span class="mi">48</span>
+         <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="n">xllcorner</span> <span class="o">=</span> <span class="mf">505343.81984712</span>
+         <span class="n">yllcorner</span> <span class="o">=</span> <span class="mf">4183113.3580075</span>
+      <span class="k">else</span><span class="p">:</span> 
+         <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 6&quot;</span><span class="p">)</span>
+   
+   <span class="c1">#----------------------------------------   </span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+         <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/1-1-1.txt&#39;</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 1-1-1&#39;</span><span class="p">)</span>
+         <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+         <span class="n">npath</span> <span class="o">=</span> <span class="mi">39</span>
+      <span class="c1">#if (zpath_option==2 or zpath_option==1): </span>
+      <span class="c1">#if zpath_option==3:</span>
+      <span class="c1">#   xmin = 501682-xllcorner</span>
+      <span class="c1">#   xmax = 501764-xllcorner</span>
+      <span class="c1">#   ymin = 4171093-yllcorner</span>
+      <span class="c1">#   ymax = 4171169-yllcorner</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span> 
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/1-1-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 1-1-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">39</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>         
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/1-2-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 1-2-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">27</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/1-2-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 1-2-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">27</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/1-3-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 1-3-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">36</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/1-3-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 1-3-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">36</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>      
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/2-1-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2-1-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">30</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/2-1-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2-1-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">30</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/2-2-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2-2-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">39</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/2-2-2.txt&#39;</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">39</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2-2-2&#39;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/2-3-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2-3-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">42</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/2-3-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 2-3-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">42</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>      
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/3-1-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 3-1-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">39</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/3-1-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 3-1-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">39</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/3-2-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 3-2-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">55</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/3-2-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 3-2-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">55</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/3-3-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 3-3-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">40</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/3-3-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 3-3-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">40</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/4-1-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 4-1-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">38</span> <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/4-1-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 4-1-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">38</span> <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/4-2-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 4-2-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">56</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/4-2-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 4-2-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">56</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/4-3-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 4-3-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">54</span> <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/4-3-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 4-3-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">54</span> <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.8</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-1-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-1-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">28</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">0.25</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-1-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-1-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">28</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">0.75</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-1-3.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-1-3&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">28</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.25</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-1-4.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-1-4&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">28</span> 
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.75</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-2-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-2-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">31</span> <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">0.25</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-2-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-2-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">31</span> <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">0.75</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-2-3.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-2-3&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">31</span> <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.25</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-2-4.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-2-4&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">31</span> <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.75</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-3-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-3-1&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">27</span> <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">0.25</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-3-2.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-3-2&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">27</span>  <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">0.75</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-3-3.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-3-3&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">27</span>  <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.25</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">path</span><span class="o">==</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">ho</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/5-3-4.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 5-3-4&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">27</span>  <span class="c1">#AEH</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mf">1.75</span>
+   <span class="k">elif</span> <span class="p">(</span><span class="n">site</span><span class="o">==</span><span class="mi">6</span><span class="p">)</span> <span class="p">:</span>
+      <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/6-1-1.txt&#39;</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;reading from 6&#39;</span><span class="p">)</span>
+      <span class="n">npath</span> <span class="o">=</span> <span class="mi">147</span>
+      <span class="n">zpath_height</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;unknown site in set_measurement_parameters&#39;</span><span class="p">)</span>
+   
+   <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span>
+   <span class="n">nelz</span> <span class="o">=</span> <span class="mi">10</span>
+   
+   <span class="k">return</span> <span class="n">Lx</span><span class="p">,</span><span class="n">Ly</span><span class="p">,</span><span class="n">Lz</span><span class="p">,</span><span class="n">nelx</span><span class="p">,</span><span class="n">nely</span><span class="p">,</span><span class="n">nelz</span><span class="p">,</span><span class="n">xllcorner</span><span class="p">,</span><span class="n">yllcorner</span><span class="p">,</span><span class="n">npath</span><span class="p">,</span>\
+          <span class="n">zpath_height</span><span class="p">,</span><span class="n">pathfile</span><span class="p">,</span><span class="n">topofile</span><span class="p">,</span><span class="n">error</span><span class="p">,</span>\
+          <span class="n">IGRFx</span><span class="p">,</span><span class="n">IGRFy</span><span class="p">,</span><span class="n">IGRFz</span><span class="p">,</span><span class="n">Brefx</span><span class="p">,</span><span class="n">Brefy</span><span class="p">,</span><span class="n">Brefz</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Agnes.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<style type="text/css">
+    .scrollToTop {
+        text-align: center;
+        font-weight: bold;
+        position: fixed;
+        bottom: 60px;
+        right: 40px;
+        display: none;
+    }
+</style>
+<a href="#" class="scrollToTop">Scroll To Top</a>
+<script type="text/javascript">
+$(document).ready(function() {
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    $('.scrollToTop').click(function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+});
+</script>
+<style>
+  /* Sidebar header (and topbar for mobile) */
+  .wy-side-nav-search, .wy-nav-top {
+    background: #3ae23a;
+  }
+  /* Sidebar */
+  .wy-nav-side {
+    background: #0c3303;
+  }
+</style>
+
+
+
+</body>
+</html>

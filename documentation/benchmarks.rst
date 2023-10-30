@@ -1,13 +1,17 @@
+.. _benchmarks:
+
 Benchmarks
 ==========
 | Several different benchmarks are available to verify computed values of MTE code.
 |
 | Verification aims of the benchmarks:
 
-1. Assumption that the contribution of a cell can be represented by a single dipole "far" away from source  (see :doc:`governing_equations`).
+1. Assumption that the contribution of an element can be represented by a single dipole "far" away from source  (see :doc:`governing_equations`).
 2. Shape / orientation of the magnetic field outside source body, verifying rotation of vector components in translation from original ``facmag`` FORTRAN77 subroutine :cite:`BLAKELY`, to current function embedded in MTE.
 3. Assumption that volume elements are *small enough* and distance to ``P`` is *large enough* (see :doc:`computational_approach`). 
 4. Solving spatial problem with introduction of a small :math:`\epsilon` suffices. 
+
+| If the analytical solution takes the form of an equation, its solution will be generated using the function :func:`support.compute_analytical_solution`. All benchmarks outlined here do not require modification of the z-coordinate of nodes on the top and bottom surfaces and, consequently, do not call for a setup with additional triangles (see :doc:`computational_approach`). Therefore, unless otherwise specified, the function :func:`magnetostatics.compute_B_surface_integral_cuboid` computes the contribution of each element to the magnetic field strength :math:`\mathbf{B}` for all benchmarks.
 
 Benchmark 1: a single dipole
 ----------------------------
@@ -35,13 +39,14 @@ Results
 .. _figureB1:
 .. figure:: figures/B1dipole.png
    :class: with-border
+   :scale: 60%
 
    Analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.
 
 .. _figureB1zoom:
 .. figure:: figures/B1dipole_dif_zoom_withlines.png
    :class: with-border
-
+   :scale: 60%
 
    Difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. 
 
@@ -60,6 +65,7 @@ Reproduce
          :caption: /main/MTE.py
          :linenos:
          :lineno-start: 24
+         :emphasize-lines: 1 
 
          benchmark='1'
 
@@ -73,24 +79,24 @@ Reproduce
 
          if benchmark=='1':
             do_line_measurements=True
-            xstart=Lx/2+1e-9
-            ystart=Ly/2+1e-10
+            xstart=Lx/2
+            ystart=Ly/2
             zstart=0.01      #slightly above surface
-            xend=Lx/2+1e-9
-            yend=Ly/2+1e-10
+            xend=Lx/2
+            yend=Ly/2
             zend=2  #"zoomed"-data (i.e. close to surface)
             #zend=100  #regular setup
             line_nmeas=100
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ mkdir benchmark_1/results_zoom && mv log.txt *.vtu *.ascii benchmark_1/results_zoom
+         mkdir benchmarks/benchmark_1/results_zoom && mv log.txt *.vtu *.ascii benchmarks/benchmark_1/results_zoom
 
    3. Run regular setup & move files
 
@@ -102,36 +108,38 @@ Reproduce
 
          if benchmark=='1':
             do_line_measurements=True
-            xstart=Lx/2+1e-9  
-            ystart=Ly/2+1e-10
+            xstart=Lx/2 
+            ystart=Ly/2
             zstart=0.01      #slightly above surface
-            xend=Lx/2+1e-9
-            yend=Ly/2+1e-10
+            xend=Lx/2
+            yend=Ly/2
             #zend=2  #"zoomed"-data (i.e. close to surface)
             zend=100  #regular setup
             line_nmeas=100
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ mv log.txt *.vtu *.ascii benchmark_1/
+         mv log.txt *.vtu *.ascii benchmarks/benchmark_1/
 
    4. Go to directory & plot
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ cd benchmark_1
+         cd benchmarks/benchmark_1
 
-      .. code-block:: console
-         :caption: /main/benchmark_1$
-
-         $ gnuplot plot_script_B1.p
+      +---------------------------------------------+----------------------------------------------+
+      |.. code-block::                              |.. code-block::                               |
+      |   :caption: /main/benchmarks/benchmark_1/   |   :caption: /main/benchmarks/benchmark_1/    |
+      |                                             |                                              |   
+      |   gnuplot plot_script_B1.p                  |   python3 plot_script_B1.py                  |
+      +---------------------------------------------+----------------------------------------------+
 
 
 .. _B2:
@@ -147,8 +155,9 @@ Model setup
 .. _deformationsetups:
 .. figure:: figures/result_b2_frames_only_3.png
    :class: with-border
+   :scale: 50%
 
-   Visualization of different model szetups by cross sectional planes trough middle of each mesh, on the left the undeformed base mesh, in the middle deformation setup (1), on the right deformation setup (2). 
+   Visualization of different model setups by cross sectional planes trough middle of each mesh, on the left the undeformed base mesh, in the middle deformation setup (1), on the right deformation setup (2). 
 
 | To verify this, a domain of 10x10x10m, with an initial element size of 2x2x2m and :math:`\mathbf{M}= (0,0,7.5)`, was deformed in two ways:
 
@@ -162,12 +171,14 @@ Results
 .. _figureB2base:
 .. figure:: figures/result_b2_base_lines.png
    :class: with-border
+   :scale: 60%
 
    The magnetic field strength :math:`\mathbf{B}` on a plane :math:`1m` above the surface of a box with a spatial extent that is twice as large as the (undeformed) domain beneath. 
 
 .. _figureB2:
 .. figure:: figures/result_b2.png
-   :class: with-border
+   :scale: 80%
+
 
    Difference between :numref:`figureB2base` and results from the deformed domain setups. On the left the difference between deformation setup (1) and the base, on the right the difference between deformation setup (2) and the base. See model setup section.
 
@@ -185,6 +196,7 @@ Reproduce
          :caption: /main/MTE.py
          :linenos:
          :lineno-start: 24
+         :emphasize-lines: 1 
 
          benchmark='2a'
 
@@ -210,15 +222,15 @@ Reproduce
             dz=0 #base setup
             #dz=0.1 #amplitude random   
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block::
+         :caption: /main/
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ mkdir benchmark_2/d0 && mv log.txt *.vtu *.ascii benchmark_2/d0
+         mkdir benchmarks/benchmark_2/d0 && mv log.txt *.vtu *.ascii benchmarks/benchmark_2/d0
 
    3. Run deformation setup (1) & move files
 
@@ -242,15 +254,15 @@ Reproduce
             #dz=0 #base setup
             dz=0.1 #amplitude random
 
-   .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+            :caption: /main/
 
-         $ python3 MTE.py > log.txt   
+            python3 -u MTE.py | tee log.txt   
 
-   .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+            :caption: /main/
 
-         $ mkdir benchmark_2/d0_1 && mv log.txt *.vtu *.ascii benchmark_2/d0_1
+            mkdir benchmarks/benchmark_2/d0_1 && mv log.txt *.vtu *.ascii benchmarks/benchmark_2/d0_1
 
    4. In ``MTE.py``, modify benchmark attribution to ``2b``:
 
@@ -258,32 +270,40 @@ Reproduce
          :caption: /main/MTE.py
          :linenos:
          :lineno-start: 24
+         :emphasize-lines: 1       
 
          benchmark='2b'
 
    5. Run deformation setup (2) & move files
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ python3 MTE.py > log.txt
+         python3 -u MTE.py | tee log.txt
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ mkdir benchmark_2/d0_1_2_10_50 && mv log.txt *.vtu *.ascii benchmark_2/d0_1_2_10_50
+         mkdir benchmarks/benchmark_2/d0_1_2_10_50 && mv log.txt *.vtu *.ascii benchmarks/benchmark_2/d0_1_2_10_50
 
-   6. Go to directory & use paraview to visualize 
+   6. Go to directory & use paraview or plotting to visualize 
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ cd benchmark_2
+         cd benchmarks/benchmark_2
 
-      .. code-block:: console
-         :caption: /main/benchmark_2$
+      .. code-block:: 
+         :caption: /main/benchmarks/benchmark_2/
 
-         $ paraview --state=plot_result_b2_final.pvsm 
+         paraview --state=plot_result_b2_final.pvsm 
+      
+      +---------------------------------------------+----------------------------------------------+
+      |.. code-block::                              |.. code-block::                               |
+      |   :caption: /main/benchmarks/benchmark_2/   |   :caption: /main/benchmarks/benchmark_2/    |
+      |                                             |                                              |   
+      |   gnuplot plot_script_B2.p                  |   python3 plot_script_B2.py                  |
+      +---------------------------------------------+----------------------------------------------+
 
 Benchmark 3: a magnetized sphere 
 --------------------------------
@@ -304,13 +324,14 @@ Analytical solution
 .. _sphere_bench_setup:
 .. figure:: figures/Model_setup.png
    :class: with-border
+   :scale: 90%
 
    Visualization of the model setup, numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. Numbering of the computation points start at the top of the sphere and circle down in a counterclockwise fashion. 
 
 
 Model setup
 ^^^^^^^^^^^
-| The model setup was as follows, see :numref:`sphere_bench_setup`: A spherical inclusion similar to the first benchmark, but now with a radius of :math:`a=10m` was placed in a domain of 20x20x20m and :math:`\mathbf{M}= (0,0,7.5)`. Since a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements were anticipated to be necessary to produce adequate results. A Fibonacci spiral was used to uniformly distribute 101 computation points at :math:`0.25m` and :math:`0.5m` above the surface of a sphere with a domain resolution of either :math:`3` or :math:`6` elements per meter. 
+| The model setup was as follows, see :numref:`sphere_bench_setup`: A spherical inclusion similar to the first benchmark, but now with a radius of :math:`a=10m` was placed in a domain of 20x20x20m with a magnetization of :math:`\mathbf{M}= (0,0,7.5)` assigned only to elements within the spherical inclusion. Since a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements were anticipated to be necessary to produce adequate results. A Fibonacci spiral was used to uniformly distribute 101 computation points at :math:`0.25m` and :math:`0.5m` above the surface of a sphere with a domain resolution of either :math:`3` or :math:`6` elements per meter. 
 
 Results
 ^^^^^^^
@@ -319,6 +340,7 @@ Results
 .. _sphere_bench:
 .. figure:: figures/B3sphere_dif_mp_splitcase_all.png
    :class: with-border
+   :scale: 70%
 
    Difference between analytical solution and computed values for 100 difference computation points at either 0.25 or 0.5m above the surface of a sphere with a resolution of either :math:`3` or :math:`6` :math:`el/m`. 
 
@@ -334,6 +356,7 @@ Reproduce
          :caption: /main/MTE.py
          :linenos:
          :lineno-start: 24
+         :emphasize-lines: 1 
 
          benchmark='3'
 
@@ -343,7 +366,7 @@ Reproduce
          :caption: /main/MTE.py
          :linenos:
          :lineno-start: 137
-         :emphasize-lines: 5,17 
+         :emphasize-lines: 5,18 
 
          if benchmark=='3':
             Lx=20
@@ -366,15 +389,15 @@ Reproduce
             #radius_spiral=1.05*sphere_R
             npts_spiral=101 #keep odd
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ mkdir benchmark_3/0_25_above && mv log.txt *.vtu *.ascii benchmark_3/0_25_above
+         mkdir benchmarks/benchmark_3/0_25_above && mv log.txt *.vtu *.ascii benchmarks/benchmark_3/0_25_above
 
    3. Run 25cm above setup with double amount of elements & rename/move files 
 
@@ -382,7 +405,7 @@ Reproduce
          :caption: /main/MTE.py
          :linenos:
          :lineno-start: 137
-         :emphasize-lines: 5,6,17 
+         :emphasize-lines: 5,6,18 
 
          if benchmark=='3':
             Lx=20
@@ -405,15 +428,15 @@ Reproduce
             #radius_spiral=1.05*sphere_R
             npts_spiral=101 #keep odd
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ mkdir benchmark_3/0_25_2_above && mv log.txt *.vtu *.ascii benchmark_3/0_25_2_above
+         mkdir benchmarks/benchmark_3/0_25_2_above && mv log.txt *.vtu *.ascii benchmarks/benchmark_3/0_25_2_above
 
    4. Run 50cm above setup & rename/move files 
 
@@ -421,7 +444,7 @@ Reproduce
          :caption: /main/MTE.py
          :linenos:
          :lineno-start: 137
-         :emphasize-lines: 5,6,17,18 
+         :emphasize-lines: 5,6,18,19 
 
          if benchmark=='3':
             Lx=20
@@ -444,15 +467,15 @@ Reproduce
             radius_spiral=1.05*sphere_R #50 cm above surface sphere
             npts_spiral=101 #keep odd
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ mkdir benchmark_3/0_5_above && mv log.txt *.vtu *.ascii benchmark_3/0_5_above
+         mkdir benchmarks/benchmark_3/0_5_above && mv log.txt *.vtu *.ascii benchmarks/benchmark_3/0_5_above
 
    5. Run 50cm above setup with double amount of elements & rename/move files 
 
@@ -460,7 +483,7 @@ Reproduce
          :caption: /main/MTE.py
          :linenos:
          :lineno-start: 137
-         :emphasize-lines: 5,6,17,18 
+         :emphasize-lines: 5,6,18,19 
 
          if benchmark=='3':
             Lx=20
@@ -483,30 +506,131 @@ Reproduce
             radius_spiral=1.05*sphere_R #50 cm above surface sphere
             npts_spiral=101 #keep odd
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ python3 MTE.py > log.txt   
+         python3 -u MTE.py | tee log.txt   
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ mkdir benchmark_3/0_5_2_above && mv log.txt *.vtu *.ascii benchmark_3/0_5_2_above
+         mkdir benchmarks/benchmark_3/0_5_2_above && mv log.txt *.vtu *.ascii benchmarks/benchmark_3/0_5_2_above
 
 
    6. Go to directory & plot 
 
-      .. code-block:: console
-         :caption: /main$
+      .. code-block:: 
+         :caption: /main/
 
-         $ cd benchmark_3
+         cd benchmarks/benchmark_3
+      
+      +---------------------------------------------+----------------------------------------------+
+      |.. code-block::                              |.. code-block::                               |
+      |   :caption: /main/benchmarks/benchmark_3/   |   :caption: /main/benchmarks/benchmark_3/    |
+      |                                             |                                              |   
+      |   gnuplot plot_script_B3.p                  |   python3 plot_script_B3.py                  |
+      +---------------------------------------------+----------------------------------------------+
+   7. (OPTIONAL) Use paraview to visualize model setups 
 
-      .. code-block:: console
-         :caption: /main/benchmark_3$
+      .. code-block:: 
+         :caption: /main/benchmarks/benchmark_3/
 
-         $ gnuplot plot_script_B3.p
+         tee ./0_5_above/model_setup.pvsm ./0_5_2_above/model_setup.pvsm ./0_25_2_above/model_setup.pvsm ./0_25_above/model_setup.pvsm < ./model_setup.pvsm >/dev/null
+      
+      .. code-block:: 
+         :caption: /main/benchmarks/benchmark_3/
+
+         paraview --state=0_5_2_above/model_setup.pvsm
+      
+      .. code-block:: 
+      
+         paraview --state=0_5_above/model_setup.pvsm         
+      
+      .. code-block:: 
+      
+         paraview --state=0_25_above/model_setup.pvsm
+      
+      
+      .. code-block:: 
+      
+         paraview --state=0_25_2_above/model_setup.pvsm
 
 
 
-.. todo:: highlighting differnent colours, numbering
    
+
+Benchmark 4: a prismatic body
+-----------------------------
+
+Analytical solution
+^^^^^^^^^^^^^^^^^^^
+| In this benchmark, rather than relying on theoretically derived analytical solutions for specific scenarios, we will assess our model against the numerical outcomes of another study presenting a (similar) closed-form analytical solution for a homogeneous polyhedral magnetic target :cite:`Ren19`. The findings of this study have been corroborated against :cite:`Heath05` using a prismatic body model setup. It's essential to note that only gradient tensor component results were incorporated in the published findings. However, full access to the code and accompanying datasets was provided, (`github <https://github.com/renzhengyong-geo/Magnetic_homogeneous_polyhedron/tree/master/>`_), enabling us to perform the comparison for this numerical configuration.
+
+Model setup
+^^^^^^^^^^^
+| Our model setup was designed to mirror the configuration delineated by :cite:`Ren19`. Nevertheless, certain parameters were adjusted to align optimally with our coding framework.
+| The evaluations were conducted on an equilateral cuboid with side lengths  of :math:`L=10m`, centrally positioned at :math:`(0,0,-5 m)`.  The top face of this cuboid intersects the plane at a height of :math:`z=0m`. Each element within the cuboid was assigned a homogeneous magnetization of :math:`\mathbf{M}= (0,0,200)`. 21 observation points were equally distributed along a line on the top surface of the prism at :math:`z = 0 m`, with an x-coordinate of :math:`x = 6 m` and y-coordinates ranging from :math:`[-25:25]`.  
+| :cite:`Ren19`'s model setup section stated that the prism was discretized into eight tetrahedral elements. Contrarily, the code contained a division into just six elements. Given this disparity, our modeling approach segmented the domain into ten elements. Nonetheless, theoretical understanding posits that the resolution in this configuration is irrelevant, as shown in the :ref:`parameter section <parameters>`.
+
+| Another key distinction to note: the analytical solution proposed by :cite:`Ren19` was engineered to counteract numerical instabilities occurring when the observation point aligns with an element's edge. Our model does exhibit this instability (see :doc:`computational_approach`). To closely replicate their observation points, minor adjustments to the positioning of our study's observation points were done. 
+
+| It should be noted, that while this model setup does not necessitate modifications to the top or bottom surface (absence of topography), employing :func:`magnetostatics.compute_B_surface_integral_cuboid` would suffice. Nonetheless, to validate the proposed solution (see :func:`support.shift_observation_points_edge`) for additional singularities on diagonals of domain elements, function :func:`magnetostatics.compute_B_surface_integral_wtopo` was utilized. 
+
+Results
+^^^^^^^
+.. _B4:
+.. figure:: figures/B4.png
+   :scale: 65%
+
+   Comparison of magnetic field components :math:`\mathbf{B_x}`, :math:`\mathbf{B_y}`, :math:`\mathbf{B_z}` for the prismatic body. As observation site location were displaced from :cite:`Ren17`, the x-axis now refers to index relating to the observation point rather than a specific distance.     
+
+| :numref:`B4` shows a near-perfect alignment of the two numerical outputs, down to machine precision. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain's source edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in :cite:`Ren17`.
+
+Reproduce
+^^^^^^^^^
+.. collapse:: How to reproduce the results and figures
+
+   Please note basic setup in :ref:`installation`
+
+   1. In ``MTE.py``, modify benchmark attribution to ``4``:
+
+      .. code-block:: python
+         :caption: /main/MTE.py
+         :linenos:
+         :lineno-start: 24
+         :emphasize-lines: 1 
+
+         benchmark='4'
+
+   2. Run setup & rename/move files
+
+      .. code-block:: 
+         :caption: /main/
+
+         python3 -u MTE.py | tee log.txt   
+
+      .. code-block:: 
+         :caption: /main/
+
+         mv log.txt *.vtu *.ascii benchmarks/benchmark_4/
+
+
+   3. Go to directory & plot 
+
+      .. code-block:: 
+         :caption: /main/
+
+         cd benchmarks/benchmark_4
+      
+    
+      +---------------------------------------------+----------------------------------------------+
+      |.. code-block::                              |.. code-block::                               |
+      |   :caption: /main/benchmarks/benchmark_4/   |   :caption: /main/benchmarks/benchmark_4/    |
+      |                                             |                                              |   
+      |   gnuplot plot_script_B4.p                  |   python3 plot_script_B4.py                  |
+      +---------------------------------------------+----------------------------------------------+
+      
+      .. note::
+         The results are in :math:`nT`, instead of :math:`\mu T`.
+
+

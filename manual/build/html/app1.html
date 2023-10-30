@@ -1,94 +1,138 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Complete derivation of the equations &#8212; MTE 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete derivation of the equations &mdash; MTE 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Coordinate systems of different components" href="app2.html" />
     <link rel="prev" title="References" href="ref.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="app2.html" title="Coordinate systems of different components"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="ref.html" title="References"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Complete derivation of the equations</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html">
             
-  <div class="section" id="complete-derivation-of-the-equations">
-<h1>Complete derivation of the equations<a class="headerlink" href="#complete-derivation-of-the-equations" title="Permalink to this heading">¶</a></h1>
+              <img src="_static/Logo2r2.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governing_equations.html">Governing equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computational_approach.html">Computational approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Complete derivation of the equations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#uniformly-magnetized-sphere">Uniformly magnetized sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multipole-expansion">Multipole expansion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MTE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Complete derivation of the equations</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="complete-derivation-of-the-equations">
+<h1>Complete derivation of the equations<a class="headerlink" href="#complete-derivation-of-the-equations" title="Permalink to this heading"></a></h1>
 <div class="line-block">
-<div class="line">This is a summary of the complete derivation of the equations used in this study. These closely follow the derivations in <span id="id1">[<a class="reference internal" href="ref.html#id13" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>, <a class="reference internal" href="ref.html#id14" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>, <a class="reference internal" href="ref.html#id16" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span>, amongst other basic electromagnetic theory textbooks. Note that a trivial assumption for these derivations is considering the magnetization to be uniform within the object. From now on any use of the term “magnetization” will mean “uniform magnetization”.</div>
+<div class="line">This is a summary of the complete derivation of the equations used in this study. These closely follow the derivations in <span id="id1">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>, <a class="reference internal" href="ref.html#id17" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>, <a class="reference internal" href="ref.html#id19" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span>, amongst other basic electromagnetic theory textbooks. Note that a trivial assumption for these derivations is considering the magnetization to be uniform within the object. From now on any use of the term “magnetization” will mean “uniform magnetization”.</div>
 <div class="line">Firstly, we will derive some fundamental principals and equations of magnetostatics required for later derivations. Secondly, the derivation of the the equation for the Magnetic induction field <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> of a magnetized object. Lastly, we will derive the equation of a magnetized sphere.</div>
 <div class="line"><br /></div>
 <div class="line">The fundamental equations [SI units] of electromagnetism (Maxwell) state:</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-2-2">
-<span class="eqno">(8)<a class="headerlink" href="#equation-eq-2-2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq-2-2" title="Permalink to this equation"></a></span>\[\begin{equation}
     \nabla \cdot \mathbf{B}=0
 \end{equation}\]</div>
 <div class="math notranslate nohighlight" id="equation-nablaxh">
-<span class="eqno">(9)<a class="headerlink" href="#equation-nablaxh" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(9)<a class="headerlink" href="#equation-nablaxh" title="Permalink to this equation"></a></span>\[\begin{equation}
     \nabla\times\mathbf{H}=\mathbf{J}+\frac{\delta\mathbf{D}}{\delta t}
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">where <span class="math notranslate nohighlight">\(\mathbf{H}\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> is the magnetic field vector, <span class="math notranslate nohighlight">\(\mathbf{J}\)</span> <span class="math notranslate nohighlight">\([A/m^2]\)</span> is the electric current density, <span class="math notranslate nohighlight">\(\delta\mathbf{D}/\delta t\)</span> the electric displacement current density and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> <span class="math notranslate nohighlight">\([T]\)</span> is the magnetic induction or magnetic flux density. Eq. <a class="reference internal" href="#equation-eq-2-2">(8)</a> invites the introduction of magnetic vector potential <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> <span class="math notranslate nohighlight">\([Tm]\)</span> in magnetostatics, where (Coulomb Gauge used)</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-ba">
-<span class="eqno">(10)<a class="headerlink" href="#equation-eq-ba" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-ba" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{B} = \nabla \times \mathbf{A}
 \end{equation}\]</div>
 <div class="math notranslate nohighlight" id="equation-eq-4-2">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eq-4-2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(11)<a class="headerlink" href="#equation-eq-4-2" title="Permalink to this equation"></a></span>\[\begin{equation}
     \nabla \cdot \mathbf{A} = 0
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">In our situation, a permanent magnet, there is no electric contribution to the magnetic field, therefore</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-5-2">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eq-5-2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-5-2" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{J} = 0, \; \frac{\delta\mathbf{D}}{\delta t} = 0
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">Reducing <span class="math notranslate nohighlight">\(\mathbf{H}\)</span> to a irrational and thus conservative vector field.</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-curlh">
-<span class="eqno">(13)<a class="headerlink" href="#equation-curlh" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(13)<a class="headerlink" href="#equation-curlh" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{\nabla} \times \mathbf{H} = 0
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">resulting in</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-hu">
-<span class="eqno">(14)<a class="headerlink" href="#equation-hu" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(14)<a class="headerlink" href="#equation-hu" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{H} = -\nabla \psi
 \end{equation}\]</div>
 <div class="line-block">
@@ -96,7 +140,7 @@
 <div class="line">The relation between the magnetization induced inside a material and the external magnetic field produced are proportional and can now be defined as</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-7">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eq-7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-7" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{M}=\chi_{m}\mathbf{H}
 \end{equation}\]</div>
 <div class="line-block">
@@ -104,25 +148,26 @@
 <div class="line">The relationship between <span class="math notranslate nohighlight">\(\mathbf{M}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{H}\)</span> in this case is</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-8">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eq-8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(16)<a class="headerlink" href="#equation-eq-8" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{B}=\mu_{0}(\mathbf{H}+\mathbf{M})
 \end{equation}\]</div>
 <div class="line-block">
-<div class="line">where <span class="math notranslate nohighlight">\(\mu_{0}\)</span> is the permeability of free space.</div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line">First, the derivation of the equation for the Magnetic induction field <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> of a magnetized object.</div>
-<div class="line"><span class="math notranslate nohighlight">\(\mathbf{M}\)</span> <span class="math notranslate nohighlight">\(\mathit[Am^{-1}]\)</span>, the magnetization of a material, is equal to the magnetic dipole moment <span class="math notranslate nohighlight">\(\mathbf{m}\)</span>  per unit volume. This is defined as</div>
+<div class="line">where <span class="math notranslate nohighlight">\(\mu_{0}\)</span> is the permeability of free space. It is pertinent to note that <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is frequently termed the <em>magnetic field strength</em>, albeit theoretically inaccurately. This practice, prevalent in the field fo paleomagnetism, can be rationalized considering that in most paleomagnetic instances, the observation point is situated outside the magnetized body (<span class="math notranslate nohighlight">\(\mathbf{M}=0\)</span>), whereby <a class="reference internal" href="#equation-eq-8">(16)</a> simplifies to <span class="math notranslate nohighlight">\(\mathbf{B}=\mu_{0}\mathbf{H}\)</span> <span id="id2">[<a class="reference internal" href="ref.html#id20" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tau10</a>]</span>. Consequently, for the purposes of this study, <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> shall be denoted as the magnetic field strength.</div>
 </div>
+<p>makes sense if we consider that in most paleoamgnetic cases the observation point is located outside of the magnetized body (<span class="math notranslate nohighlight">\(\mathbf{M}=0\)</span>), so <a class="reference internal" href="#equation-eq-8">(16)</a> becomes <span class="math notranslate nohighlight">\(\mathbf{B}=\mu_{0}\mathbf{H}\)</span>.
+|
+|
+| First, the derivation of the equation for the magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> of a magnetized object.
+| <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> <span class="math notranslate nohighlight">\(\mathit[Am^{-1}]\)</span>, the magnetization of a material, is equal to the magnetic dipole moment <span class="math notranslate nohighlight">\(\mathbf{m}\)</span>  per unit volume. This is defined as</p>
 <div class="math notranslate nohighlight" id="equation-eq-6-2">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eq-6-2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(17)<a class="headerlink" href="#equation-eq-6-2" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{M}(x',y',z')  = \frac{\delta\mathbf{m}}{\delta v'} \hspace{5mm} \textrm{or} \hspace{5mm} \mathbf{m} = \iiint \mathbf{M} \; dv'
 \end{equation}\]</div>
 <div class="line-block">
-<div class="line">The magnetic vector potential due to a single dipole at large distances, i.e. outside the source and in a macroscopic setting is <span id="id2">[<a class="reference internal" href="ref.html#id14" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span></div>
+<div class="line">The magnetic vector potential due to a single dipole at large distances, i.e. outside the source and in a macroscopic setting is <span id="id3">[<a class="reference internal" href="ref.html#id17" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span></div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-9-2">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eq-9-2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(18)<a class="headerlink" href="#equation-eq-9-2" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{A}_{dipole}(r)=\frac{\mu_{0}}{4\pi}\frac{\mathbf{m}\times\mathbf{r}}{r^{3}}
 \end{equation}\]</div>
 <div class="line-block">
@@ -130,17 +175,17 @@
 <div class="line">To elaborate:</div>
 </div>
 <ul class="simple">
-<li><span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a function of <span class="math notranslate nohighlight">\((x,y,z)\)</span></li>
-<li><span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is a function of <span class="math notranslate nohighlight">\((x',y',z')\)</span></li>
-<li><span class="math notranslate nohighlight">\(\mathbf{R}= (x-x')\mathbf{\hat{x}} + (y-y')\mathbf{\hat{y}}+ (z-z')\mathbf{\hat{z}}\)</span></li>
-<li><span class="math notranslate nohighlight">\(dv'= dx' dy' dz'\)</span></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a function of <span class="math notranslate nohighlight">\((x,y,z)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is a function of <span class="math notranslate nohighlight">\((x',y',z')\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{R}= (x-x')\mathbf{\hat{x}} + (y-y')\mathbf{\hat{y}}+ (z-z')\mathbf{\hat{z}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dv'= dx' dy' dz'\)</span></p></li>
 </ul>
 <div class="line-block">
-<div class="line">Integration is done over primed coordinates; the divergence and curl are to be taken with respect to unprimed coordinates <span id="id3">[<a class="reference internal" href="ref.html#id14" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span>.</div>
+<div class="line">Integration is done over primed coordinates; the divergence and curl are to be taken with respect to unprimed coordinates <span id="id4">[<a class="reference internal" href="ref.html#id17" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Gri13</a>]</span>.</div>
 <div class="line">Now, with this setup substituting eq. <a class="reference internal" href="#equation-eq-6-2">(17)</a> in eq. <a class="reference internal" href="#equation-eq-9-2">(18)</a> results in</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-10-2">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eq-10-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{equation}
+<span class="eqno">(19)<a class="headerlink" href="#equation-eq-10-2" title="Permalink to this equation"></a></span>\[\begin{split}\begin{equation}
 \begin{split}
     \mathbf{A(r)}       &amp; = \frac{\mu_{0}}{4\pi}\int_{V}{\frac{\mathbf{M(r')}\times{\mathbf{R}}}{R^{3}}dv'} \\
     &amp; = \frac{\mu_{0}}{4\pi}\int_{V}{\frac{\mathbf{M(r')}\times{[\mathbf{r}-\mathbf{r'}]}}{\mathbf{\left|r-r'\right|}^{3}}dv'} \\
@@ -150,28 +195,28 @@
 <div class="line">Using the identity</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-i-1">
-<span class="eqno">(20)<a class="headerlink" href="#equation-i-1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(20)<a class="headerlink" href="#equation-i-1" title="Permalink to this equation"></a></span>\[\begin{equation}
     \nabla' \frac{1}{\mathbf{\left|r-r'\right|}} = \frac{\mathbf{r-r'}}{\mathbf{\left|r-r'\right|}^{3}}
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">Eq. <a class="reference internal" href="#equation-eq-10-2">(19)</a> becomes</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-10-2cont">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eq-10-2cont" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(21)<a class="headerlink" href="#equation-eq-10-2cont" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{A(r)}   = \frac{\mu_{0}}{4\pi}\int_{V}\mathbf{M(r')}\times \nabla'\frac{1}{\mathbf{\left|r-r'\right|}}dv'
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">Integration by parts using identity</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-ibpid">
-<span class="eqno">(22)<a class="headerlink" href="#equation-ibpid" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(22)<a class="headerlink" href="#equation-ibpid" title="Permalink to this equation"></a></span>\[\begin{equation}
     \nabla \times (\psi\mathbf{a}) = \psi \left(\nabla\times\mathbf{a}\right) + (\nabla\psi)\times\mathbf{a}
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">results in</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-intpart">
-<span class="eqno">(23)<a class="headerlink" href="#equation-eq-intpart" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{multline}
+<span class="eqno">(23)<a class="headerlink" href="#equation-eq-intpart" title="Permalink to this equation"></a></span>\[\begin{split}\begin{multline}
     \mathbf{A(r)}   = \frac{\mu_{0}}{4\pi}\int_{V}\frac{1}{\mathbf{\left|r-r'\right|}}\nabla'\times \mathbf{M(r')}dv' \\
     - \frac{\mu_{0}}{4\pi}\int_{V}\nabla'\times\frac{ \mathbf{M(r')}}{\mathbf{\left|r-r'\right|}} dv'
 \end{multline}\end{split}\]</div>
@@ -179,54 +224,54 @@
 <div class="line">using the divergence theorem for an arbitrary vector field <span class="math notranslate nohighlight">\(\mathbf{v(r)}\)</span> and a constant vector <span class="math notranslate nohighlight">\(\mathbf{c}\)</span>:</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-divergence">
-<span class="eqno">(24)<a class="headerlink" href="#equation-divergence" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{equation}
+<span class="eqno">(24)<a class="headerlink" href="#equation-divergence" title="Permalink to this equation"></a></span>\[\begin{split}\begin{equation}
     \int_{V}\nabla\cdot(\mathbf{v \times c})dv = \oint_{S}(\mathbf{v\times c})\cdot\mathbf{n}da \\
 \end{equation}\end{split}\]</div>
 <div class="line-block">
 <div class="line">where <span class="math notranslate nohighlight">\(\mathbf{n}\)</span> is the normal to the surface. Using product rules:</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-pr">
-<span class="eqno">(25)<a class="headerlink" href="#equation-pr" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(25)<a class="headerlink" href="#equation-pr" title="Permalink to this equation"></a></span>\[\begin{equation}
     \nabla\cdot(\mathbf{v \times c})= \mathbf{c}\cdot(\mathbf{\nabla\times v}) - \mathbf{v}\cdot(\mathbf{\nabla\times c}) = \mathbf{c}\cdot(\mathbf{\nabla\times v})
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">and</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-pr2">
-<span class="eqno">(26)<a class="headerlink" href="#equation-pr2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(26)<a class="headerlink" href="#equation-pr2" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{n}\cdot\left(\mathbf{v \times c}\right)= -\mathbf{c}\cdot\left(\mathbf{v \times n}\right)
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">Eq. <a class="reference internal" href="#equation-divergence">(24)</a> can be written as</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-div2">
-<span class="eqno">(27)<a class="headerlink" href="#equation-div2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(27)<a class="headerlink" href="#equation-div2" title="Permalink to this equation"></a></span>\[\begin{equation}
     \int_{V}\mathbf{c}\cdot\left(\nabla\times\mathbf{v}\right)dv = - \oint_{S}\mathbf{c}\cdot\left(\mathbf{v \times n}\right)da
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">since <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> is an arbitrary constant, the last equation yields:</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-div3">
-<span class="eqno">(28)<a class="headerlink" href="#equation-div3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(28)<a class="headerlink" href="#equation-div3" title="Permalink to this equation"></a></span>\[\begin{equation}
     \int_{V}(\nabla\times\mathbf{v})dv = - \oint_{S}(\mathbf{v \times n})da
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">Finally, rewriting eq. <a class="reference internal" href="#equation-eq-intpart">(23)</a> as</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-atrans">
-<span class="eqno">(29)<a class="headerlink" href="#equation-atrans" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(29)<a class="headerlink" href="#equation-atrans" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{A}(\mathbf{r}) =\frac{\mu_{0}}{4\pi}\int_V \frac{\nabla'\times\mathbf{M(r')}}{\mathbf{\left|r-r'\right|}}dv'+ \frac{\mu_{0}}{4\pi}\oint_S\frac{\mathbf{M(r')}\times{\mathbf{\hat{n}'}}}{\mathbf{\left|r-r'\right|}}ds'
 \end{equation}\]</div>
 <p>Using <span class="math notranslate nohighlight">\(\mathbf{B}=\nabla\times\mathbf{A}\)</span> (eq. <a class="reference internal" href="#equation-eq-ba">(10)</a>),  the vector identity in eq. <a class="reference internal" href="#equation-i-1">(20)</a> and</p>
 <div class="math notranslate nohighlight" id="equation-identity2">
-<span class="eqno">(30)<a class="headerlink" href="#equation-identity2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(30)<a class="headerlink" href="#equation-identity2" title="Permalink to this equation"></a></span>\[\begin{equation}
    \nabla\times\left(\mathbf{u \times v}\right) = \mathbf{u(\nabla\cdot v)} - \mathbf{v(\nabla\cdot u)} + \mathbf{(v\cdot\nabla)u} -  \mathbf{(u\cdot\nabla)v}
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">we come to</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-btrans-2">
-<span class="eqno">(31)<a class="headerlink" href="#equation-btrans-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{multline}
+<span class="eqno">(31)<a class="headerlink" href="#equation-btrans-2" title="Permalink to this equation"></a></span>\[\begin{split}\begin{multline}
    \mathbf{B(r)} =  \frac{\mu_{0}}{4\pi}\int_V \frac{(-\nabla'\cdot\mathbf{M(r')})\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}dv' \\
    + \frac{\mu_{0}}{4\pi}\oint_S \frac{\left(\mathbf{M(r')}\cdot\mathbf{\hat{n}}\right)\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}ds'
 \end{multline}\end{split}\]</div>
@@ -234,31 +279,33 @@
 <div class="line">Assuming uniform magnetization, <span class="math notranslate nohighlight">\(\nabla \cdot \mathbf{M} = 0\)</span>, reduces <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> in  eq. <a class="reference internal" href="#equation-btrans-2">(31)</a> to only the surface integral:</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-bafinal">
-<span class="eqno">(32)<a class="headerlink" href="#equation-bafinal" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(32)<a class="headerlink" href="#equation-bafinal" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{B_a}(r) = \frac{\mu_{0}}{4\pi}\oint_S \frac{\left(\mathbf{M(r')}\cdot\mathbf{\hat{n}}\right)\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}ds'
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">Finally, we can define the total magnetic field at a position <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> above the surface as</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-bsumfinal-2">
-<span class="eqno">(33)<a class="headerlink" href="#equation-bsumfinal-2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(33)<a class="headerlink" href="#equation-bsumfinal-2" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{B_t(r)} =  \mathbf{B_0} + \frac{\mu_{0}}{4\pi}\oint_S \frac{\left(\mathbf{M(r')}\cdot\mathbf{\hat{n}}\right)\mathbf{\left(r-r'\right)}}{\left|r-r'\right|^3}ds'
 \end{equation}\]</div>
-<div class="section" id="uniformly-magnetized-sphere">
-<h2>Uniformly magnetized sphere<a class="headerlink" href="#uniformly-magnetized-sphere" title="Permalink to this heading">¶</a></h2>
-<div class="figure align-default" id="id6">
+<section id="uniformly-magnetized-sphere">
+<h2>Uniformly magnetized sphere<a class="headerlink" href="#uniformly-magnetized-sphere" title="Permalink to this heading"></a></h2>
+<figure class="align-default" id="id7">
 <span id="sphere-si2"></span><img alt="_images/sf_image2.png" class="with-border" src="_images/sf_image2.png" />
-<p class="caption"><span class="caption-number">Figure 20 </span><span class="caption-text">The magnetized sphere (blue). <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the direction of <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>, <span class="math notranslate nohighlight">\(r[m]\)</span>  is the distance from the center of the sphere to the observation point <code class="docutils literal notranslate"><span class="pre">P</span></code>, <span class="math notranslate nohighlight">\(a [m]\)</span> is the radius of the sphere,  <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\hat{\theta}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\theta [^{\circ}]\)</span> is the angle between <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> increasing clockwise from <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figure 21 </span><span class="caption-text">The magnetized sphere (blue). <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the direction of <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>, <span class="math notranslate nohighlight">\(r[m]\)</span>  is the distance from the center of the sphere to the observation point <code class="docutils literal notranslate"><span class="pre">P</span></code>, <span class="math notranslate nohighlight">\(a [m]\)</span> is the radius of the sphere,  <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\hat{\theta}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\theta [^{\circ}]\)</span> is the angle between <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> increasing clockwise from <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span></span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <div class="line-block">
-<div class="line">This complete derivation is cited from <span id="id4">[<a class="reference internal" href="ref.html#id16" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span>.</div>
+<div class="line">This complete derivation is cited from <span id="id5">[<a class="reference internal" href="ref.html#id19" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span>.</div>
 <div class="line">For the derivation of the equation of the magnetic field <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>, outside a sphere of uniformly magnetized material we revisit <span class="math notranslate nohighlight">\(\mathbf{H}= -\nabla \psi\)</span>, eq. <a class="reference internal" href="#equation-hu">(14)</a>.</div>
 <div class="line">If situated outside of the magnetized sphere, <span class="math notranslate nohighlight">\(\mathbf{M}=0\)</span>, therefore, equation <a class="reference internal" href="#equation-eq-8">(16)</a> becomes <span class="math notranslate nohighlight">\(\mathbf{B}=\mu_0\mathbf{H}\)</span> outside the sphere.</div>
 <div class="line">The uniform magnetization results in <span class="math notranslate nohighlight">\(\nabla\cdot\mathbf{H}=0\)</span> and consequently <span class="math notranslate nohighlight">\(\nabla^2\psi^2=0\)</span> (Laplace’s equation). Hence, a solution of Laplace’s equation satisfying the boundary conditions is required.</div>
-<div class="line">If the coordinate system is chosen at the centre of the sphere and the direction of <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the polar direction (z-direction, <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>), the potential can be expanded in zonal harmonics. See <a class="reference internal" href="#sphere-si2"><span class="std std-numref">Figure 20</span></a>. Inside the material, <span class="math notranslate nohighlight">\(\psi_I\)</span>, and outside the material, <span class="math notranslate nohighlight">\(\psi_O\)</span>, are</div>
+<div class="line">If the coordinate system is chosen at the centre of the sphere and the direction of <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the polar direction (z-direction, <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>), the potential can be expanded in zonal harmonics. See <a class="reference internal" href="#sphere-si2"><span class="std std-numref">Figure 21</span></a>. Inside the material, <span class="math notranslate nohighlight">\(\psi_I\)</span>, and outside the material, <span class="math notranslate nohighlight">\(\psi_O\)</span>, are</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-u1u2">
-<span class="eqno">(34)<a class="headerlink" href="#equation-u1u2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{equation}
+<span class="eqno">(34)<a class="headerlink" href="#equation-u1u2" title="Permalink to this equation"></a></span>\[\begin{split}\begin{equation}
 \begin{split}
     &amp;  \psi_O(r,\theta) = \sum_{n=0}^{\infty} C_{1,n}r^{-1(n+1)}P_n(\theta) \\
     &amp; \psi_I(r,\theta) = \sum_{n=0}^{\infty} A_{2,n}r^{n}P_n(\theta)
@@ -268,17 +315,17 @@
 <div class="line">where <span class="math notranslate nohighlight">\(C_n\)</span> and <span class="math notranslate nohighlight">\(A_n\)</span> are constants derived from boundary conditions. The boundary conditions are if <span class="math notranslate nohighlight">\(r\rightarrow \inf\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B} \rightarrow \vec{0}\)</span>, and at <span class="math notranslate nohighlight">\(r=a\)</span>,</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-h0b0">
-<span class="eqno">(35)<a class="headerlink" href="#equation-h0b0" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{equation}
+<span class="eqno">(35)<a class="headerlink" href="#equation-h0b0" title="Permalink to this equation"></a></span>\[\begin{split}\begin{equation}
 \begin{split}
     &amp; H_{O\theta} = H_{I\theta} \\
     &amp; B_{Or} = B_{Ir}
 \end{split}
 \end{equation}\end{split}\]</div>
 <div class="line-block">
-<div class="line">resulting in (for derivation <span class="math notranslate nohighlight">\(C_n\)</span> and <span class="math notranslate nohighlight">\(A_n\)</span> see <span id="id5">[<a class="reference internal" href="ref.html#id16" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span>)</div>
+<div class="line">resulting in (for derivation <span class="math notranslate nohighlight">\(C_n\)</span> and <span class="math notranslate nohighlight">\(A_n\)</span> see <span id="id6">[<a class="reference internal" href="ref.html#id19" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">RM60</a>]</span>)</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-u1u2-2">
-<span class="eqno">(36)<a class="headerlink" href="#equation-u1u2-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{equation}
+<span class="eqno">(36)<a class="headerlink" href="#equation-u1u2-2" title="Permalink to this equation"></a></span>\[\begin{split}\begin{equation}
 \begin{split}
     &amp;  \psi_O(r,\theta) =\frac{1}{3}M\frac{a^3}{r^2}\cos{\theta} \\
     &amp; \psi_I(r,\theta) =\frac{1}{3}Mr\cos{\theta}
@@ -288,21 +335,21 @@
 <div class="line">using <span class="math notranslate nohighlight">\(\mathbf{B}=\mu_0\mathbf{H}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{H}= -\nabla \psi\)</span>, and we can define <span class="math notranslate nohighlight">\(\mathbf{B_a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B_t}\)</span> outside a uniformally magnetized sphere as</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-basphere-1">
-<span class="eqno">(37)<a class="headerlink" href="#equation-basphere-1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(37)<a class="headerlink" href="#equation-basphere-1" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{B_a(r)} =  \frac{\mu_{0}}{3}M\left(\frac{a^3}{r^3}\right) \left(2\mathbf{\hat{r}}\cos{\theta}+\mathbf{\hat{\theta}}\sin{\theta}\right)
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">and</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-bsumsphere-1">
-<span class="eqno">(38)<a class="headerlink" href="#equation-bsumsphere-1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<span class="eqno">(38)<a class="headerlink" href="#equation-bsumsphere-1" title="Permalink to this equation"></a></span>\[\begin{equation}
     \mathbf{B_t(r)} =  B_0\mathbf{\hat{k}} + \frac{\mu_{0}}{3}M\left(\frac{a^3}{r^3}\right) \left(2\mathbf{\hat{r}}\cos{\theta}+\mathbf{\hat{\theta}}\sin{\theta}\right)
 \end{equation}\]</div>
 <div class="line-block">
 <div class="line">where</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-unitv">
-<span class="eqno">(39)<a class="headerlink" href="#equation-unitv" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{equation}
+<span class="eqno">(39)<a class="headerlink" href="#equation-unitv" title="Permalink to this equation"></a></span>\[\begin{split}\begin{equation}
 \begin{split}
     &amp; \mathbf{\hat{r}} = \sin{\theta}\cos{\phi} \mathbf{\hat{i}} + \sin{\theta}\sin{\phi} \mathbf{\hat{j}} + \cos{\theta} \mathbf{\hat{k}} \\
     &amp; \mathbf{\hat{\theta}} = \cos{\theta}\cos{\phi}\mathbf{\hat{i}} + \cos{\theta}\sin{\phi}\mathbf{\hat{j}} - \sin{\theta}\mathbf{\hat{k}} \\
@@ -310,21 +357,21 @@
 \end{split}
 \end{equation}\end{split}\]</div>
 <div class="line-block">
-<div class="line">for definitions of variables and visualization, see <a class="reference internal" href="#sphere-si2"><span class="std std-numref">Figure 20</span></a>.</div>
+<div class="line">for definitions of variables and visualization, see <a class="reference internal" href="#sphere-si2"><span class="std std-numref">Figure 21</span></a>.</div>
 </div>
-</div>
-<div class="section" id="multipole-expansion">
-<h2>Multipole expansion<a class="headerlink" href="#multipole-expansion" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="multipole-expansion">
+<h2>Multipole expansion<a class="headerlink" href="#multipole-expansion" title="Permalink to this heading"></a></h2>
 <p>We assume that the <span class="math notranslate nohighlight">\(\left|\mathbf{r}'\right|\)</span> are all small compared to <span class="math notranslate nohighlight">\(|\mathbf{r}|\)</span> and Taylor expand <span class="math notranslate nohighlight">\(\left|\mathbf{r}-\mathbf{r}'\right|^{-1}\)</span> in powers of <span class="math notranslate nohighlight">\(\mathbf{r}'\)</span>,</p>
 <div class="math notranslate nohighlight" id="equation-mpe1">
-<span class="eqno">(40)<a class="headerlink" href="#equation-mpe1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{equation}
+<span class="eqno">(40)<a class="headerlink" href="#equation-mpe1" title="Permalink to this equation"></a></span>\[\begin{split}\begin{equation}
 \begin{aligned}
     \frac{1}{\left|\mathbf{r}-\mathbf{r}'\right|}=\frac{1}{r}+\left(-\mathbf{r}'\right) \cdot \nabla \frac{1}{r}+\frac{1}{2 !}\left(-\mathbf{r}'\right)\left(-\mathbf{r}'\right): \nabla \nabla \frac{1}{r} \\
     +\frac{1}{3 !}\left(-\mathbf{r}'\right)\left(-\mathbf{r}'\right)\left(-\mathbf{r}'\right) \vdots \nabla \nabla \nabla \frac{1}{r}+\cdots,
 \end{aligned}
 \end{equation}\end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-mpe2">
-<span class="eqno">(41)<a class="headerlink" href="#equation-mpe2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{equation}
+<span class="eqno">(41)<a class="headerlink" href="#equation-mpe2" title="Permalink to this equation"></a></span>\[\begin{split}\begin{equation}
 \begin{aligned}
     A(r)=\frac{I}{c}\left[\frac{1}{r} \oint d \ell+\frac{1}{r^{2}} \oint r^{\prime} \cos \theta d \ell\right.\\
     &amp;+\frac{1}{r^{3}} \oint r^{2}\left(\frac{3}{2} \cos ^{2} \theta-\frac{1}{2}\right) d \ell \\
@@ -332,80 +379,81 @@
     &amp;+\ldots]
 \end{aligned}
 \end{equation}\end{split}\]</div>
-</div>
-</div>
+</section>
+</section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/Logo2.png" alt="Logo"/>
-            </a></p>
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Complete derivation of the equations</a><ul>
-<li><a class="reference internal" href="#uniformly-magnetized-sphere">Uniformly magnetized sphere</a></li>
-<li><a class="reference internal" href="#multipole-expansion">Multipole expansion</a></li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ref.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="app2.html" class="btn btn-neutral float-right" title="Coordinate systems of different components" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Agnes.</p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="ref.html"
-                          title="previous chapter">References</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="app2.html"
-                          title="next chapter">Coordinate systems of different components</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/app1.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="app2.html" title="Coordinate systems of different components"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="ref.html" title="References"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">MTE 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Complete derivation of the equations</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, Agnes.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<style type="text/css">
+    .scrollToTop {
+        text-align: center;
+        font-weight: bold;
+        position: fixed;
+        bottom: 60px;
+        right: 40px;
+        display: none;
+    }
+</style>
+<a href="#" class="scrollToTop">Scroll To Top</a>
+<script type="text/javascript">
+$(document).ready(function() {
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    $('.scrollToTop').click(function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+});
+</script>
+<style>
+  /* Sidebar header (and topbar for mobile) */
+  .wy-side-nav-search, .wy-nav-top {
+    background: #3ae23a;
+  }
+  /* Sidebar */
+  .wy-nav-side {
+    background: #0c3303;
+  }
+</style>
+
+
+
+</body>
 </html>

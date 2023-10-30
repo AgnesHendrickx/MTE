@@ -2,6 +2,8 @@ loc1 = './north/250_250_20/measurements_line_plotfile.ascii'
 loc2 = './east/250_250_20/measurements_line_plotfile.ascii'
 loc3 = './south/250_250_20/measurements_line_plotfile.ascii'
 loc4 = './west/250_250_20/measurements_line_plotfile.ascii'
+
+
 loc5 = './north/250_250_20/measurements_path_refFieldIGRF.ascii'
 loc6 = './east/250_250_20/measurements_path_refFieldIGRF.ascii'
 loc7 = './south/250_250_20/measurements_path_refFieldIGRF.ascii'
