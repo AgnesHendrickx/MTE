@@ -214,8 +214,8 @@ inclination and declination into file named: <code class="docutils literal notra
 <dt class="sig sig-object py" id="support.is_point_near_diagonal">
 <span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">is_point_near_diagonal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#is_point_near_diagonal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.is_point_near_diagonal" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
-<div class="line">This function checks if a point (x, y) is near to either of the two diagonals of a rectangle with sides of length Lx and Ly. </div>
-<div class="line">Distance units are irrelevant but must be consistent. </div>
+<div class="line">This function checks if a point (x, y) is near to either of the two diagonals of a rectangle with sides of length Lx and Ly.</div>
+<div class="line">Distance units are irrelevant but must be consistent.</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -241,13 +241,13 @@ inclination and declination into file named: <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">shift_observation_points_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nely</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ym</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#shift_observation_points_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.shift_observation_points_edge" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
 <div class="line">The original subroutine of <span id="id2">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>, was initially designed exclusively for use with the faces of a polyhedron. In contrast, our model s subdivides the top and bottom of the hexahedron elements into four triangles, see <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a>. This introduces additional singularities, and thus spatial issues, if the observation point <code class="docutils literal notranslate"><span class="pre">p</span></code> lies on the diagonal of the top or bottom face of an element.</div>
-<div class="line">This function adjusts observation points positioned near the diagonal of additional triangles on the top (or bottom) of a hexahedron cell. </div>
+<div class="line">This function adjusts observation points positioned near the diagonal of additional triangles on the top (or bottom) of a hexahedron cell.</div>
 <div class="line">This function uses <a class="reference internal" href="#support.is_point_near_diagonal" title="support.is_point_near_diagonal"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.is_point_near_diagonal()</span></code></a>, passing the length of an element in the x- and y-direction, and the x- and y- coordinates of each observation point with the x-coordinate and y-coordinate of each node on the top surface (see nnz-1) subtracted. This ensures testing of proximity to the diagonals of all elements. The function is designed to stop after first modification, as within macroscopic purposes we do not expect an observation point to be shifted to another diagonal. Afterwards, it states any modification within the “message”.</div>
 <div class="line">Both x- and y-coordinates are shifted using a random value between -1 and 1 times the artificial distance (factor).</div>
-<div class="line">This spatial problem isn’t restricted to the domain bounds. While generating an artificial distance for singularities within the main calculation function (<a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.facmag()</span></code></a>) similar to the solution of <span id="id3">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>, <a class="reference internal" href="ref.html#id26" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span> for edge alignment, would be preferred. The problem emerges from our decision to utilize the <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.facmag()</span></code></a> in this particular manner (by subdividing the top and bottom into additional triangles). Since this setup is invoked via an external function, and because it falls outside the scope of the function’s original intention (to handle planes as polyhedron sides), we have opted to create this external function as well. Furthermore, there are several setups that do not require subdivision, and subsequently use the <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a>, hence shifting there could only potentially introduce inaccuracies. This is avoided by the introduction of this function, only called for in case function <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a> is employed, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>,:doc:<cite>flanksim</cite>,:doc:<cite>etna</cite>. </div>
+<div class="line">This spatial problem isn’t restricted to the domain bounds. While generating an artificial distance for singularities within the main calculation function (<a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.facmag()</span></code></a>) similar to the solution of <span id="id3">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>, <a class="reference internal" href="ref.html#id26" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span> for edge alignment, would be preferred. The problem emerges from our decision to utilize the <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.facmag()</span></code></a> in this particular manner (by subdividing the top and bottom into additional triangles). Since this setup is invoked via an external function, and because it falls outside the scope of the function’s original intention (to handle planes as polyhedron sides), we have opted to create this external function as well. Furthermore, there are several setups that do not require subdivision, and subsequently use the <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a>, hence shifting there could only potentially introduce inaccuracies. This is avoided by the introduction of this function, only called for in case function <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a> is employed, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>,:doc:<cite>flanksim</cite>,:doc:<cite>etna</cite>.</div>
 </div>
 <div class="line-block">
-<div class="line">Benchmarks have established that the epsilon should be at least of a factor <strong>1e-8</strong> or larger. </div>
+<div class="line">Benchmarks have established that the epsilon should be at least of a factor <strong>1e-8</strong> or larger.</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -448,9 +448,9 @@ inclination and declination into file named: <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#plane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.plane" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
 <div class="line">Function plane computes the intersection (x,y,z) of a plane and a perpendicular line.</div>
-<div class="line">The plane is defined by three points (x1,y1,z1), (x2,y2,z2), and (x3,y3,z3), in facmag the (first 3) polygon corners are passed. The line passes through (x0,y0,z0), in facmag the observation point is passed. </div>
-<div class="line">Computation is done by a transformation and inverse transformation of coordinates systems. It defines three vectors N0, N2 and N3 in the process. N0 = vector from point 1 (x1,y1,z1) to point 0 (x0,y0,z0). N2 = vector from point 1 (x1,y1,z1) to point 2 (x2,y2,z2). N3 = vector from point 1 (x1,y1,z1) to point 3 (x3,y3,z3). </div>
-<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id4">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
+<div class="line">The plane is defined by three points (x1,y1,z1), (x2,y2,z2), and (x3,y3,z3), in facmag the (first 3) polygon corners are passed. The line passes through (x0,y0,z0), in facmag the observation point is passed.</div>
+<div class="line">Computation is done by a transformation and inverse transformation of coordinates systems. It defines three vectors N0, N2 and N3 in the process. N0 = vector from point 1 (x1,y1,z1) to point 0 (x0,y0,z0). N2 = vector from point 1 (x1,y1,z1) to point 2 (x2,y2,z2). N3 = vector from point 1 (x1,y1,z1) to point 3 (x3,y3,z3).</div>
+<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id4">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -487,7 +487,7 @@ inclination and declination into file named: <code class="docutils literal notra
 <dd><div class="line-block">
 <div class="line">Function LINE determines the intersection (x,y,z) of two lines.  First line is defined by points (x1,y1,z1) and (x2,y2,z2).</div>
 <div class="line">Second line is perpendicular to the first and passes through point (x0,y0,z0).Distance between (x,y,z) and (x0,y0,z0) is returned as r. Computation is done by a transformation of coordinate systems, and defining two vectors T0 and T2 in the process. T0 = vector from point 1 (x1,y1,z1) to point 0 (x0,y0,z0). T2 = vector from point 1 (x1,y1,z1) to point 2 (x2,y2,z2).</div>
-<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id5">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>. </div>
+<div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id5">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -521,8 +521,8 @@ inclination and declination into file named: <code class="docutils literal notra
 <dt class="sig sig-object py" id="magnetostatics.facmag">
 <span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">facmag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#facmag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.facmag" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
-<div class="line">Function FACMAG computes the magnetic field strength <strong>B</strong> due to surface charge on a polygonal face. Repeated calls on each face of a polyhedron builds the field of said arbitrary polyhedron, algorithm from <span id="id6">[<a class="reference internal" href="ref.html#id26" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span>. </div>
-<div class="line">The polygon is limited to 10 corners (n). Requires functions <code class="xref py py-func docutils literal notranslate"><span class="pre">rot()</span></code>, <a class="reference internal" href="#magnetostatics.line" title="magnetostatics.line"><code class="xref py py-func docutils literal notranslate"><span class="pre">line()</span></code></a>, <a class="reference internal" href="#magnetostatics.plane" title="magnetostatics.plane"><code class="xref py py-func docutils literal notranslate"><span class="pre">plane()</span></code></a> as define above. Distance units are irrelevant but must be consistent. </div>
+<div class="line">Function FACMAG computes the magnetic field strength <strong>B</strong> due to surface charge on a polygonal face. Repeated calls on each face of a polyhedron builds the field of said arbitrary polyhedron, algorithm from <span id="id6">[<a class="reference internal" href="ref.html#id26" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bot63</a>]</span>.</div>
+<div class="line">The polygon is limited to 10 corners (n). Requires functions <code class="xref py py-func docutils literal notranslate"><span class="pre">rot()</span></code>, <a class="reference internal" href="#magnetostatics.line" title="magnetostatics.line"><code class="xref py py-func docutils literal notranslate"><span class="pre">line()</span></code></a>, <a class="reference internal" href="#magnetostatics.plane" title="magnetostatics.plane"><code class="xref py py-func docutils literal notranslate"><span class="pre">plane()</span></code></a> as define above. Distance units are irrelevant but must be consistent.</div>
 <div class="line">A spatial problem, see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>, is mitigated due to the introduction of a small (1e-20) artificial distance for <code class="docutils literal notranslate"><span class="pre">p</span></code>, in case <code class="docutils literal notranslate"><span class="pre">p</span></code> lies on a plane aligning with an edge of an element.</div>
 <div class="line">Directly translated from ANSI-standard FORTRAN 77 subroutines from <span id="id7">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
 </div>
@@ -553,84 +553,33 @@ inclination and declination into file named: <code class="docutils literal notra
 <dl class="py function">
 <dt class="sig sig-object py" id="magnetostatics.compute_B_surface_integral_cuboid">
 <span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">compute_B_surface_integral_cuboid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#compute_B_surface_integral_cuboid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.compute_B_surface_integral_cuboid" title="Permalink to this definition"></a></dt>
-<dd><blockquote>
-<div><div class="line-block">
-<div class="line">This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a cuboid element employing <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a> function on each face. Here again the magnetization vector (Mx,My,Mz) is assumed to be constant inside the element. It uses the <code class="docutils literal notranslate"><span class="pre">icon</span></code> array to identify the x-,y-,z-coordinates associated with each node, before calling <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a>, to compute the total magnetic field strength for each face.  </div>
+<dd><div class="line-block">
+<div class="line">This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a cuboid element employing <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a> function on each face. Here again the magnetization vector (Mx,My,Mz) is assumed to be constant inside the element. It uses the <code class="docutils literal notranslate"><span class="pre">icon</span></code> array to identify the x-,y-,z-coordinates associated with each node, before calling <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a>, to compute the total magnetic field strength for each face.</div>
+<div class="line">Magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id8">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
+<div class="line">Distance units are irrelevant but must be consistent.  For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>.</div>
 </div>
-</div></blockquote>
-<div class="line-block">
-<div class="line">Magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id8">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.
-| Distance units are irrelevant but must be consistent.  For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>.</div>
-</div>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">param xmeas<span class="colon">:</span></dt>
-<dd class="field-odd"><p>x coordinate of observation point.</p>
-</dd>
-<dt class="field-even">type xmeas<span class="colon">:</span></dt>
-<dd class="field-even"><p>scalar(float)</p>
-</dd>
-<dt class="field-odd">param ymeas<span class="colon">:</span></dt>
-<dd class="field-odd"><p>y coordinate of observation point.</p>
-</dd>
-<dt class="field-even">type ymeas<span class="colon">:</span></dt>
-<dd class="field-even"><p>scalar(float)</p>
-</dd>
-<dt class="field-odd">param zmeas<span class="colon">:</span></dt>
-<dd class="field-odd"><p>z coordinate of observation point.</p>
-</dd>
-<dt class="field-even">type zmeas<span class="colon">:</span></dt>
-<dd class="field-even"><p>scalar(float)</p>
-</dd>
-<dt class="field-odd">param x<span class="colon">:</span></dt>
-<dd class="field-odd"><p>1D array(NV) containing x coordinate of each node.</p>
-</dd>
-<dt class="field-even">type x<span class="colon">:</span></dt>
-<dd class="field-even"><p>array_like(float)</p>
-</dd>
-<dt class="field-odd">param y<span class="colon">:</span></dt>
-<dd class="field-odd"><p>1D array(NV) containing y coordinate of each node.</p>
-</dd>
-<dt class="field-even">type y<span class="colon">:</span></dt>
-<dd class="field-even"><p>array_like(float)</p>
-</dd>
-<dt class="field-odd">param z<span class="colon">:</span></dt>
-<dd class="field-odd"><p>1D array(NV) containing z coordinate of each node.</p>
-</dd>
-<dt class="field-even">type z<span class="colon">:</span></dt>
-<dd class="field-even"><p>array_like(float)</p>
-</dd>
-<dt class="field-odd">param icon<span class="colon">:</span></dt>
-<dd class="field-odd"><p>1D array(8), containing connectivity, marking nodes that define an element, see code.</p>
-</dd>
-<dt class="field-even">type icon<span class="colon">:</span></dt>
-<dd class="field-even"><p>array_like(int)</p>
-</dd>
-<dt class="field-odd">param Mx<span class="colon">:</span></dt>
-<dd class="field-odd"><p>x component magnetization [A/m] of the element.</p>
-</dd>
-<dt class="field-even">type Mx<span class="colon">:</span></dt>
-<dd class="field-even"><p>scalar(float)</p>
-</dd>
-<dt class="field-odd">param My<span class="colon">:</span></dt>
-<dd class="field-odd"><p>y component magnetization [A/m] of the element.</p>
-</dd>
-<dt class="field-even">type My<span class="colon">:</span></dt>
-<dd class="field-even"><p>scalar(float)</p>
-</dd>
-<dt class="field-odd">param Mz<span class="colon">:</span></dt>
-<dd class="field-odd"><p>z component magnetization [A/m] of the element.</p>
-</dd>
-<dt class="field-even">type Mz<span class="colon">:</span></dt>
-<dd class="field-even"><p>scalar(float)</p>
-</dd>
-<dt class="field-odd">return<span class="colon">:</span></dt>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at each point computed by surface integral method for a cuboid element.</p></li>
+<li><p><strong>xmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x coordinate of observation point.</p></li>
+<li><p><strong>ymeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y coordinate of observation point.</p></li>
+<li><p><strong>zmeas</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z coordinate of observation point.</p></li>
+<li><p><strong>x</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing x coordinate of each node.</p></li>
+<li><p><strong>y</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing y coordinate of each node.</p></li>
+<li><p><strong>z</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 1D array(NV) containing z coordinate of each node.</p></li>
+<li><p><strong>icon</strong> (<em>array_like</em><em>(</em><em>int</em><em>)</em>) – 1D array(8), containing connectivity, marking nodes that define an element, see code.</p></li>
+<li><p><strong>Mx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – x component magnetization [A/m] of the element.</p></li>
+<li><p><strong>My</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – y component magnetization [A/m] of the element.</p></li>
+<li><p><strong>Mz</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – z component magnetization [A/m] of the element.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>B_si</strong> <em>(array_like(float))</em> - 1D array(3) containing 3 components (0=x;1=y;2=z) of the magnetic field strength in [T] at each point computed by surface integral method for a cuboid element.</p></li>
+</ul>
+</p>
+</dd>
 </dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
@@ -638,10 +587,10 @@ inclination and declination into file named: <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">compute_B_surface_integral_wtopo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#compute_B_surface_integral_wtopo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.compute_B_surface_integral_wtopo" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
 <div class="line">This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a hexahedron element which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar.</div>
-<div class="line">In light thereof we subdivide the top and bottom faces into four triangles. This feature is needed in the case topography is prescribed at the top (or bottom) of the domain and the vertical position of the nodes are modified. </div>
-<div class="line">It uses the <code class="docutils literal notranslate"><span class="pre">icon</span></code> array to identify the x-,y-,z-coordinates associated with each node, before calling <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a>, to compute the total magnetic field strength for each face and triangle. </div>
+<div class="line">In light thereof we subdivide the top and bottom faces into four triangles. This feature is needed in the case topography is prescribed at the top (or bottom) of the domain and the vertical position of the nodes are modified.</div>
+<div class="line">It uses the <code class="docutils literal notranslate"><span class="pre">icon</span></code> array to identify the x-,y-,z-coordinates associated with each node, before calling <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a>, to compute the total magnetic field strength for each face and triangle.</div>
 <div class="line">Magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id9">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</div>
-<div class="line">Distance units are irrelevant but must be consistent. For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>. </div>
+<div class="line">Distance units are irrelevant but must be consistent. For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>.</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -671,9 +620,9 @@ inclination and declination into file named: <code class="docutils literal notra
 <dt class="sig sig-object py" id="magnetostatics.compute_B_surface_integral_wtopo_noise">
 <span class="sig-prename descclassname"><span class="pre">magnetostatics.</span></span><span class="sig-name descname"><span class="pre">compute_B_surface_integral_wtopo_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/magnetostatics.html#compute_B_surface_integral_wtopo_noise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#magnetostatics.compute_B_surface_integral_wtopo_noise" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
-<div class="line">This function computes the magnetic field produced by a hexahedron element which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar, and are therefor subdivided into four triangles. </div>
-<div class="line">Numbering of nodes is same as previous function. The noise is added to the extra node on the top/bottom surface. </div>
-<div class="line">Note that when computation are caried out and noise is added to this middle point, it could be that the observation point is then location within the domain, but we do not correct for it nor test it. So, this situation must be avoided during setup of any testing employing this function. </div>
+<div class="line">This function computes the magnetic field produced by a hexahedron element which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar, and are therefor subdivided into four triangles.</div>
+<div class="line">Numbering of nodes is same as previous function. The noise is added to the extra node on the top/bottom surface.</div>
+<div class="line">Note that when computation are caried out and noise is added to this middle point, it could be that the observation point is then location within the domain, but we do not correct for it nor test it. So, this situation must be avoided during setup of any testing employing this function.</div>
 <div class="line">Distance units are irrelevant but must be consistent.</div>
 </div>
 <dl class="field-list simple">
@@ -722,7 +671,7 @@ inclination and declination into file named: <code class="docutils literal notra
 <dd class="field-even"><ul>
 <li><p><strong>rDEM</strong> - for all sites except site 3: either <code class="docutils literal notranslate"><span class="pre">2</span></code> meter or <code class="docutils literal notranslate"><span class="pre">5</span></code> meter, for site 3, only <code class="docutils literal notranslate"><span class="pre">2</span></code> meter available.</p></li>
 <li><dl>
-<dt><strong>sDEM</strong> - different for most sites/rDEM combinations. </dt><dd><table class="docutils align-default">
+<dt><strong>sDEM</strong> - different for most sites/rDEM combinations.</dt><dd><table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>site</p></th>
 <th class="head"><p>rDEM</p></th>
@@ -948,9 +897,6 @@ inclination and declination into file named: <code class="docutils literal notra
 <li><p><strong>IGRFx</strong> <em>(scalar(float))</em> - x-component of the IGRF (global reference field) in Tesla.</p></li>
 <li><p><strong>IGRFy</strong> <em>(scalar(float))</em> - y-component of the IGRF (global reference field) in Tesla.</p></li>
 <li><p><strong>IGRFz</strong> <em>(scalar(float))</em> - z-component of the IGRF (global reference field) in Tesla.</p></li>
-<li><p><strong>Brefx</strong> <em>(scalar(float))</em> - x-component of Bref, the average of all measurements from :cite`Meyer23` at this site, (local reference field) in Tesla.</p></li>
-<li><p><strong>Brefy</strong> <em>(scalar(float))</em> - y-component of Bref, the average of all measurements from :cite`Meyer23` at this site, (local reference field) in Tesla.</p></li>
-<li><p><strong>Brefz</strong> <em>(scalar(float))</em> - z-component of Bref, the average of all measurements from :cite`Meyer23` at this site, (local reference field) in Tesla.</p></li>
 </ul>
 </p>
 </dd>
