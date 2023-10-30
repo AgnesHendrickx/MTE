@@ -91,64 +91,63 @@
 <h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h1>
 <section id="installation">
 <span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
-<div class="line-block">
-<div class="line">To use MTE code, clone from <a class="reference external" href="https://github.com/AgnesHendrickx/MTE/">github</a>.</div>
-<div class="line">Make sure to have python3, paraview, matplotlib and/or gnuplot installed and updated.</div>
-</div>
+<p>To use the MTE code, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Clone from <a class="reference external" href="https://github.com/AgnesHendrickx/MTE/">github</a>.</p></li>
+<li><p>Ensure that you have the following dependencies installed and up to date: python3, paraview, matplotlib and/or gnuplot.</p></li>
+</ol>
 </section>
 <section id="general-outline-hierarchy-of-code">
 <h2>General outline (hierarchy) of code<a class="headerlink" href="#general-outline-hierarchy-of-code" title="Permalink to this heading"></a></h2>
-<p>The main body of code is called <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, here one can change model setup for different benchmarks, modify meshing, etc.
-It calls upon three modules composed of various functions:</p>
+<div class="line-block">
+<div class="line">The main body of the code is in <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, where you can configure the model setup for various benchmarks and modify meshing, among other tasks. It relies on three modules that consist of various functions:</div>
+</div>
 <ol class="arabic simple">
-<li><p>The computational module <code class="docutils literal notranslate"><span class="pre">magnetostatics.py</span></code>, containing mostly translation of original Fortran77 code from <span id="id2">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</p></li>
-<li><p>The visualization module <code class="docutils literal notranslate"><span class="pre">tools.py</span></code>, containing functions to produce vtu files.</p></li>
-<li><p>The support module <code class="docutils literal notranslate"><span class="pre">support.py</span></code>, containing several functions related to specific model setups.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">magnetostatics.py</span></code>: This module mainly involves the translation of the original Fortran77 code from <span id="id2">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tools.py</span></code>: This module contains functions to generate vtu files for visualization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">support.py</span></code>: This module houses several functions related to specific model setups.</p></li>
 </ol>
-<p>Furthermore, two other (optional) modules are available only for the Mount Etna case study, where the field sites of <span id="id3">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span> are reproduced:</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">set_measurement_parameters</span> <span class="pre">import.py</span></code>, which contains one function (see <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a>) that returns DEM, site and path specific values like <code class="docutils literal notranslate"><span class="pre">pathfile</span></code>, number of points, IGRF, and more, see <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a>, from input.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">etna.py</span></code>, where one defines the input parameters, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>, to run different options to reproduce field paths, and calling <code class="docutils literal notranslate"><span class="pre">set_measurement_parameters</span> <span class="pre">import.py</span></code></p></li>
-</ol>
-<p>Lastly, there are two scripts that automatically modify <code class="docutils literal notranslate"><span class="pre">etna.py</span></code>, <code class="docutils literal notranslate"><span class="pre">script_etna_full.sh</span></code>, and <code class="docutils literal notranslate"><span class="pre">script_etna.sh</span></code>, see <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a> for more information.</p>
-<p>Please see each respective section for specific usage of the code: <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, <a class="reference internal" href="flanksim.html"><span class="doc">Synthetic topopography: flank simulations</span></a>, <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> and <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</p>
+<div class="line-block">
+<div class="line">The script <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> performs a straightforward task: it executes the <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code> code, generating output both in the terminal and writing it in a file named <code class="docutils literal notranslate"><span class="pre">log.txt</span></code>.</div>
+<div class="line">Additionally, specific model setups have exclusive modules and (run) scripts for their , please see respective sections for specific usage of the code: <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, <a class="reference internal" href="flanksim.html"><span class="doc">Synthetic topopography: flank simulations</span></a>, <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> and <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</div>
+</div>
 </section>
 <section id="reproducing-results">
 <h2>Reproducing results<a class="headerlink" href="#reproducing-results" title="Permalink to this heading"></a></h2>
 <div class="line-block">
-<div class="line">Throughout this documentation, we provide a stepwise approach to reproducing the results. The steps can be found in collapsible subsections at the end of a respective section. Within each step, you’ll find one or more code blocks detailing the required commands or changes for that specific step.</div>
-<div class="line">Code blocks are preceded by captions that specify the location or context of the provided code. This caption might refer to a particular file in the codebase, such as:</div>
+<div class="line">Throughout this documentation, we provide a stepwise approach to reproduce the results. These steps can be found in collapsible subsections at the end of each respective section. Each step will contain one or more code blocks detailing the required commands or changes.</div>
+<div class="line">Code blocks are preceded by captions that specify the location or context of the provided code. This caption might refer to a particular file in the MTE library, such as:</div>
 </div>
 <div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="o">....................</span>
+<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">1</span>
 </pre></div>
 </div></div>
 <div class="line-block">
 <div class="line">In such cases, the line numbers in the code block correspond directly to the line numbers in the specified file. Changes or additions are highlighted for ease of reference.</div>
 </div>
 <div class="line-block">
-<div class="line">Alternatively, the caption might indicate a terminal command executed within a certain directory:</div>
+<div class="line">Alternatively, the caption might indicate a terminal (or Spyder console) command executed within a certain directory:</div>
 </div>
 <div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span><span class="o">....................</span>
+<div class="highlight"><div class="highlight"><pre><span></span>
 </pre></div>
 </div></div>
 <div class="line-block">
-<div class="line">Regarding data visualization, we supply scripts for two different plotting tools: gnuplot and matplotlib. While both scripts are designed to generate similar outputs, it’s worth noting that gnuplot was our primary tool for this project. As such, the plots it produces are considered the most accurate visual representation of our data. When encountering two code blocks placed side by side, this denotes the flexibility to opt for your preferred plotting tool:</div>
+<div class="line">Regarding data visualization, we supply scripts for two different plotting tools: gnuplot and matplotlib. While both scripts are designed to generate similar outputs, it is worth noting that gnuplot was our primary tool for this project. As such, the plots it produces are considered the most accurate visual representation of our data. When encountering two code blocks placed side by side, this denotes the flexibility to use your preferred plotting tool:</div>
 </div>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/benchmark_1/</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span><span class="o">....................</span>
+<div class="highlight"><div class="highlight"><pre><span></span>
 </pre></div>
 </div></div>
 </td>
 <td><div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/benchmark_1/</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span><span class="o">....................</span>
+<div class="highlight"><div class="highlight"><pre><span></span>
 </pre></div>
 </div></div>
 </td>
@@ -160,16 +159,16 @@ It calls upon three modules composed of various functions:</p>
 </div>
 <div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span><span class="o">....................</span>
+<div class="highlight"><div class="highlight"><pre><span></span>
 </pre></div>
 </div></div>
-<div class="highlight"><div class="highlight"><pre><span></span><span class="o">....................</span>
+<div class="highlight"><div class="highlight"><pre><span></span>
 </pre></div>
 </div><div class="line-block">
-<div class="line">Please make sure to read any notes, as they highlight important steps different from the standard procedures.</div>
+<div class="line">Please make sure to read any notes, as they highlight important steps that may be different from the standard procedures.</div>
 </div>
 <div class="line-block">
-<div class="line">Any modification to the code and accompanying data not mentioned within these steps might produce unverified results. Should you make such alterations, please meticulously reviews all annotations in the code and consult the <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a> documentation.</div>
+<div class="line">Any modifications to the code and accompanying data not mentioned within these steps might produce unverified results. Should you make such alterations, please meticulously reviews all comments in the code and consult the <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a> documentation.</div>
 </div>
 </section>
 </section>
