@@ -486,8 +486,8 @@ for i in range(0, nnx):
             if (benchmark == '-1' or benchmark == '5') and remove_zerotopo:
                xb[counter] = i * Lx / float(nelx)
                yb[counter] = j * Ly / float(nely)
-               zb[counter] = k * Lz / float(nelz) - Lz + Lz / 2
-               #zb[counter] = k * Lz / float(nelz) - Lz
+               #zb[counter] = k * Lz / float(nelz) - Lz + Lz / 2
+               zb[counter] = k * Lz / float(nelz) - Lz
             if i != 0 and j != 0 and k != 0 and i != nnx - 1 and j != nny - 1 and k != nnz - 1 and (benchmark == '2a' or benchmark == '2b'):
                z[counter] += random.uniform(-1, +1) * dz
             counter += 1
@@ -916,8 +916,8 @@ if do_line_measurements:
           B_th[0,i], B_th[1,i], B_th[2,i] = BxB4[i] * 1e-9, ByB4[i] * 1e-9, BzB4[i] * 1e-9
        elif benchmark == '5':
           if remove_zerotopo:
-             #zb_meas[i] = zm
-             zb_meas[i] = zm + Lz / 2
+             zb_meas[i] = zm
+             #zb_meas[i] = zm + Lz / 2
 
           # shift observation points for flank simulations
           zm += topography(xm - Lx / 2, ym - Ly / 2, A, wavelength, cos_dir, sin_dir, slopex, slopey)
