@@ -21,6 +21,8 @@
 
 # Ignore results that contain untested or unauthorized data 
 /path_results/
+/flanksim_parameters/
+/zero_topo/
 /tests/
 **/other
 
