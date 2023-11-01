@@ -15,7 +15,7 @@ Code on `github <https://github.com/AgnesHendrickx/MTE/>`_
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contents
 
    usage
    governing_equations
@@ -42,13 +42,5 @@ Reproduction
 ------------
 For most sections, a stepwise method to reproduce the presented results is given. These are located in collapsible sections at the end of each subsection. Please make sure to read the :doc:`usage` section beforehand.
 
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`search`
 
 .. todolist::

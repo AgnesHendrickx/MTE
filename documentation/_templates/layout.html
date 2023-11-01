@@ -1,38 +1,43 @@
 {% extends "!layout.html" %} {%- block footer %}
 <style type="text/css">
-    .scrollToTop {
-        text-align: center;
-        font-weight: bold;
-        position: fixed;
-        bottom: 60px;
-        right: 40px;
-        display: none;
-    }
+  .scrollToTop {
+    text-align: center;
+    font-weight: bold;
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+    display: none;
+  }
 </style>
 <a href="#" class="scrollToTop">Scroll To Top</a>
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function () {
     //Check to see if the window is top if not then display button
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 200) {
-            $('.scrollToTop').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-        }
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 200) {
+        $(".scrollToTop").fadeIn();
+      } else {
+        $(".scrollToTop").fadeOut();
+      }
     });
 
     //Click event to scroll to top
-    $('.scrollToTop').click(function() {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
-        return false;
+    $(".scrollToTop").click(function () {
+      $("html, body").animate(
+        {
+          scrollTop: 0,
+        },
+        500,
+      );
+      return false;
     });
-});
+  });
 </script>
+
 <style>
   /* Sidebar header (and topbar for mobile) */
-  .wy-side-nav-search, .wy-nav-top {
+  .wy-side-nav-search,
+  .wy-nav-top {
     background: #3ae23a;
   }
   /* Sidebar */
@@ -40,6 +45,13 @@ $(document).ready(function() {
     background: #0c3303;
   }
 </style>
+{% endblock %}
+
+{% block menu %}
+   {{ super() }}
+   <ul>
+        <li class="toctree-l1"><a href= "{{pathto('genindex.html', 1)}}"><strong>Index</strong></a></li>
+   </ul>
 
 {% endblock %}
 

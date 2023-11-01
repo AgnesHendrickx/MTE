@@ -14,9 +14,9 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -43,7 +43,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+   
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="governing_equations.html">Governing equations</a></li>
@@ -57,6 +58,11 @@
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
+
+   <ul>
+        <li class="toctree-l1"><a href= "genindex.html"><strong>Index</strong></a></li>
+   </ul>
+
 
         </div>
       </div>
@@ -82,7 +88,7 @@
            <div itemprop="articleBody">
              
   <section id="welcome-to-mte-s-documentation">
-<h1>Welcome to MTE’s documentation!<a class="headerlink" href="#welcome-to-mte-s-documentation" title="Permalink to this heading"></a></h1>
+<h1>Welcome to MTE’s documentation!<a class="headerlink" href="#welcome-to-mte-s-documentation" title="Link to this heading"></a></h1>
 <p><strong>MTE</strong> is a Python library written to compute the magnetic field just above (~1m) topography, prescribed by an equation or a DEM.
 Code on <a class="reference external" href="https://github.com/AgnesHendrickx/MTE/">github</a></p>
 <div class="admonition note">
@@ -94,7 +100,7 @@ Code on <a class="reference external" href="https://github.com/AgnesHendrickx/MT
 <p>make the list next to the toctree?</p>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#installation">Installation</a></li>
@@ -149,19 +155,11 @@ Code on <a class="reference external" href="https://github.com/AgnesHendrickx/MT
 <div class="line">We will demonstrate not only the results but also the methodology for reproducing them.</div>
 <div class="line">In the section <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> we present a case for a setup using synthetic topography.</div>
 <div class="line">A simplified setup of flanksim is used for optimizing <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> of the model setup like mesh resolution, extent of the domain, etc.</div>
-<div class="line">Lastly, we outline the final <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a> of reproducing field values from <span id="id2">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">MdG23</a>]</span>, again, presenting both results and reproduction methods.</div>
+<div class="line">Lastly, we outline the final <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a> of reproducing field values from <span id="id2">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span>, again, presenting both results and reproduction methods.</div>
 </div>
 <section id="reproduction">
-<h2>Reproduction<a class="headerlink" href="#reproduction" title="Permalink to this heading"></a></h2>
+<h2>Reproduction<a class="headerlink" href="#reproduction" title="Link to this heading"></a></h2>
 <p>For most sections, a stepwise method to reproduce the presented results is given. These are located in collapsible sections at the end of each subsection. Please make sure to read the <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> section beforehand.</p>
-</section>
-</section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
 <div class="admonition-todo admonition">
 <p class="admonition-title">Todo</p>
 <p>Fix figure (add points and python)</p>
@@ -177,6 +175,7 @@ Code on <a class="reference external" href="https://github.com/AgnesHendrickx/MT
 <p>make the list next to the toctree?</p>
 </div>
 <p class="todo-source">(The <a class="reference internal" href="#id1"><em>original entry</em></a> is located in /home/agnes/MTE/main/documentation/index.rst, line 14.)</p>
+</section>
 </section>
 
 
@@ -208,39 +207,44 @@ Code on <a class="reference external" href="https://github.com/AgnesHendrickx/MT
       });
   </script>
 <style type="text/css">
-    .scrollToTop {
-        text-align: center;
-        font-weight: bold;
-        position: fixed;
-        bottom: 60px;
-        right: 40px;
-        display: none;
-    }
+  .scrollToTop {
+    text-align: center;
+    font-weight: bold;
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+    display: none;
+  }
 </style>
 <a href="#" class="scrollToTop">Scroll To Top</a>
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function () {
     //Check to see if the window is top if not then display button
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 200) {
-            $('.scrollToTop').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-        }
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 200) {
+        $(".scrollToTop").fadeIn();
+      } else {
+        $(".scrollToTop").fadeOut();
+      }
     });
 
     //Click event to scroll to top
-    $('.scrollToTop').click(function() {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
-        return false;
+    $(".scrollToTop").click(function () {
+      $("html, body").animate(
+        {
+          scrollTop: 0,
+        },
+        500,
+      );
+      return false;
     });
-});
+  });
 </script>
+
 <style>
   /* Sidebar header (and topbar for mobile) */
-  .wy-side-nav-search, .wy-nav-top {
+  .wy-side-nav-search,
+  .wy-nav-top {
     background: #3ae23a;
   }
   /* Sidebar */
@@ -248,7 +252,6 @@ $(document).ready(function() {
     background: #0c3303;
   }
 </style>
-
 
 
 </body>

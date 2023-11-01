@@ -26,7 +26,7 @@ release = '0.1'
 numfig = True
 #html4_writer = True
 
-numfig_format={'figure': 'Figure %s'}
+numfig_format={'figure': '      Figure %s'}
 
 
 extensions = [
@@ -44,6 +44,10 @@ bibtex_bibfiles= ['references.bib']
 templates_path = ['_templates']
 exclude_patterns = []
 
+bibtex_reference_style = 'author_year'
+#bibtex_reference_style = 'super'
+
+#bibtex_default_style = 'plain'
 
 
 # -- Options for HTML output -------------------------------------------------

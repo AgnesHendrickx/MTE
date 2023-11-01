@@ -14,6 +14,9 @@ Support
 
 .. autofunction:: support.shift_observation_points_edge
 
+.. autofunction:: support.read_header
+
+
 
 Visualization
 -------------

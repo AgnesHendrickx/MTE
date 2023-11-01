@@ -285,7 +285,7 @@ def read_header(topo_file):
     | These values are stored in dictionary {}.
     | This function works optimally when the header is in a standardized ASCII format.
 
-    :param topo_file: the opened "opofile", containing the possible header to be read in. (opened, with read statement)
+    :param topo_file: the opened (with read statement) "topofile", containing the possible header to be read in.
     :type topo_file: string
 
     :return:

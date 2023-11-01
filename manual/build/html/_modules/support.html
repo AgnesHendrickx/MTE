@@ -13,9 +13,9 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -41,7 +41,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+   
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../governing_equations.html">Governing equations</a></li>
@@ -55,6 +56,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../app1.html">Complete derivation of the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app2.html">Coordinate systems of different components</a></li>
 </ul>
+
+   <ul>
+        <li class="toctree-l1"><a href= "../genindex.html"><strong>Index</strong></a></li>
+   </ul>
+
 
         </div>
       </div>
@@ -89,7 +95,9 @@
 <span class="c1"># this function adds reference field to measurements and computes Pmag Int,Inc,Dec</span>
 
 
-<div class="viewcode-block" id="add_referencefield"><a class="viewcode-back" href="../functions.html#support.add_referencefield">[docs]</a><span class="k">def</span> <span class="nf">add_referencefield</span><span class="p">(</span><span class="n">B0_name</span><span class="p">,</span> <span class="n">npath</span><span class="p">,</span> <span class="n">dmeas</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">B_si</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">):</span>
+<div class="viewcode-block" id="add_referencefield">
+<a class="viewcode-back" href="../functions.html#support.add_referencefield">[docs]</a>
+<span class="k">def</span> <span class="nf">add_referencefield</span><span class="p">(</span><span class="n">B0_name</span><span class="p">,</span> <span class="n">npath</span><span class="p">,</span> <span class="n">dmeas</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">B_si</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns total computed magnetic field, intensity, inclination and declination</span>
 <span class="sd">    at all points on a path by</span>
@@ -147,11 +155,14 @@
                                                       <span class="n">In_siB0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">Ic_siB0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">Dc_siB0</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
     <span class="k">return</span> <span class="n">B_siB0</span><span class="p">,</span> <span class="n">In_siB0</span><span class="p">,</span> <span class="n">Ic_siB0</span><span class="p">,</span> <span class="n">Dc_siB0</span></div>
 
+
 <span class="c1">###################################################################################################</span>
 <span class="c1"># this function returns a topography value at each point x,y passed as argument</span>
 
 
-<div class="viewcode-block" id="topography"><a class="viewcode-back" href="../functions.html#support.topography">[docs]</a><span class="k">def</span> <span class="nf">topography</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">llambda</span><span class="p">,</span> <span class="n">cos_dir</span><span class="p">,</span> <span class="n">sin_dir</span><span class="p">,</span> <span class="n">slopex</span><span class="p">,</span> <span class="n">slopey</span><span class="p">):</span>
+<div class="viewcode-block" id="topography">
+<a class="viewcode-back" href="../functions.html#support.topography">[docs]</a>
+<span class="k">def</span> <span class="nf">topography</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">llambda</span><span class="p">,</span> <span class="n">cos_dir</span><span class="p">,</span> <span class="n">sin_dir</span><span class="p">,</span> <span class="n">slopex</span><span class="p">,</span> <span class="n">slopey</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns topography (height) value at each point defined by x,y coordinates passed.</span>
 
@@ -184,11 +195,14 @@
     <span class="k">return</span> <span class="n">pert1</span> <span class="o">+</span> <span class="n">pert2</span></div>
 
 
+
 <span class="c1">###################################################################################################</span>
 <span class="c1"># returns analytical solution (vector B)</span>
 
 
-<div class="viewcode-block" id="compute_analytical_solution"><a class="viewcode-back" href="../functions.html#support.compute_analytical_solution">[docs]</a><span class="k">def</span> <span class="nf">compute_analytical_solution</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">Mx</span><span class="p">,</span> <span class="n">My</span><span class="p">,</span> <span class="n">Mz</span><span class="p">,</span> <span class="n">xcenter</span><span class="p">,</span> <span class="n">ycenter</span><span class="p">,</span> <span class="n">zcenter</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">):</span>
+<div class="viewcode-block" id="compute_analytical_solution">
+<a class="viewcode-back" href="../functions.html#support.compute_analytical_solution">[docs]</a>
+<span class="k">def</span> <span class="nf">compute_analytical_solution</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">Mx</span><span class="p">,</span> <span class="n">My</span><span class="p">,</span> <span class="n">Mz</span><span class="p">,</span> <span class="n">xcenter</span><span class="p">,</span> <span class="n">ycenter</span><span class="p">,</span> <span class="n">zcenter</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns analytical solution, see :doc:`benchmarks`, of the components of the magnetic field for each benchmark.</span>
 
@@ -253,10 +267,13 @@
        <span class="n">Bz</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">*</span> <span class="n">Mz</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">ruz</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">+</span> <span class="n">thuz</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Bx</span><span class="p">,</span><span class="n">By</span><span class="p">,</span><span class="n">Bz</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span></div>
+
 <span class="c1"># returns analytical solution (vector B)</span>
 
 
-<div class="viewcode-block" id="is_point_near_diagonal"><a class="viewcode-back" href="../functions.html#support.is_point_near_diagonal">[docs]</a><span class="k">def</span> <span class="nf">is_point_near_diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+<div class="viewcode-block" id="is_point_near_diagonal">
+<a class="viewcode-back" href="../functions.html#support.is_point_near_diagonal">[docs]</a>
+<span class="k">def</span> <span class="nf">is_point_near_diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    | This function checks if a point (x, y) is near to either of the two diagonals of a rectangle with sides of length Lx and Ly.</span>
 <span class="sd">    | Distance units are irrelevant but must be consistent.</span>
@@ -297,7 +314,10 @@
     <span class="k">return</span> <span class="n">d1</span> <span class="o">&lt;</span> <span class="n">eps</span> <span class="ow">or</span> <span class="n">d2</span> <span class="o">&lt;</span> <span class="n">eps</span></div>
 
 
-<div class="viewcode-block" id="shift_observation_points_edge"><a class="viewcode-back" href="../functions.html#support.shift_observation_points_edge">[docs]</a><span class="k">def</span> <span class="nf">shift_observation_points_edge</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span><span class="p">,</span> <span class="n">xm</span><span class="p">,</span> <span class="n">ym</span><span class="p">):</span>
+
+<div class="viewcode-block" id="shift_observation_points_edge">
+<a class="viewcode-back" href="../functions.html#support.shift_observation_points_edge">[docs]</a>
+<span class="k">def</span> <span class="nf">shift_observation_points_edge</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span><span class="p">,</span> <span class="n">xm</span><span class="p">,</span> <span class="n">ym</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    | The original subroutine of :cite:`BLAKELY`, was initially designed exclusively for use with the faces of a polyhedron. In contrast, our model s subdivides the top and bottom of the hexahedron elements into four triangles, see :func:`magnetostatics.compute_B_surface_integral_wtopo`. This introduces additional singularities, and thus spatial issues, if the observation point ``p`` lies on the diagonal of the top or bottom face of an element.</span>
 <span class="sd">    | This function adjusts observation points positioned near the diagonal of additional triangles on the top (or bottom) of a hexahedron cell.</span>
@@ -362,13 +382,16 @@
 
     <span class="k">return</span> <span class="n">xm</span><span class="p">,</span> <span class="n">ym</span><span class="p">,</span> <span class="n">message</span></div>
 
+
+<div class="viewcode-block" id="read_header">
+<a class="viewcode-back" href="../functions.html#support.read_header">[docs]</a>
 <span class="k">def</span> <span class="nf">read_header</span><span class="p">(</span><span class="n">topo_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    | This function checks if a DEM file has a header, and if so, reads in the values.</span>
 <span class="sd">    | These values are stored in dictionary {}.</span>
 <span class="sd">    | This function works optimally when the header is in a standardized ASCII format.</span>
 
-<span class="sd">    :param topo_file: the opened &quot;opofile&quot;, containing the possible header to be read in. (opened, with read statement)</span>
+<span class="sd">    :param topo_file: the opened (with read statement) &quot;topofile&quot;, containing the possible header to be read in.</span>
 <span class="sd">    :type topo_file: string</span>
 
 <span class="sd">    :return:</span>
@@ -413,7 +436,8 @@
 
     <span class="c1"># If reached here, either no header was present or it was incomplete</span>
     <span class="n">topo_file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">initial_position</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{}</span></div>
+
 </pre></div>
 
            </div>
@@ -442,39 +466,44 @@
       });
   </script>
 <style type="text/css">
-    .scrollToTop {
-        text-align: center;
-        font-weight: bold;
-        position: fixed;
-        bottom: 60px;
-        right: 40px;
-        display: none;
-    }
+  .scrollToTop {
+    text-align: center;
+    font-weight: bold;
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+    display: none;
+  }
 </style>
 <a href="#" class="scrollToTop">Scroll To Top</a>
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function () {
     //Check to see if the window is top if not then display button
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 200) {
-            $('.scrollToTop').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-        }
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 200) {
+        $(".scrollToTop").fadeIn();
+      } else {
+        $(".scrollToTop").fadeOut();
+      }
     });
 
     //Click event to scroll to top
-    $('.scrollToTop').click(function() {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
-        return false;
+    $(".scrollToTop").click(function () {
+      $("html, body").animate(
+        {
+          scrollTop: 0,
+        },
+        500,
+      );
+      return false;
     });
-});
+  });
 </script>
+
 <style>
   /* Sidebar header (and topbar for mobile) */
-  .wy-side-nav-search, .wy-nav-top {
+  .wy-side-nav-search,
+  .wy-nav-top {
     background: #3ae23a;
   }
   /* Sidebar */
@@ -482,7 +511,6 @@ $(document).ready(function() {
     background: #0c3303;
   }
 </style>
-
 
 
 </body>
