@@ -14,9 +14,9 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -44,7 +44,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+   
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
@@ -63,6 +64,11 @@
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
+
+   <ul>
+        <li class="toctree-l1"><a href= "genindex.html"><strong>Index</strong></a></li>
+   </ul>
+
 
         </div>
       </div>
@@ -88,52 +94,60 @@
            <div itemprop="articleBody">
              
   <section id="usage">
-<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h1>
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
 <section id="installation">
-<span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
-<p>To use the MTE code, follow these steps:</p>
+<span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">To use the MTE code, follow these steps:</div>
+</div>
 <ol class="arabic simple">
 <li><p>Clone from <a class="reference external" href="https://github.com/AgnesHendrickx/MTE/">github</a>.</p></li>
 <li><p>Ensure that you have the following dependencies installed and up to date: python3, paraview, matplotlib and/or gnuplot.</p></li>
 </ol>
 </section>
 <section id="general-outline-hierarchy-of-code">
-<h2>General outline (hierarchy) of code<a class="headerlink" href="#general-outline-hierarchy-of-code" title="Permalink to this heading"></a></h2>
+<h2>General outline (hierarchy) of code<a class="headerlink" href="#general-outline-hierarchy-of-code" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line">The main body of the code is in <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, where you can configure the model setup for various benchmarks and modify meshing, among other tasks. It relies on three modules that consist of various functions:</div>
 </div>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">magnetostatics.py</span></code>: This module mainly involves the translation of the original Fortran77 code from <span id="id2">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Bla95</a>]</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">magnetostatics.py</span></code>: This module mainly involves the translation of the original Fortran77 code from <span id="id2">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>]</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tools.py</span></code>: This module contains functions to generate vtu files for visualization.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">support.py</span></code>: This module houses several functions related to specific model setups.</p></li>
 </ol>
 <div class="line-block">
 <div class="line">The script <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> performs a straightforward task: it executes the <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code> code, generating output both in the terminal and writing it in a file named <code class="docutils literal notranslate"><span class="pre">log.txt</span></code>.</div>
-<div class="line">Additionally, specific model setups have exclusive modules and (run) scripts for their , please see respective sections for specific usage of the code: <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, <a class="reference internal" href="flanksim.html"><span class="doc">Synthetic topopography: flank simulations</span></a>, <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> and <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</div>
+<div class="line">Additionally, several specific model setups have exclusive modules and (run) scripts, please see respective sections for specific usage of the code: <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, <a class="reference internal" href="flanksim.html"><span class="doc">Synthetic topopography: flank simulations</span></a>, <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> and <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>.</div>
 </div>
 </section>
 <section id="reproducing-results">
-<h2>Reproducing results<a class="headerlink" href="#reproducing-results" title="Permalink to this heading"></a></h2>
+<h2>Reproducing results<a class="headerlink" href="#reproducing-results" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line">Throughout this documentation, we provide a stepwise approach to reproduce the results. These steps can be found in collapsible subsections at the end of each respective section. Each step will contain one or more code blocks detailing the required commands or changes.</div>
 <div class="line">Code blocks are preceded by captions that specify the location or context of the provided code. This caption might refer to a particular file in the MTE library, such as:</div>
 </div>
 <div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span><span class="linenos">1</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>
 </pre></div>
-</div></div>
+</div>
+</div>
 <div class="line-block">
 <div class="line">In such cases, the line numbers in the code block correspond directly to the line numbers in the specified file. Changes or additions are highlighted for ease of reference.</div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the lines of code relevant to the step are located in an if statement, the if statement will be stated as the first line in a codeblock (for clarification). However, there might be several lines of code not included in the snippet between this if statement and the relevant code section. Hence, the line numbering in this snippet can not be fully correct. We have made sure the line numbering is always correct on the section of code containing the (highlighted) lines that need to be changed. Consequently, the line number of the if statement might in some cases be incorrect.</p>
+</div>
 <div class="line-block">
-<div class="line">Alternatively, the caption might indicate a terminal (or Spyder console) command executed within a certain directory:</div>
+<div class="line">Alternatively, the caption might indicate a terminal (or Spyder console <a class="footnote-reference brackets" href="#id4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>) command executed within a certain directory:</div>
 </div>
 <div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
-</div></div>
+</div>
+</div>
 <div class="line-block">
 <div class="line">Regarding data visualization, we supply scripts for two different plotting tools: gnuplot and matplotlib. While both scripts are designed to generate similar outputs, it is worth noting that gnuplot was our primary tool for this project. As such, the plots it produces are considered the most accurate visual representation of our data. When encountering two code blocks placed side by side, this denotes the flexibility to use your preferred plotting tool:</div>
 </div>
@@ -141,15 +155,17 @@
 <tbody>
 <tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/benchmark_1/</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
-</div></div>
+</div>
+</div>
 </td>
 <td><div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/benchmark_1/</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
-</div></div>
+</div>
+</div>
 </td>
 </tr>
 </tbody>
@@ -159,17 +175,26 @@
 </div>
 <div class="literal-block-wrapper docutils container">
 <div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight"><div class="highlight"><pre><span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
-</div></div>
-<div class="highlight"><div class="highlight"><pre><span></span>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
-</div><div class="line-block">
+</div>
+<div class="line-block">
 <div class="line">Please make sure to read any notes, as they highlight important steps that may be different from the standard procedures.</div>
 </div>
 <div class="line-block">
 <div class="line">Any modifications to the code and accompanying data not mentioned within these steps might produce unverified results. Should you make such alterations, please meticulously reviews all comments in the code and consult the <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a> documentation.</div>
 </div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
+<p>If you are using Spyder, make sure to add the <a class="reference external" href="https://docs.spyder-ide.org/current/plugins/terminal.html/">Spyder-terminal</a> plugin.</p>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -203,39 +228,44 @@
       });
   </script>
 <style type="text/css">
-    .scrollToTop {
-        text-align: center;
-        font-weight: bold;
-        position: fixed;
-        bottom: 60px;
-        right: 40px;
-        display: none;
-    }
+  .scrollToTop {
+    text-align: center;
+    font-weight: bold;
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+    display: none;
+  }
 </style>
 <a href="#" class="scrollToTop">Scroll To Top</a>
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function () {
     //Check to see if the window is top if not then display button
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 200) {
-            $('.scrollToTop').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-        }
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 200) {
+        $(".scrollToTop").fadeIn();
+      } else {
+        $(".scrollToTop").fadeOut();
+      }
     });
 
     //Click event to scroll to top
-    $('.scrollToTop').click(function() {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
-        return false;
+    $(".scrollToTop").click(function () {
+      $("html, body").animate(
+        {
+          scrollTop: 0,
+        },
+        500,
+      );
+      return false;
     });
-});
+  });
 </script>
+
 <style>
   /* Sidebar header (and topbar for mobile) */
-  .wy-side-nav-search, .wy-nav-top {
+  .wy-side-nav-search,
+  .wy-nav-top {
     background: #3ae23a;
   }
   /* Sidebar */
@@ -243,7 +273,6 @@ $(document).ready(function() {
     background: #0c3303;
   }
 </style>
-
 
 
 </body>

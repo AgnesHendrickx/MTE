@@ -13,9 +13,9 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -41,7 +41,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+   
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="governing_equations.html">Governing equations</a></li>
@@ -55,6 +56,11 @@
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
+
+   <ul>
+        <li class="toctree-l1"><a href= "#"><strong>Index</strong></a></li>
+   </ul>
+
 
         </div>
       </div>
@@ -90,6 +96,7 @@
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  
@@ -172,6 +179,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="functions.html#support.read_header">read_header() (in module support)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -220,39 +235,44 @@
       });
   </script>
 <style type="text/css">
-    .scrollToTop {
-        text-align: center;
-        font-weight: bold;
-        position: fixed;
-        bottom: 60px;
-        right: 40px;
-        display: none;
-    }
+  .scrollToTop {
+    text-align: center;
+    font-weight: bold;
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+    display: none;
+  }
 </style>
 <a href="#" class="scrollToTop">Scroll To Top</a>
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function () {
     //Check to see if the window is top if not then display button
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 200) {
-            $('.scrollToTop').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-        }
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 200) {
+        $(".scrollToTop").fadeIn();
+      } else {
+        $(".scrollToTop").fadeOut();
+      }
     });
 
     //Click event to scroll to top
-    $('.scrollToTop').click(function() {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
-        return false;
+    $(".scrollToTop").click(function () {
+      $("html, body").animate(
+        {
+          scrollTop: 0,
+        },
+        500,
+      );
+      return false;
     });
-});
+  });
 </script>
+
 <style>
   /* Sidebar header (and topbar for mobile) */
-  .wy-side-nav-search, .wy-nav-top {
+  .wy-side-nav-search,
+  .wy-nav-top {
     background: #3ae23a;
   }
   /* Sidebar */
@@ -260,7 +280,6 @@ $(document).ready(function() {
     background: #0c3303;
   }
 </style>
-
 
 
 </body>

@@ -30,10 +30,10 @@ compute_vi = False
 ## ONLY BENCHMARK = -1 (DEM) & BENCHMARK = 5 (FLANKSIM) ##
 flat_bottom = True  # If True, a flat bottom is generated at the lower surface of the domain, please see documentation.
                     # As the specific setup of this feature is different for the flank simulations and the DEM test.
-remove_zerotopo = True  # Setup run 2 times: first time, zero topography setup: xy observation points same a path
-                        # but zerotopo domain shifted to average height DEM.
-                        # Second time, full domain with topography ("regular" run).
+remove_zerotopo = True  # Setup run 2 times: first time, zero topography setup: xy coordinates of the observation points the same,
+                        # but zerotopo domain and observation p shifted to average height DEM. Second time, "regular" run with topography.
                         # From which the zerotopo values are subtracted before writing to regular output files.
+                        # This method can be done faster if zerotopo run was done with less elements (and cuboid function), yet to be done.
 
 ## ONLY BENCHMARK = 5 (FLANKSIM) ##
 subbench = 'south'  # Either 'south', 'east', 'north', 'west', choosing flank shifts domain features, and observation paths.
@@ -69,8 +69,8 @@ if benchmark == '1':
    zstart = 0.01  # Slightly above surface.
    xend = Lx / 2
    yend = Ly / 2
-   zend = 2
-   #zend = 100
+   zend = 2  # "zoomed"-data (i.e. close to surface)
+   #zend = 100  # regular setup
    line_nmeas = 100
    ## plane meas ##
    do_plane_measurements = False
@@ -99,8 +99,9 @@ if benchmark == '2a':
    nqdim = 6
    #dz = 0  # Base setup.
    dz = 0.1  # Amplitude random.
-   ## plane meas ##
    do_plane_measurements = True
+   do_line_measurements = False
+   ## plane meas ##
    plane_x0 = -Lx / 2
    plane_y0 = -Ly / 2
    plane_z0 = 1
@@ -108,15 +109,14 @@ if benchmark == '2a':
    plane_Ly = 2 * Ly
    plane_nnx = 11
    plane_nny = 11
-   do_line_measurements = False
-   xstart = 99
+   ## line meas ##
+   ystart = Ly / 2 - 0.221
+   yend = Ly / 2 - 0.221
+   xstart = 0.23 + ((Lx - 50) / 2)
+   xend = 49.19 + ((Ly - 50) / 2)
    zstart = 1  # 1m above surface.
-   xend = 110
-   ystart = 10.5
-   yend = 10.5
    zend = 1
-   line_nmeas = 3
-
+   line_nmeas = 47
    sphere_R = 0
    sphere_xc = 0
    sphere_yc = 0
@@ -161,8 +161,7 @@ if benchmark == '3':
    Lx = 20
    Ly = 20
    Lz = 20
-   nelx = 30
-   #nelx = 60  # 3 el/m.
+   nelx = 60  # 3 el/m.
    #nelx = 120  # 6 el/m.
    nely = nelx
    nelz = nelx
@@ -175,9 +174,8 @@ if benchmark == '3':
    sphere_zc = -Lz / 2
    ## spiral meas ##
    do_spiral_measurements = True
-   #radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.
+   radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.
    #radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.
-   radius_spiral = 1.1 * sphere_R  # 1 m above surface sphere.
    npts_spiral = 101  # keep odd
    #nqdim = 6
    ## plane meas ##
@@ -242,9 +240,9 @@ if benchmark == '5':
    #Lz = 20
    Lx = 250
    Ly = 250
-   Lz = 10
-   nelx = int(Lx * 1.5)
-   nely = int(Ly * 1.5)
+   Lz = 20
+   nelx = int(Lx)
+   nely = int(Ly)
    #nelx = int(Lx * 3)
    #nely = int(Ly * 3)
    nelz = 10
@@ -487,7 +485,8 @@ for i in range(0, nnx):
                xb[counter] = i * Lx / float(nelx)
                yb[counter] = j * Ly / float(nely)
                #zb[counter] = k * Lz / float(nelz) - Lz + Lz / 2
-               zb[counter] = k * Lz / float(nelz) - Lz
+               #zb[counter] = k * Lz / float(nelz) - Lz
+               zb[counter] = k * (Lz + ((Ly / 2) * np.tan(af / 180 * np.pi))) / float(nelz) - Lz - ((Ly / 2) * np.tan(af / 180 * np.pi))
             if i != 0 and j != 0 and k != 0 and i != nnx - 1 and j != nny - 1 and k != nnz - 1 and (benchmark == '2a' or benchmark == '2b'):
                z[counter] += random.uniform(-1, +1) * dz
             counter += 1
@@ -523,9 +522,9 @@ if benchmark == '5':
    start = time.time()
 
    # Compute the minimum topography elevation for all nodes.
-   #min_topography = min([topography(x_val - Lx / 2, y_val - Ly / 2, A, wavelength, cos_dir, sin_dir, slopex, slopey)
-   #                       for x_val, y_val in zip(x, y)])
-   #print("min topo:", min_topography)
+   min_topography = min([topography(x_val - Lx / 2, y_val - Ly / 2, A, wavelength, cos_dir, sin_dir, slopex, slopey)
+                          for x_val, y_val in zip(x, y)])
+   print("min topo:", min_topography)
 
    if flat_bottom:
       # Flat bottom generates domain with a bottom surface flat at Lz below the middle
@@ -535,10 +534,10 @@ if benchmark == '5':
       for i in range(0, nnx):
           for j in range(0, nny):
               for k in range(0, nnz):
-                  #LLz = Lz + topography(x[counter] - Lx / 2, y[counter] - Ly / 2, A, wavelength, cos_dir, sin_dir, slopex, slopey) - min_topography
-                  #z[counter] = k * LLz / float(nelz) - Lz + min_topography
-                  LLz = Lz + topography(x[counter] - Lx / 2, y[counter] - Ly / 2, A, wavelength, cos_dir, sin_dir, slopex, slopey)
-                  z[counter] = k * LLz / float(nelz) - Lz
+                  LLz = Lz + topography(x[counter] - Lx / 2, y[counter] - Ly / 2, A, wavelength, cos_dir, sin_dir, slopex, slopey) - min_topography
+                  z[counter] = k * LLz / float(nelz) - Lz + min_topography
+                  #LLz = Lz + topography(x[counter] - Lx / 2, y[counter] - Ly / 2, A, wavelength, cos_dir, sin_dir, slopex, slopey)
+                  #z[counter] = k * LLz / float(nelz) - Lz
                   counter += 1
    else:
       # Generates domain with a bottom surface at a depth constant Lz below the (top) topography.
@@ -973,14 +972,14 @@ if do_line_measurements:
           start = time.time()
           for iel in range(0, nel):
               B_si[:,i] += compute_B_surface_integral_cuboid(xm, ym, zm, x, y, z, icon[:,iel], Mx[iel], My[iel], Mz[iel])
-              print("surf int: %.3f s" % (time.time() - start))
-              #print('surf int   ->', B_si[:,i])
+          print("surf int: %.3f s" % (time.time() - start))
+          #print('surf int   ->', B_si[:,i])
        else:
           start = time.time()
           for iel in range(0, nel):
               B_si[:,i] += compute_B_surface_integral_wtopo(xm, ym, zm, x, y, z, icon[:,iel], Mx[iel], My[iel], Mz[iel])
-              print("surf int: %.3f s" % (time.time() - start))
-              #print('surf int   ->', B_si[:,i])
+          print("surf int: %.3f s" % (time.time() - start))
+          #print('surf int   ->', B_si[:,i])
 
        if benchmark == '5':
           dmeas = np.zeros((line_nmeas), dtype=np.float64)  # not relevant, but add_ref req. TODO: add it?

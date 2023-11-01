@@ -13,9 +13,9 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -41,7 +41,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+   
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../governing_equations.html">Governing equations</a></li>
@@ -55,6 +56,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../app1.html">Complete derivation of the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app2.html">Coordinate systems of different components</a></li>
 </ul>
+
+   <ul>
+        <li class="toctree-l1"><a href= "../genindex.html"><strong>Index</strong></a></li>
+   </ul>
+
 
         </div>
       </div>
@@ -83,7 +89,9 @@
   <h1>Source code for tools</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<div class="viewcode-block" id="export_mesh_3D"><a class="viewcode-back" href="../functions.html#tools.export_mesh_3D">[docs]</a><span class="k">def</span> <span class="nf">export_mesh_3D</span><span class="p">(</span><span class="n">NV</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">Mx</span><span class="p">,</span> <span class="n">My</span><span class="p">,</span> <span class="n">Mz</span><span class="p">,</span> <span class="n">nnx</span><span class="p">,</span> <span class="n">nny</span><span class="p">,</span> <span class="n">nnz</span><span class="p">):</span>
+<div class="viewcode-block" id="export_mesh_3D">
+<a class="viewcode-back" href="../functions.html#tools.export_mesh_3D">[docs]</a>
+<span class="k">def</span> <span class="nf">export_mesh_3D</span><span class="p">(</span><span class="n">NV</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">Mx</span><span class="p">,</span> <span class="n">My</span><span class="p">,</span> <span class="n">Mz</span><span class="p">,</span> <span class="n">nnx</span><span class="p">,</span> <span class="n">nny</span><span class="p">,</span> <span class="n">nnz</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Export 3D mesh to vtu file (plot with paraview) with z (height of surface) as point data, and magnetization vector (and components) as cell data.</span>
 
@@ -189,9 +197,12 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/VTKFile&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
+
 <span class="c1">###############################################################################</span>
 
-<div class="viewcode-block" id="export_mesh_2D"><a class="viewcode-back" href="../functions.html#tools.export_mesh_2D">[docs]</a><span class="k">def</span> <span class="nf">export_mesh_2D</span><span class="p">(</span><span class="n">NV</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="export_mesh_2D">
+<a class="viewcode-back" href="../functions.html#tools.export_mesh_2D">[docs]</a>
+<span class="k">def</span> <span class="nf">export_mesh_2D</span><span class="p">(</span><span class="n">NV</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Export 2D mesh (surface) to vtu file (plot with paraview), can be used in main for visualizing plane measurement po.</span>
 
@@ -245,9 +256,12 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/VTKFile&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
+
 <span class="c1">###############################################################################</span>
 
-<div class="viewcode-block" id="export_mesh_1D"><a class="viewcode-back" href="../functions.html#tools.export_mesh_1D">[docs]</a><span class="k">def</span> <span class="nf">export_mesh_1D</span><span class="p">(</span><span class="n">npath</span><span class="p">,</span> <span class="n">xpath</span><span class="p">,</span> <span class="n">ypath</span><span class="p">,</span> <span class="n">zpath</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="export_mesh_1D">
+<a class="viewcode-back" href="../functions.html#tools.export_mesh_1D">[docs]</a>
+<span class="k">def</span> <span class="nf">export_mesh_1D</span><span class="p">(</span><span class="n">npath</span><span class="p">,</span> <span class="n">xpath</span><span class="p">,</span> <span class="n">ypath</span><span class="p">,</span> <span class="n">zpath</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Export 1D path to vtu file (plot with paraview), can be used in main visualize measurement path.</span>
 
@@ -298,9 +312,12 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;produced path.vtu&#39;</span><span class="p">)</span></div>
+
 <span class="c1">###################################################################################################</span>
 
-<div class="viewcode-block" id="export_plane_measurements"><a class="viewcode-back" href="../functions.html#tools.export_plane_measurements">[docs]</a><span class="k">def</span> <span class="nf">export_plane_measurements</span><span class="p">(</span><span class="n">NV</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">B_vi</span><span class="p">,</span> <span class="n">B_si</span><span class="p">,</span> <span class="n">B_th</span><span class="p">):</span>
+<div class="viewcode-block" id="export_plane_measurements">
+<a class="viewcode-back" href="../functions.html#tools.export_plane_measurements">[docs]</a>
+<span class="k">def</span> <span class="nf">export_plane_measurements</span><span class="p">(</span><span class="n">NV</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">B_vi</span><span class="p">,</span> <span class="n">B_si</span><span class="p">,</span> <span class="n">B_th</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Export 2D plane measurements to vtu file (plot with paraview), used for exporting plane measurements with magnetic field strength (**B**) computed by analytical solution, surface integral or volume integral as vectors. If this function is used, but the volume integral is not used (default = not used, see :doc:`computational_approach`), or a setup does not have an analytical solution (:ref:`flank simulations &lt;flanksim&gt;` and :doc:`etna`), the values from surface integral computation are duplicated.</span>
 
@@ -376,9 +393,12 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/VTKFile&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
+
 <span class="c1">###############################################################################</span>
 
-<div class="viewcode-block" id="export_line_measurements"><a class="viewcode-back" href="../functions.html#tools.export_line_measurements">[docs]</a><span class="k">def</span> <span class="nf">export_line_measurements</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">B_vi</span><span class="p">,</span> <span class="n">B_si</span><span class="p">,</span> <span class="n">B_th</span><span class="p">):</span>
+<div class="viewcode-block" id="export_line_measurements">
+<a class="viewcode-back" href="../functions.html#tools.export_line_measurements">[docs]</a>
+<span class="k">def</span> <span class="nf">export_line_measurements</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">B_vi</span><span class="p">,</span> <span class="n">B_si</span><span class="p">,</span> <span class="n">B_th</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Export 1D line measurements to vtu file (plot with paraview), used for exporting line measurements with magnetic field strength (**B**) computed by analytical solution, surface integral or volume integral as vectors. If this function is used, but the volume integral is not used (default = not used, see :doc:`computational_approach`), or a setup does not have an analytical solution (:ref:`flank simulations &lt;flanksim&gt;` and :doc:`etna`), the values from surface integral computation are duplicated.</span>
 
@@ -452,9 +472,12 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
+
 <span class="c1">###############################################################################</span>
 
-<div class="viewcode-block" id="export_spiral_measurements"><a class="viewcode-back" href="../functions.html#tools.export_spiral_measurements">[docs]</a><span class="k">def</span> <span class="nf">export_spiral_measurements</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">B_vi</span><span class="p">,</span> <span class="n">B_si</span><span class="p">,</span> <span class="n">B_th</span><span class="p">):</span>
+<div class="viewcode-block" id="export_spiral_measurements">
+<a class="viewcode-back" href="../functions.html#tools.export_spiral_measurements">[docs]</a>
+<span class="k">def</span> <span class="nf">export_spiral_measurements</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">B_vi</span><span class="p">,</span> <span class="n">B_si</span><span class="p">,</span> <span class="n">B_th</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Export 1D spiral measurements to vtu file (plot with paraview), used for exporting spiral measurements with magnetic field strength (**B**) computed by analytical solution, surface integral or volume integral as vectors. If this function is used, but the volume integral is not used (default = not used, see :doc:`computational_approach`), or a setup does not have an analytical solution (:ref:`flank simulations &lt;flanksim&gt;` and :doc:`etna`), the values from surface integral computation are duplicated.</span>
 
@@ -525,6 +548,7 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/UnstructuredGrid&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/VTKFile&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
 </pre></div>
 
            </div>
@@ -553,39 +577,44 @@
       });
   </script>
 <style type="text/css">
-    .scrollToTop {
-        text-align: center;
-        font-weight: bold;
-        position: fixed;
-        bottom: 60px;
-        right: 40px;
-        display: none;
-    }
+  .scrollToTop {
+    text-align: center;
+    font-weight: bold;
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+    display: none;
+  }
 </style>
 <a href="#" class="scrollToTop">Scroll To Top</a>
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function () {
     //Check to see if the window is top if not then display button
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 200) {
-            $('.scrollToTop').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-        }
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 200) {
+        $(".scrollToTop").fadeIn();
+      } else {
+        $(".scrollToTop").fadeOut();
+      }
     });
 
     //Click event to scroll to top
-    $('.scrollToTop').click(function() {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
-        return false;
+    $(".scrollToTop").click(function () {
+      $("html, body").animate(
+        {
+          scrollTop: 0,
+        },
+        500,
+      );
+      return false;
     });
-});
+  });
 </script>
+
 <style>
   /* Sidebar header (and topbar for mobile) */
-  .wy-side-nav-search, .wy-nav-top {
+  .wy-side-nav-search,
+  .wy-nav-top {
     background: #3ae23a;
   }
   /* Sidebar */
@@ -593,7 +622,6 @@ $(document).ready(function() {
     background: #0c3303;
   }
 </style>
-
 
 
 </body>
