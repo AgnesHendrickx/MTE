@@ -36,22 +36,14 @@ Model setup
 Results
 ^^^^^^^
 
-.. _figureB1:
-.. figure:: figures/B1dipole.png
-   :class: with-border
-   :scale: 60%
+.. _figureB1_mp:
+.. figure:: figures/B1dipole_mp.png
+   :scale: 80%
 
-   Analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.
+   On the left, analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. On the right, the difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.
 
-.. _figureB1zoom:
-.. figure:: figures/B1dipole_dif_zoom_withlines.png
-   :class: with-border
-   :scale: 60%
-
-   Difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.
-
-| As illustrated in :numref:`Figure %s <figureB1>`, the discrepancies between the analytical solution and computed values are minimal.
-| Even at a height of, see :numref:`figureB1zoom`, :math:`0.25m`, the smallest height above the topography measured in the Etna case study :cite:`Meyer23`, the error remains approximately :math:`\sim \lvert 0.01 \rvert \mu T` .
+| As illustrated in :numref:`figureB1_mp`, the discrepancies between the analytical solution and computed values are minimal.
+| Even at a height of :math:`0.25m`, the smallest height above the topography measured in the Etna case study :cite:`Meyer23`, the error remains approximately :math:`\sim \lvert 0.01 \rvert \mu T` .
 
 Reproduce
 ^^^^^^^^^
@@ -62,9 +54,9 @@ Reproduce
    1. In ``MTE.py``, modify benchmark attribution to ``1``:
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 27
+         :lineno-start: 45
          :emphasize-lines: 1
 
          benchmark = '1'
@@ -72,74 +64,90 @@ Reproduce
    2. Run "zoomed" setup & rename/move files
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 65
-         :emphasize-lines: 8
+         :lineno-start: 74
+         :emphasize-lines: 22,23
 
          if benchmark == '1':
-            do_line_measurements = True
-            xstart = Lx / 2
-            ystart = Ly / 2
-            zstart = 0.01      #slightly above surface
-            xend = Lx / 2
-            yend = Ly / 2
-            zend = 2  # "zoomed"-data (i.e. close to surface)
-            #zend = 100  # regular setup
-            line_nmeas = 100
+             # General settings
+             remove_zerotopo = False
+             compute_analytical = True
+             do_spiral_measurements = False
+             do_path_measurements = False
+
+             # Domain settings
+             Lx, Ly, Lz = 2, 2, 2  # Length of the domain in each direction.
+             nelx, nely, nelz = 100, 100, 100  # Amount of elements in each direction.
+             Mx0, My0, Mz0 = 0, 0, 7.5  # Magnetization [A/m], do not change Mx0 and My0.
+
+             # Sphere settings
+             sphere_R = 1  # Radius of the sphere.
+             sphere_xc, sphere_yc, sphere_zc = Lx / 2, Ly / 2, -Lz / 2  # Center position of the sphere.
+
+             # Line measurement settings
+             do_line_measurements = True  # Do computations along a observation line (path).
+             line_nmeas = 100  # Amount of observation points.
+             xstart, xend = Lx / 2, Lx / 2  # x-coordinates of start and end of observation path.
+             ystart, yend = Ly / 2, Ly / 2  # y-coordinates "".
+             zstart, zend = 0.01, 2 # Zoomed setup.
+             #zstart, zend = 0.01, 100  # Non-zoomed setup.
+
+             # Plane measurement settings
+             do_plane_measurements = False  # Do computations on a observation plane.
+             plane_nnx, plane_nny = 3, 3  # Amount of observation points in each direction.
+             plane_x0, plane_y0, plane_z0 = -Lx / 2, -Ly / 2, 1
+             plane_Lx, plane_Ly = 2 * Lx, 2 * Ly  # Length of observation plane in each direction.
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**        (runtime: ~15 min)
 
          python3 -u MTE.py | tee log.txt
 
-      .. code-block::
-         :caption: /main/
+      .. code-block:: bash
+         :caption: **/main/**
 
-         mkdir benchmarks/benchmark_1/results_zoom && mv log.txt *.vtu *.ascii benchmarks/benchmark_1/results_zoom
+         mkdir -p benchmarks/benchmark_1/results_zoom && mv log.txt *.vtu *.ascii $_
 
    3. Run regular setup & move files
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 65
-         :emphasize-lines: 8,9
+         :lineno-start: 90
+         :emphasize-lines: 6,7
 
-         if benchmark == '1':
-            do_line_measurements = True
-            xstart = Lx / 2
-            ystart = Ly / 2
-            zstart = 0.01      #slightly above surface
-            xend = Lx / 2
-            yend = Ly / 2
-            #zend = 2  # "zoomed"-data (i.e. close to surface)
-            zend = 100  # regular setup
-            line_nmeas = 100
+         # Line measurement settings
+         do_line_measurements = True  # Do computations along a observation line (path).
+         line_nmeas = 100  # Amount of observation points.
+         xstart, xend = Lx / 2, Lx / 2  # x-coordinates of start and end of observation path.
+         ystart, yend = Ly / 2, Ly / 2  # y-coordinates "".
+         #zstart, zend = 0.01, 2 # Zoomed setup.
+         zstart, zend = 0.01, 100  # Non-zoomed setup.
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**        (runtime: ~15 min)
 
          python3 -u MTE.py | tee log.txt
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**
 
          mv log.txt *.vtu *.ascii benchmarks/benchmark_1/
 
    4. Go to directory & plot
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**
 
          cd benchmarks/benchmark_1
 
-      +---------------------------------------------+----------------------------------------------+
-      |.. code-block::                              |.. code-block::                               |
-      |   :caption: /main/benchmarks/benchmark_1/   |   :caption: /main/benchmarks/benchmark_1/    |
-      |                                             |                                              |
-      |   gnuplot plot_script_B1.p                  |   python3 plot_script_B1.py                  |
-      +---------------------------------------------+----------------------------------------------+
+      +----------------------------------------------+----------------------------------------------+
+      |.. code-block::                               |.. code-block::                               |
+      |   :caption: **/main/benchmarks/benchmark_1/**|   :caption: **/main/benchmarks/benchmark_1/**|
+      |                                              |                                              |
+      |   gnuplot plot_script_B1.p                   |   python3 plot_script_B1.py                  |
+      +----------------------------------------------+----------------------------------------------+
 
 
 .. _B2:
@@ -193,9 +201,9 @@ Reproduce
    1. In ``MTE.py``, modify benchmark attribution to ``2a``:
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 27
+         :lineno-start: 45
          :emphasize-lines: 1
 
          benchmark = '2a'
@@ -203,107 +211,138 @@ Reproduce
    2. Run base setup & rename/move files
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 89
-         :emphasize-lines: 12
+         :lineno-start: 106
 
          if benchmark == '2a':
-            Lx = 10
-            Ly = 10
-            Lz = 10
-            nelx = 5
-            nely = 5
-            nelz = 5
-            Mx0 = 0
-            My0 = 0
-            Mz0 = 7.5
-            nqdim = 6
-            dz = 0  # Base setup.
-            #dz = 0.1  # Amplitude random.
+            # General settings
+            remove_zerotopo = False
+            compute_analytical = False
+            do_spiral_measurements = False
+            do_path_measurements = False
+
+            # Domain settings
+            Lx, Ly, Lz = 10, 10, 10
+            nelx, nely, nelz = 5, 5, 5
+            Mx0, My0, Mz0 = 0, 0, 7.5  # Magnetization [A/m].
+
+            # Plane measurement settings
+            do_plane_measurements = True
+            plane_nnx, plane_nny = 11, 11
+            plane_x0, plane_y0, plane_z0 = -Lx / 2, -Ly / 2, 1
+            plane_Lx, plane_Ly = 2 * Lx, 2 * Ly
+
+            # Line measurement settings
+            do_line_measurements = False
+            line_nmeas = 47
+            xstart, xend = 0.23 + ((Lx - 50) / 2), 49.19 + ((Ly - 50) / 2)
+            ystart, yend = Ly / 2 - 0.221, Ly / 2 - 0.221
+            zstart, zend = 1, 1  # 1m above surface.
+
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**        (runtime: ~3 s)
 
          python3 -u MTE.py | tee log.txt
 
-      .. code-block::
-         :caption: /main/
+      .. code-block:: bash
+         :caption: **/main/**
 
-         mkdir benchmarks/benchmark_2/d0 && mv log.txt *.vtu *.ascii benchmarks/benchmark_2/d0
+         mkdir -p benchmarks/benchmark_2/d0 && mv log.txt *.vtu *.ascii $_
 
-   3. Run deformation setup (1) & move files
-
-      .. code-block:: python
-         :caption: /main/MTE.py
-         :linenos:
-         :lineno-start: 89
-         :emphasize-lines: 12,13
-
-         if benchmark == '2a':
-            Lx = 10
-            Ly = 10
-            Lz = 10
-            nelx = 5
-            nely = 5
-            nelz = 5
-            Mx0 = 0
-            My0 = 0
-            Mz0 = 7.5
-            nqdim = 6
-            #dz = 0  # Base setup.
-            dz = 0.1  # Amplitude random.
-
-      .. code-block::
-            :caption: /main/
-
-            python3 -u MTE.py | tee log.txt
-
-      .. code-block::
-            :caption: /main/
-
-            mkdir benchmarks/benchmark_2/d0_1 && mv log.txt *.vtu *.ascii benchmarks/benchmark_2/d0_1
-
-   4. In ``MTE.py``, modify benchmark attribution to ``2b``:
+   3. In ``MTE.py``, modify benchmark attribution to ``2b``:
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 27
+         :lineno-start: 45
          :emphasize-lines: 1
 
          benchmark = '2b'
 
-   5. Run deformation setup (2) & move files
+   4. Run deformation setup (1) & move files
+
+      .. code-block:: python
+         :caption: **/main/MTE.py**
+         :linenos:
+         :lineno-start: 133
+         :emphasize-lines: 11,12
+
+         if benchmark == '2b':
+            # General settings
+            remove_zerotopo = False
+            compute_analytical = False
+            do_spiral_measurements = False
+            do_path_measurements = False
+            do_line_measurements = False
+
+            # Domain settings
+            Lx, Ly, Lz = 10, 10, 10
+            nelx, nely, nelz = 5, 5, 5
+            #nelx, nely, nelz = 2, 10, 50
+            Mx0, My0, Mz0 = 0, 0, 7.5
+            dz = 0.1  # Amplitude random for perturbations in domain.
+
+            # Plane measurement settings
+            do_plane_measurements = True
+            plane_nnx, plane_nny = 11, 11
+            plane_x0, plane_y0, plane_z0 = -Lx / 2, -Ly / 2, 1
+            plane_Lx, plane_Ly = 2 * Lx, 2 * Ly
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**       (runtime: ~5 s)
 
          python3 -u MTE.py | tee log.txt
 
-      .. code-block::
-         :caption: /main/
+      .. code-block:: bash
+         :caption: **/main/**
 
-         mkdir benchmarks/benchmark_2/d0_1_2_10_50 && mv log.txt *.vtu *.ascii benchmarks/benchmark_2/d0_1_2_10_50
+         mkdir -p benchmarks/benchmark_2/d0_1 && mv log.txt *.vtu *.ascii $_
+
+   5. Run deformation setup (2) & move files
+
+      .. code-block:: python
+         :caption: **/main/MTE.py**
+         :linenos:
+         :lineno-start: 141
+         :emphasize-lines: 3,4
+
+         # Domain settings
+         Lx, Ly, Lz = 10, 10, 10
+         #nelx, nely, nelz = 5, 5, 5
+         nelx, nely, nelz = 2, 10, 50
+         Mx0, My0, Mz0 = 0, 0, 7.5
+         dz = 0.1  # Amplitude random for perturbations in domain.
+
+      .. code-block::
+         :caption: **/main/**        (runtime: ~5 s)
+
+         python3 -u MTE.py | tee log.txt
+
+      .. code-block:: bash
+         :caption: **/main/**
+
+         mkdir -p benchmarks/benchmark_2/d0_1_2_10_50 && mv log.txt *.vtu *.ascii $_
 
    6. Go to directory & use paraview or plotting to visualize
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**
 
          cd benchmarks/benchmark_2
 
       .. code-block::
-         :caption: /main/benchmarks/benchmark_2/
+         :caption: **/main/benchmarks/benchmark_2/**
 
          paraview --state=plot_result_b2_final.pvsm
 
-      +---------------------------------------------+----------------------------------------------+
-      |.. code-block::                              |.. code-block::                               |
-      |   :caption: /main/benchmarks/benchmark_2/   |   :caption: /main/benchmarks/benchmark_2/    |
-      |                                             |                                              |
-      |   gnuplot plot_script_B2.p                  |   python3 plot_script_B2.py                  |
-      +---------------------------------------------+----------------------------------------------+
+      +----------------------------------------------+----------------------------------------------+
+      |.. code-block::                               |.. code-block::                               |
+      |   :caption: **/main/benchmarks/benchmark_2/**|   :caption: **/main/benchmarks/benchmark_2/**|
+      |                                              |                                              |
+      |   gnuplot plot_script_B2.p                   |   python3 plot_script_B2.py                  |
+      +----------------------------------------------+----------------------------------------------+
 
 Benchmark 3: a magnetized sphere
 --------------------------------
@@ -353,9 +392,9 @@ Reproduce
    1. In ``MTE.py``, modify benchmark attribution to ``3``:
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 27
+         :lineno-start: 45
          :emphasize-lines: 1
 
          benchmark = '3'
@@ -363,182 +402,175 @@ Reproduce
    2. Run 25cm above setup & rename/move files
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 160
-         :emphasize-lines: 5,18
+         :lineno-start: 156
+         :emphasize-lines: 10,11,21,22
 
          if benchmark == '3':
-            Lx = 20
-            Ly = 20
-            Lz = 20
-            nelx = 60  # 3 el/m.
-            #nelx = 120  # 6 el/m.
-            nely = nelx
-            nelz = nelx
-            Mx0 = 0
-            My0 = 0
-            Mz0 = 7.5
+            # General settings
+            remove_zerotopo = False
+            compute_analytical = True
+            do_line_measurements = False
+            do_path_measurements = False
+
+            # Domain settings
+            Lx, Ly, Lz = 20, 20, 20
+            nelx, nely, nelz = 60, 60, 60  # 3 el/m.
+            #nelx, nely, nelz = 120, 120, 120  # 6 el/m.
+            Mx0, My0, Mz0 = 0, 0, 7.5
+
+            # Sphere settings
             sphere_R = 10  # Do not change, or change radius_spiral as well.
-            sphere_xc = Lx / 2
-            sphere_yc = Ly / 2
-            sphere_zc = -Lz / 2
-            ## spiral meas ##
+            sphere_xc, sphere_yc, sphere_zc = Lx / 2, Ly / 2, -Lz / 2
+
+            # Spiral measurement settings
             do_spiral_measurements = True
+            npts_spiral = 101  # keep odd
             radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.
             #radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.
-            npts_spiral = 101  # keep odd
+
+            # Plane measurement settings
+            do_plane_measurements = False
+            plane_nnx, plane_nny = 30, 30
+            plane_x0, plane_y0, plane_z0 = -Lx / 2, -Ly / 2, 0.5
+            plane_Lx, plane_Ly = 2 * Lx, 2 * Ly
+
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**     (runtime: ~3 min)
 
          python3 -u MTE.py | tee log.txt
 
-      .. code-block::
-         :caption: /main/
+      .. code-block:: bash
+         :caption: **/main/**
 
-         mkdir benchmarks/benchmark_3/0_25_above && mv log.txt *.vtu *.ascii benchmarks/benchmark_3/0_25_above
+         mkdir -p benchmarks/benchmark_3/0_25_above && mv log.txt *.vtu *.ascii $_
 
    3. Run 25cm above setup with double amount of elements & rename/move files
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 160
-         :emphasize-lines: 5,6,18
+         :lineno-start: 163
+         :emphasize-lines: 3,4
 
-         if benchmark == '3':
-            Lx = 20
-            Ly = 20
-            Lz = 20
-            #nelx = 60  # 3 el/m.
-            nelx = 120  # 6 el/m.
-            nely = nelx
-            nelz = nelx
-            Mx0 = 0
-            My0 = 0
-            Mz0 = 7.5
-            sphere_R = 10  # Do not change, or change radius_spiral as well.
-            sphere_xc = Lx / 2
-            sphere_yc = Ly / 2
-            sphere_zc = -Lz / 2
-            ## spiral meas ##
-            do_spiral_measurements = True
-            radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.
-            #radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.
-            npts_spiral = 101  # keep odd
+         # Domain settings
+         Lx, Ly, Lz = 20, 20, 20
+         #nelx, nely, nelz = 60, 60, 60  # 3 el/m.
+         nelx, nely, nelz = 120, 120, 120  # 6 el/m.
+         Mx0, My0, Mz0 = 0, 0, 7.5
+
+         # Sphere settings
+         sphere_R = 10  # Do not change, or change radius_spiral as well.
+         sphere_xc, sphere_yc, sphere_zc = Lx / 2, Ly / 2, -Lz / 2
+
+         # Spiral measurement settings
+         do_spiral_measurements = True
+         npts_spiral = 101  # keep odd
+         radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.
+         #radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**     (runtime: ~25 min)
 
          python3 -u MTE.py | tee log.txt
 
-      .. code-block::
-         :caption: /main/
+      .. code-block:: bash
+         :caption: **/main/**
 
-         mkdir benchmarks/benchmark_3/0_25_2_above && mv log.txt *.vtu *.ascii benchmarks/benchmark_3/0_25_2_above
+         mkdir -p benchmarks/benchmark_3/0_25_2_above && mv log.txt *.vtu *.ascii $_
 
    4. Run 50cm above setup & rename/move files
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 160
-         :emphasize-lines: 5,6,18,19
+         :lineno-start: 163
+         :emphasize-lines: 3,4,14,15
 
-         if benchmark == '3':
-            Lx = 20
-            Ly = 20
-            Lz = 20
-            nelx = 60  # 3 el/m.
-            #nelx = 120  # 6 el/m.
-            nely = nelx
-            nelz = nelx
-            Mx0 = 0
-            My0 = 0
-            Mz0 = 7.5
-            sphere_R = 10  # Do not change, or change radius_spiral as well.
-            sphere_xc = Lx / 2
-            sphere_yc = Ly / 2
-            sphere_zc = -Lz / 2
-            ## spiral meas ##
-            do_spiral_measurements = True
-            #radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.
-            radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.
-            npts_spiral = 101  # keep odd
+         # Domain settings
+         Lx, Ly, Lz = 20, 20, 20
+         nelx, nely, nelz = 60, 60, 60  # 3 el/m.
+         #nelx, nely, nelz = 120, 120, 120  # 6 el/m.
+         Mx0, My0, Mz0 = 0, 0, 7.5
+
+         # Sphere settings
+         sphere_R = 10  # Do not change, or change radius_spiral as well.
+         sphere_xc, sphere_yc, sphere_zc = Lx / 2, Ly / 2, -Lz / 2
+
+         # Spiral measurement settings
+         do_spiral_measurements = True
+         npts_spiral = 101  # keep odd
+         #radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.
+         radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**     (runtime: ~3 min)
 
          python3 -u MTE.py | tee log.txt
 
-      .. code-block::
-         :caption: /main/
+      .. code-block:: bash
+         :caption: **/main/**
 
-         mkdir benchmarks/benchmark_3/0_5_above && mv log.txt *.vtu *.ascii benchmarks/benchmark_3/0_5_above
+         mkdir -p benchmarks/benchmark_3/0_5_above && mv log.txt *.vtu *.ascii $_
 
    5. Run 50cm above setup with double amount of elements & rename/move files
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 160
-         :emphasize-lines: 5,6,18,19
+         :lineno-start: 163
+         :emphasize-lines: 3,4
 
-         if benchmark == '3':
-            Lx = 20
-            Ly = 20
-            Lz = 20
-            #nelx = 60  # 3 el/m.
-            nelx = 120  # 6 el/m.
-            nely = nelx
-            nelz = nelx
-            Mx0 = 0
-            My0 = 0
-            Mz0 = 7.5
-            sphere_R = 10  # Do not change, or change radius_spiral as well.
-            sphere_xc = Lx / 2
-            sphere_yc = Ly / 2
-            sphere_zc = -Lz / 2
-            ## spiral meas ##
-            do_spiral_measurements = True
-            #radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.
-            radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.
-            npts_spiral = 101  # keep odd
+         # Domain settings
+         Lx, Ly, Lz = 20, 20, 20
+         #nelx, nely, nelz = 60, 60, 60  # 3 el/m.
+         nelx, nely, nelz = 120, 120, 120  # 6 el/m.
+         Mx0, My0, Mz0 = 0, 0, 7.5
+
+         # Sphere settings
+         sphere_R = 10  # Do not change, or change radius_spiral as well.
+         sphere_xc, sphere_yc, sphere_zc = Lx / 2, Ly / 2, -Lz / 2
+
+         # Spiral measurement settings
+         do_spiral_measurements = True
+         npts_spiral = 101  # keep odd
+         #radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.
+         radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**     (runtime: ~25 min)
 
          python3 -u MTE.py | tee log.txt
 
-      .. code-block::
-         :caption: /main/
+      .. code-block:: bash
+         :caption: **/main/**
 
-         mkdir benchmarks/benchmark_3/0_5_2_above && mv log.txt *.vtu *.ascii benchmarks/benchmark_3/0_5_2_above
-
+         mkdir -p benchmarks/benchmark_3/0_5_2_above && mv log.txt *.vtu *.ascii $_
 
    6. Go to directory & plot
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**
 
          cd benchmarks/benchmark_3
 
-      +---------------------------------------------+----------------------------------------------+
-      |.. code-block::                              |.. code-block::                               |
-      |   :caption: /main/benchmarks/benchmark_3/   |   :caption: /main/benchmarks/benchmark_3/    |
-      |                                             |                                              |
-      |   gnuplot plot_script_B3.p                  |   python3 plot_script_B3.py                  |
-      +---------------------------------------------+----------------------------------------------+
+      +----------------------------------------------+----------------------------------------------+
+      |.. code-block::                               |.. code-block::                               |
+      |   :caption: **/main/benchmarks/benchmark_3/**|   :caption: **/main/benchmarks/benchmark_3/**|
+      |                                              |                                              |
+      |   gnuplot plot_script_B3.p                   |   python3 plot_script_B3.py                  |
+      +----------------------------------------------+----------------------------------------------+
    7. (OPTIONAL) Use paraview to visualize model setups
 
       .. code-block::
-         :caption: /main/benchmarks/benchmark_3/
+         :caption: **/main/benchmarks/benchmark_3/**
 
          tee ./0_5_above/model_setup.pvsm ./0_5_2_above/model_setup.pvsm ./0_25_2_above/model_setup.pvsm ./0_25_above/model_setup.pvsm < ./model_setup.pvsm >/dev/null
 
       .. code-block::
-         :caption: /main/benchmarks/benchmark_3/
+         :caption: **/main/benchmarks/benchmark_3/**
 
          paraview --state=0_5_2_above/model_setup.pvsm
 
@@ -549,7 +581,6 @@ Reproduce
       .. code-block::
 
          paraview --state=0_25_above/model_setup.pvsm
-
 
       .. code-block::
 
@@ -595,22 +626,55 @@ Reproduce
    1. In ``MTE.py``, modify benchmark attribution to ``4``:
 
       .. code-block:: python
-         :caption: /main/MTE.py
+         :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 27
+         :lineno-start: 45
          :emphasize-lines: 1
 
          benchmark = '4'
 
    2. Run setup & rename/move files
 
+      .. code-block:: python
+         :caption: **/main/MTE.py**
+         :linenos:
+         :lineno-start: 187
+
+         if benchmark == '4':
+            # General settings
+            remove_zerotopo = False
+            compute_analytical = False
+            do_plane_measurements = False
+            do_spiral_measurements = False
+            do_path_measurements = False
+
+            # Domain settings
+            Lx, Ly, Lz = 10, 10, 10
+            nelx, nely, nelz = int(Lx), int(Ly), 10
+            Mx0, My0, Mz0 = 0, 0, 200
+
+            # Line measurement settings
+            do_line_measurements = True
+            line_nmeas = 21
+            xstart, xend = 6, 6
+            ystart, yend = -25, 25
+            zstart, zend = 0, 0
+
+            # Reading in values from Ren.
+            pathfile = 'sites/B.dat'
+            with open(pathfile, 'r') as path:
+                 lines_path = path.readlines()
+            BxB4, ByB4, BzB4  = np.zeros((3, len(lines_path)), dtype=np.float64)  # Bx, By, Bz from Ren.
+            data = np.array([list(map(float, line.split())) for line in lines_path])
+            BxB4, ByB4, BzB4 = data[:, 0], data[:, 1], data[:, 2]
+
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**     (runtime: ~5 s)
 
          python3 -u MTE.py | tee log.txt
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**
 
          mv log.txt *.vtu *.ascii benchmarks/benchmark_4/
 
@@ -618,16 +682,16 @@ Reproduce
    3. Go to directory & plot
 
       .. code-block::
-         :caption: /main/
+         :caption: **/main/**
 
          cd benchmarks/benchmark_4
 
 
-      +---------------------------------------------+----------------------------------------------+
-      |.. code-block::                              |.. code-block::                               |
-      |   :caption: /main/benchmarks/benchmark_4/   |   :caption: /main/benchmarks/benchmark_4/    |
-      |                                             |                                              |
-      |   gnuplot plot_script_B4.p                  |   python3 plot_script_B4.py                  |
-      +---------------------------------------------+----------------------------------------------+
+      +----------------------------------------------+----------------------------------------------+
+      |.. code-block::                               |.. code-block::                               |
+      |   :caption: **/main/benchmarks/benchmark_4/**|   :caption: **/main/benchmarks/benchmark_4/**|
+      |                                              |                                              |
+      |   gnuplot plot_script_B4.p                   |   python3 plot_script_B4.py                  |
+      +----------------------------------------------+----------------------------------------------+
 
 

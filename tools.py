@@ -1,8 +1,13 @@
 import numpy as np
 
+###################################################################################################
+
+
 def export_mesh_3D(NV, nel, x, y, z, icon, filename, Mx, My, Mz, nnx, nny, nnz):
     """
-    Export 3D mesh to vtu file (plot with paraview) with z (height of surface) as point data, and magnetization vector (and components) as cell data.
+    This function creates a VTU file that represents a 3D mesh with height data exported as point data and magnetization vectors exported as cell data.
+    The VTU file can be visualized using Paraview software.
+
 
     :param NV: number of nodes.
     :type NV: scalar(int)
@@ -63,7 +68,8 @@ def export_mesh_3D(NV, nel, x, y, z, icon, filename, Mx, My, Mz, nnx, nny, nnz):
     vtufile.write("</PointData>\n")
     #####
     vtufile.write("<CellData Scalars='scalars'>\n")
-    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='M vector' Format='ascii'> \n")
+    vtufile.write("<DataArray type='Float32' NumberOfComponents='3'\
+                   Name='M vector' Format='ascii'> \n")
     for iel in range (0, nel):
         vtufile.write("%f %f %f \n" % (Mx[iel], My[iel], Mz[iel]))
     vtufile.write("</DataArray>\n")
@@ -88,8 +94,9 @@ def export_mesh_3D(NV, nel, x, y, z, icon, filename, Mx, My, Mz, nnx, nny, nnz):
     vtufile.write("<Cells>\n")
     vtufile.write("<DataArray type='Int32' Name='connectivity' Format='ascii'> \n")
     for iel in range (0, nel):
-        vtufile.write("%d %d %d %d %d %d %d %d\n" % (icon[0,iel], icon[1,iel], icon[2,iel], icon[3,iel],\
-                                                     icon[4,iel], icon[5,iel], icon[6,iel], icon[7,iel]))
+        vtufile.write("%d %d %d %d %d %d %d %d\n" \
+                       % (icon[0,iel], icon[1,iel], icon[2,iel], icon[3,iel],\
+                          icon[4,iel], icon[5,iel], icon[6,iel], icon[7,iel]))
     vtufile.write("</DataArray>\n")
     vtufile.write("<DataArray type='Int32' Name='offsets' Format='ascii'> \n")
     for iel in range (0, nel):
@@ -106,11 +113,12 @@ def export_mesh_3D(NV, nel, x, y, z, icon, filename, Mx, My, Mz, nnx, nny, nnz):
     vtufile.write("</VTKFile>\n")
     vtufile.close()
 
-###############################################################################
+###################################################################################################
+
 
 def export_mesh_2D(NV, nel, x, y, z, icon, filename):
     """
-    Export 2D mesh (surface) to vtu file (plot with paraview), can be used in main for visualizing plane measurement po.
+    This function creates a VTU file that represents a 2D mesh surface, which can be utilized for visualization in Paraview.
 
     :param NV: number of points.
     :type NV: scalar(int)
@@ -162,7 +170,8 @@ def export_mesh_2D(NV, nel, x, y, z, icon, filename):
     vtufile.write("</VTKFile>\n")
     vtufile.close()
 
-###############################################################################
+###################################################################################################
+
 
 def export_mesh_1D(npath, xpath, ypath, zpath, filename):
     """
@@ -215,7 +224,9 @@ def export_mesh_1D(npath, xpath, ypath, zpath, filename):
     vtufile.close()
 
     print('produced path.vtu')
+
 ###################################################################################################
+
 
 def export_plane_measurements(NV, nel, x, y, z, icon, filename, B_vi, B_si, B_th):
     """
@@ -258,16 +269,19 @@ def export_plane_measurements(NV, nel, x, y, z, icon, filename, B_vi, B_si, B_th
     vtufile.write("</Points> \n")
     #####
     vtufile.write("<PointData Scalars='scalars'>\n")
-    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (vol int)' Format='ascii'> \n")
+    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (vol int)'\
+                   Format='ascii'> \n")
     for i in range(0, NV):
         vtufile.write("%10e %10e %10e \n" % (B_vi[0,i], B_vi[1,i], B_vi[2,i]))
     vtufile.write("</DataArray>\n")
-    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (surf int)' Format='ascii'> \n")
+    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (surf int)'\
+                   Format='ascii'> \n")
     for i in range(0, NV):
         vtufile.write("%10e %10e %10e \n" % (B_si[0,i], B_si[1,i], B_si[2,i]))
     vtufile.write("</DataArray>\n")
     if abs(np.max(B_th) - np.min(B_th)) > 1e-12:
-       vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (analytical)' Format='ascii'> \n")
+       vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (analytical)'\
+                      Format='ascii'> \n")
        for i in range(0, NV):
            vtufile.write("%e %e %e \n" % (B_th[0,i], B_th[1,i], B_th[2,i]))
        vtufile.write("</DataArray>\n")
@@ -293,7 +307,8 @@ def export_plane_measurements(NV, nel, x, y, z, icon, filename, B_vi, B_si, B_th
     vtufile.write("</VTKFile>\n")
     vtufile.close()
 
-###############################################################################
+###################################################################################################
+
 
 def export_line_measurements(N, x, y, z, filename, B_vi, B_si, B_th):
     """
@@ -333,16 +348,19 @@ def export_line_measurements(N, x, y, z, filename, B_vi, B_si, B_th):
     vtufile.write("</Points> \n")
     #####
     vtufile.write("<PointData Scalars='scalars'>\n")
-    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (vol int)' Format='ascii'> \n")
+    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (vol int)'\
+                   Format='ascii'> \n")
     for i in range(0, N):
         vtufile.write("%e %e %e \n" % (B_vi[0,i], B_vi[1,i], B_vi[2,i]))
     vtufile.write("</DataArray>\n")
-    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (surf int)' Format='ascii'> \n")
+    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (surf int)'\
+                   Format='ascii'> \n")
     for i in range(0, N):
         vtufile.write("%e %e %e \n" % (B_si[0,i], B_si[1,i], B_si[2,i]))
     vtufile.write("</DataArray>\n")
     if abs(np.max(B_th) - np.min(B_th)) > 1e-12:
-       vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (analytical)' Format='ascii'> \n")
+       vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (analytical)'\
+                      Format='ascii'> \n")
        for i in range(0, N):
            vtufile.write("%e %e %e \n" % (B_th[0,i], B_th[1,i], B_th[2,i]))
        vtufile.write("</DataArray>\n")
@@ -368,8 +386,8 @@ def export_line_measurements(N, x, y, z, filename, B_vi, B_si, B_th):
     vtufile.write("</VTKFile>\n")
     vtufile.close()
 
+###################################################################################################
 
-###############################################################################
 
 def export_spiral_measurements(N, x, y, z, filename, B_vi, B_si, B_th):
     """
@@ -408,16 +426,19 @@ def export_spiral_measurements(N, x, y, z, filename, B_vi, B_si, B_th):
     vtufile.write("</Points> \n")
     #####
     vtufile.write("<PointData Scalars='scalars'>\n")
-    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (vol int)' Format='ascii'> \n")
+    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (vol int)'\
+                   Format='ascii'> \n")
     for i in range(0, N):
         vtufile.write("%e %e %e \n" % (B_vi[0,i], B_vi[1,i], B_vi[2,i]))
     vtufile.write("</DataArray>\n")
-    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (surf int)' Format='ascii'> \n")
+    vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (surf int)'\
+                   Format='ascii'> \n")
     for i in range(0, N):
         vtufile.write("%e %e %e \n" % (B_si[0,i], B_si[1,i], B_si[2,i]))
     vtufile.write("</DataArray>\n")
     if abs(np.max(B_th) - np.min(B_th)) > 1e-12:
-       vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (analytical)' Format='ascii'> \n")
+       vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Name='B (analytical)'\
+                      Format='ascii'> \n")
        for i in range(0, N):
            vtufile.write("%e %e %e \n" % (B_th[0,i], B_th[1,i], B_th[2,i]))
        vtufile.write("</DataArray>\n")
@@ -442,3 +463,5 @@ def export_spiral_measurements(N, x, y, z, filename, B_vi, B_si, B_th):
     vtufile.write("</UnstructuredGrid>\n")
     vtufile.write("</VTKFile>\n")
     vtufile.close()
+
+    ###################################################################################################

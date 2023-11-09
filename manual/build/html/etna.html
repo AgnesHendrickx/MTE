@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case study: Mount Etna &mdash; MTE 0.1 documentation</title>
+  <title>Case study: Mount Etna &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -14,15 +14,14 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Functions" href="functions.html" />
-    <link rel="prev" title="Synthetic topopography: flank simulations" href="flanksim.html" /> 
+    <link rel="prev" title="Artificial DEM" href="artdem.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,14 +53,11 @@
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Case study: Mount Etna</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#parameters-of-etnean-lava-flows">Parameters of Etnean lava flows</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="artdem.html">Artificial DEM</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -93,12 +89,12 @@
            <div itemprop="articleBody">
              
   <section id="case-study-mount-etna">
-<h1>Case study: Mount Etna<a class="headerlink" href="#case-study-mount-etna" title="Link to this heading"></a></h1>
+<span id="etna"></span><h1>Case study: Mount Etna<a class="headerlink" href="#case-study-mount-etna" title="Link to this heading"></a></h1>
 <div class="line-block">
 <div class="line">Additionally, two other optional modules are available exclusively for the Mount Etna case study, where the field sites from <span id="id1">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span> are reproduced:</div>
 </div>
 <ol class="arabic simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">set_measurement_parameters.py()</span></code>: This module provides DEM, site and path-specfiic values suach as the file to read, the location and number of measurement points, IGRF (International Geomagnetic Reference Field) values for the site, and more. See <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a> for more details.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">set_measurement_parameters.py()</span></code>: This module provides DEM, site and path-specific values such as the file to read, the location and number of measurement points, IGRF (International Geomagnetic Reference Field) values for the site, and more. See <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a> for more details.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">etna.py</span></code>: This module you define input parameters (see <a class="reference internal" href="#"><span class="doc">Case study: Mount Etna</span></a>), to run different options reproducing field paths, to call <code class="xref py py-func docutils literal notranslate"><span class="pre">set_measurement_parameters.py()</span></code></p></li>
 </ol>
 <p>Finally, there are two scripts, <code class="docutils literal notranslate"><span class="pre">script_etna_full.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">script_etna.sh</span></code>, that automatically modify <code class="docutils literal notranslate"><span class="pre">etna.py</span></code>, see <a class="reference internal" href="#"><span class="doc">Case study: Mount Etna</span></a> for more information.</p>
@@ -108,34 +104,27 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">script_etna_full</span>
 </pre></div>
 </div>
-<section id="parameters-of-etnean-lava-flows">
-<h2>Parameters of Etnean lava flows<a class="headerlink" href="#parameters-of-etnean-lava-flows" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line">For both the <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> and the final reproduction of the field sites of <span id="id2">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span> several values were chosen aiming to best simulate Etnean lava flows. What follows is the rationale for these choises.</div>
-<div class="line">The uniform remnant magnetization intensity assigned to the matter was: <span class="math notranslate nohighlight">\(7.5\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span>. This value compares well with both the TRM found in samples taken from the lava flows in the field <span id="id3">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span> and with previous paleomagnetic studies of Etnean lavas <span id="id4">[<a class="reference internal" href="ref.html#id42" title="I. Nicolosi, F. D'Ajello Caracciolo, S. Branca, G. Ventura, and M. Chiappini. Volcanic conduit migration over a basement landslide at Mount Etna (Italy). Scientific Reports, 4(1):5293, 6 2014. URL: https://doi.org/10.1038/srep05293, doi:10.1038/srep05293.">Nicolosi <em>et al.</em>, 2014</a>]</span>; a bulk magnetization intensity of <span class="math notranslate nohighlight">\(8\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> was measured, with values ranging between <span class="math notranslate nohighlight">\(5\)</span> and <span class="math notranslate nohighlight">\(13\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span>. However, both much lower and higher values have also been reported in other studies, <span class="math notranslate nohighlight">\(0.1-1\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> and <span class="math notranslate nohighlight">\(20\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> by <span id="id5">[<a class="reference internal" href="ref.html#id12" title="Fabio Speranza, Stefano Branca, Mauro Coltelli, Francesca D'Ajello Caracciolo, and Luigi Vigliotti. How accurate is “paleomagnetic dating”? new evidence from historical lavas from mount etna. Journal of Geophysical Research: Solid Earth, 2006.">Speranza <em>et al.</em>, 2006</a>, <a class="reference internal" href="ref.html#id48" title="Jean-Claude Tanguy and Maxime Le Goff. Distortion of the geomagnetic field in volcanic terrains: an experimental study of the Mount Etna stratovolcano. Physics of the Earth and Planetary Interiors, 141(1):59 - 70, 2004. URL: http://www.sciencedirect.com/science/article/pii/S003192010300253X, doi:https://doi.org/10.1016/j.pepi.2003.10.003.">Tanguy and Le Goff, 2004</a>]</span>, respectively. Clearly displaying the large dispersion of the measurements or values of the magnetization in Etnean lavas. The inclination of the magnetization used in this study is <span class="math notranslate nohighlight">\(57 ^{\circ}\)</span>. This value was computed from Mount Etna’s average latitude using the Geocentric Axial Dipole hypothesis, (<span class="math notranslate nohighlight">\(\tan{I} = 2\tan({lat})\)</span>). The declination was assumed to be <span class="math notranslate nohighlight">\(0 ^{\circ}\)</span> (parallel to the present geomagnetic field) and from this the components of the magnetization were calculated.</div>
-<div class="line"><br /></div>
-<div class="line">When a flat bottom is chosen for the <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a>, the input value for depth of the domain is added in the lowest value from the DEM for the area chosen, to avoid intersection situations as outlined in the note in <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a>, however, this does if one increases domain depth, it depends on the size of the DEM cut chosen (and thus included features), how much depth is added underneath the path.</div>
+<div class="line">run time 30 min</div>
 </div>
-<div class="line-block">
-<div class="line">However, upon adapting domain depth, a complication surfaces: the exact nature of the magnetization in the underlying flows and deeper is unknown. Nonetheless, we continue to assume a uniform magnetization. This assumption now expands deeper, eventually stretching to the full pile of volcanic flows of Mount Etna. To validate this assumption, we refer to the geomagnetic history of Mount Etna. The last reversal of Earth’s magnetic field was dated around <span class="math notranslate nohighlight">\(\sim795\)</span> ka ago <span id="id6">[<a class="reference internal" href="ref.html#id46" title="Brad S. Singer, Brian R. Jicha, Nobutatsu Mochizuki, and Robert S. Coe. Synchronizing volcanic, sedimentary, and ice core records of Earth's last magnetic polarity reversal. Science advances, 8 2019. URL: https://doi.org/10.1126/sciadv.aaw4621, doi:10.1126/sciadv.aaw4621.">Singer <em>et al.</em>, 2019</a>]</span> and the first volcanic activity of Mount Etna was dated around <span class="math notranslate nohighlight">\(\sim500\)</span> ka ago <span id="id7">[<a class="reference internal" href="ref.html#id27" title="Stefano Branca, Mauro Coltelli, Emanuela De Beni, and Jan Wijbrans. Geological evolution of Mount Etna volcano (Italy) from earliest products until the first central volcanism (between 500 and 100 ka ago) inferred from geochronological and stratigraphic data. International Journal of Earth Sciences, 97(1):135-152, 2 2008. URL: https://doi.org/10.1007/s00531-006-0152-0, doi:10.1007/s00531-006-0152-0.">Branca <em>et al.</em>, 2008</a>]</span>.</div>
-<div class="line">Therefore, no reversals are anticipated within the accumulated layers, allowing us to extend the depth for experimental purposes without restrictions. Nonetheless, as the directly underlying flow is deemed to exert the most substantial influence, expanding the depth beyond a singular flow might be redundant. The thickness of the flows underneath the field sites mentioned in <span id="id8">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span> fluctuate between 5-15 meter <span id="id9">[<a class="reference internal" href="ref.html#id5" title="D Andronico, S Branca, S Calvari, M Burton, T Caltabiano, R A Corsaro, P Del Carlo, G Garfi, L Lodato, L Miraglia, F Mure, M Neri, E Pecora, M Pompilio, G Salerno, and L Spampinato. A multi-disciplinary study of the 2002-03 etna eruption: insights into a complex plumbing system. Bulletin of Volcanology, 67(4):314–330, 2005. 914kk Times Cited:171 Cited References Count:54. doi:10.1007/s00445-004-0372-8.">Andronico <em>et al.</em>, 2005</a>, <a class="reference internal" href="ref.html#id6" title="JB Murray and NF Stevens. New formulae for estimating lava flow volumes at mt. etna volcano, sicily. Bulletin of volcanology, 61(8):515–526, 2000.">Murray and Stevens, 2000</a>]</span>.</div>
-<div class="line">Consequently, our tests explore domain depth ranging from 10 to 140 meter. When it comes to spatial extent, no additional consideration are necessary, and so our experiments span a spatial extent from 50 to 1000 meters.</div>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>finish this section</p>
 </div>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="flanksim.html" class="btn btn-neutral float-left" title="Synthetic topopography: flank simulations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="artdem.html" class="btn btn-neutral float-left" title="Artificial DEM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="functions.html" class="btn btn-neutral float-right" title="Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

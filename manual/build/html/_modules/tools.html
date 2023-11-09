@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>tools &mdash; MTE 0.1 documentation</title>
+  <title>tools &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -13,7 +13,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -50,11 +50,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app1.html">Complete derivation of the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -89,11 +89,16 @@
   <h1>Source code for tools</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="c1">###################################################################################################</span>
+
+
 <div class="viewcode-block" id="export_mesh_3D">
 <a class="viewcode-back" href="../functions.html#tools.export_mesh_3D">[docs]</a>
 <span class="k">def</span> <span class="nf">export_mesh_3D</span><span class="p">(</span><span class="n">NV</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">Mx</span><span class="p">,</span> <span class="n">My</span><span class="p">,</span> <span class="n">Mz</span><span class="p">,</span> <span class="n">nnx</span><span class="p">,</span> <span class="n">nny</span><span class="p">,</span> <span class="n">nnz</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Export 3D mesh to vtu file (plot with paraview) with z (height of surface) as point data, and magnetization vector (and components) as cell data.</span>
+<span class="sd">    This function creates a VTU file that represents a 3D mesh with height data exported as point data and magnetization vectors exported as cell data.</span>
+<span class="sd">    The VTU file can be visualized using Paraview software.</span>
+
 
 <span class="sd">    :param NV: number of nodes.</span>
 <span class="sd">    :type NV: scalar(int)</span>
@@ -154,7 +159,8 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/PointData&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="c1">#####</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;CellData Scalars=&#39;scalars&#39;&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;M vector&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39;</span><span class="se">\</span>
+<span class="s2">                   Name=&#39;M vector&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">iel</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nel</span><span class="p">):</span>
         <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Mx</span><span class="p">[</span><span class="n">iel</span><span class="p">],</span> <span class="n">My</span><span class="p">[</span><span class="n">iel</span><span class="p">],</span> <span class="n">Mz</span><span class="p">[</span><span class="n">iel</span><span class="p">]))</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -179,8 +185,9 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;Cells&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Int32&#39; Name=&#39;connectivity&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">iel</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nel</span><span class="p">):</span>
-        <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">icon</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span>\
-                                                     <span class="n">icon</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="n">iel</span><span class="p">]))</span>
+        <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span> \
+                       <span class="o">%</span> <span class="p">(</span><span class="n">icon</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span>\
+                          <span class="n">icon</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="n">iel</span><span class="p">],</span> <span class="n">icon</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="n">iel</span><span class="p">]))</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Int32&#39; Name=&#39;offsets&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">iel</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nel</span><span class="p">):</span>
@@ -198,13 +205,14 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
+
 
 <div class="viewcode-block" id="export_mesh_2D">
 <a class="viewcode-back" href="../functions.html#tools.export_mesh_2D">[docs]</a>
 <span class="k">def</span> <span class="nf">export_mesh_2D</span><span class="p">(</span><span class="n">NV</span><span class="p">,</span> <span class="n">nel</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Export 2D mesh (surface) to vtu file (plot with paraview), can be used in main for visualizing plane measurement po.</span>
+<span class="sd">    This function creates a VTU file that represents a 2D mesh surface, which can be utilized for visualization in Paraview.</span>
 
 <span class="sd">    :param NV: number of points.</span>
 <span class="sd">    :type NV: scalar(int)</span>
@@ -257,7 +265,8 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
+
 
 <div class="viewcode-block" id="export_mesh_1D">
 <a class="viewcode-back" href="../functions.html#tools.export_mesh_1D">[docs]</a>
@@ -313,7 +322,9 @@
 
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;produced path.vtu&#39;</span><span class="p">)</span></div>
 
+
 <span class="c1">###################################################################################################</span>
+
 
 <div class="viewcode-block" id="export_plane_measurements">
 <a class="viewcode-back" href="../functions.html#tools.export_plane_measurements">[docs]</a>
@@ -358,16 +369,19 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/Points&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="c1">#####</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;PointData Scalars=&#39;scalars&#39;&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (vol int)&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (vol int)&#39;</span><span class="se">\</span>
+<span class="s2">                   Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">NV</span><span class="p">):</span>
         <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%10e</span><span class="s2"> </span><span class="si">%10e</span><span class="s2"> </span><span class="si">%10e</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">B_vi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_vi</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_vi</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (surf int)&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (surf int)&#39;</span><span class="se">\</span>
+<span class="s2">                   Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">NV</span><span class="p">):</span>
         <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%10e</span><span class="s2"> </span><span class="si">%10e</span><span class="s2"> </span><span class="si">%10e</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">B_si</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_si</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_si</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">B_th</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">B_th</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1e-12</span><span class="p">:</span>
-       <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (analytical)&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+       <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (analytical)&#39;</span><span class="se">\</span>
+<span class="s2">                      Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">NV</span><span class="p">):</span>
            <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">B_th</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_th</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_th</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">]))</span>
        <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -394,7 +408,8 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
+
 
 <div class="viewcode-block" id="export_line_measurements">
 <a class="viewcode-back" href="../functions.html#tools.export_line_measurements">[docs]</a>
@@ -436,16 +451,19 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/Points&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="c1">#####</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;PointData Scalars=&#39;scalars&#39;&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (vol int)&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (vol int)&#39;</span><span class="se">\</span>
+<span class="s2">                   Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
         <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">B_vi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_vi</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_vi</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (surf int)&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (surf int)&#39;</span><span class="se">\</span>
+<span class="s2">                   Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
         <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">B_si</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_si</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_si</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">B_th</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">B_th</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1e-12</span><span class="p">:</span>
-       <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (analytical)&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+       <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (analytical)&#39;</span><span class="se">\</span>
+<span class="s2">                      Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
            <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">B_th</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_th</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_th</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">]))</span>
        <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -472,8 +490,8 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
+<span class="c1">###################################################################################################</span>
 
-<span class="c1">###############################################################################</span>
 
 <div class="viewcode-block" id="export_spiral_measurements">
 <a class="viewcode-back" href="../functions.html#tools.export_spiral_measurements">[docs]</a>
@@ -514,16 +532,19 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/Points&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="c1">#####</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;PointData Scalars=&#39;scalars&#39;&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (vol int)&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (vol int)&#39;</span><span class="se">\</span>
+<span class="s2">                   Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
         <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">B_vi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_vi</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_vi</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (surf int)&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (surf int)&#39;</span><span class="se">\</span>
+<span class="s2">                   Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
         <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">B_si</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_si</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_si</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">B_th</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">B_th</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1e-12</span><span class="p">:</span>
-       <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (analytical)&#39; Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+       <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;DataArray type=&#39;Float32&#39; NumberOfComponents=&#39;3&#39; Name=&#39;B (analytical)&#39;</span><span class="se">\</span>
+<span class="s2">                      Format=&#39;ascii&#39;&gt; </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
            <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="si">%e</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">B_th</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_th</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">B_th</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">]))</span>
        <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/DataArray&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -549,6 +570,8 @@
     <span class="n">vtufile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;/VTKFile&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">vtufile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
+
+    <span class="c1">###################################################################################################</span>
 </pre></div>
 
            </div>
@@ -558,7 +581,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

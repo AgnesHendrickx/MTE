@@ -17,16 +17,15 @@ sys.path.append(os.path.abspath("./_ext"))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'MTE'
-copyright = '2023, Agnes'
-author = 'Agnes'
-release = '0.1'
+copyright = '2023, A.E. Hendrickx'
+author = 'A.E. Hendrickx'
+release = '1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 numfig = True
 #html4_writer = True
-
-numfig_format={'figure': '      Figure %s'}
+numfig_format={'figure': 'Figure %s'}
 
 
 extensions = [
@@ -38,6 +37,15 @@ extensions = [
 ]
 #'sphinxawesome_theme.highlighting',
 todo_include_todos = True
+from pygments.styles import get_all_styles
+styles = list(get_all_styles())
+
+pygments_style = 'fruity'
+pygments_style = 'default'
+
+pygments_style = 'monokai2'
+#pygments_style = 'monokai3'
+
 
 bibtex_bibfiles= ['references.bib']
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>magnetostatics &mdash; MTE 0.1 documentation</title>
+  <title>magnetostatics &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -13,7 +13,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -50,11 +50,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app1.html">Complete derivation of the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -92,7 +92,7 @@
 
 <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-20</span>
 
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 
 <div class="viewcode-block" id="cross">
@@ -117,8 +117,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cz</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span></div>
 
 
-
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -229,8 +228,7 @@
            <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
        <span class="p">)</span>
 
-
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -341,8 +339,7 @@
            <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
        <span class="p">)</span>
 
-
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># TODO fill docstrings #CT</span>
@@ -371,6 +368,8 @@
     <span class="n">N6</span> <span class="o">=</span> <span class="mf">0.125</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">t</span><span class="p">)</span>
     <span class="n">N7</span> <span class="o">=</span> <span class="mf">0.125</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">t</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">N0</span><span class="p">,</span> <span class="n">N1</span><span class="p">,</span> <span class="n">N2</span><span class="p">,</span> <span class="n">N3</span><span class="p">,</span> <span class="n">N4</span><span class="p">,</span> <span class="n">N5</span><span class="p">,</span> <span class="n">N6</span><span class="p">,</span> <span class="n">N7</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+<span class="c1">###################################################################################################</span>
 
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -401,6 +400,8 @@
         <span class="p">[</span><span class="n">dNdr0</span><span class="p">,</span> <span class="n">dNdr1</span><span class="p">,</span> <span class="n">dNdr2</span><span class="p">,</span> <span class="n">dNdr3</span><span class="p">,</span> <span class="n">dNdr4</span><span class="p">,</span> <span class="n">dNdr5</span><span class="p">,</span> <span class="n">dNdr6</span><span class="p">,</span> <span class="n">dNdr7</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span>
     <span class="p">)</span>
 
+<span class="c1">###################################################################################################</span>
+
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dNNNds</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># TODO fill docstrings #CT</span>
@@ -429,6 +430,8 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
         <span class="p">[</span><span class="n">dNds0</span><span class="p">,</span> <span class="n">dNds1</span><span class="p">,</span> <span class="n">dNds2</span><span class="p">,</span> <span class="n">dNds3</span><span class="p">,</span> <span class="n">dNds4</span><span class="p">,</span> <span class="n">dNds5</span><span class="p">,</span> <span class="n">dNds6</span><span class="p">,</span> <span class="n">dNds7</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span>
     <span class="p">)</span>
+
+<span class="c1">###################################################################################################</span>
 
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -459,8 +462,7 @@
         <span class="p">[</span><span class="n">dNdt0</span><span class="p">,</span> <span class="n">dNdt1</span><span class="p">,</span> <span class="n">dNdt2</span><span class="p">,</span> <span class="n">dNdt3</span><span class="p">,</span> <span class="n">dNdt4</span><span class="p">,</span> <span class="n">dNdt5</span><span class="p">,</span> <span class="n">dNdt6</span><span class="p">,</span> <span class="n">dNdt7</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span>
     <span class="p">)</span>
 
-
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -573,8 +575,7 @@
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Bx</span><span class="p">,</span> <span class="n">By</span><span class="p">,</span> <span class="n">Bz</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 
-
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 
 <div class="viewcode-block" id="plane">
@@ -667,8 +668,7 @@
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">r</span></div>
 
 
-
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 
 <div class="viewcode-block" id="line">
@@ -748,8 +748,7 @@
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">r</span></div>
 
 
-
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -814,8 +813,7 @@
 
     <span class="k">return</span> <span class="n">s</span>
 
-
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 
 
 <div class="viewcode-block" id="facmag">
@@ -827,8 +825,6 @@
 <span class="sd">    | The polygon is limited to 10 corners (n). Requires functions :func:`rot`, :func:`line`, :func:`plane` as define above. Distance units are irrelevant but must be consistent.</span>
 <span class="sd">    | A spatial problem, see :doc:`computational_approach`, is mitigated due to the introduction of a small (1e-20) artificial distance for ``p``, in case ``p`` lies on a plane aligning with an edge of an element.</span>
 <span class="sd">    | Directly translated from ANSI-standard FORTRAN 77 subroutines from :cite:`BLAKELY`.</span>
-
-
 
 <span class="sd">    :param Mx: x component magnetization [A/m] of the element.</span>
 <span class="sd">    :type Mx: scalar(float)</span>
@@ -962,7 +958,7 @@
 
 
 
-<span class="c1">##############################################################################</span>
+<span class="c1">###################################################################################################</span>
 <span class="c1"># internal node numbering:</span>
 <span class="c1">#     z</span>
 <span class="c1">#     |</span>
@@ -977,6 +973,7 @@
 <span class="c1"># x</span>
 <span class="c1">###########</span>
 
+
 <div class="viewcode-block" id="compute_B_surface_integral_cuboid">
 <a class="viewcode-back" href="../functions.html#magnetostatics.compute_B_surface_integral_cuboid">[docs]</a>
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -984,7 +981,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    | This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a cuboid element employing :func:`facmag` function on each face. Here again the magnetization vector (Mx,My,Mz) is assumed to be constant inside the element. It uses the ``icon`` array to identify the x-,y-,z-coordinates associated with each node, before calling :func:`facmag`, to compute the total magnetic field strength for each face.</span>
 <span class="sd">    | Magnetic field strength :math:`\mathbf{B}` is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in :cite:`BLAKELY`.</span>
-<span class="sd">    | Distance units are irrelevant but must be consistent.  For numbering of the nodes, see :doc:`app2`.</span>
+<span class="sd">    | Distance units are irrelevant but must be consistent.  For numbering of the nodes, see comments in code.</span>
 
 <span class="sd">    :param xmeas: x coordinate of observation point.</span>
 <span class="sd">    :type xmeas: scalar(float)</span>
@@ -1153,8 +1150,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">Bx</span><span class="p">,</span> <span class="o">-</span><span class="n">By</span><span class="p">,</span> <span class="o">-</span><span class="n">Bz</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span></div>
 
 
-
-<span class="c1">###############################################################################</span>
+<span class="c1">###################################################################################################</span>
 <span class="c1"># internal node numbering:</span>
 <span class="c1">#     z</span>
 <span class="c1">#     |</span>
@@ -1180,7 +1176,7 @@
 <span class="sd">    | In light thereof we subdivide the top and bottom faces into four triangles. This feature is needed in the case topography is prescribed at the top (or bottom) of the domain and the vertical position of the nodes are modified.</span>
 <span class="sd">    | It uses the ``icon`` array to identify the x-,y-,z-coordinates associated with each node, before calling :func:`facmag`, to compute the total magnetic field strength for each face and triangle.</span>
 <span class="sd">    | Magnetic field strength :math:`\mathbf{B}` is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in :cite:`BLAKELY`.</span>
-<span class="sd">    | Distance units are irrelevant but must be consistent. For numbering of the nodes, see :doc:`app2`.</span>
+<span class="sd">    | Distance units are irrelevant but must be consistent. For numbering of the nodes, see comments in code.</span>
 
 <span class="sd">    :param xmeas: x coordinate of observation point.</span>
 <span class="sd">    :type xmeas: scalar(float)</span>
@@ -1470,6 +1466,8 @@
 <span class="c1"># while the original blakely subroutines are structured for clockwise numbering</span>
 <span class="c1"># benchmark 1/3 validify orientation</span>
 
+<span class="c1">###################################################################################################</span>
+
 
 <div class="viewcode-block" id="compute_B_surface_integral_wtopo_noise">
 <a class="viewcode-back" href="../functions.html#magnetostatics.compute_B_surface_integral_wtopo_noise">[docs]</a>
@@ -1610,7 +1608,6 @@
     <span class="n">x8</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span> <span class="o">*</span> <span class="mf">0.25</span>
     <span class="n">y8</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span> <span class="o">*</span> <span class="mf">0.25</span>
     <span class="n">z8</span> <span class="o">=</span> <span class="p">((</span><span class="n">z</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
-    <span class="c1">##### HERE NOISE ####</span>
 
     <span class="c1"># 328</span>
     <span class="n">xface</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">icon</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
@@ -1771,6 +1768,8 @@
 <span class="c1"># Likely due to counterclockwise fashion numbering of corners</span>
 <span class="c1"># while the original blakely subroutines are structured for clockwise numbering</span>
 <span class="c1"># benchmark 1/3 validify orientation</span>
+
+<span class="c1">###################################################################################################</span>
 </pre></div>
 
            </div>
@@ -1780,7 +1779,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

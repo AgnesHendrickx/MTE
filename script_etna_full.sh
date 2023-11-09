@@ -23,11 +23,11 @@ for site in 1 2 4 5 ; do
                 python3 MTE.py  > log.txt
 
                 if test -f "log.txt"; then
-                   mkdir results
+                   mkdir -p results
                    mv *.vtu results/
                    mv *.ascii results/
                    mv log.txt results/
-                   mv results path_results/results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}_fb
+                   mv results path_results/results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}_fb_zt
                 fi
 
                 rm -f *.vtu
@@ -61,11 +61,11 @@ for site in 5 ; do
                 python3 MTE.py  > log.txt
 
                 if test -f "log.txt"; then
-                   mkdir results
+                   mkdir -p results
                    mv *.vtu results/
                    mv *.ascii results/
                    mv log.txt results/
-                   mv results path_results/results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}_fb
+                   mv results path_results/results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}_fb_zt
                 fi
 
                 rm -f *.vtu
@@ -96,11 +96,11 @@ for site in 6 ; do
                 python3 MTE.py  > log.txt
 
                 if test -f "log.txt"; then
-                   mkdir results
+                   mkdir -p results
                    mv *.vtu results/
                    mv *.ascii results/
                    mv log.txt results/
-                   mv results path_results/results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}_fb
+                   mv results path_results/results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}_fb_zt
                 fi
 
                 rm -f *.vtu
@@ -133,7 +133,7 @@ rdem=2
 #                python3 MTE.py  > log.txt
 #
 #                if test -f "log.txt"; then
-#                   mkdir results
+#                   mkdir -p results
 #                   mv *.vtu results/
 #                   mv *.ascii results/
 #                   mv log.txt results/
@@ -168,11 +168,11 @@ for site in 3 ; do
                 python3 MTE.py  > log.txt
 
                 if test -f "log.txt"; then
-                   mkdir results
+                   mkdir -p results
                    mv *.vtu results/
                    mv *.ascii results/
                    mv log.txt results/
-                   mv results path_results/results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}_fb
+                   mv results path_results/results_${rdem}m_site${site}_path${ipath}_sdem${sdem}_ho${ho}_fb_zt
                 fi
 
                 rm -f *.vtu

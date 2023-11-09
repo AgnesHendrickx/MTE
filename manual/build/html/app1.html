@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complete derivation of the equations &mdash; MTE 0.1 documentation</title>
+  <title>Complete derivation of the equations &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -14,14 +14,13 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Coordinate systems of different components" href="app2.html" />
     <link rel="prev" title="References" href="ref.html" /> 
 </head>
 
@@ -54,15 +53,14 @@
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Complete derivation of the equations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#uniformly-magnetized-sphere">Uniformly magnetized sphere</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#multipole-expansion">Multipole expansion</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -177,7 +175,7 @@
     \mathbf{A}_{dipole}(r)=\frac{\mu_{0}}{4\pi}\frac{\mathbf{m}\times\mathbf{r}}{r^{3}}
 \end{equation}\]</div>
 <div class="line-block">
-<div class="line">Please note that in eq. <a class="reference internal" href="#equation-eq-9-2">(18)</a> <span class="math notranslate nohighlight">\(\mathbf{r}=(x,y,z)\)</span> relates to the distance between the source and the observation point, however, we continue with a setup where both points are defined w.r.t. the origin. Now, <span class="math notranslate nohighlight">\(\mathbf{r}=(x,y,z)\)</span> refers to the vector from the origin to the observation point, <span class="math notranslate nohighlight">\(\mathbf{r'}=(x',y',z')\)</span> refers to the vector from the origin to the source (volume element <span class="math notranslate nohighlight">\(dv\)</span>), and a new vector <span class="math notranslate nohighlight">\(\mathbf{R}= (x-x',y-y',z-z')\)</span> is defined. See <a class="reference internal" href="governing_equations.html#figmodel"><span class="std std-numref">      Figure 1</span></a>.</div>
+<div class="line">Please note that in eq. <a class="reference internal" href="#equation-eq-9-2">(18)</a> <span class="math notranslate nohighlight">\(\mathbf{r}=(x,y,z)\)</span> relates to the distance between the source and the observation point, however, we continue with a setup where both points are defined w.r.t. the origin. Now, <span class="math notranslate nohighlight">\(\mathbf{r}=(x,y,z)\)</span> refers to the vector from the origin to the observation point, <span class="math notranslate nohighlight">\(\mathbf{r'}=(x',y',z')\)</span> refers to the vector from the origin to the source (volume element <span class="math notranslate nohighlight">\(dv\)</span>), and a new vector <span class="math notranslate nohighlight">\(\mathbf{R}= (x-x',y-y',z-z')\)</span> is defined. See <a class="reference internal" href="governing_equations.html#figmodel"><span class="std std-numref">Figure 1</span></a>.</div>
 <div class="line">To elaborate:</div>
 </div>
 <ul class="simple">
@@ -298,9 +296,9 @@
 <section id="uniformly-magnetized-sphere">
 <h2>Uniformly magnetized sphere<a class="headerlink" href="#uniformly-magnetized-sphere" title="Link to this heading"></a></h2>
 <figure class="align-default" id="id7">
-<span id="sphere-si2"></span><img alt="_images/sf_image2.png" class="with-border" src="_images/sf_image2.png" />
+<span id="sphere-si2"></span><a class="reference internal image-reference" href="_images/sf_image2.png"><img alt="_images/sf_image2.png" src="_images/sf_image2.png" style="width: 393.6px; height: 404.40000000000003px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 22 </span><span class="caption-text">The magnetized sphere (blue). <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the direction of <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>, <span class="math notranslate nohighlight">\(r[m]\)</span>  is the distance from the center of the sphere to the observation point <code class="docutils literal notranslate"><span class="pre">P</span></code>, <span class="math notranslate nohighlight">\(a [m]\)</span> is the radius of the sphere,  <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\hat{\theta}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\theta [^{\circ}]\)</span> is the angle between <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> increasing clockwise from <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span></span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 29 </span><span class="caption-text">The magnetized sphere (blue). <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the direction of <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>, <span class="math notranslate nohighlight">\(r[m]\)</span>  is the distance from the center of the sphere to the observation point <code class="docutils literal notranslate"><span class="pre">P</span></code>, <span class="math notranslate nohighlight">\(a [m]\)</span> is the radius of the sphere,  <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\hat{\theta}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\theta [^{\circ}]\)</span> is the angle between <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> increasing clockwise from <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span></span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
@@ -308,7 +306,7 @@
 <div class="line">For the derivation of the equation of the magnetic field <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>, outside a sphere of uniformly magnetized material we revisit <span class="math notranslate nohighlight">\(\mathbf{H}= -\nabla \psi\)</span>, eq. <a class="reference internal" href="#equation-hu">(14)</a>.</div>
 <div class="line">If situated outside of the magnetized sphere, <span class="math notranslate nohighlight">\(\mathbf{M}=0\)</span>, therefore, equation <a class="reference internal" href="#equation-eq-8">(16)</a> becomes <span class="math notranslate nohighlight">\(\mathbf{B}=\mu_0\mathbf{H}\)</span> outside the sphere.</div>
 <div class="line">The uniform magnetization results in <span class="math notranslate nohighlight">\(\nabla\cdot\mathbf{H}=0\)</span> and consequently <span class="math notranslate nohighlight">\(\nabla^2\psi^2=0\)</span> (Laplace’s equation). Hence, a solution of Laplace’s equation satisfying the boundary conditions is required.</div>
-<div class="line">If the coordinate system is chosen at the centre of the sphere and the direction of <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the polar direction (z-direction, <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>), the potential can be expanded in zonal harmonics. See <a class="reference internal" href="#sphere-si2"><span class="std std-numref">      Figure 22</span></a>. Inside the material, <span class="math notranslate nohighlight">\(\psi_I\)</span>, and outside the material, <span class="math notranslate nohighlight">\(\psi_O\)</span>, are</div>
+<div class="line">If the coordinate system is chosen at the centre of the sphere and the direction of <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is in the polar direction (z-direction, <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>), the potential can be expanded in zonal harmonics. See <a class="reference internal" href="#sphere-si2"><span class="std std-numref">Figure 29</span></a>. Inside the material, <span class="math notranslate nohighlight">\(\psi_I\)</span>, and outside the material, <span class="math notranslate nohighlight">\(\psi_O\)</span>, are</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-u1u2">
 <span class="eqno">(34)<a class="headerlink" href="#equation-u1u2" title="Link to this equation"></a></span>\[\begin{split}\begin{equation}
@@ -363,28 +361,8 @@
 \end{split}
 \end{equation}\end{split}\]</div>
 <div class="line-block">
-<div class="line">for definitions of variables and visualization, see <a class="reference internal" href="#sphere-si2"><span class="std std-numref">      Figure 22</span></a>.</div>
+<div class="line">for definitions of variables and visualization, see <a class="reference internal" href="#sphere-si2"><span class="std std-numref">Figure 29</span></a>.</div>
 </div>
-</section>
-<section id="multipole-expansion">
-<h2>Multipole expansion<a class="headerlink" href="#multipole-expansion" title="Link to this heading"></a></h2>
-<p>We assume that the <span class="math notranslate nohighlight">\(\left|\mathbf{r}'\right|\)</span> are all small compared to <span class="math notranslate nohighlight">\(|\mathbf{r}|\)</span> and Taylor expand <span class="math notranslate nohighlight">\(\left|\mathbf{r}-\mathbf{r}'\right|^{-1}\)</span> in powers of <span class="math notranslate nohighlight">\(\mathbf{r}'\)</span>,</p>
-<div class="math notranslate nohighlight" id="equation-mpe1">
-<span class="eqno">(40)<a class="headerlink" href="#equation-mpe1" title="Link to this equation"></a></span>\[\begin{split}\begin{equation}
-\begin{aligned}
-    \frac{1}{\left|\mathbf{r}-\mathbf{r}'\right|}=\frac{1}{r}+\left(-\mathbf{r}'\right) \cdot \nabla \frac{1}{r}+\frac{1}{2 !}\left(-\mathbf{r}'\right)\left(-\mathbf{r}'\right): \nabla \nabla \frac{1}{r} \\
-    +\frac{1}{3 !}\left(-\mathbf{r}'\right)\left(-\mathbf{r}'\right)\left(-\mathbf{r}'\right) \vdots \nabla \nabla \nabla \frac{1}{r}+\cdots,
-\end{aligned}
-\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight" id="equation-mpe2">
-<span class="eqno">(41)<a class="headerlink" href="#equation-mpe2" title="Link to this equation"></a></span>\[\begin{split}\begin{equation}
-\begin{aligned}
-    A(r)=\frac{I}{c}\left[\frac{1}{r} \oint d \ell+\frac{1}{r^{2}} \oint r^{\prime} \cos \theta d \ell\right.\\
-    &amp;+\frac{1}{r^{3}} \oint r^{2}\left(\frac{3}{2} \cos ^{2} \theta-\frac{1}{2}\right) d \ell \\
-    &amp;+\frac{1}{r^{4}} \oint r^{3}\left(\frac{5}{2} \cos ^{3} \theta-\frac{3}{2} \cos \theta\right) d \ell \\
-    &amp;+\ldots]
-\end{aligned}
-\end{equation}\end{split}\]</div>
 </section>
 </section>
 
@@ -393,13 +371,12 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="ref.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="app2.html" class="btn btn-neutral float-right" title="Coordinate systems of different components" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

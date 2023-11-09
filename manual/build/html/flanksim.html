@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Synthetic topopography: flank simulations &mdash; MTE 0.1 documentation</title>
+  <title>Synthetic topopography: flank simulations &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -14,14 +14,14 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Case study: Mount Etna" href="etna.html" />
+    <link rel="next" title="Artificial DEM" href="artdem.html" />
     <link rel="prev" title="Parameters" href="parameters.html" /> 
 </head>
 
@@ -54,17 +54,17 @@
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Synthetic topopography: flank simulations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#model-setup">Model setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#reproduce">Reproduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-setup">Model setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reproduce">Reproduce</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -97,158 +97,239 @@
              
   <section id="synthetic-topopography-flank-simulations">
 <span id="flanksim"></span><h1>Synthetic topopography: flank simulations<a class="headerlink" href="#synthetic-topopography-flank-simulations" title="Link to this heading"></a></h1>
-<figure class="align-default" id="id4">
-<span id="fflanksim"></span><img alt="_images/flanks2edit.png" class="with-border" src="_images/flanks2edit.png" />
+<figure class="align-default" id="id8">
+<span id="fflanksim"></span><a class="reference internal image-reference" href="_images/vis_flanksim_overview.png"><img alt="_images/vis_flanksim_overview.png" src="_images/vis_flanksim_overview.png" style="width: 822.5px; height: 468.29999999999995px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 20 </span><span class="caption-text">Flank simulation on the Etna. (<span class="math notranslate nohighlight">\(\mathbf{M}\)</span>) = <span class="math notranslate nohighlight">\(7.5 [A/m]\)</span> (arrows). The slope (<span class="math notranslate nohighlight">\(a\)</span> in <a class="reference internal" href="#fflanksim"><span class="std std-numref">      Figure 20</span></a>) is  <span class="math notranslate nohighlight">\(6 ^{\circ}\)</span>. The computations of the magnetic field (<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>) above the flanks are done at point composing either a path or a plane above each flank. The flanks are labeled as displayed. Please note, for visual purposes, a different extent and resolution of the mesh was chosen for the displayed mesh, not adhering the optimized testing setup outlined before and in section <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a>.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 20 </span><span class="caption-text">Flank simulation on the Etna. (<span class="math notranslate nohighlight">\(\mathbf{M}\)</span>) = <span class="math notranslate nohighlight">\(7.5 [A/m]\)</span> (arrows). The slope (<span class="math notranslate nohighlight">\(a\)</span> in <a class="reference internal" href="#fflanksim"><span class="std std-numref">Figure 20</span></a>) is  <span class="math notranslate nohighlight">\(6 ^{\circ}\)</span>. The computations of the magnetic field (<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>) above the flanks are done at point composing either a path or a plane above each flank. The flanks are labeled as displayed. Please note, for visual purposes, the extent and resolution of the displayed mesh do not adhere the optimized testing setup outlined before in the <a class="reference internal" href="parameters.html#parameters"><span class="std std-ref">parameter section</span></a>.</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
 <div class="line">Given that the majority of lava flows are located on the flanks of volcanoes, simulating volcanic flanks is a relevant and intuitive starting point for our initial generic modeling setup. While the magnetization direction remains consistent, the dip direction of the surfaces on these flanks varies.</div>
-<div class="line"><br /></div>
-<div class="line">To explore the impact of these variances, we established a model setup dedicated to flank simulations, as illustrated in <a class="reference internal" href="#fflanksim"><span class="std std-numref">      Figure 20</span></a>. In our approach, the flank topography is emulated by a sine function propagating perpendicular to the sloped surface, see function <a class="reference internal" href="functions.html#support.topography" title="support.topography"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.topography()</span></code></a>. The sine wave resemble the characteristic ridges and gullies of volcanic topography.</div>
 </div>
-<figure class="align-default" id="id5">
-<span id="bdeg"></span><img alt="_images/bdegflank.png" class="with-border" src="_images/bdegflank.png" />
+<figure class="align-default" id="id9">
+<span id="bdeg"></span><a class="reference internal image-reference" href="_images/bdegflank.png"><img alt="_images/bdegflank.png" src="_images/bdegflank.png" style="width: 749.6999999999999px; height: 510.99999999999994px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 21 </span><span class="caption-text">Direction on south flank is <span class="math notranslate nohighlight">\(-31 ^{\circ}\)</span>, an example of a variation possible while doing flank simulations tests.</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 21 </span><span class="caption-text">Direction of wavy pattern on south flank is <span class="math notranslate nohighlight">\(-31 ^{\circ}\)</span>, an example of a variation possible while doing flank simulations tests.</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="model-setup">
 <h2>Model setup<a class="headerlink" href="#model-setup" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line">In these simulations, a wide range of parameters can be adjusted to investigate their influence on the magnetic field. These include the surface slope, the amplitude and wavelength of the sine function, and the angle between the sine wave’s direction and either the x-axis or y-axis—depending on the flank, as depicted in <a class="reference internal" href="#bdeg"><span class="std std-numref">      Figure 21</span></a>.</div>
-<div class="line"><br /></div>
-<div class="line">For alignment with the <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>, parameter used to define the synthetic topography aim to replicate the ridges and gullies of Mount Etna. The estimated amplitude, wavelength, and angle for the slope were <span class="math notranslate nohighlight">\(4m\)</span>, <span class="math notranslate nohighlight">\(25m\)</span>, and <span class="math notranslate nohighlight">\(6 ^{\circ}\)</span>, respectively, were derived from aerial images and Digital Elevation Models (DEMs) of the area around the field sites of <span id="id1">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span>.</div>
-<div class="line">Furthermore, the uniform remanent magnetization intensity chosen was <span class="math notranslate nohighlight">\(7.5\)</span> <span class="math notranslate nohighlight">\([A/m]\)</span> with a inclination of <span class="math notranslate nohighlight">\(57 ^{\circ}\)</span> and a declination of <span class="math notranslate nohighlight">\(0 ^{\circ}\)</span>. For the rationale of chosen magnetization, see section <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>. The Earth’s magnetic field for the flank simulation was estimated using an average of all site (<span id="id2">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span>) values of the IGRF <span id="id3">[<a class="reference internal" href="ref.html#id8" title="Patrick Alken, Erwan Thébault, Ciarán D Beggan, Hagay Amit, J Aubert, J Baerenzung, TN Bondar, WJ Brown, S Califf, A Chambodut, and others. International geomagnetic reference field: the thirteenth generation. Earth, Planets and Space, 73(1):1–25, 2021.">Alken <em>et al.</em>, 2021</a>]</span>.</div>
-<div class="line"><br /></div>
-<div class="line">Flank simulations were done using a domain of 250x250x20m with 375x375x10 elements (chosen upon careful consideration, see section <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a>), with computation done a path of 47 points located one meter above the center of the domain. The sine wave was shifted to create the exact same topography underneath the path at the center of each flanks.</div>
+<div class="line">To explore the impact of these variances, a specialized model configuration was devised to conduct flank simulations, as demonstrated in <a class="reference internal" href="#fflanksim"><span class="std std-numref">Figure 20</span></a>. In this model, the undulating nature of flank topography is replicated using a sine function that models the ridges and troughs typical of volcanic landscapes. This wavy pattern, described by <a class="reference internal" href="functions.html#support.topography" title="support.topography"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.topography()</span></code></a>, traverses perpendicular across the inclined surface.</div>
 </div>
+<div class="line-block">
+<div class="line">The simulation framework permits the manipulation of several parameters to discern their effects on the magnetic field characteristics. Key variables include the slope of the surface, the amplitude and frequency of the sine function, and the orientation of the sine wave’s propagation relative to the Cartesian axes (this angle is variable and contingent on the particular flank being simulated), an example is given in <a class="reference internal" href="#bdeg"><span class="std std-numref">Figure 21</span></a>.</div>
+</div>
+<div class="line-block">
+<div class="line">For alignment with the <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a>, the parameters used to define the synthetic topography aim to replicate the ridges and gullies of Mount Etna. Based on the analysis of aerial imagery and DEMs of the area around the field sites of <span id="id1">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span>, an amplitude of <span class="math notranslate nohighlight">\(4m\)</span>, a wavelength of <span class="math notranslate nohighlight">\(25m\)</span>, and an angle of inclination for the slope of <span class="math notranslate nohighlight">\(6 ^{\circ}\)</span> were found to be representative values.</div>
+</div>
+<div class="line-block">
+<div class="line">The uniform remanent magnetization intensity chosen was <span class="math notranslate nohighlight">\(7.5\)</span> <span class="math notranslate nohighlight">\(A/m\)</span> with a inclination of <span class="math notranslate nohighlight">\(57 ^{\circ}\)</span> and a declination of <span class="math notranslate nohighlight">\(0 ^{\circ}\)</span>. For the rationale of chosen magnetization, see <a class="reference internal" href="artdem.html#artdem"><span class="std std-ref">DEM section</span></a>. Additionally, the Earth’s magnetic field in the flank simulations was calibrated to the average of the IGRF values specific to Etna’s flanks <span id="id2">[<a class="reference internal" href="ref.html#id8" title="Patrick Alken, Erwan Thébault, Ciarán D Beggan, Hagay Amit, J Aubert, J Baerenzung, TN Bondar, WJ Brown, S Califf, A Chambodut, and others. International geomagnetic reference field: the thirteenth generation. Earth, Planets and Space, 73(1):1–25, 2021.">Alken <em>et al.</em>, 2021</a>]</span>, with the respective components being <span class="math notranslate nohighlight">\(IGRF_E = 1561.2 nT\)</span>, and <span class="math notranslate nohighlight">\(IGRF_N = 26850.3 nT\)</span>, and <span class="math notranslate nohighlight">\(IGRF_D = 36305.7 nT\)</span>.</div>
+</div>
+<div class="line-block">
+<div class="line">Flank simulations were done using a domain of <span class="math notranslate nohighlight">\(250\times250\times20m\)</span> discretized with <span class="math notranslate nohighlight">\(375\times375\times10\)</span> elements, with a level plane as the bottom boundary and removal of the zero topography results, a decision which is justified in the <a class="reference internal" href="parameters.html#parameters"><span class="std std-ref">parameter section</span></a>. Computation were conducted along a path comprising 47 points positioned <span class="math notranslate nohighlight">\(1m\)</span> and <span class="math notranslate nohighlight">\(1.8m\)</span> above the domain’s center, with observation points distributed at approximately one meter intervals. To ensure consistency in the simulation environment, this sinuous topography was uniformly applied beneath the path at the center of each flank.</div>
+</div>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h2>
+<figure class="align-default" id="id10">
+<span id="flanksim-plot"></span><a class="reference internal image-reference" href="_images/flanksim_mp_zt.png"><img alt="_images/flanksim_mp_zt.png" src="_images/flanksim_mp_zt.png" style="width: 1000.0px; height: 500.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 22 </span><span class="caption-text">Three subplots depicting the intensity [<span class="math notranslate nohighlight">\(\mu T\)</span>], inclination [<span class="math notranslate nohighlight">\(^{\circ}\)</span>] and declination [<span class="math notranslate nohighlight">\(^{\circ}\)</span>] of the computed magnetic field <strong>B</strong> superimposed on the IGRF derived from flank simulations.</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line">In Figure <a class="reference internal" href="#flanksim-plot"><span class="std std-numref">Figure 22</span></a> the results of the flank simulations done for Mt. Etna are presented, where each flank reveals a unique pattern. Despite these differences, there is a notable similarity in the trends of flanks that are geographically opposite, such as the north and south flanks. The north flank, characterized by a slope that descends in the same direction as the magnetization inclination, exhibits significantly larger anomalies in comparison to the south flank, where the slope direction differs. Conversely, the differences between the east and west flanks are minimal.</div>
+</div>
+<div class="line-block">
+<div class="line">Notably, for the north and south flanks, there exists an inverse relationship between inclination and intensity deviations, a phenomenon absent in east-west comparisons. However, for the east and west flanks peaks appear misaligned, either “lagged” in inclination or “premature” in intensity relative to their north-south counterparts and the topography. For the east and west flanks, declination deviations are not only contrasting in sign, which seems intuitively accurate given the major magnetized body alignment due to the slope, but also exhibit a temporal shift.</div>
+</div>
+<div class="line-block">
+<div class="line">Another striking observation lies in the differential shapes of intensity and inclination deviations for both the positive and negative domains across all flanks. Regions with positive deviations generally span a more confined area, presenting as narrower. In contrast, negative deviations extend over a broader expanse, stretching further from the topographic landmarks.</div>
+</div>
+<div class="line-block">
+<div class="line">The maximum intensity anomaly observed relative to Mount Etna’s IGRF intensity, across all simulated topographies of the volcano’s flanks, is approximately <span class="math notranslate nohighlight">\(+2.6 \mu T\)</span> for positive anomalies and <span class="math notranslate nohighlight">\(-2.83 \mu T\)</span> for negative anomalies. The greatest inclination anomaly recorded reaches about <span class="math notranslate nohighlight">\(+3.07 ^{\circ}\)</span> in the positive spectrum and <span class="math notranslate nohighlight">\(-4.39 ^{\circ}\)</span> in the negative. Similarly, the peak declination anomaly is <span class="math notranslate nohighlight">\(+4.98 ^{\circ}\)</span> for positive deviations and <span class="math notranslate nohighlight">\(-5.14 ^{\circ}\)</span> for negative deviations.</div>
+</div>
+<figure class="align-default" id="id11">
+<span id="flanksim-plot-180"></span><a class="reference internal image-reference" href="_images/flanksim_mp_zt_180.png"><img alt="_images/flanksim_mp_zt_180.png" src="_images/flanksim_mp_zt_180.png" style="width: 1000.0px; height: 500.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 23 </span><span class="caption-text">Three subplots depicting the intensity [<span class="math notranslate nohighlight">\(\mu T\)</span>], inclination [<span class="math notranslate nohighlight">\(^{\circ}\)</span>] and declination [<span class="math notranslate nohighlight">\(^{\circ}\)</span>] of the computed magnetic field <strong>B</strong> superimposed on the IGRF derived from flank simulations, with the observation path at a height of <span class="math notranslate nohighlight">\(1.8m\)</span> above the topography.</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line">At first glance, the curves computed at a higher altitude, see <a class="reference internal" href="#flanksim-plot-180"><span class="std std-numref">Figure 23</span></a>, seem logically consistent. The deviations at this higher elevation present with reduced magnitudes when compared to those derived at closer proximity to the topography. This attenuation of anomaly strength with altitude aligns with magnetic principles, where field variations diminish in intensity as the distance from their source increases <span id="id3">[<a class="reference internal" href="ref.html#id19" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">Reitz and Milford, 1960</a>]</span>.</div>
+<div class="line">Notably, a distinct pattern emerges where, at higher altitudes, the minimum and maximum of the curves do not consistently align with those observed at lower elevations. This discrepancy is most apparent for measurements on the east and west flanks across all parameters, and for the on the north and south flanks only in declination. It is also observed that peaks and troughs that appear “lagged” or “premature” at a lower level are accentuated in their displacement at higher altitude. Furthermore, the negative anomalies display greater persistence at elevated altitudes, exhibiting a less pronounced reduction in magnitude with height than the positive anomalies.</div>
+<div class="line">These phenomena suggest a complex interplay between topographic influence and the geomagnetic field.</div>
+</div>
+<figure class="align-default" id="id12">
+<span id="flanksim-comp"></span><a class="reference internal image-reference" href="_images/flanksim_comp_mp_zt.png"><img alt="_images/flanksim_comp_mp_zt.png" src="_images/flanksim_comp_mp_zt.png" style="width: 1000.0px; height: 500.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 24 </span><span class="caption-text">Three subplots depicting the components of the computed magnetic field <strong>B</strong> [<span class="math notranslate nohighlight">\(\micro\tesla\)</span>] superimposed on the IGRF derived from flank simulations.</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line">Diving deeper into individual magnetic field components reveals more nuances. For the <span class="math notranslate nohighlight">\(B_x\)</span> and  <span class="math notranslate nohighlight">\(B_y\)</span> components, <a class="reference internal" href="#flanksim-comp"><span class="std std-numref">Figure 24</span></a> indicates that the largest deviations are situated on flanks where topographic ridges and gullies align parallel to the component.</div>
+</div>
+</section>
+<section id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Link to this heading"></a></h2>
+<figure class="align-default" id="id13">
+<span id="flanksim-dec-lines"></span><a class="reference internal image-reference" href="_images/flanksimDc_zt_lines.png"><img alt="_images/flanksimDc_zt_lines.png" src="_images/flanksimDc_zt_lines.png" style="width: 1400.0px; height: 700.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Figure 25 </span><span class="caption-text">Declination of the flank simulation, the vertical grey lines signify points where most of the declination deflection should cancel out.</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line">To elucidate the trends observed in magnetic anomalies, let us attempt to correlate them with topographic features. We have opted to focus on the declination data because they are the most straightforward to interpret.</div>
+</div>
+<div class="line-block">
+<div class="line">Consider a simplification of the flank simulation, where a flank is represented solely by its slope, omitting the sine function that represents ridges and gullies. It is still assumed TRM of the lava flow aligns with the current magnetic field. In a theoretical 2D scenario, there would be no declination deflection on terrain with an east-west (E-W) orientation, while the maximum deflection would occur on terrain with a north-south (N-S) orientation. This would result in a negative declination deflection on the eastern flank of a volcano and a positive deflection on the western flank <span id="id4">[<a class="reference internal" href="ref.html#id23" title="C. Baag, C. E. Helsley, Shi-zhe Xu, and B. R. Lienert. Deflection of paleomagnetic directions due to magnetization of the underlying terrain. Journal of Geophysical Research: Solid Earth, 100(B6):10013-10027, 1995. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/95JB00148, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/95JB00148, doi:10.1029/95JB00148.">Baag <em>et al.</em>, 1995</a>]</span>.</div>
+</div>
+<div class="line-block">
+<div class="line">Reintroducing the sine function into the simulation setup (emulating ridges and gullies running perpendicular to the slope) it becomes apparent that in a 2D framework, the wave’s influence would be null on the eastern and western flanks, and any declination changes would stem only from the slope (negative on the east and positive on the west). Conversely, on the northern and southern sides, the slope’s impact would be negligible, leaving the sine function as the primary cause for any declination deflection. However, the model extends beyond two dimensions, preventing a complete dismissal of the sine function’s effect on the eastern and western flanks or the slope’s effect on the southern and northern flanks. This adjacent terrain would contribute to deviations. Nonetheless, given the magnetic field’s inverse-square law relation to distance <span id="id5">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>]</span>, combined with the relatively gentle slope and elongated wavelength, these effects anticipated to be less substantial.</div>
+</div>
+<div class="line-block">
+<div class="line">Examining the results from the declination deviation simulations on the flanks, as seen in <a class="reference internal" href="#flanksim-dec-lines"><span class="std std-numref">Figure 25</span></a>, the expected trends manifest: a negative deflection on the eastern flank with minimal sine influence, and a positive deflection on the western flank with similarly minor sine impact. For the southern and northern flanks, the sine function emerges as the primary declination variance factor.</div>
+<div class="line">A crest of a sine wave, akin to a ridge, would display an eastern and western side, each inducing a respective negative and positive deflection. When positioned at the peak of a ridge or in the trough between two ridges, the scenario approximates a theoretical 2D case, shown by the vertical lines in <a class="reference internal" href="#flanksim-dec-lines"><span class="std std-numref">Figure 25</span></a>. Here, the ‘balancing’ of the magnetic effects from equal volumes on each side would theoretically nullify the declination deviation from the IGRF.</div>
+<div class="line">If one were to traverse eastward from a ridge’s summit on the southern flank, an initial dominant negative (eastern) deflection would be encountered, gradually shifting to a balanced state as the influence of the positive (western) flank of the next ridge starts to predominate. This transition continues until reaching a point where the positive effect becomes more influential, illustrating a wave-like pattern in declination deflection across the ridges and troughs.</div>
+</div>
+<div class="line-block">
+<div class="line">The influence of actual 3D topography introduces additional nuances to these trends, which must be accounted for when interpreting the declination patterns observed in <a class="reference internal" href="#flanksim-dec-lines"><span class="std std-numref">Figure 25</span></a>. It should be noted that the inclination on the east and west flanks exhibits a pattern similar to that of the declination, as detailed in <a class="reference internal" href="#flanksim-plot"><span class="std std-numref">Figure 22</span></a>. However, visualizing the direction of inclination deviation is less straightforward. For inclination deviations to be neutralized, there must be an equilibrium of magnetized material in the vertical dimension.</div>
+</div>
+<div class="line-block">
+<div class="line">This interpretative process describes the ‘physical’ relationships between anomalies and their topographic influences, enhancing our understanding of the observed trends. Moreover, it serves as an intrinsic verification of the flank simulation results, reinforcing their validity.</div>
+</div>
+</section>
 <section id="reproduce">
-<h3>Reproduce<a class="headerlink" href="#reproduce" title="Link to this heading"></a></h3>
-<details class="summary-how-to-reproduce-the-results-and-figures">
-<summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
+<h2>Reproduce<a class="headerlink" href="#reproduce" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">A dedicated module, <code class="docutils literal notranslate"><span class="pre">flanksim.py</span></code>, has been integrated into the codebase for executing full simulations across all flanks. To activate this module, uncomment the corresponding line in the <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code> file (see steps below). Additionally, the <code class="docutils literal notranslate"><span class="pre">script_flanksim.sh</span></code> shell script has been crafted to automate the execution and organization of output data, directing it into the correct subdirectory <a class="footnote-reference brackets" href="#id7" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> for each flank simulation.</div>
+</div>
+<details class="summary-steps-to-reproduce-the-results-and-figures">
+<summary>Steps to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
 <ol class="arabic">
-<li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">4</span></code>:</p>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">5</span></code>, and make sure the right setup is used &amp; MTE.py imports from <code class="xref py py-func docutils literal notranslate"><span class="pre">flanksim.py()</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">45</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;5&#39;</span>
+</span><span class="linenos">46</span>
+<span class="linenos">47</span><span class="n">compute_vi</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Possible for all setups apart from DEM (-1).</span>
+<span class="linenos">48</span><span class="k">if</span> <span class="n">compute_vi</span><span class="p">:</span>
+<span class="linenos">49</span>   <span class="n">nqdim</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># Number of quadrature points, see documentation.</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="c1">## ONLY BENCHMARK = -1 (DEM) &amp; BENCHMARK = 5 (FLANKSIM) ##</span>
+<span class="hll"><span class="linenos">52</span><span class="n">flat_bottom</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># If True, a flat bottom is generated at the lower surface of the domain.</span>
+</span><span class="linenos">53</span>                    <span class="c1"># Please see documentation, as the specific setup of this feature is different</span>
+<span class="linenos">54</span>                    <span class="c1"># for the flank simulations and the DEM test.</span>
+<span class="hll"><span class="linenos">55</span><span class="n">remove_zerotopo</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Setup run 2 times: 1st time, zero topography setup: xy coordinates</span>
+</span><span class="linenos">56</span>                        <span class="c1"># of the observation points the same, but zerotopo domain and obs path</span>
+<span class="linenos">57</span>                        <span class="c1"># shifted to average height DEM. 2nd time, &quot;regular&quot; run with topography.</span>
+<span class="linenos">58</span>                        <span class="c1"># final results are 2nd run - 1 st run values. Run time can be improved,</span>
+<span class="linenos">59</span>                        <span class="c1"># if 1st run was done with less el (and cuboid function), yet to be done.</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="c1">## ONLY BENCHMARK = 5 (FLANKSIM) ##</span>
+<span class="linenos">62</span><span class="n">subbench</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span>  <span class="c1"># &#39;south&#39;, &#39;east&#39;, &#39;north&#39;, &#39;west&#39;, shifts topo features, and obs paths.</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">217</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;5&#39;</span><span class="p">:</span>
+<span class="linenos">218</span>   <span class="c1"># General settings</span>
+<span class="linenos">219</span>   <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">220</span>   <span class="n">do_path_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">221</span>   <span class="n">compute_analytical</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">222</span>
+<span class="linenos">223</span>   <span class="c1"># Domain settings</span>
+<span class="hll"><span class="linenos">224</span>   <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">20</span>
+</span><span class="hll"><span class="linenos">225</span>   <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Lx</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">Ly</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">),</span> <span class="mi">10</span>
+</span><span class="linenos">226</span>   <span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">4.085</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.29</span>
+<span class="linenos">227</span>   <span class="c1">#Lx, Ly, Lz = 50, 50, 120</span>
+<span class="linenos">228</span>   <span class="c1">#nelx, nely, nelz = 10, 10, 10</span>
+<span class="linenos">229</span>
+<span class="linenos">230</span>   <span class="c1"># Synthetic topography settings</span>
+<span class="linenos">231</span>   <span class="n">wavelength</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="linenos">232</span>   <span class="n">A</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="linenos">233</span>   <span class="n">af</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="linenos">234</span>
+<span class="linenos">235</span>   <span class="c1"># Line measurement settings</span>
+<span class="linenos">236</span>   <span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">237</span>   <span class="n">line_nmeas</span> <span class="o">=</span> <span class="mi">47</span>
+<span class="linenos">238</span>   <span class="n">xstart</span><span class="p">,</span> <span class="n">xend</span> <span class="o">=</span> <span class="mf">0.23</span> <span class="o">+</span> <span class="p">((</span><span class="n">Lx</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">49.19</span> <span class="o">+</span> <span class="p">((</span><span class="n">Ly</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">239</span>   <span class="n">ystart</span><span class="p">,</span> <span class="n">yend</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.221</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.221</span>
+<span class="linenos">240</span>   <span class="n">zstart</span><span class="p">,</span> <span class="n">zend</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>  <span class="c1"># 1m above surface.</span>
+<span class="linenos">241</span>
+<span class="linenos">242</span>   <span class="c1"># Plane measurement settings</span>
+<span class="linenos">243</span>   <span class="n">do_plane_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">244</span>   <span class="n">plane_nnx</span><span class="p">,</span> <span class="n">plane_nny</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span>
+<span class="linenos">245</span>   <span class="n">plane_x0</span><span class="p">,</span> <span class="n">plane_y0</span><span class="p">,</span> <span class="n">plane_z0</span> <span class="o">=</span> <span class="o">-</span><span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
+<span class="linenos">246</span>   <span class="n">plane_Lx</span><span class="p">,</span> <span class="n">plane_Ly</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Lx</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ly</span>
+<span class="linenos">247</span>
+<span class="hll"><span class="linenos">248</span>   <span class="kn">from</span> <span class="nn">flanksim</span> <span class="kn">import</span> <span class="o">*</span>
+</span></pre></div>
+</div>
+</div>
+</li>
+<li><p>Run flank simulation:</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong> (runtime: ~4 hr)</span></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">script_flanksim</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 </div>
 </li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>south</strong> &amp; move results</p>
+<li><p>Modify for 1.8m height run:</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
-<span class="linenos">25</span><span class="c1">## ONLY BENCHMARK=-1 (ETNA) &amp; BENCHMARK=4 (FLANKSIM) ##</span>
-<span class="linenos">26</span><span class="n">flat_bottom</span><span class="o">=</span><span class="kc">True</span>
-<span class="linenos">27</span><span class="c1">## ONLY BENCHMARK=4 (FLANKSIM) ##</span>
-<span class="hll"><span class="linenos">28</span><span class="n">subbench</span><span class="o">=</span><span class="s1">&#39;south&#39;</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">235</span><span class="c1"># Line measurement settings</span>
+<span class="linenos">236</span><span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">237</span><span class="n">line_nmeas</span> <span class="o">=</span> <span class="mi">47</span>
+<span class="linenos">238</span><span class="n">xstart</span><span class="p">,</span> <span class="n">xend</span> <span class="o">=</span> <span class="mf">0.23</span> <span class="o">+</span> <span class="p">((</span><span class="n">Lx</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">49.19</span> <span class="o">+</span> <span class="p">((</span><span class="n">Ly</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">239</span><span class="n">ystart</span><span class="p">,</span> <span class="n">yend</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.221</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.221</span>
+<span class="hll"><span class="linenos">240</span><span class="n">zstart</span><span class="p">,</span> <span class="n">zend</span> <span class="o">=</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.8</span>  <span class="c1"># 1m above surface.</span>
 </span></pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python3 -u MTE.py | tee log.txt</span>
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir flanksim_parameters/south flanksim_parameters/south/250_250_20 &amp;&amp; mv log.txt *.vtu *.ascii flanksim_parameters/south/250_250_20</span>
-</pre></div>
-</div>
-</div>
-</li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>east</strong> &amp; move results</p>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
-<span class="linenos">25</span><span class="c1">## ONLY BENCHMARK=-1 (ETNA) &amp; BENCHMARK=4 (FLANKSIM) ##</span>
-<span class="linenos">26</span><span class="n">flat_bottom</span><span class="o">=</span><span class="kc">True</span>
-<span class="linenos">27</span><span class="c1">## ONLY BENCHMARK=4 (FLANKSIM) ##</span>
-<span class="hll"><span class="linenos">28</span><span class="n">subbench</span><span class="o">=</span><span class="s1">&#39;east&#39;</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/script_flanksim.sh</strong></span></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="ch">#! /bin/bash</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="c1"># Define the name of the folder here</span>
+<span class="hll"><span class="linenos">4</span><span class="nv">folder_name</span><span class="o">=</span><span class="s2">&quot;250_250_20_fb_180&quot;</span>
 </span></pre></div>
 </div>
 </div>
+</li>
+<li><p>Run flank simulation:</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python3 -u MTE.py | tee log.txt</span>
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir flanksim_parameters/east flanksim_parameters/east/250_250_20 &amp;&amp; mv log.txt *.vtu *.ascii flanksim_parameters/east/250_250_20</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong> (runtime: ~4 hr)</span></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">script_flanksim</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 </div>
 </li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>north</strong> &amp; move results</p>
+<li><p>Go to directory and plot:</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
-<span class="linenos">25</span><span class="c1">## ONLY BENCHMARK=-1 (ETNA) &amp; BENCHMARK=4 (FLANKSIM) ##</span>
-<span class="linenos">26</span><span class="n">flat_bottom</span><span class="o">=</span><span class="kc">True</span>
-<span class="linenos">27</span><span class="c1">## ONLY BENCHMARK=4 (FLANKSIM) ##</span>
-<span class="hll"><span class="linenos">28</span><span class="n">subbench</span><span class="o">=</span><span class="s1">&#39;north&#39;</span>
-</span></pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python3 -u MTE.py | tee log.txt</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">flanksim_parameters</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir flanksim_parameters/north flanksim_parameters/north/250_250_20 &amp;&amp; mv log.txt *.vtu *.ascii flanksim_parameters/north/250_250_20</span>
-</pre></div>
-</div>
-</div>
-</li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">subbench</span></code> <strong>west</strong> &amp; move results</p>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">24</span><span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;4&#39;</span>
-<span class="linenos">25</span><span class="c1">## ONLY BENCHMARK=-1 (ETNA) &amp; BENCHMARK=4 (FLANKSIM) ##</span>
-<span class="linenos">26</span><span class="n">flat_bottom</span><span class="o">=</span><span class="kc">True</span>
-<span class="linenos">27</span><span class="c1">## ONLY BENCHMARK=4 (FLANKSIM) ##</span>
-<span class="hll"><span class="linenos">28</span><span class="n">subbench</span><span class="o">=</span><span class="s1">&#39;west&#39;</span>
-</span></pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python3 -u MTE.py | tee log.txt</span>
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir flanksim_parameters/west flanksim_parameters/west/250_250_20 &amp;&amp; mv log.txt *.vtu *.ascii flanksim_parameters/west/250_250_20</span>
-</pre></div>
-</div>
-</div>
-</li>
-<li><p>Go to directory &amp; plot</p>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd flanksim_parameters</span>
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/flanksim_parameters$</span></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">gnuplot flanksim.p</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/flanksim_parameters/</strong></span></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">plot_script_flanksim_zt</span><span class="o">.</span><span class="n">p</span>
 </pre></div>
 </div>
 </div>
 </li>
 </ol>
-</details></section>
+</details><p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">1</a><span class="fn-bracket">]</span></span>
+<p>Following any changes made to the main code, it’s essential to update this script accordingly to guarantee that output files are directed to the appropriate or newly specified directory.</p>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -257,13 +338,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="parameters.html" class="btn btn-neutral float-left" title="Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="etna.html" class="btn btn-neutral float-right" title="Case study: Mount Etna" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="artdem.html" class="btn btn-neutral float-right" title="Artificial DEM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

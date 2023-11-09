@@ -21,7 +21,7 @@ General outline (hierarchy) of code
 3. ``support.py``: This module houses several functions related to specific model setups.
 
 | The script ``run.sh`` performs a straightforward task: it executes the ``MTE.py`` code, generating output both in the terminal and writing it in a file named ``log.txt``.
-| Additionally, several specific model setups have exclusive modules and (run) scripts, please see respective sections for specific usage of the code: :doc:`benchmarks`, :doc:`flanksim`, :doc:`parameters` and :doc:`etna`.
+| Additionally, several specific model setups have exclusive modules and (run) scripts, please see respective sections for specific usage of the code: :doc:`benchmarks`, :doc:`flanksim`, :doc:`parameters`, :doc:`artdem` and :doc:`etna`.
 
 Reproducing results
 -------------------
@@ -30,27 +30,26 @@ Reproducing results
 | Code blocks are preceded by captions that specify the location or context of the provided code. This caption might refer to a particular file in the MTE library, such as:
 
 .. code-block:: python
-   :caption: /main/MTE.py
+   :caption: **/main/MTE.py**
    :linenos:
 
 
-| In such cases, the line numbers in the code block correspond directly to the line numbers in the specified file. Changes or additions are highlighted for ease of reference.
+| In such cases, the line numbers in the code block correspond directly to the line numbers in the specified file. Changes or additions to the base version are highlighted for ease of reference, for repeated changes more concise code blocks side by side are used.
 
 .. note::
-   When the lines of code relevant to the step are located in an if statement, the if statement will be stated as the first line in a codeblock (for clarification). However, there might be several lines of code not included in the snippet between this if statement and the relevant code section. Hence, the line numbering in this snippet can not be fully correct. We have made sure the line numbering is always correct on the section of code containing the (highlighted) lines that need to be changed. Consequently, the line number of the if statement might in some cases be incorrect.
-
+   Highlighted lines are changes from the last setup outlined in previous steps or sections, if any preceding steps or section were not performed,make sure to check all lines for changes to the base code [#]_.
 
 | Alternatively, the caption might indicate a terminal (or Spyder console [#]_) command executed within a certain directory:
 
 .. code-block::
-   :caption: /main/
+   :caption: **/main/** (runtime: ~10 s)
 
-
-| Regarding data visualization, we supply scripts for two different plotting tools: gnuplot and matplotlib. While both scripts are designed to generate similar outputs, it is worth noting that gnuplot was our primary tool for this project. As such, the plots it produces are considered the most accurate visual representation of our data. When encountering two code blocks placed side by side, this denotes the flexibility to use your preferred plotting tool:
+| In steps were computation time is expected to be significant, an estimate of the computation time is stated in the caption [#]_.
+| Regarding data visualization, we supply scripts for two different plotting tools: gnuplot and matplotlib. While both scripts are designed to generate similar outputs, it is worth noting that gnuplot was our primary tool for this project. As such, the plots it produces are considered the most accurate visual representation of our data. When encountering two code blocks placed side by side, this denotes a choices. Either the flexibility to use your preferred plotting tool, or multiple changes to the base version of the model for different repeated setups for testing.
 
 +----------------------------------+-----------------------------------+
 |.. code-block::                   |.. code-block::                    |
-|   :caption: /main/benchmark_1/   |   :caption: /main/benchmark_1/    |
+|   :caption: **/main/benchmarks/**|   :caption: **/main/benchmarks/** |
 |                                  |                                   |
 |                                  |                                   |
 +----------------------------------+-----------------------------------+
@@ -58,7 +57,7 @@ Reproducing results
 | In instances where specific commands are executed repeatedly, a single caption will precede all such repetitive steps:
 
 .. code-block::
-   :caption: /main/
+   :caption: **/main/**
 
 
 .. code-block::
@@ -70,4 +69,7 @@ Reproducing results
 
 .. rubric:: Footnotes
 
+.. [#]  The base code is how the version of the code
 .. [#]  If you are using Spyder, make sure to add the `Spyder-terminal <https://docs.spyder-ide.org/current/plugins/terminal.html/>`_ plugin.
+.. [#]  Time estimate done with OS: ubuntu 22.04.3, with processor: Intel® Core™ i5-8250U CPU @ 1.60GHz × 8, and with RAM: 8,0 GiB.
+
