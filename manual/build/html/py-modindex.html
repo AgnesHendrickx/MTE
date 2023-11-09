@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Functions &mdash; MTE 1.0 documentation</title>
+  <title>Python Module Index &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -20,8 +19,13 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="References" href="ref.html" />
-    <link rel="prev" title="Case study: Mount Etna" href="etna.html" /> 
+ 
+
+    <script>
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,7 +50,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
    
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="governing_equations.html">Governing equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="computational_approach.html">Computational approach</a></li>
@@ -55,14 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#visualization">Visualization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#magnetostatics">Magnetostatics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-measurement-parameters">Set measurement parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#artificial-dem">Artificial DEM</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
 </ul>
@@ -86,7 +83,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Functions</li>
+      <li class="breadcrumb-item active">Python Module Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -95,80 +92,60 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="functions">
-<h1>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h1>
-<section id="support">
-<h2>Support<a class="headerlink" href="#support" title="Link to this heading"></a></h2>
-<p>#.. autofunction:: support.add_referencefield
-#
-#.. autofunction:: support.topography
-#
-#.. autofunction:: support.compute_analytical_solution
-#
-#.. autofunction:: support.is_point_near_diagonal
-#
-#.. autofunction:: support.shift_observation_points_edge
-#
-#.. autofunction:: support.read_header</p>
-</section>
-<section id="visualization">
-<h2>Visualization<a class="headerlink" href="#visualization" title="Link to this heading"></a></h2>
-<p>#.. autofunction:: tools.export_mesh_3D
-#
-#.. autofunction:: tools.export_mesh_2D
-#
-#.. autofunction:: tools.export_mesh_1D
-#
-#.. autofunction:: tools.export_plane_measurements
-#
-#.. autofunction:: tools.export_line_measurements
-#
-#.. autofunction:: tools.export_spiral_measurements</p>
-</section>
-<section id="magnetostatics">
-<h2>Magnetostatics<a class="headerlink" href="#magnetostatics" title="Link to this heading"></a></h2>
-<p>#.. autofunction:: magnetostatics.cross
-#
-#.. autofunction:: magnetostatics.plane
-#
-#.. autofunction:: magnetostatics.line
-#
-#.. autofunction:: magnetostatics.facmag
-#
-#.. autofunction:: magnetostatics.compute_B_surface_integral_cuboid
-#
-#.. autofunction:: magnetostatics.compute_B_surface_integral_wtopo
-#
-#.. autofunction:: magnetostatics.compute_B_surface_integral_wtopo_noise</p>
-</section>
-<section id="set-measurement-parameters">
-<h2>Set measurement parameters<a class="headerlink" href="#set-measurement-parameters" title="Link to this heading"></a></h2>
-<p>#.. autofunction:: set_measurement_parameters.set_measurement_parameters</p>
-</section>
-<section id="artificial-dem">
-<h2>Artificial DEM<a class="headerlink" href="#artificial-dem" title="Link to this heading"></a></h2>
-<p>#.. autofunction:: art_DEM.generate_fractal_map
-#
-#.. autofunction:: art_DEM.write_dem_to_ascii
-#
-#.. autofunction:: art_DEM.generate_pathfile</p>
-<p class="rubric">Footnotes</p>
-<aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id1" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
-<p>These rough sizes are rounded off values, in case the DEM cut was not square, the value denotes the rounded length of the <strong>shortest</strong> side of the DEM.</p>
-</aside>
-</aside>
-</section>
-</section>
+
+   <h1>Python Module Index</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-a"><strong>a</strong></a> | 
+   <a href="#cap-m"><strong>m</strong></a> | 
+   <a href="#cap-s"><strong>s</strong></a> | 
+   <a href="#cap-t"><strong>t</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-a"><td></td><td>
+       <strong>a</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#module-art_DEM"><code class="xref">art_DEM</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-m"><td></td><td>
+       <strong>m</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#module-magnetostatics"><code class="xref">magnetostatics</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-s"><td></td><td>
+       <strong>s</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#module-set_measurement_parameters"><code class="xref">set_measurement_parameters</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#module-support"><code class="xref">support</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-t"><td></td><td>
+       <strong>t</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#module-tools"><code class="xref">tools</code></a></td><td>
+       <em></em></td></tr>
+   </table>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="etna.html" class="btn btn-neutral float-left" title="Case study: Mount Etna" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ref.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
