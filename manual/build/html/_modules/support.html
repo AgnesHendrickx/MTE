@@ -97,7 +97,7 @@
 
 
 <div class="viewcode-block" id="add_referencefield">
-<a class="viewcode-back" href="../index.html#support.add_referencefield">[docs]</a>
+<a class="viewcode-back" href="../functions.html#support.add_referencefield">[docs]</a>
 <span class="k">def</span> <span class="nf">add_referencefield</span><span class="p">(</span><span class="n">B0_name</span><span class="p">,</span> <span class="n">npath</span><span class="p">,</span> <span class="n">dmeas</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">B_si</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function returns total computed magnetic field, along with its intensity, inclination</span>
@@ -161,7 +161,7 @@
 
 
 <div class="viewcode-block" id="topography">
-<a class="viewcode-back" href="../index.html#support.topography">[docs]</a>
+<a class="viewcode-back" href="../functions.html#support.topography">[docs]</a>
 <span class="k">def</span> <span class="nf">topography</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">llambda</span><span class="p">,</span> <span class="nb">dir</span><span class="p">,</span> <span class="n">slopex</span><span class="p">,</span> <span class="n">slopey</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns topography (height) value at each point defined by x,y coordinates passed.</span>
@@ -203,7 +203,7 @@
 
 
 <div class="viewcode-block" id="compute_analytical_solution">
-<a class="viewcode-back" href="../index.html#support.compute_analytical_solution">[docs]</a>
+<a class="viewcode-back" href="../functions.html#support.compute_analytical_solution">[docs]</a>
 <span class="k">def</span> <span class="nf">compute_analytical_solution</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">Mx</span><span class="p">,</span> <span class="n">My</span><span class="p">,</span> <span class="n">Mz</span><span class="p">,</span> <span class="n">xcenter</span><span class="p">,</span> <span class="n">ycenter</span><span class="p">,</span> <span class="n">zcenter</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns analytical solution, see :doc:`benchmarks`, of the components of the magnetic field for each benchmark.</span>
@@ -271,7 +271,7 @@
 
 
 <div class="viewcode-block" id="is_point_near_diagonal">
-<a class="viewcode-back" href="../index.html#support.is_point_near_diagonal">[docs]</a>
+<a class="viewcode-back" href="../functions.html#support.is_point_near_diagonal">[docs]</a>
 <span class="k">def</span> <span class="nf">is_point_near_diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    | This function checks if a point (x, y) is near to either of the two diagonals of a rectangle with sides of length Lx and Ly.</span>
@@ -317,7 +317,7 @@
 
 
 <div class="viewcode-block" id="shift_observation_points_edge">
-<a class="viewcode-back" href="../index.html#support.shift_observation_points_edge">[docs]</a>
+<a class="viewcode-back" href="../functions.html#support.shift_observation_points_edge">[docs]</a>
 <span class="k">def</span> <span class="nf">shift_observation_points_edge</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span><span class="p">,</span> <span class="n">xm</span><span class="p">,</span> <span class="n">ym</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    | The original subroutine of :cite:`BLAKELY`, was initially designed exclusively for use with the faces of a polyhedron. In contrast, our model s subdivides the top and bottom of the hexahedron elements into four triangles, see :func:`magnetostatics.compute_B_surface_integral_wtopo`. This introduces additional singularities, and thus spatial issues, if the observation point ``p`` lies on the diagonal of the top or bottom face of an element.</span>
@@ -389,7 +389,7 @@
 
 
 <div class="viewcode-block" id="read_header">
-<a class="viewcode-back" href="../index.html#support.read_header">[docs]</a>
+<a class="viewcode-back" href="../functions.html#support.read_header">[docs]</a>
 <span class="k">def</span> <span class="nf">read_header</span><span class="p">(</span><span class="n">topo_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    | This function checks if a DEM file has a header, and if so, reads in the values.</span>
