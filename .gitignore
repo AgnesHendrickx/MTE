@@ -1,5 +1,5 @@
 #Ignore DEMS folder (due to unauthorized)
-**/DEMS
+#/DEMS
 
 #Ignore VTU files (due to size)
 *.vtu
@@ -20,9 +20,9 @@
 
 
 # Ignore results that contain untested or unauthorized data 
-/path_results/
-/flanksim_parameters/
-/zero_topo/
+#/path_results/
+#/flanksim_parameters/
+#/zero_topo/
 /tests/
 **/other
 
