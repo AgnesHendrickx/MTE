@@ -1,0 +1,10 @@
+*
+!.gitignore
+!/south/
+!/east/
+!/west/
+!/north/
+!plot_script*
+!vis_fb_sv.pvsm
+!vis_remove_zt.pvsm
+
