@@ -34,8 +34,7 @@ extensions = [
         'sphinx.ext.doctest','sphinx.ext.autodoc',
         'sphinxcontrib.bibtex', 'sphinx.ext.mathjax',
         'sphinx.ext.todo','sphinx.ext.viewcode',
-        'sphinx_toolbox.collapse','helloworld',
-        'sphinx_rtd_theme',
+        'sphinx_toolbox.collapse','sphinx_rtd_theme',
 ]
 #'sphinxawesome_theme.highlighting',
 todo_include_todos = True
