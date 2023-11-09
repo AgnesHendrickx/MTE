@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to MTE’s documentation! &mdash; MTE 0.1 documentation</title>
+  <title>Welcome to MTE’s documentation! &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -14,7 +14,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -52,11 +52,11 @@
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -89,8 +89,10 @@
              
   <section id="welcome-to-mte-s-documentation">
 <h1>Welcome to MTE’s documentation!<a class="headerlink" href="#welcome-to-mte-s-documentation" title="Link to this heading"></a></h1>
-<p><strong>MTE</strong> is a Python library written to compute the magnetic field just above (~1m) topography, prescribed by an equation or a DEM.
-Code on <a class="reference external" href="https://github.com/AgnesHendrickx/MTE/">github</a></p>
+<div class="line-block">
+<div class="line">MTE is an advanced Python library meticulously crafted to calculate the magnetic field proximately above the topography (~1 meter), as defined by either an analytical equation or a Digital Elevation Model (DEM). The code is available for download <a class="reference external" href="https://github.com/AgnesHendrickx/MTE/">GitHub</a>, offering a comprehensive suite of tools for geophysical analysis and simulation, tailored for precision and ease of use in professional environments.</div>
+<div class="line">This documentation is designed to serve as a comprehensive guide to both theoretical and practical applications of the MTE library.</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>this project is under active development.</p>
@@ -121,60 +123,82 @@ Code on <a class="reference external" href="https://github.com/AgnesHendrickx/MT
 <li class="toctree-l2"><a class="reference internal" href="parameters.html#resolution">Resolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parameters.html#size">Size</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parameters.html#bottom-boundary">Bottom boundary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html#conclusions">Conclusions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="flanksim.html#model-setup">Model setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flanksim.html#results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flanksim.html#discussion">Discussion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flanksim.html#reproduce">Reproduce</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="etna.html#parameters-of-etnean-lava-flows">Parameters of Etnean lava flows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="artdem.html">Artificial DEM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="artdem.html#computational-approach">Computational approach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artdem.html#model-setup">Model setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artdem.html#results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artdem.html#reproduce">Reproduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artdem.html#adding-noise-to-dem">Adding noise to DEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artdem.html#adding-another-dem">Adding another DEM</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#support">Support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#visualization">Visualization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#magnetostatics">Magnetostatics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#set-measurement-parameters">Set measurement parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#artificial-dem">Artificial DEM</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="app1.html#uniformly-magnetized-sphere">Uniformly magnetized sphere</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app1.html#multipole-expansion">Multipole expansion</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
 </div>
 <div class="line-block">
-<div class="line">Check out the <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> section for further information, including how to <a class="reference internal" href="usage.html#installation"><span class="std std-ref">install</span></a> the project.</div>
-<div class="line">First, in <a class="reference internal" href="governing_equations.html"><span class="doc">Governing equations</span></a> the theoretical basis for the code are stated.</div>
-<div class="line">Followed by the numerical framework in <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>.</div>
-<div class="line">Next, we will delve into the four distinct <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a> used to validate the computed values.</div>
-<div class="line">We will demonstrate not only the results but also the methodology for reproducing them.</div>
-<div class="line">In the section <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> we present a case for a setup using synthetic topography.</div>
-<div class="line">A simplified setup of flanksim is used for optimizing <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> of the model setup like mesh resolution, extent of the domain, etc.</div>
-<div class="line">Lastly, we outline the final <a class="reference internal" href="etna.html"><span class="doc">Case study: Mount Etna</span></a> of reproducing field values from <span id="id2">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span>, again, presenting both results and reproduction methods.</div>
+<div class="line"><br /></div>
+<div class="line">For a thorough understanding of the MTE library, begin with the <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a>  section which provides essential details on <a class="reference internal" href="usage.html#installation"><span class="std std-ref">install</span></a> and project initiation.</div>
+</div>
+<div class="line-block">
+<div class="line">Dive into the <a class="reference internal" href="governing_equations.html"><span class="doc">Governing equations</span></a> to grasp the theoretical underpinnings of the code.</div>
+</div>
+<div class="line-block">
+<div class="line">Proceed to the <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a> for insight into the numerical framework that drives our simulations.</div>
+</div>
+<div class="line-block">
+<div class="line">Discover the validation process through four comprehensive <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>, where the methodology for accurate reproduction of computed values is also outlined.</div>
+</div>
+<div class="line-block">
+<div class="line">Insights into optimizing model <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> such as mesh resolution and domain extent are shared, showing the process of refinement for enhanced simulation accuracy.</div>
+</div>
+<div class="line-block">
+<div class="line">Refine your simulations by optimizing model <a class="reference internal" href="parameters.html"><span class="doc">Parameters</span></a> such as mesh resolution and domain extent.</div>
+</div>
+<div class="line-block">
+<div class="line">The <a class="reference internal" href="flanksim.html#flanksim"><span class="std std-ref">flank simulations</span></a> section presents a case study on applying synthetic topography, offering a walkthrough of the setup process.</div>
+</div>
+<div class="line-block">
+<div class="line">Uncover the process of integrating a <a class="reference internal" href="artdem.html#art-dem"><span class="std std-ref">DEM</span></a> into the model, from generating an artificial DEM using pseudo-fractals to incorporating real-world terrain and field paths.</div>
+</div>
+<div class="line-block">
+<div class="line">Finally, the <a class="reference internal" href="etna.html#etna"><span class="std std-ref">Etna</span></a> section illustrates the replication of field values from the study cited as <span id="id2">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span></div>
 </div>
 <section id="reproduction">
 <h2>Reproduction<a class="headerlink" href="#reproduction" title="Link to this heading"></a></h2>
 <p>For most sections, a stepwise method to reproduce the presented results is given. These are located in collapsible sections at the end of each subsection. Please make sure to read the <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> section beforehand.</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">Todo</p>
-<p>Fix figure (add points and python)</p>
+<p>finish this section</p>
 </div>
-<p class="todo-source">(The <a class="reference internal" href="app2.html#id1"><em>original entry</em></a> is located in /home/agnes/MTE/main/documentation/app2.rst, line 12.)</p>
-<div class="admonition-todo admonition">
-<p class="admonition-title">Todo</p>
-<p>figure, look at E/Y</p>
-</div>
-<p class="todo-source">(The <a class="reference internal" href="governing_equations.html#id6"><em>original entry</em></a> is located in /home/agnes/MTE/main/documentation/governing_equations.rst, line 38.)</p>
+<p class="todo-source">(The <a class="reference internal" href="etna.html#id2"><em>original entry</em></a> is located in /home/agnes/MTE/main/documentation/etna.rst, line 22.)</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">Todo</p>
 <p>make the list next to the toctree?</p>
 </div>
-<p class="todo-source">(The <a class="reference internal" href="#id1"><em>original entry</em></a> is located in /home/agnes/MTE/main/documentation/index.rst, line 14.)</p>
+<p class="todo-source">(The <a class="reference internal" href="#id1"><em>original entry</em></a> is located in /home/agnes/MTE/main/documentation/index.rst, line 15.)</p>
 </section>
 </section>
 
@@ -188,7 +212,7 @@ Code on <a class="reference external" href="https://github.com/AgnesHendrickx/MT
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

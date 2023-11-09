@@ -1,10 +1,5 @@
-do_line_measurements = True
+# Gets modified by script_flanksim.sh, imported in MTE.py if line is uncommented
 
-Mx0 = 0
-My0 = 4.085
-Mz0 = -6.290
-
-nqdim = 2
 subbenchs = 1
 subbench = subbenchs
 if subbench == 1:
@@ -15,9 +10,9 @@ elif subbench == 3:
    subbench = 'north'
 elif subbench == 4:
    subbench = 'west'
-   
 
 
 
 
-   
+
+

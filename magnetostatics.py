@@ -3,7 +3,7 @@ from numba import jit
 
 epsilon = 1e-20
 
-###############################################################################
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -25,8 +25,7 @@ def cross(a, b):
     cz = a[0] * b[1] - a[1] * b[0]
     return np.array([cx, cy, cz], dtype=np.float64)
 
-
-###############################################################################
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -137,8 +136,7 @@ def qcoords_1D(nqpts):
            dtype=np.float64,
        )
 
-
-###############################################################################
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -249,8 +247,7 @@ def qweights_1D(nqpts):
            dtype=np.float64,
        )
 
-
-###############################################################################
+###################################################################################################
 
 
 @jit(nopython=True)  # TODO fill docstrings #CT
@@ -279,6 +276,8 @@ def NNN(r, s, t):
     N6 = 0.125 * (1.0 + r) * (1.0 + s) * (1.0 + t)
     N7 = 0.125 * (1.0 - r) * (1.0 + s) * (1.0 + t)
     return np.array([N0, N1, N2, N3, N4, N5, N6, N7], dtype=np.float64)
+
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -309,6 +308,8 @@ def dNNNdr(r, s, t):  # TODO fill docstrings #CT
         [dNdr0, dNdr1, dNdr2, dNdr3, dNdr4, dNdr5, dNdr6, dNdr7], dtype=np.float64
     )
 
+###################################################################################################
+
 
 @jit(nopython=True)
 def dNNNds(r, s, t):  # TODO fill docstrings #CT
@@ -337,6 +338,8 @@ def dNNNds(r, s, t):  # TODO fill docstrings #CT
     return np.array(
         [dNds0, dNds1, dNds2, dNds3, dNds4, dNds5, dNds6, dNds7], dtype=np.float64
     )
+
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -367,8 +370,7 @@ def dNNNdt(r, s, t):  # TODO fill docstrings #CT
         [dNdt0, dNdt1, dNdt2, dNdt3, dNdt4, dNdt5, dNdt6, dNdt7], dtype=np.float64
     )
 
-
-###############################################################################
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -481,8 +483,7 @@ def compute_B_quadrature(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My, Mz, nqdim):
 
     return np.array([Bx, By, Bz], dtype=np.float64)
 
-
-###############################################################################
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -572,8 +573,7 @@ def plane(x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3):
     z = z + z1
     return x, y, z, r
 
-
-###############################################################################
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -650,8 +650,7 @@ def line(x0, y0, z0, x1, y1, z1, x2, y2, z2):
     v2 = a - u0
     return x, y, z, v1, v2, r
 
-
-###############################################################################
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -716,8 +715,7 @@ def rot(ax, ay, az, bx, by, bz, nx, ny, nz, px, py, pz):
 
     return s
 
-
-###############################################################################
+###################################################################################################
 
 
 @jit(nopython=True)
@@ -727,8 +725,6 @@ def facmag(Mx, My, Mz, x0, y0, z0, x, y, z, n):
     | The polygon is limited to 10 corners (n). Requires functions :func:`rot`, :func:`line`, :func:`plane` as define above. Distance units are irrelevant but must be consistent.
     | A spatial problem, see :doc:`computational_approach`, is mitigated due to the introduction of a small (1e-20) artificial distance for ``p``, in case ``p`` lies on a plane aligning with an edge of an element.
     | Directly translated from ANSI-standard FORTRAN 77 subroutines from :cite:`BLAKELY`.
-
-
 
     :param Mx: x component magnetization [A/m] of the element.
     :type Mx: scalar(float)
@@ -861,7 +857,7 @@ def facmag(Mx, My, Mz, x0, y0, z0, x, y, z, n):
     return np.array([Bx, By, Bz], dtype=np.float64)
 
 
-##############################################################################
+###################################################################################################
 # internal node numbering:
 #     z
 #     |
@@ -876,12 +872,13 @@ def facmag(Mx, My, Mz, x0, y0, z0, x, y, z, n):
 # x
 ###########
 
+
 @jit(nopython=True)
 def compute_B_surface_integral_cuboid(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My, Mz):
     """
     | This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a cuboid element employing :func:`facmag` function on each face. Here again the magnetization vector (Mx,My,Mz) is assumed to be constant inside the element. It uses the ``icon`` array to identify the x-,y-,z-coordinates associated with each node, before calling :func:`facmag`, to compute the total magnetic field strength for each face.
     | Magnetic field strength :math:`\mathbf{B}` is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in :cite:`BLAKELY`.
-    | Distance units are irrelevant but must be consistent.  For numbering of the nodes, see :doc:`app2`.
+    | Distance units are irrelevant but must be consistent.  For numbering of the nodes, see comments in code.
 
     :param xmeas: x coordinate of observation point.
     :type xmeas: scalar(float)
@@ -1049,8 +1046,7 @@ def compute_B_surface_integral_cuboid(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My
     Bz = Bz * 1e-7
     return np.array([-Bx, -By, -Bz], dtype=np.float64)
 
-
-###############################################################################
+###################################################################################################
 # internal node numbering:
 #     z
 #     |
@@ -1074,7 +1070,7 @@ def compute_B_surface_integral_wtopo(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My,
     | In light thereof we subdivide the top and bottom faces into four triangles. This feature is needed in the case topography is prescribed at the top (or bottom) of the domain and the vertical position of the nodes are modified.
     | It uses the ``icon`` array to identify the x-,y-,z-coordinates associated with each node, before calling :func:`facmag`, to compute the total magnetic field strength for each face and triangle.
     | Magnetic field strength :math:`\mathbf{B}` is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in :cite:`BLAKELY`.
-    | Distance units are irrelevant but must be consistent. For numbering of the nodes, see :doc:`app2`.
+    | Distance units are irrelevant but must be consistent. For numbering of the nodes, see comments in code.
 
     :param xmeas: x coordinate of observation point.
     :type xmeas: scalar(float)
@@ -1363,6 +1359,8 @@ def compute_B_surface_integral_wtopo(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My,
 # while the original blakely subroutines are structured for clockwise numbering
 # benchmark 1/3 validify orientation
 
+###################################################################################################
+
 
 @jit(nopython=True)
 def compute_B_surface_integral_wtopo_noise(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My, Mz, noise):
@@ -1501,7 +1499,6 @@ def compute_B_surface_integral_wtopo_noise(xmeas, ymeas, zmeas, x, y, z, icon, M
     x8 = (x[icon[0]] + x[icon[1]] + x[icon[2]] + x[icon[3]]) * 0.25
     y8 = (y[icon[0]] + y[icon[1]] + y[icon[2]] + y[icon[3]]) * 0.25
     z8 = ((z[icon[0]] + z[icon[1]] + z[icon[2]] + z[icon[3]]) * 0.25) + noise
-    ##### HERE NOISE ####
 
     # 328
     xface[0] = x[icon[3]]
@@ -1661,3 +1658,5 @@ def compute_B_surface_integral_wtopo_noise(xmeas, ymeas, zmeas, x, y, z, icon, M
 # Likely due to counterclockwise fashion numbering of corners
 # while the original blakely subroutines are structured for clockwise numbering
 # benchmark 1/3 validify orientation
+
+###################################################################################################

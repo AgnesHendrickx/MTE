@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Computational approach &mdash; MTE 0.1 documentation</title>
+  <title>Computational approach &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -14,7 +14,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -54,11 +54,11 @@
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -97,7 +97,7 @@
 <div class="line">‘<em>observation points</em>’ = the points and location at which the model ‘<em>computed</em>’ the values, can be equal to measurement points.</div>
 </div>
 <div class="line-block">
-<div class="line">First, a 3D domain <span class="math notranslate nohighlight">\(\Omega\)</span> , containing an uniform magnetization, is tessellated into multiple elements, where the amount of elements in each direction define the resolution. This produces a mesh, composed of hexahedron elements defined by eight nodes and 6 surfaces, with nodes numbered in a clockwise fashion, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>. Each element now represents a volume of uniform magnetization.</div>
+<div class="line">First, a 3D domain <span class="math notranslate nohighlight">\(\Omega\)</span> , containing an uniform magnetization, is tessellated into multiple elements, where the amount of elements in each direction define the resolution. This produces a mesh, composed of hexahedron elements defined by eight nodes and 6 surfaces, with nodes numbered in a clockwise fashion. Each element now represents a volume of uniform magnetization.</div>
 </div>
 <div class="line-block">
 <div class="line">Next, as our main objective is to investigate the effect of the underlying topography, we simulate the domain’s topography of the domain three different ways:</div>
@@ -109,11 +109,11 @@
 </ul>
 </div></blockquote>
 <div class="line-block">
-<div class="line">The first method allows for model output validation (see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>), parameter determination for further testing and flank simulations. The other two methods serve to compare computed results to field data, with the last method only used if an adequate DEM was absent. Once the 2D surface topography is generated, the 3D domain is placed below and elements are reshaped if necessary. In the second method the resolution of the domain is limited by the resolution of the DEM used.</div>
+<div class="line">The first method allows for model output validation (see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>), parameter determination for further testing and flank simulations. The other method serves to compare computed results to field data. Once the 2D surface topography is generated, the 3D domain is placed below and elements are reshaped if necessary. In the second method the resolution of the domain is limited by the resolution of the DEM used. The base of the model’s domain mirrors the surface’s topography, or alternatively, it is a level plane established at a predetermined depth below the synthetic topography’s lowest elevation.</div>
 <div class="line"><br /></div>
 <div class="line">Next, the magnetic anomaly at observation point <code class="docutils literal notranslate"><span class="pre">P</span></code> produced by an element is computed using the surface integral (second part of eq. <a class="reference internal" href="governing_equations.html#equation-bsumfinal">(5)</a>) with the method proposed by <span id="id1">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>]</span>. A Python function <a class="reference internal" href="functions.html#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.facmag()</span></code></a>, mirroring their original Fortran 77 subroutine, calculates the magnetic anomaly of an arbitrary polyhedron when iteratively applied to all its faces. The approach, grounded largely in <span id="id2">[<a class="reference internal" href="ref.html#id26" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bott, 1963</a>]</span>’s work, resolves the surface integral by projecting onto triangles connecting the facet intersection with a perpendicular line through <code class="docutils literal notranslate"><span class="pre">P</span></code> (illustrated in <span id="id3">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>]</span>), weighting triangles by their proximity to <code class="docutils literal notranslate"><span class="pre">P</span></code>.</div>
 <div class="line">A spatial problem, where <code class="docutils literal notranslate"><span class="pre">P</span></code> lies on the facet plane, is mitigated by introducing a small (<span class="math notranslate nohighlight">\(\epsilon=1e^{-20}\)</span>)  as the ‘distance’ from the face for computations <span id="id4">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>]</span>.</div>
-<div class="line">Ultimately, the function’s repeated calls for every side of all elements sums the magnetic contribution across the 3D domain to calculate (<span class="math notranslate nohighlight">\(\mathbf{B_a (r)}\)</span>) in <code class="docutils literal notranslate"><span class="pre">P</span></code>, see <a class="reference internal" href="governing_equations.html#figmodel"><span class="std std-numref">      Figure 1</span></a>, see fuction <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a>.</div>
+<div class="line">Ultimately, the function’s repeated calls for every side of all elements sums the magnetic contribution across the 3D domain to calculate (<span class="math notranslate nohighlight">\(\mathbf{B_a (r)}\)</span>) in <code class="docutils literal notranslate"><span class="pre">P</span></code>, see <a class="reference internal" href="governing_equations.html#figmodel"><span class="std std-numref">Figure 1</span></a>, see fuction <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a>.</div>
 <div class="line">After generating topography on both (or either) the top and bottom surfaces, nodes of these elements might not reside in one plane. So, each element’s top and bottom surface is subdivided into four additional triangles, for a total of 12 faces and 10 nodes defining an element, see function <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a>.</div>
 <div class="line">This introduces more singularities leading to spatial problems similar to before, if a observation point <code class="docutils literal notranslate"><span class="pre">P</span></code> is located on a diagonal of the additional triangles on the top (or bottom) face of the hexahedron elements. A function, <a class="reference internal" href="functions.html#support.shift_observation_points_edge" title="support.shift_observation_points_edge"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.shift_observation_points_edge()</span></code></a>, was designed to shift the x-coordinate of any observation points near the diagonals of any elements with a small distance (<span class="math notranslate nohighlight">\(\epsilon=1e^{-5}\)</span>).</div>
 </div>
@@ -146,7 +146,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

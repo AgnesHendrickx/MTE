@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>set_measurement_parameters &mdash; MTE 0.1 documentation</title>
+  <title>set_measurement_parameters &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -13,7 +13,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -50,11 +50,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app1.html">Complete derivation of the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -217,9 +217,10 @@
     <span class="n">IGRFz</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="c1"># -------------------------------------------------------------------</span>
-    <span class="c1">## IGRF on sites and average ##</span>
-    <span class="c1"># -------------------------------------------------------------------</span>
+<span class="c1">###################################################################################################</span>
+<span class="c1"># IGRF on sites and average</span>
+<span class="c1">###################################################################################################</span>
+
     <span class="k">if</span> <span class="n">site</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
        <span class="n">IGRF_E</span> <span class="o">=</span> <span class="mf">1560.1e-9</span>
        <span class="n">IGRF_N</span> <span class="o">=</span> <span class="mf">26887.4e-9</span>
@@ -268,7 +269,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IGRF Inc = &quot;</span><span class="p">,</span> <span class="n">IGRFinc</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IGRF Dec = &quot;</span><span class="p">,</span> <span class="n">IGRFdec</span><span class="p">)</span>
 
-    <span class="c1"># ----------------------------------------</span>
+<span class="c1">###################################################################################################</span>
     <span class="k">if</span> <span class="n">site</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># age:1892,flank:SF</span>
        <span class="k">if</span> <span class="n">rDEM</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
           <span class="n">topofile</span> <span class="o">=</span> <span class="s2">&quot;./DEMS/2m_utm_bili_site1.asc&quot;</span>
@@ -397,7 +398,7 @@
           <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
           <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 1&quot;</span><span class="p">)</span>
 
-    <span class="c1"># ----------------------------------------</span>
+<span class="c1">###################################################################################################</span>
     <span class="k">elif</span> <span class="n">site</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">site</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>  <span class="c1"># 1983,SF</span>
        <span class="k">if</span> <span class="n">rDEM</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
           <span class="n">topofile</span> <span class="o">=</span> <span class="s2">&quot;DEMS/2m_utm_bili_site2_5.asc&quot;</span>
@@ -449,7 +450,7 @@
           <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
           <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 2 and/or 5&quot;</span><span class="p">)</span>
 
-    <span class="c1"># ----------------------------------------</span>
+<span class="c1">###################################################################################################</span>
     <span class="k">elif</span> <span class="n">site</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># 1923,NEF</span>
        <span class="k">if</span> <span class="n">rDEM</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">sDEM</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
           <span class="n">topofile</span> <span class="o">=</span> <span class="s2">&quot;DEMS/2m_utm_bili_site3.asc&quot;</span>
@@ -492,7 +493,7 @@
        <span class="k">else</span><span class="p">:</span>
           <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
           <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 3&quot;</span><span class="p">)</span>
-    <span class="c1"># ----------------------------------------</span>
+<span class="c1">###################################################################################################</span>
     <span class="k">elif</span> <span class="n">site</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>  <span class="c1"># 2002,NEF</span>
        <span class="k">if</span> <span class="n">rDEM</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
           <span class="n">topofile</span> <span class="o">=</span> <span class="s2">&quot;DEMS/2m_utm_bili_site4_6.asc&quot;</span>
@@ -541,7 +542,7 @@
        <span class="k">else</span><span class="p">:</span>
           <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
           <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 4&quot;</span><span class="p">)</span>
-   <span class="c1"># ----------------------------------------</span>
+<span class="c1">###################################################################################################</span>
     <span class="k">elif</span> <span class="n">site</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>  <span class="c1"># 2002,NEF</span>
        <span class="k">if</span> <span class="n">rDEM</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
           <span class="n">topofile</span> <span class="o">=</span> <span class="s2">&quot;DEMS/2m_utm_bili_site4_6.asc&quot;</span>
@@ -628,7 +629,7 @@
        <span class="k">else</span><span class="p">:</span>
           <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
           <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown rDEM/sDEM combination for site 6&quot;</span><span class="p">)</span>
-    <span class="c1"># ----------------------------------------</span>
+<span class="c1">###################################################################################################</span>
     <span class="k">if</span> <span class="n">site</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">path</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">ho</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
        <span class="n">pathfile</span> <span class="o">=</span> <span class="s2">&quot;sites/1-1-1.txt&quot;</span>
        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;reading from 1-1-1&quot;</span><span class="p">)</span>
@@ -827,7 +828,8 @@
     <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span>
     <span class="n">nelz</span> <span class="o">=</span> <span class="mi">10</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span><span class="p">,</span> <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span><span class="p">,</span> <span class="n">xllcorner</span><span class="p">,</span> <span class="n">yllcorner</span><span class="p">,</span> <span class="n">npath</span><span class="p">,</span> <span class="n">zpath_height</span><span class="p">,</span> <span class="n">pathfile</span><span class="p">,</span> <span class="n">topofile</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">IGRFx</span><span class="p">,</span> <span class="n">IGRFy</span><span class="p">,</span> <span class="n">IGRFz</span> <span class="p">)</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span><span class="p">,</span> <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span><span class="p">,</span> <span class="n">xllcorner</span><span class="p">,</span> <span class="n">yllcorner</span><span class="p">,</span> <span class="n">npath</span><span class="p">,</span> <span class="n">zpath_height</span><span class="p">,</span> <span class="n">pathfile</span><span class="p">,</span>\
+             <span class="n">topofile</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">IGRFx</span><span class="p">,</span> <span class="n">IGRFy</span><span class="p">,</span> <span class="n">IGRFz</span> <span class="p">)</span></div>
 
 </pre></div>
 
@@ -838,7 +840,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

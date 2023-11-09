@@ -5,12 +5,13 @@
 
 Welcome to MTE's documentation!
 ===============================
+| MTE is an advanced Python library meticulously crafted to calculate the magnetic field proximately above the topography (~1 meter), as defined by either an analytical equation or a Digital Elevation Model (DEM). The code is available for download `GitHub <https://github.com/AgnesHendrickx/MTE/>`_, offering a comprehensive suite of tools for geophysical analysis and simulation, tailored for precision and ease of use in professional environments.
+| This documentation is designed to serve as a comprehensive guide to both theoretical and practical applications of the MTE library.
 
-**MTE** is a Python library written to compute the magnetic field just above (~1m) topography, prescribed by an equation or a DEM.
-Code on `github <https://github.com/AgnesHendrickx/MTE/>`_
 
 .. note::
    this project is under active development.
+
 .. todo:: make the list next to the toctree?
 
 .. toctree::
@@ -23,20 +24,30 @@ Code on `github <https://github.com/AgnesHendrickx/MTE/>`_
    benchmarks
    parameters
    flanksim
+   artdem
    etna
    functions
    ref
    app1
-   app2
 
-| Check out the :doc:`usage` section for further information, including how to :ref:`install <installation>` the project.
-| First, in :doc:`governing_equations` the theoretical basis for the code are stated.
-| Followed by the numerical framework in :doc:`computational_approach`.
-| Next, we will delve into the four distinct :doc:`benchmarks` used to validate the computed values.
-| We will demonstrate not only the results but also the methodology for reproducing them.
-| In the section :ref:`flank simulations <flanksim>` we present a case for a setup using synthetic topography.
-| A simplified setup of flanksim is used for optimizing :doc:`parameters` of the model setup like mesh resolution, extent of the domain, etc.
-| Lastly, we outline the final :doc:`etna` of reproducing field values from :cite:`Meyer23`, again, presenting both results and reproduction methods.
+|
+| For a thorough understanding of the MTE library, begin with the :doc:`usage`  section which provides essential details on :ref:`install <installation>` and project initiation.
+
+| Dive into the :doc:`governing_equations` to grasp the theoretical underpinnings of the code.
+
+| Proceed to the :doc:`computational_approach` for insight into the numerical framework that drives our simulations.
+
+| Discover the validation process through four comprehensive :doc:`benchmarks`, where the methodology for accurate reproduction of computed values is also outlined.
+
+| Insights into optimizing model :doc:`parameters` such as mesh resolution and domain extent are shared, showing the process of refinement for enhanced simulation accuracy.
+
+| Refine your simulations by optimizing model :doc:`parameters` such as mesh resolution and domain extent.
+
+| The :ref:`flank simulations <flanksim>` section presents a case study on applying synthetic topography, offering a walkthrough of the setup process.
+
+| Uncover the process of integrating a :ref:`DEM <art_dem>` into the model, from generating an artificial DEM using pseudo-fractals to incorporating real-world terrain and field paths.
+
+| Finally, the :ref:`Etna <etna>` section illustrates the replication of field values from the study cited as :cite:`Meyer23`
 
 Reproduction
 ------------

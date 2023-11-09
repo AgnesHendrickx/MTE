@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Functions &mdash; MTE 0.1 documentation</title>
+  <title>Functions &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -14,7 +14,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#support">Support</a><ul>
@@ -88,11 +89,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#set_measurement_parameters.set_measurement_parameters"><code class="docutils literal notranslate"><span class="pre">set_measurement_parameters()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#artificial-dem">Artificial DEM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#art_DEM.generate_fractal_map"><code class="docutils literal notranslate"><span class="pre">generate_fractal_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#art_DEM.write_dem_to_ascii"><code class="docutils literal notranslate"><span class="pre">write_dem_to_ascii()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#art_DEM.generate_pathfile"><code class="docutils literal notranslate"><span class="pre">generate_pathfile()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -130,15 +136,14 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="support.add_referencefield">
 <span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">add_referencefield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B0_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dmeas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_si</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#add_referencefield"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.add_referencefield" title="Link to this definition"></a></dt>
-<dd><p>Returns total computed magnetic field, intensity, inclination and declination
-at all points on a path by</p>
+<dd><p>This function returns total computed magnetic field, along with its intensity, inclination
+and declination at all points on a specified path using the following steps:,</p>
 <ol class="arabic simple">
-<li><p>rotating vector from model to Paleomagnetism coordinate system.</p></li>
-<li><p>adding a (global) reference field B0.</p></li>
-<li><p>computing standard PMAG equations <span id="id1">[<a class="reference internal" href="ref.html#id20" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tauxe, 2010</a>]</span>.</p></li>
+<li><p>Rotating the vector from the model’s coordinate system to align with the paleomagnetism coordinate system.</p></li>
+<li><p>Incorporating a (global) reference field, denoted as B0.</p></li>
+<li><p>Applying standard paleomagnetic equations for calculation as referenced in <span id="id1">[<a class="reference internal" href="ref.html#id20" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tauxe, 2010</a>]</span>.</p></li>
 </ol>
-<p>Next, it writes individual(x,y,z) components of total magnetic field and intensity,
-inclination and declination into file named: <code class="docutils literal notranslate"><span class="pre">measurements_path_refField{BO_name}.ascii</span></code>.</p>
+<p>Subsequently, the function outputs the individual (x,y,z) components of the total magnetic field, as well as the calculated intensity, inclination, and declination values. These results are saved into a file titled: <code class="docutils literal notranslate"><span class="pre">measurements_path_refField{BO_name}.ascii</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -164,7 +169,7 @@ inclination and declination into file named: <code class="docutils literal notra
 
 <dl class="py function">
 <dt class="sig sig-object py" id="support.topography">
-<span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">topography</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llambda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cos_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sin_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slopex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slopey</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#topography"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.topography" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">topography</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llambda</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slopex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slopey</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#topography"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.topography" title="Link to this definition"></a></dt>
 <dd><p>Returns topography (height) value at each point defined by x,y coordinates passed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -254,7 +259,7 @@ inclination and declination into file named: <code class="docutils literal notra
 <div class="line">This spatial problem isn’t restricted to the domain bounds. While generating an artificial distance for singularities within the main calculation function (<a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.facmag()</span></code></a>) similar to the solution of <span id="id3">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>, <a class="reference internal" href="ref.html#id26" title="M. H. P. Bott. Two methods applicable to computers for evaluating magnetic anomalies due to finite three dimensional bodies. Geophysical Prospecting, 11(3):292-299, 1963. URL: https://www.earthdoc.org/content/journals/10.1111/j.1365-2478.1963.tb02039.x, doi:https://doi.org/10.1111/j.1365-2478.1963.tb02039.x.">Bott, 1963</a>]</span> for edge alignment, would be preferred. The problem emerges from our decision to utilize the <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.facmag()</span></code></a> in this particular manner (by subdividing the top and bottom into additional triangles). Since this setup is invoked via an external function, and because it falls outside the scope of the function’s original intention (to handle planes as polyhedron sides), we have opted to create this external function as well. Furthermore, there are several setups that do not require subdivision, and subsequently use the <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a>, hence shifting there could only potentially introduce inaccuracies. This is avoided by the introduction of this function, only called for in case function <a class="reference internal" href="#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a> is employed, see <a class="reference internal" href="benchmarks.html"><span class="doc">Benchmarks</span></a>,:doc:<cite>flanksim</cite>,:doc:<cite>etna</cite>.</div>
 </div>
 <div class="line-block">
-<div class="line">Benchmarks have established that the epsilon should be at least of a factor <strong>1e-8</strong> or larger.</div>
+<div class="line">Benchmarks have established that the epsilon should be at least of a factor <strong>1e-5</strong> or larger. It is important to note that this value is not dynamically scaled and should be treated with careful consideration, particularly if there are any modifications to the core implementation of the model.</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -286,7 +291,7 @@ inclination and declination into file named: <code class="docutils literal notra
 <span class="sig-prename descclassname"><span class="pre">support.</span></span><span class="sig-name descname"><span class="pre">read_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topo_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/support.html#read_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#support.read_header" title="Link to this definition"></a></dt>
 <dd><div class="line-block">
 <div class="line">This function checks if a DEM file has a header, and if so, reads in the values.</div>
-<div class="line">These values are stored in dictionary {}.</div>
+<div class="line">These values are stored in dictionary {}. Header keys checked for: ncols, nrows, xllcorner, yllcorner, cellsize, and NODATA_value.</div>
 <div class="line">This function works optimally when the header is in a standardized ASCII format.</div>
 </div>
 <dl class="field-list simple">
@@ -309,7 +314,8 @@ inclination and declination into file named: <code class="docutils literal notra
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.export_mesh_3D">
 <span class="sig-prename descclassname"><span class="pre">tools.</span></span><span class="sig-name descname"><span class="pre">export_mesh_3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">My</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nnx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nnz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_mesh_3D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_mesh_3D" title="Link to this definition"></a></dt>
-<dd><p>Export 3D mesh to vtu file (plot with paraview) with z (height of surface) as point data, and magnetization vector (and components) as cell data.</p>
+<dd><p>This function creates a VTU file that represents a 3D mesh with height data exported as point data and magnetization vectors exported as cell data.
+The VTU file can be visualized using Paraview software.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -337,7 +343,7 @@ inclination and declination into file named: <code class="docutils literal notra
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.export_mesh_2D">
 <span class="sig-prename descclassname"><span class="pre">tools.</span></span><span class="sig-name descname"><span class="pre">export_mesh_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools.html#export_mesh_2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tools.export_mesh_2D" title="Link to this definition"></a></dt>
-<dd><p>Export 2D mesh (surface) to vtu file (plot with paraview), can be used in main for visualizing plane measurement po.</p>
+<dd><p>This function creates a VTU file that represents a 2D mesh surface, which can be utilized for visualization in Paraview.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -585,7 +591,7 @@ inclination and declination into file named: <code class="docutils literal notra
 <dd><div class="line-block">
 <div class="line">This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a cuboid element employing <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a> function on each face. Here again the magnetization vector (Mx,My,Mz) is assumed to be constant inside the element. It uses the <code class="docutils literal notranslate"><span class="pre">icon</span></code> array to identify the x-,y-,z-coordinates associated with each node, before calling <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a>, to compute the total magnetic field strength for each face.</div>
 <div class="line">Magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id8">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>]</span>.</div>
-<div class="line">Distance units are irrelevant but must be consistent.  For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>.</div>
+<div class="line">Distance units are irrelevant but must be consistent.  For numbering of the nodes, see comments in code.</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -619,7 +625,7 @@ inclination and declination into file named: <code class="docutils literal notra
 <div class="line">In light thereof we subdivide the top and bottom faces into four triangles. This feature is needed in the case topography is prescribed at the top (or bottom) of the domain and the vertical position of the nodes are modified.</div>
 <div class="line">It uses the <code class="docutils literal notranslate"><span class="pre">icon</span></code> array to identify the x-,y-,z-coordinates associated with each node, before calling <a class="reference internal" href="#magnetostatics.facmag" title="magnetostatics.facmag"><code class="xref py py-func docutils literal notranslate"><span class="pre">facmag()</span></code></a>, to compute the total magnetic field strength for each face and triangle.</div>
 <div class="line">Magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in <span id="id9">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>]</span>.</div>
-<div class="line">Distance units are irrelevant but must be consistent. For numbering of the nodes, see <a class="reference internal" href="app2.html"><span class="doc">Coordinate systems of different components</span></a>.</div>
+<div class="line">Distance units are irrelevant but must be consistent. For numbering of the nodes, see comments in code.</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -932,6 +938,72 @@ inclination and declination into file named: <code class="docutils literal notra
 </dl>
 </dd></dl>
 
+</section>
+<section id="artificial-dem">
+<h2>Artificial DEM<a class="headerlink" href="#artificial-dem" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="art_DEM.generate_fractal_map">
+<span class="sig-prename descclassname"><span class="pre">art_DEM.</span></span><span class="sig-name descname"><span class="pre">generate_fractal_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roughness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/art_DEM.html#generate_fractal_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#art_DEM.generate_fractal_map" title="Link to this definition"></a></dt>
+<dd><p>Generates a square fractal map using the diamond-square algorithm, followed by Gaussian filtering.</p>
+<p>The diamond-square algorithm is a fractal method used to generate random landscapes or textures.
+The algorithm works by dividing the map into squares and diamonds, then randomly displacing the midpoint
+of each to create roughness. Gaussian filtering is applied at the end to smooth out the map for a more
+natural look.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – Determines the size of the map which will be <cite>(2^size) + 1</cite>.</p></li>
+<li><p><strong>roughness</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – The initial roughness factor for the diamond-square algorithm.</p></li>
+<li><p><strong>sigma</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – Standard deviation for Gaussian filter, affecting the smoothness.</p></li>
+<li><p><strong>seed</strong> (<em>(</em><em>optional</em><em>(</em><em>scalar</em><em>(</em><em>int</em><em>)</em><em>)</em><em>)</em>) – Optional seed for the random number generator.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>dem</strong> <em>(array_like(float))</em> - A 2D numpy array representing the fractal map.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="art_DEM.write_dem_to_ascii">
+<span class="sig-prename descclassname"><span class="pre">art_DEM.</span></span><span class="sig-name descname"><span class="pre">write_dem_to_ascii</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellsize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xllcorner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yllcorner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'art_dem.ascii'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/art_DEM.html#write_dem_to_ascii"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#art_DEM.write_dem_to_ascii" title="Link to this definition"></a></dt>
+<dd><p>Writes the digital elevation model (DEM) data to an ASCII file in grid format.</p>
+<p>The ASCII format is a simple text-based format for storing raster data which is widely used in GIS
+software. Each line contains the data for a single row of the grid, with values separated by spaces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dem</strong> (<em>array_like</em><em>(</em><em>float</em><em>)</em>) – 2D array containing elevation data.</p></li>
+<li><p><strong>ncol</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – Number of columns in the DEM grid.</p></li>
+<li><p><strong>nrow</strong> – Number of rows in the DEM grid.</p></li>
+<li><p><strong>cellsize</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – Size of each cell in the grid.</p></li>
+<li><p><strong>xllcorner</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – The western x-coordinate of the lower left corner of the DEM grid.</p></li>
+<li><p><strong>yllcorner</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – The southern y-coordinate of the lower left corner of the DEM grid.</p></li>
+<li><p><strong>filename</strong> (<em>string</em>) – The name of the ASCII file to write.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="art_DEM.generate_pathfile">
+<span class="sig-prename descclassname"><span class="pre">art_DEM.</span></span><span class="sig-name descname"><span class="pre">generate_pathfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xllcorner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yllcorner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rough_length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'art_path.txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/art_DEM.html#generate_pathfile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#art_DEM.generate_pathfile" title="Link to this definition"></a></dt>
+<dd><p>Generate a path file for artifical data sampling paths in an ASCII format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xllcorner</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – The western x-coordinate of the lower left corner of the grid.</p></li>
+<li><p><strong>yllcorner</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – The southern y-coordinate of the lower left corner of the grid.</p></li>
+<li><p><strong>Lx</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – The length of the domain along the x-axis.</p></li>
+<li><p><strong>rough_length</strong> (<em>scalar</em><em>(</em><em>float</em><em>)</em>) – The rough length of the path, minor changes will happen through this function, so length is eventually different to passed length.</p></li>
+<li><p><strong>npath</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – Number of points in the path.</p></li>
+<li><p><strong>seed</strong> (<em>scalar</em><em>(</em><em>int</em><em>)</em>) – Optional seed for the random number generator.</p></li>
+<li><p><strong>filename</strong> (<em>string</em>) – The name of the text file to write the path coordinates.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id15" role="doc-footnote">
@@ -953,7 +1025,7 @@ inclination and declination into file named: <code class="docutils literal notra
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

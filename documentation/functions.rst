@@ -54,6 +54,15 @@ Set measurement parameters
 --------------------------
 .. autofunction:: set_measurement_parameters.set_measurement_parameters
 
+Artificial DEM
+--------------
+
+.. autofunction:: art_DEM.generate_fractal_map
+
+.. autofunction:: art_DEM.write_dem_to_ascii
+
+.. autofunction:: art_DEM.generate_pathfile
+
 
 .. rubric:: Footnotes
 

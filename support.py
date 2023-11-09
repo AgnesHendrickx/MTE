@@ -2,21 +2,21 @@ import random
 
 import numpy as np
 
+
 ###################################################################################################
 # this function adds reference field to measurements and computes Pmag Int,Inc,Dec
 
 
 def add_referencefield(B0_name, npath, dmeas, B0, B_si, benchmark):
     """
-    Returns total computed magnetic field, intensity, inclination and declination
-    at all points on a path by
+    This function returns total computed magnetic field, along with its intensity, inclination
+    and declination at all points on a specified path using the following steps:,
 
-    1. rotating vector from model to Paleomagnetism coordinate system.
-    2. adding a (global) reference field B0.
-    3. computing standard PMAG equations :cite:`TAUXE`.
+    1. Rotating the vector from the model's coordinate system to align with the paleomagnetism coordinate system.
+    2. Incorporating a (global) reference field, denoted as B0.
+    3. Applying standard paleomagnetic equations for calculation as referenced in :cite:`TAUXE`.
 
-    Next, it writes individual(x,y,z) components of total magnetic field and intensity,
-    inclination and declination into file named: ``measurements_path_refField{BO_name}.ascii``.
+    Subsequently, the function outputs the individual (x,y,z) components of the total magnetic field, as well as the calculated intensity, inclination, and declination values. These results are saved into a file titled: ``measurements_path_refField{BO_name}.ascii``
 
     :param B0_name: name of reference field (used in writing file).
     :type B0_name: str
@@ -68,7 +68,7 @@ def add_referencefield(B0_name, npath, dmeas, B0, B_si, benchmark):
 # this function returns a topography value at each point x,y passed as argument
 
 
-def topography(x, y, A, llambda, cos_dir, sin_dir, slopex, slopey):
+def topography(x, y, A, llambda, dir, slopex, slopey):
     """
     Returns topography (height) value at each point defined by x,y coordinates passed.
 
@@ -93,13 +93,15 @@ def topography(x, y, A, llambda, cos_dir, sin_dir, slopex, slopey):
         - **h_fs** *(scalar(float))* - the height value for the point passed to function for the respective position on the flank (chosen by ``subbench``).
 
     """
+    cos_dir = np.cos(dir)
+    sin_dir = np.sin(dir)
+
     if llambda == 0:
        pert1 = 0
     else:
        pert1 = A * np.sin(2 * np.pi / llambda * (x * cos_dir + y * sin_dir))
     pert2 = slopex * x + slopey * y
     return pert1 + pert2
-
 
 ###################################################################################################
 # returns analytical solution (vector B)
@@ -146,11 +148,6 @@ def compute_analytical_solution(x, y, z, R, Mx, My, Mz, xcenter, ycenter, zcente
        Bx = 0
        By = 0
        Bz = 2 * mu0 * V / 4 / np.pi / r**3 * Mz
-    #-----------------------------------------------------------------
-    if benchmark == '2a' or benchmark == '2b' or benchmark == '5':
-       Bx = 0
-       By = 0
-       Bz = 0
 
     #-----------------------------------------------------------------
     if benchmark == '3':
@@ -171,6 +168,8 @@ def compute_analytical_solution(x, y, z, R, Mx, My, Mz, xcenter, ycenter, zcente
 
     return np.array([Bx,By,Bz], dtype=np.float64)
 # returns analytical solution (vector B)
+
+###################################################################################################
 
 
 def is_point_near_diagonal(x, y, Lx, Ly, eps):
@@ -213,6 +212,8 @@ def is_point_near_diagonal(x, y, Lx, Ly, eps):
     # Check if (x, y) is close to either diagonal
     return d1 < eps or d2 < eps
 
+###################################################################################################
+
 
 def shift_observation_points_edge(x, y, Lx, Ly, nelx, nely, nelz, xm, ym):
     """
@@ -222,8 +223,7 @@ def shift_observation_points_edge(x, y, Lx, Ly, nelx, nely, nelz, xm, ym):
     | Both x- and y-coordinates are shifted using a random value between -1 and 1 times the artificial distance (factor).
     | This spatial problem isn't restricted to the domain bounds. While generating an artificial distance for singularities within the main calculation function (:func:`magnetostatics.facmag`) similar to the solution of :cite:`Bott63,BLAKELY` for edge alignment, would be preferred. The problem emerges from our decision to utilize the :func:`magnetostatics.facmag` in this particular manner (by subdividing the top and bottom into additional triangles). Since this setup is invoked via an external function, and because it falls outside the scope of the function’s original intention (to handle planes as polyhedron sides), we have opted to create this external function as well. Furthermore, there are several setups that do not require subdivision, and subsequently use the :func:`magnetostatics.compute_B_surface_integral_cuboid`, hence shifting there could only potentially introduce inaccuracies. This is avoided by the introduction of this function, only called for in case function :func:`magnetostatics.compute_B_surface_integral_wtopo` is employed, see :doc:`benchmarks`,:doc:`flanksim`,:doc:`etna`.
 
-    | Benchmarks have established that the epsilon should be at least of a factor **1e-8** or larger.
-
+    | Benchmarks have established that the epsilon should be at least of a factor **1e-5** or larger. It is important to note that this value is not dynamically scaled and should be treated with careful consideration, particularly if there are any modifications to the core implementation of the model.
 
     :param x: 1D array(NV) containing the x-coordinate of each domain nodes.
     :type x: array_like(float)
@@ -269,8 +269,10 @@ def shift_observation_points_edge(x, y, Lx, Ly, nelx, nely, nelz, xm, ym):
                     ):
                         xm += random.uniform(-1, +1) * eps
                         ym += random.uniform(-1, +1) * eps
-                        message += f"x-coordinate was shifted by {eps} meters, due to diagonal alignment."
-                        break  # exiting the k loop if condition is met, if statement message prevents repeated testing.
+                        message += f"x-coordinate was shifted by {eps} meters, due \
+                            to diagonal alignment."
+                        break  # exiting the k loop if condition is met,
+                                # if statement for message prevents repeated testing.
                 counter += 1
 
     # If message hasn't changed, no points were shifted
@@ -279,10 +281,13 @@ def shift_observation_points_edge(x, y, Lx, Ly, nelx, nely, nelz, xm, ym):
 
     return xm, ym, message
 
+###################################################################################################
+
+
 def read_header(topo_file):
     """
     | This function checks if a DEM file has a header, and if so, reads in the values.
-    | These values are stored in dictionary {}.
+    | These values are stored in dictionary {}. Header keys checked for: ncols, nrows, xllcorner, yllcorner, cellsize, and NODATA_value.
     | This function works optimally when the header is in a standardized ASCII format.
 
     :param topo_file: the opened (with read statement) "topofile", containing the possible header to be read in.
@@ -330,4 +335,7 @@ def read_header(topo_file):
 
     # If reached here, either no header was present or it was incomplete
     topo_file.seek(initial_position)
+    print("header was not found, no values read in")
     return False, {}
+
+###################################################################################################

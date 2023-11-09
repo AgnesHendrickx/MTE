@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Benchmarks &mdash; MTE 0.1 documentation</title>
+  <title>Benchmarks &mdash; MTE 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -14,7 +14,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -84,11 +84,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flanksim.html">Synthetic topopography: flank simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="artdem.html">Artificial DEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="etna.html">Case study: Mount Etna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="app2.html">Coordinate systems of different components</a></li>
 </ul>
 
    <ul>
@@ -159,20 +159,14 @@
 <section id="results">
 <h3>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h3>
 <figure class="align-default" id="id27">
-<span id="figureb1"></span><a class="with-border reference internal image-reference" href="_images/B1dipole.png"><img alt="_images/B1dipole.png" class="with-border" src="_images/B1dipole.png" style="width: 1080.0px; height: 540.0px;" /></a>
+<span id="figureb1-mp"></span><a class="reference internal image-reference" href="_images/B1dipole_mp.png"><img alt="_images/B1dipole_mp.png" src="_images/B1dipole_mp.png" style="width: 1120.0px; height: 480.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 2 </span><span class="caption-text">Analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.</span><a class="headerlink" href="#id27" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id28">
-<span id="figureb1zoom"></span><a class="with-border reference internal image-reference" href="_images/B1dipole_dif_zoom_withlines.png"><img alt="_images/B1dipole_dif_zoom_withlines.png" class="with-border" src="_images/B1dipole_dif_zoom_withlines.png" style="width: 1080.0px; height: 540.0px;" /></a>
-<figcaption>
-<p><span class="caption-number">      Figure 3 </span><span class="caption-text">Difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.</span><a class="headerlink" href="#id28" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 2 </span><span class="caption-text">On the left, analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. On the right, the difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.</span><a class="headerlink" href="#id27" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
-<div class="line">As illustrated in <a class="reference internal" href="#figureb1"><span class="std std-numref">Figure 2</span></a>, the discrepancies between the analytical solution and computed values are minimal.</div>
-<div class="line">Even at a height of, see <a class="reference internal" href="#figureb1zoom"><span class="std std-numref">      Figure 3</span></a>, <span class="math notranslate nohighlight">\(0.25m\)</span>, the smallest height above the topography measured in the Etna case study <span id="id5">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span>, the error remains approximately <span class="math notranslate nohighlight">\(\sim \lvert 0.01 \rvert \mu T\)</span> .</div>
+<div class="line">As illustrated in <a class="reference internal" href="#figureb1-mp"><span class="std std-numref">Figure 2</span></a>, the discrepancies between the analytical solution and computed values are minimal.</div>
+<div class="line">Even at a height of <span class="math notranslate nohighlight">\(0.25m\)</span>, the smallest height above the topography measured in the Etna case study <span id="id5">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span>, the error remains approximately <span class="math notranslate nohighlight">\(\sim \lvert 0.01 \rvert \mu T\)</span> .</div>
 </div>
 </section>
 <section id="reproduce">
@@ -182,65 +176,81 @@
 <ol class="arabic">
 <li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">27</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">45</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
 </span></pre></div>
 </div>
 </div>
 </li>
 <li><p>Run “zoomed” setup &amp; rename/move files</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">65</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
-<span class="linenos">66</span>   <span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="linenos">67</span>   <span class="n">xstart</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">68</span>   <span class="n">ystart</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">69</span>   <span class="n">zstart</span> <span class="o">=</span> <span class="mf">0.01</span>      <span class="c1">#slightly above surface</span>
-<span class="linenos">70</span>   <span class="n">xend</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">71</span>   <span class="n">yend</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="hll"><span class="linenos">72</span>   <span class="n">zend</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># &quot;zoomed&quot;-data (i.e. close to surface)</span>
-</span><span class="linenos">73</span>   <span class="c1">#zend = 100  # regular setup</span>
-<span class="linenos">74</span>   <span class="n">line_nmeas</span> <span class="o">=</span> <span class="mi">100</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 74</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+<span class="linenos"> 75</span>    <span class="c1"># General settings</span>
+<span class="linenos"> 76</span>    <span class="n">remove_zerotopo</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos"> 77</span>    <span class="n">compute_analytical</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos"> 78</span>    <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos"> 79</span>    <span class="n">do_path_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span>    <span class="c1"># Domain settings</span>
+<span class="linenos"> 82</span>    <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span>  <span class="c1"># Length of the domain in each direction.</span>
+<span class="linenos"> 83</span>    <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>  <span class="c1"># Amount of elements in each direction.</span>
+<span class="linenos"> 84</span>    <span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span>  <span class="c1"># Magnetization [A/m], do not change Mx0 and My0.</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span>    <span class="c1"># Sphere settings</span>
+<span class="linenos"> 87</span>    <span class="n">sphere_R</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Radius of the sphere.</span>
+<span class="linenos"> 88</span>    <span class="n">sphere_xc</span><span class="p">,</span> <span class="n">sphere_yc</span><span class="p">,</span> <span class="n">sphere_zc</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Lz</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Center position of the sphere.</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span>    <span class="c1"># Line measurement settings</span>
+<span class="linenos"> 91</span>    <span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Do computations along a observation line (path).</span>
+<span class="linenos"> 92</span>    <span class="n">line_nmeas</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Amount of observation points.</span>
+<span class="linenos"> 93</span>    <span class="n">xstart</span><span class="p">,</span> <span class="n">xend</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># x-coordinates of start and end of observation path.</span>
+<span class="linenos"> 94</span>    <span class="n">ystart</span><span class="p">,</span> <span class="n">yend</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># y-coordinates &quot;&quot;.</span>
+<span class="hll"><span class="linenos"> 95</span>    <span class="n">zstart</span><span class="p">,</span> <span class="n">zend</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># Zoomed setup.</span>
+</span><span class="hll"><span class="linenos"> 96</span>    <span class="c1">#zstart, zend = 0.01, 100  # Non-zoomed setup.</span>
+</span><span class="linenos"> 97</span>
+<span class="linenos"> 98</span>    <span class="c1"># Plane measurement settings</span>
+<span class="linenos"> 99</span>    <span class="n">do_plane_measurements</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Do computations on a observation plane.</span>
+<span class="linenos">100</span>    <span class="n">plane_nnx</span><span class="p">,</span> <span class="n">plane_nny</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span>  <span class="c1"># Amount of observation points in each direction.</span>
+<span class="linenos">101</span>    <span class="n">plane_x0</span><span class="p">,</span> <span class="n">plane_y0</span><span class="p">,</span> <span class="n">plane_z0</span> <span class="o">=</span> <span class="o">-</span><span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
+<span class="linenos">102</span>    <span class="n">plane_Lx</span><span class="p">,</span> <span class="n">plane_Ly</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Lx</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ly</span>  <span class="c1"># Length of observation plane in each direction.</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>        (runtime: ~15 min)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_1</span><span class="o">/</span><span class="n">results_zoom</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_1</span><span class="o">/</span><span class="n">results_zoom</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>benchmarks/benchmark_1/results_zoom<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>log.txt<span class="w"> </span>*.vtu<span class="w"> </span>*.ascii<span class="w"> </span><span class="nv">$_</span>
 </pre></div>
 </div>
 </div>
 </li>
 <li><p>Run regular setup &amp; move files</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">65</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
-<span class="linenos">66</span>   <span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="linenos">67</span>   <span class="n">xstart</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">68</span>   <span class="n">ystart</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">69</span>   <span class="n">zstart</span> <span class="o">=</span> <span class="mf">0.01</span>      <span class="c1">#slightly above surface</span>
-<span class="linenos">70</span>   <span class="n">xend</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">71</span>   <span class="n">yend</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="hll"><span class="linenos">72</span>   <span class="c1">#zend = 2  # &quot;zoomed&quot;-data (i.e. close to surface)</span>
-</span><span class="hll"><span class="linenos">73</span>   <span class="n">zend</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># regular setup</span>
-</span><span class="linenos">74</span>   <span class="n">line_nmeas</span> <span class="o">=</span> <span class="mi">100</span>
-</pre></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">90</span><span class="c1"># Line measurement settings</span>
+<span class="linenos">91</span><span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Do computations along a observation line (path).</span>
+<span class="linenos">92</span><span class="n">line_nmeas</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Amount of observation points.</span>
+<span class="linenos">93</span><span class="n">xstart</span><span class="p">,</span> <span class="n">xend</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># x-coordinates of start and end of observation path.</span>
+<span class="linenos">94</span><span class="n">ystart</span><span class="p">,</span> <span class="n">yend</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># y-coordinates &quot;&quot;.</span>
+<span class="hll"><span class="linenos">95</span><span class="c1">#zstart, zend = 0.01, 2 # Zoomed setup.</span>
+</span><span class="hll"><span class="linenos">96</span><span class="n">zstart</span><span class="p">,</span> <span class="n">zend</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">100</span>  <span class="c1"># Non-zoomed setup.</span>
+</span></pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>        (runtime: ~15 min)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_1</span><span class="o">/</span>
 </pre></div>
 </div>
@@ -248,7 +258,7 @@
 </li>
 <li><p>Go to directory &amp; plot</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_1</span>
 </pre></div>
 </div>
@@ -256,14 +266,14 @@
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_1/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_1/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">plot_script_B1</span><span class="o">.</span><span class="n">p</span>
 </pre></div>
 </div>
 </div>
 </td>
 <td><div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_1/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_1/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">plot_script_B1</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
@@ -286,10 +296,10 @@
 </section>
 <section id="id8">
 <h3>Model setup<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
-<figure class="align-default" id="id29">
+<figure class="align-default" id="id28">
 <span id="deformationsetups"></span><a class="with-border reference internal image-reference" href="_images/result_b2_frames_only_3.png"><img alt="_images/result_b2_frames_only_3.png" class="with-border" src="_images/result_b2_frames_only_3.png" style="width: 701.0px; height: 267.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 4 </span><span class="caption-text">Visualization of different model setups by cross sectional planes trough middle of each mesh, on the left the undeformed base mesh, in the middle deformation setup (1), on the right deformation setup (2).</span><a class="headerlink" href="#id29" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 3 </span><span class="caption-text">Visualization of different model setups by cross sectional planes trough middle of each mesh, on the left the undeformed base mesh, in the middle deformation setup (1), on the right deformation setup (2).</span><a class="headerlink" href="#id28" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
@@ -300,25 +310,25 @@
 <li><p>situation in (1) was combined with elements of a very high aspect ratio (5x1x0.2m).</p></li>
 </ol>
 <div class="line-block">
-<div class="line">The original domain and results will be referred to as the base setup, see <a class="reference internal" href="#deformationsetups"><span class="std std-numref">      Figure 4</span></a> for visualization of the deformation setups.</div>
+<div class="line">The original domain and results will be referred to as the base setup, see <a class="reference internal" href="#deformationsetups"><span class="std std-numref">Figure 3</span></a> for visualization of the deformation setups.</div>
 </div>
 </section>
 <section id="id9">
 <h3>Results<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
-<figure class="align-default" id="id30">
+<figure class="align-default" id="id29">
 <span id="figureb2base"></span><a class="with-border reference internal image-reference" href="_images/result_b2_base_lines.png"><img alt="_images/result_b2_base_lines.png" class="with-border" src="_images/result_b2_base_lines.png" style="width: 856.1999999999999px; height: 470.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 5 </span><span class="caption-text">The magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> on a plane <span class="math notranslate nohighlight">\(1m\)</span> above the surface of a box with a spatial extent that is twice as large as the (undeformed) domain beneath.</span><a class="headerlink" href="#id30" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 4 </span><span class="caption-text">The magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> on a plane <span class="math notranslate nohighlight">\(1m\)</span> above the surface of a box with a spatial extent that is twice as large as the (undeformed) domain beneath.</span><a class="headerlink" href="#id29" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id31">
-<span id="figureb2"></span><a class="reference internal image-reference" href="_images/result_b2.png"><img alt="_images/result_b2.png" src="_images/result_b2.png" style="width: 1141.6000000000001px; height: 627.2px;" /></a>
+<figure class="align-default" id="id30">
+<span id="figureb2"></span><a class="reference internal image-reference" href="_images/result_b2.png"><img alt="_images/result_b2.png" src="_images/result_b2.png" style="width: 979.2px; height: 627.2px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 6 </span><span class="caption-text">Difference between <a class="reference internal" href="#figureb2base"><span class="std std-numref">      Figure 5</span></a> and results from the deformed domain setups. On the left the difference between deformation setup (1) and the base, on the right the difference between deformation setup (2) and the base. See model setup section.</span><a class="headerlink" href="#id31" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 5 </span><span class="caption-text">Difference between <a class="reference internal" href="#figureb2base"><span class="std std-numref">Figure 4</span></a> and results from the deformed domain setups. On the left the difference between deformation setup (1) and the base, on the right the difference between deformation setup (2) and the base. See model setup section.</span><a class="headerlink" href="#id30" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
-<div class="line">As expected and observable in <a class="reference internal" href="#figureb2"><span class="std std-numref">      Figure 6</span></a>, the computed values of the magnetic field on the observation plane, located one meter above the domain, remained consistent (up to machine precision) across these scenarios.</div>
+<div class="line">As expected and observable in <a class="reference internal" href="#figureb2"><span class="std std-numref">Figure 5</span></a>, the computed values of the magnetic field on the observation plane, located one meter above the domain, remained consistent (up to machine precision) across these scenarios.</div>
 </div>
 </section>
 <section id="id10">
@@ -328,107 +338,136 @@
 <ol class="arabic">
 <li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">2a</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">27</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;2a&#39;</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">45</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;2a&#39;</span>
 </span></pre></div>
 </div>
 </div>
 </li>
 <li><p>Run base setup &amp; rename/move files</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 89</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;2a&#39;</span><span class="p">:</span>
-<span class="linenos"> 90</span>   <span class="n">Lx</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="linenos"> 91</span>   <span class="n">Ly</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="linenos"> 92</span>   <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="linenos"> 93</span>   <span class="n">nelx</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="linenos"> 94</span>   <span class="n">nely</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="linenos"> 95</span>   <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="linenos"> 96</span>   <span class="n">Mx0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos"> 97</span>   <span class="n">My0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos"> 98</span>   <span class="n">Mz0</span> <span class="o">=</span> <span class="mf">7.5</span>
-<span class="linenos"> 99</span>   <span class="n">nqdim</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="hll"><span class="linenos">100</span>   <span class="n">dz</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Base setup.</span>
-</span><span class="linenos">101</span>   <span class="c1">#dz = 0.1  # Amplitude random.</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">106</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;2a&#39;</span><span class="p">:</span>
+<span class="linenos">107</span>   <span class="c1"># General settings</span>
+<span class="linenos">108</span>   <span class="n">remove_zerotopo</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">109</span>   <span class="n">compute_analytical</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">110</span>   <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">111</span>   <span class="n">do_path_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">112</span>
+<span class="linenos">113</span>   <span class="c1"># Domain settings</span>
+<span class="linenos">114</span>   <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span>
+<span class="linenos">115</span>   <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span>
+<span class="linenos">116</span>   <span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span>  <span class="c1"># Magnetization [A/m].</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span>   <span class="c1"># Plane measurement settings</span>
+<span class="linenos">119</span>   <span class="n">do_plane_measurements</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">120</span>   <span class="n">plane_nnx</span><span class="p">,</span> <span class="n">plane_nny</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span>
+<span class="linenos">121</span>   <span class="n">plane_x0</span><span class="p">,</span> <span class="n">plane_y0</span><span class="p">,</span> <span class="n">plane_z0</span> <span class="o">=</span> <span class="o">-</span><span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
+<span class="linenos">122</span>   <span class="n">plane_Lx</span><span class="p">,</span> <span class="n">plane_Ly</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Lx</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ly</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span>   <span class="c1"># Line measurement settings</span>
+<span class="linenos">125</span>   <span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">126</span>   <span class="n">line_nmeas</span> <span class="o">=</span> <span class="mi">47</span>
+<span class="linenos">127</span>   <span class="n">xstart</span><span class="p">,</span> <span class="n">xend</span> <span class="o">=</span> <span class="mf">0.23</span> <span class="o">+</span> <span class="p">((</span><span class="n">Lx</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">49.19</span> <span class="o">+</span> <span class="p">((</span><span class="n">Ly</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">128</span>   <span class="n">ystart</span><span class="p">,</span> <span class="n">yend</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.221</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.221</span>
+<span class="linenos">129</span>   <span class="n">zstart</span><span class="p">,</span> <span class="n">zend</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>  <span class="c1"># 1m above surface.</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>        (runtime: ~3 s)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0</span>
-</pre></div>
-</div>
-</div>
-</li>
-<li><p>Run deformation setup (1) &amp; move files</p>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 89</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;2a&#39;</span><span class="p">:</span>
-<span class="linenos"> 90</span>   <span class="n">Lx</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="linenos"> 91</span>   <span class="n">Ly</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="linenos"> 92</span>   <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="linenos"> 93</span>   <span class="n">nelx</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="linenos"> 94</span>   <span class="n">nely</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="linenos"> 95</span>   <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="linenos"> 96</span>   <span class="n">Mx0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos"> 97</span>   <span class="n">My0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos"> 98</span>   <span class="n">Mz0</span> <span class="o">=</span> <span class="mf">7.5</span>
-<span class="linenos"> 99</span>   <span class="n">nqdim</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="hll"><span class="linenos">100</span>   <span class="c1">#dz = 0  # Base setup.</span>
-</span><span class="hll"><span class="linenos">101</span>   <span class="n">dz</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Amplitude random.</span>
-</span></pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0_1</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0_1</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>benchmarks/benchmark_2/d0<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>log.txt<span class="w"> </span>*.vtu<span class="w"> </span>*.ascii<span class="w"> </span><span class="nv">$_</span>
 </pre></div>
 </div>
 </div>
 </li>
 <li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">2b</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">27</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;2b&#39;</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">45</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;2b&#39;</span>
 </span></pre></div>
 </div>
 </div>
 </li>
-<li><p>Run deformation setup (2) &amp; move files</p>
+<li><p>Run deformation setup (1) &amp; move files</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">133</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;2b&#39;</span><span class="p">:</span>
+<span class="linenos">134</span>   <span class="c1"># General settings</span>
+<span class="linenos">135</span>   <span class="n">remove_zerotopo</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">136</span>   <span class="n">compute_analytical</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">137</span>   <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">138</span>   <span class="n">do_path_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">139</span>   <span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span>   <span class="c1"># Domain settings</span>
+<span class="linenos">142</span>   <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span>
+<span class="hll"><span class="linenos">143</span>   <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span>
+</span><span class="hll"><span class="linenos">144</span>   <span class="c1">#nelx, nely, nelz = 2, 10, 50</span>
+</span><span class="linenos">145</span>   <span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span>
+<span class="linenos">146</span>   <span class="n">dz</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Amplitude random for perturbations in domain.</span>
+<span class="linenos">147</span>
+<span class="linenos">148</span>   <span class="c1"># Plane measurement settings</span>
+<span class="linenos">149</span>   <span class="n">do_plane_measurements</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">150</span>   <span class="n">plane_nnx</span><span class="p">,</span> <span class="n">plane_nny</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span>
+<span class="linenos">151</span>   <span class="n">plane_x0</span><span class="p">,</span> <span class="n">plane_y0</span><span class="p">,</span> <span class="n">plane_z0</span> <span class="o">=</span> <span class="o">-</span><span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
+<span class="linenos">152</span>   <span class="n">plane_Lx</span><span class="p">,</span> <span class="n">plane_Ly</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Lx</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ly</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>       (runtime: ~5 s)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0_1_2_10_50</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span><span class="o">/</span><span class="n">d0_1_2_10_50</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>benchmarks/benchmark_2/d0_1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>log.txt<span class="w"> </span>*.vtu<span class="w"> </span>*.ascii<span class="w"> </span><span class="nv">$_</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>Run deformation setup (2) &amp; move files</p>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">141</span><span class="c1"># Domain settings</span>
+<span class="linenos">142</span><span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span>
+<span class="hll"><span class="linenos">143</span><span class="c1">#nelx, nely, nelz = 5, 5, 5</span>
+</span><span class="hll"><span class="linenos">144</span><span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span>
+</span><span class="linenos">145</span><span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span>
+<span class="linenos">146</span><span class="n">dz</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Amplitude random for perturbations in domain.</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>        (runtime: ~5 s)</span></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>benchmarks/benchmark_2/d0_1_2_10_50<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>log.txt<span class="w"> </span>*.vtu<span class="w"> </span>*.ascii<span class="w"> </span><span class="nv">$_</span>
 </pre></div>
 </div>
 </div>
 </li>
 <li><p>Go to directory &amp; use paraview or plotting to visualize</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_2</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_2/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_2/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paraview</span> <span class="o">--</span><span class="n">state</span><span class="o">=</span><span class="n">plot_result_b2_final</span><span class="o">.</span><span class="n">pvsm</span>
 </pre></div>
 </div>
@@ -436,14 +475,14 @@
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_2/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_2/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">plot_script_B2</span><span class="o">.</span><span class="n">p</span>
 </pre></div>
 </div>
 </div>
 </td>
 <td><div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_2/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_2/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">plot_script_B2</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
@@ -462,7 +501,7 @@
 <h3>Analytical solution<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line">Using the boundary conditions of a magnetized sphere present in a magnetic field <span class="math notranslate nohighlight">\(\mathbf{B_0}\)</span>, equation <a class="reference internal" href="governing_equations.html#equation-bsumfinal">(5)</a> can be simplified (see appendix <a class="reference internal" href="app1.html"><span class="doc">Complete derivation of the equations</span></a>).</div>
-<div class="line">This is applicable if the sphere is uniformly magnetized with <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> parallel to <span class="math notranslate nohighlight">\(\hat{k}\)</span>, the polar direction and if the origin of the coordinate system is placed at the center of the sphere (see <a class="reference internal" href="app1.html#sphere-si2"><span class="std std-numref">      Figure 22</span></a> in <a class="reference internal" href="app1.html"><span class="doc">Complete derivation of the equations</span></a> for visualization).</div>
+<div class="line">This is applicable if the sphere is uniformly magnetized with <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> parallel to <span class="math notranslate nohighlight">\(\hat{k}\)</span>, the polar direction and if the origin of the coordinate system is placed at the center of the sphere (see <a class="reference internal" href="app1.html#sphere-si2"><span class="std std-numref">Figure 29</span></a> in <a class="reference internal" href="app1.html"><span class="doc">Complete derivation of the equations</span></a> for visualization).</div>
 <div class="line">Then, the magnetic field outside this sphere is defined as <span id="id12">[<a class="reference internal" href="ref.html#id19" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">Reitz and Milford, 1960</a>]</span></div>
 </div>
 <div class="math notranslate nohighlight" id="equation-bsumsphere">
@@ -472,28 +511,28 @@
 <div class="line-block">
 <div class="line">where <span class="math notranslate nohighlight">\(r\)</span> is the distance from the center of the sphere to the observation point, <span class="math notranslate nohighlight">\(a\)</span> is the radius of the sphere, <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\hat{\theta}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\theta\)</span> is the angle between <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> increasing clockwise from <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> and both <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B_0}\)</span> are in the direction of <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>.</div>
 </div>
-<figure class="align-default" id="id32">
+<figure class="align-default" id="id31">
 <span id="sphere-bench-setup"></span><a class="with-border reference internal image-reference" href="_images/Model_setup.png"><img alt="_images/Model_setup.png" class="with-border" src="_images/Model_setup.png" style="width: 804.6px; height: 705.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 7 </span><span class="caption-text">Visualization of the model setup, numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. Numbering of the computation points start at the top of the sphere and circle down in a counterclockwise fashion.</span><a class="headerlink" href="#id32" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 6 </span><span class="caption-text">Visualization of the model setup, numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. Numbering of the computation points start at the top of the sphere and circle down in a counterclockwise fashion.</span><a class="headerlink" href="#id31" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="id13">
 <h3>Model setup<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
 <div class="line-block">
-<div class="line">The model setup was as follows, see <a class="reference internal" href="#sphere-bench-setup"><span class="std std-numref">      Figure 7</span></a>: A spherical inclusion similar to the first benchmark, but now with a radius of <span class="math notranslate nohighlight">\(a=10m\)</span> was placed in a domain of 20x20x20m with a magnetization of <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span> assigned only to elements within the spherical inclusion. Since a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements were anticipated to be necessary to produce adequate results. A Fibonacci spiral was used to uniformly distribute 101 computation points at <span class="math notranslate nohighlight">\(0.25m\)</span> and <span class="math notranslate nohighlight">\(0.5m\)</span> above the surface of a sphere with a domain resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> elements per meter.</div>
+<div class="line">The model setup was as follows, see <a class="reference internal" href="#sphere-bench-setup"><span class="std std-numref">Figure 6</span></a>: A spherical inclusion similar to the first benchmark, but now with a radius of <span class="math notranslate nohighlight">\(a=10m\)</span> was placed in a domain of 20x20x20m with a magnetization of <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span> assigned only to elements within the spherical inclusion. Since a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements were anticipated to be necessary to produce adequate results. A Fibonacci spiral was used to uniformly distribute 101 computation points at <span class="math notranslate nohighlight">\(0.25m\)</span> and <span class="math notranslate nohighlight">\(0.5m\)</span> above the surface of a sphere with a domain resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> elements per meter.</div>
 </div>
 </section>
 <section id="id14">
 <h3>Results<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
 <div class="line-block">
-<div class="line">The results are shown in the <a class="reference internal" href="#sphere-bench"><span class="std std-numref">      Figure 8</span></a>. As expected, closer to the surface the required resolution increases, however, at a distance of <span class="math notranslate nohighlight">\(0.5m\)</span> above the sphere <span class="math notranslate nohighlight">\(3\)</span> elements per meter suffices.</div>
+<div class="line">The results are shown in the <a class="reference internal" href="#sphere-bench"><span class="std std-numref">Figure 7</span></a>. As expected, closer to the surface the required resolution increases, however, at a distance of <span class="math notranslate nohighlight">\(0.5m\)</span> above the sphere <span class="math notranslate nohighlight">\(3\)</span> elements per meter suffices.</div>
 </div>
-<figure class="align-default" id="id33">
+<figure class="align-default" id="id32">
 <span id="sphere-bench"></span><a class="with-border reference internal image-reference" href="_images/B3sphere_dif_mp_splitcase_all.png"><img alt="_images/B3sphere_dif_mp_splitcase_all.png" class="with-border" src="_images/B3sphere_dif_mp_splitcase_all.png" style="width: 1260.0px; height: 630.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 8 </span><span class="caption-text">Difference between analytical solution and computed values for 100 difference computation points at either 0.25 or 0.5m above the surface of a sphere with a resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> <span class="math notranslate nohighlight">\(el/m\)</span>.</span><a class="headerlink" href="#id33" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 7 </span><span class="caption-text">Difference between analytical solution and computed values for 100 difference computation points at either 0.25 or 0.5m above the surface of a sphere with a resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> <span class="math notranslate nohighlight">\(el/m\)</span>.</span><a class="headerlink" href="#id32" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -504,171 +543,164 @@
 <ol class="arabic">
 <li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">3</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">27</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">45</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>
 </span></pre></div>
 </div>
 </div>
 </li>
 <li><p>Run 25cm above setup &amp; rename/move files</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">160</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
-<span class="linenos">161</span>   <span class="n">Lx</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="linenos">162</span>   <span class="n">Ly</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="linenos">163</span>   <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="hll"><span class="linenos">164</span>   <span class="n">nelx</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># 3 el/m.</span>
-</span><span class="linenos">165</span>   <span class="c1">#nelx = 120  # 6 el/m.</span>
-<span class="linenos">166</span>   <span class="n">nely</span> <span class="o">=</span> <span class="n">nelx</span>
-<span class="linenos">167</span>   <span class="n">nelz</span> <span class="o">=</span> <span class="n">nelx</span>
-<span class="linenos">168</span>   <span class="n">Mx0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">169</span>   <span class="n">My0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">170</span>   <span class="n">Mz0</span> <span class="o">=</span> <span class="mf">7.5</span>
-<span class="linenos">171</span>   <span class="n">sphere_R</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Do not change, or change radius_spiral as well.</span>
-<span class="linenos">172</span>   <span class="n">sphere_xc</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">173</span>   <span class="n">sphere_yc</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">174</span>   <span class="n">sphere_zc</span> <span class="o">=</span> <span class="o">-</span><span class="n">Lz</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">175</span>   <span class="c1">## spiral meas ##</span>
-<span class="linenos">176</span>   <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="hll"><span class="linenos">177</span>   <span class="n">radius_spiral</span> <span class="o">=</span> <span class="mf">1.025</span> <span class="o">*</span> <span class="n">sphere_R</span>  <span class="c1"># 25 cm above surface sphere.</span>
-</span><span class="linenos">178</span>   <span class="c1">#radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.</span>
-<span class="linenos">179</span>   <span class="n">npts_spiral</span> <span class="o">=</span> <span class="mi">101</span>  <span class="c1"># keep odd</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">156</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
+<span class="linenos">157</span>   <span class="c1"># General settings</span>
+<span class="linenos">158</span>   <span class="n">remove_zerotopo</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">159</span>   <span class="n">compute_analytical</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">160</span>   <span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">161</span>   <span class="n">do_path_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">162</span>
+<span class="linenos">163</span>   <span class="c1"># Domain settings</span>
+<span class="linenos">164</span>   <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span>
+<span class="hll"><span class="linenos">165</span>   <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span>  <span class="c1"># 3 el/m.</span>
+</span><span class="hll"><span class="linenos">166</span>   <span class="c1">#nelx, nely, nelz = 120, 120, 120  # 6 el/m.</span>
+</span><span class="linenos">167</span>   <span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span>   <span class="c1"># Sphere settings</span>
+<span class="linenos">170</span>   <span class="n">sphere_R</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Do not change, or change radius_spiral as well.</span>
+<span class="linenos">171</span>   <span class="n">sphere_xc</span><span class="p">,</span> <span class="n">sphere_yc</span><span class="p">,</span> <span class="n">sphere_zc</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Lz</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="linenos">172</span>
+<span class="linenos">173</span>   <span class="c1"># Spiral measurement settings</span>
+<span class="linenos">174</span>   <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">175</span>   <span class="n">npts_spiral</span> <span class="o">=</span> <span class="mi">101</span>  <span class="c1"># keep odd</span>
+<span class="hll"><span class="linenos">176</span>   <span class="n">radius_spiral</span> <span class="o">=</span> <span class="mf">1.025</span> <span class="o">*</span> <span class="n">sphere_R</span>  <span class="c1"># 25 cm above surface sphere.</span>
+</span><span class="hll"><span class="linenos">177</span>   <span class="c1">#radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.</span>
+</span><span class="linenos">178</span>
+<span class="linenos">179</span>   <span class="c1"># Plane measurement settings</span>
+<span class="linenos">180</span>   <span class="n">do_plane_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">181</span>   <span class="n">plane_nnx</span><span class="p">,</span> <span class="n">plane_nny</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span>
+<span class="linenos">182</span>   <span class="n">plane_x0</span><span class="p">,</span> <span class="n">plane_y0</span><span class="p">,</span> <span class="n">plane_z0</span> <span class="o">=</span> <span class="o">-</span><span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span>
+<span class="linenos">183</span>   <span class="n">plane_Lx</span><span class="p">,</span> <span class="n">plane_Ly</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Lx</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ly</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>     (runtime: ~3 min)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_25</span><span class="n">_above</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_25</span><span class="n">_above</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>benchmarks/benchmark_3/0_25_above<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>log.txt<span class="w"> </span>*.vtu<span class="w"> </span>*.ascii<span class="w"> </span><span class="nv">$_</span>
 </pre></div>
 </div>
 </div>
 </li>
 <li><p>Run 25cm above setup with double amount of elements &amp; rename/move files</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">160</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
-<span class="linenos">161</span>   <span class="n">Lx</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="linenos">162</span>   <span class="n">Ly</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="linenos">163</span>   <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="hll"><span class="linenos">164</span>   <span class="c1">#nelx = 60  # 3 el/m.</span>
-</span><span class="hll"><span class="linenos">165</span>   <span class="n">nelx</span> <span class="o">=</span> <span class="mi">120</span>  <span class="c1"># 6 el/m.</span>
-</span><span class="linenos">166</span>   <span class="n">nely</span> <span class="o">=</span> <span class="n">nelx</span>
-<span class="linenos">167</span>   <span class="n">nelz</span> <span class="o">=</span> <span class="n">nelx</span>
-<span class="linenos">168</span>   <span class="n">Mx0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">169</span>   <span class="n">My0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">170</span>   <span class="n">Mz0</span> <span class="o">=</span> <span class="mf">7.5</span>
-<span class="linenos">171</span>   <span class="n">sphere_R</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Do not change, or change radius_spiral as well.</span>
-<span class="linenos">172</span>   <span class="n">sphere_xc</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">173</span>   <span class="n">sphere_yc</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">174</span>   <span class="n">sphere_zc</span> <span class="o">=</span> <span class="o">-</span><span class="n">Lz</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">175</span>   <span class="c1">## spiral meas ##</span>
-<span class="linenos">176</span>   <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="hll"><span class="linenos">177</span>   <span class="n">radius_spiral</span> <span class="o">=</span> <span class="mf">1.025</span> <span class="o">*</span> <span class="n">sphere_R</span>  <span class="c1"># 25 cm above surface sphere.</span>
-</span><span class="linenos">178</span>   <span class="c1">#radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.</span>
-<span class="linenos">179</span>   <span class="n">npts_spiral</span> <span class="o">=</span> <span class="mi">101</span>  <span class="c1"># keep odd</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">163</span><span class="c1"># Domain settings</span>
+<span class="linenos">164</span><span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span>
+<span class="hll"><span class="linenos">165</span><span class="c1">#nelx, nely, nelz = 60, 60, 60  # 3 el/m.</span>
+</span><span class="hll"><span class="linenos">166</span><span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span>  <span class="c1"># 6 el/m.</span>
+</span><span class="linenos">167</span><span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span><span class="c1"># Sphere settings</span>
+<span class="linenos">170</span><span class="n">sphere_R</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Do not change, or change radius_spiral as well.</span>
+<span class="linenos">171</span><span class="n">sphere_xc</span><span class="p">,</span> <span class="n">sphere_yc</span><span class="p">,</span> <span class="n">sphere_zc</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Lz</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="linenos">172</span>
+<span class="linenos">173</span><span class="c1"># Spiral measurement settings</span>
+<span class="linenos">174</span><span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">175</span><span class="n">npts_spiral</span> <span class="o">=</span> <span class="mi">101</span>  <span class="c1"># keep odd</span>
+<span class="linenos">176</span><span class="n">radius_spiral</span> <span class="o">=</span> <span class="mf">1.025</span> <span class="o">*</span> <span class="n">sphere_R</span>  <span class="c1"># 25 cm above surface sphere.</span>
+<span class="linenos">177</span><span class="c1">#radius_spiral = 1.05 * sphere_R  # 50 cm above surface sphere.</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>     (runtime: ~25 min)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_25_2</span><span class="n">_above</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_25_2</span><span class="n">_above</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>benchmarks/benchmark_3/0_25_2_above<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>log.txt<span class="w"> </span>*.vtu<span class="w"> </span>*.ascii<span class="w"> </span><span class="nv">$_</span>
 </pre></div>
 </div>
 </div>
 </li>
 <li><p>Run 50cm above setup &amp; rename/move files</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">160</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
-<span class="linenos">161</span>   <span class="n">Lx</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="linenos">162</span>   <span class="n">Ly</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="linenos">163</span>   <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="hll"><span class="linenos">164</span>   <span class="n">nelx</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># 3 el/m.</span>
-</span><span class="hll"><span class="linenos">165</span>   <span class="c1">#nelx = 120  # 6 el/m.</span>
-</span><span class="linenos">166</span>   <span class="n">nely</span> <span class="o">=</span> <span class="n">nelx</span>
-<span class="linenos">167</span>   <span class="n">nelz</span> <span class="o">=</span> <span class="n">nelx</span>
-<span class="linenos">168</span>   <span class="n">Mx0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">169</span>   <span class="n">My0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">170</span>   <span class="n">Mz0</span> <span class="o">=</span> <span class="mf">7.5</span>
-<span class="linenos">171</span>   <span class="n">sphere_R</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Do not change, or change radius_spiral as well.</span>
-<span class="linenos">172</span>   <span class="n">sphere_xc</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">173</span>   <span class="n">sphere_yc</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">174</span>   <span class="n">sphere_zc</span> <span class="o">=</span> <span class="o">-</span><span class="n">Lz</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">175</span>   <span class="c1">## spiral meas ##</span>
-<span class="linenos">176</span>   <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="hll"><span class="linenos">177</span>   <span class="c1">#radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.</span>
-</span><span class="hll"><span class="linenos">178</span>   <span class="n">radius_spiral</span> <span class="o">=</span> <span class="mf">1.05</span> <span class="o">*</span> <span class="n">sphere_R</span>  <span class="c1"># 50 cm above surface sphere.</span>
-</span><span class="linenos">179</span>   <span class="n">npts_spiral</span> <span class="o">=</span> <span class="mi">101</span>  <span class="c1"># keep odd</span>
-</pre></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">163</span><span class="c1"># Domain settings</span>
+<span class="linenos">164</span><span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span>
+<span class="hll"><span class="linenos">165</span><span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span>  <span class="c1"># 3 el/m.</span>
+</span><span class="hll"><span class="linenos">166</span><span class="c1">#nelx, nely, nelz = 120, 120, 120  # 6 el/m.</span>
+</span><span class="linenos">167</span><span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span><span class="c1"># Sphere settings</span>
+<span class="linenos">170</span><span class="n">sphere_R</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Do not change, or change radius_spiral as well.</span>
+<span class="linenos">171</span><span class="n">sphere_xc</span><span class="p">,</span> <span class="n">sphere_yc</span><span class="p">,</span> <span class="n">sphere_zc</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Lz</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="linenos">172</span>
+<span class="linenos">173</span><span class="c1"># Spiral measurement settings</span>
+<span class="linenos">174</span><span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">175</span><span class="n">npts_spiral</span> <span class="o">=</span> <span class="mi">101</span>  <span class="c1"># keep odd</span>
+<span class="hll"><span class="linenos">176</span><span class="c1">#radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.</span>
+</span><span class="hll"><span class="linenos">177</span><span class="n">radius_spiral</span> <span class="o">=</span> <span class="mf">1.05</span> <span class="o">*</span> <span class="n">sphere_R</span>  <span class="c1"># 50 cm above surface sphere.</span>
+</span></pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>     (runtime: ~3 min)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_5</span><span class="n">_above</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_5</span><span class="n">_above</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>benchmarks/benchmark_3/0_5_above<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>log.txt<span class="w"> </span>*.vtu<span class="w"> </span>*.ascii<span class="w"> </span><span class="nv">$_</span>
 </pre></div>
 </div>
 </div>
 </li>
 <li><p>Run 50cm above setup with double amount of elements &amp; rename/move files</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">160</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
-<span class="linenos">161</span>   <span class="n">Lx</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="linenos">162</span>   <span class="n">Ly</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="linenos">163</span>   <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="hll"><span class="linenos">164</span>   <span class="c1">#nelx = 60  # 3 el/m.</span>
-</span><span class="hll"><span class="linenos">165</span>   <span class="n">nelx</span> <span class="o">=</span> <span class="mi">120</span>  <span class="c1"># 6 el/m.</span>
-</span><span class="linenos">166</span>   <span class="n">nely</span> <span class="o">=</span> <span class="n">nelx</span>
-<span class="linenos">167</span>   <span class="n">nelz</span> <span class="o">=</span> <span class="n">nelx</span>
-<span class="linenos">168</span>   <span class="n">Mx0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">169</span>   <span class="n">My0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">170</span>   <span class="n">Mz0</span> <span class="o">=</span> <span class="mf">7.5</span>
-<span class="linenos">171</span>   <span class="n">sphere_R</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Do not change, or change radius_spiral as well.</span>
-<span class="linenos">172</span>   <span class="n">sphere_xc</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">173</span>   <span class="n">sphere_yc</span> <span class="o">=</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">174</span>   <span class="n">sphere_zc</span> <span class="o">=</span> <span class="o">-</span><span class="n">Lz</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="linenos">175</span>   <span class="c1">## spiral meas ##</span>
-<span class="linenos">176</span>   <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="hll"><span class="linenos">177</span>   <span class="c1">#radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.</span>
-</span><span class="hll"><span class="linenos">178</span>   <span class="n">radius_spiral</span> <span class="o">=</span> <span class="mf">1.05</span> <span class="o">*</span> <span class="n">sphere_R</span>  <span class="c1"># 50 cm above surface sphere.</span>
-</span><span class="linenos">179</span>   <span class="n">npts_spiral</span> <span class="o">=</span> <span class="mi">101</span>  <span class="c1"># keep odd</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">163</span><span class="c1"># Domain settings</span>
+<span class="linenos">164</span><span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span>
+<span class="hll"><span class="linenos">165</span><span class="c1">#nelx, nely, nelz = 60, 60, 60  # 3 el/m.</span>
+</span><span class="hll"><span class="linenos">166</span><span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span>  <span class="c1"># 6 el/m.</span>
+</span><span class="linenos">167</span><span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span><span class="c1"># Sphere settings</span>
+<span class="linenos">170</span><span class="n">sphere_R</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Do not change, or change radius_spiral as well.</span>
+<span class="linenos">171</span><span class="n">sphere_xc</span><span class="p">,</span> <span class="n">sphere_yc</span><span class="p">,</span> <span class="n">sphere_zc</span> <span class="o">=</span> <span class="n">Lx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ly</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">Lz</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="linenos">172</span>
+<span class="linenos">173</span><span class="c1"># Spiral measurement settings</span>
+<span class="linenos">174</span><span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">175</span><span class="n">npts_spiral</span> <span class="o">=</span> <span class="mi">101</span>  <span class="c1"># keep odd</span>
+<span class="linenos">176</span><span class="c1">#radius_spiral = 1.025 * sphere_R  # 25 cm above surface sphere.</span>
+<span class="linenos">177</span><span class="n">radius_spiral</span> <span class="o">=</span> <span class="mf">1.05</span> <span class="o">*</span> <span class="n">sphere_R</span>  <span class="c1"># 50 cm above surface sphere.</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>     (runtime: ~25 min)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_5_2</span><span class="n">_above</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span><span class="o">/</span><span class="mi">0_5_2</span><span class="n">_above</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>benchmarks/benchmark_3/0_5_2_above<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>log.txt<span class="w"> </span>*.vtu<span class="w"> </span>*.ascii<span class="w"> </span><span class="nv">$_</span>
 </pre></div>
 </div>
 </div>
 </li>
 <li><p>Go to directory &amp; plot</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_3</span>
 </pre></div>
 </div>
@@ -676,14 +708,14 @@
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_3/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_3/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">plot_script_B3</span><span class="o">.</span><span class="n">p</span>
 </pre></div>
 </div>
 </div>
 </td>
 <td><div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_3/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_3/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">plot_script_B3</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
@@ -695,13 +727,13 @@
 </li>
 <li><p>(OPTIONAL) Use paraview to visualize model setups</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_3/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_3/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tee</span> <span class="o">./</span><span class="mi">0_5</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">./</span><span class="mi">0_5_2</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">./</span><span class="mi">0_25_2</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">./</span><span class="mi">0_25</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">&lt;</span> <span class="o">./</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span> <span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_3/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_3/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paraview</span> <span class="o">--</span><span class="n">state</span><span class="o">=</span><span class="mi">0_5_2</span><span class="n">_above</span><span class="o">/</span><span class="n">model_setup</span><span class="o">.</span><span class="n">pvsm</span>
 </pre></div>
 </div>
@@ -743,14 +775,14 @@
 </section>
 <section id="id23">
 <h3>Results<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
-<figure class="align-default" id="id34">
+<figure class="align-default" id="id33">
 <span id="b4"></span><a class="reference internal image-reference" href="_images/B4.png"><img alt="_images/B4.png" src="_images/B4.png" style="width: 1170.0px; height: 585.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">      Figure 9 </span><span class="caption-text">Comparison of magnetic field components <span class="math notranslate nohighlight">\(\mathbf{B_x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_y}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_z}\)</span> for the prismatic body. As observation site location were displaced from <span id="id24">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">Ren <em>et al.</em>, 2017</a>]</span>, the x-axis now refers to index relating to the observation point rather than a specific distance.</span><a class="headerlink" href="#id34" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 8 </span><span class="caption-text">Comparison of magnetic field components <span class="math notranslate nohighlight">\(\mathbf{B_x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_y}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_z}\)</span> for the prismatic body. As observation site location were displaced from <span id="id24">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">Ren <em>et al.</em>, 2017</a>]</span>, the x-axis now refers to index relating to the observation point rather than a specific distance.</span><a class="headerlink" href="#id33" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
-<div class="line"><a class="reference internal" href="#b4"><span class="std std-numref">      Figure 9</span></a> shows a near-perfect alignment of the two numerical outputs, down to machine precision. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in <span id="id25">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">Ren <em>et al.</em>, 2017</a>]</span>.</div>
+<div class="line"><a class="reference internal" href="#b4"><span class="std std-numref">Figure 8</span></a> shows a near-perfect alignment of the two numerical outputs, down to machine precision. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in <span id="id25">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">Ren <em>et al.</em>, 2017</a>]</span>.</div>
 </div>
 </section>
 <section id="id26">
@@ -760,21 +792,53 @@
 <ol class="arabic">
 <li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">4</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/MTE.py</span></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">27</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;4&#39;</span>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">45</span><span class="n">benchmark</span> <span class="o">=</span> <span class="s1">&#39;4&#39;</span>
 </span></pre></div>
 </div>
 </div>
 </li>
 <li><p>Run setup &amp; rename/move files</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/MTE.py</strong></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">187</span><span class="k">if</span> <span class="n">benchmark</span> <span class="o">==</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span>
+<span class="linenos">188</span>   <span class="c1"># General settings</span>
+<span class="linenos">189</span>   <span class="n">remove_zerotopo</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">190</span>   <span class="n">compute_analytical</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">191</span>   <span class="n">do_plane_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">192</span>   <span class="n">do_spiral_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">193</span>   <span class="n">do_path_measurements</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">194</span>
+<span class="linenos">195</span>   <span class="c1"># Domain settings</span>
+<span class="linenos">196</span>   <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Lz</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span>
+<span class="linenos">197</span>   <span class="n">nelx</span><span class="p">,</span> <span class="n">nely</span><span class="p">,</span> <span class="n">nelz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Lx</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">Ly</span><span class="p">),</span> <span class="mi">10</span>
+<span class="linenos">198</span>   <span class="n">Mx0</span><span class="p">,</span> <span class="n">My0</span><span class="p">,</span> <span class="n">Mz0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span>
+<span class="linenos">199</span>
+<span class="linenos">200</span>   <span class="c1"># Line measurement settings</span>
+<span class="linenos">201</span>   <span class="n">do_line_measurements</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">202</span>   <span class="n">line_nmeas</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="linenos">203</span>   <span class="n">xstart</span><span class="p">,</span> <span class="n">xend</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span>
+<span class="linenos">204</span>   <span class="n">ystart</span><span class="p">,</span> <span class="n">yend</span> <span class="o">=</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span>
+<span class="linenos">205</span>   <span class="n">zstart</span><span class="p">,</span> <span class="n">zend</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="linenos">206</span>
+<span class="linenos">207</span>   <span class="c1"># Reading in values from Ren.</span>
+<span class="linenos">208</span>   <span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;sites/B.dat&#39;</span>
+<span class="linenos">209</span>   <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pathfile</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">path</span><span class="p">:</span>
+<span class="linenos">210</span>        <span class="n">lines_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="linenos">211</span>   <span class="n">BxB4</span><span class="p">,</span> <span class="n">ByB4</span><span class="p">,</span> <span class="n">BzB4</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines_path</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>  <span class="c1"># Bx, By, Bz from Ren.</span>
+<span class="linenos">212</span>   <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines_path</span><span class="p">])</span>
+<span class="linenos">213</span>   <span class="n">BxB4</span><span class="p">,</span> <span class="n">ByB4</span><span class="p">,</span> <span class="n">BzB4</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong>     (runtime: ~5 s)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">MTE</span><span class="o">.</span><span class="n">py</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">log</span><span class="o">.</span><span class="n">txt</span> <span class="o">*.</span><span class="n">vtu</span> <span class="o">*.</span><span class="n">ascii</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_4</span><span class="o">/</span>
 </pre></div>
 </div>
@@ -782,7 +846,7 @@
 </li>
 <li><p>Go to directory &amp; plot</p>
 <div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">benchmarks</span><span class="o">/</span><span class="n">benchmark_4</span>
 </pre></div>
 </div>
@@ -790,14 +854,14 @@
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_4/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_4/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gnuplot</span> <span class="n">plot_script_B4</span><span class="o">.</span><span class="n">p</span>
 </pre></div>
 </div>
 </div>
 </td>
 <td><div class="literal-block-wrapper docutils container">
-<div class="code-block-caption"><span class="caption-text">/main/benchmarks/benchmark_4/</span></div>
+<div class="code-block-caption"><span class="caption-text"><strong>/main/benchmarks/benchmark_4/</strong></span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">plot_script_B4</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
@@ -823,7 +887,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Agnes.</p>
+    <p>&#169; Copyright 2023, A.E. Hendrickx.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

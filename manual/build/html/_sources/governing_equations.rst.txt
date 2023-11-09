@@ -33,12 +33,10 @@ Governing equations
    \end{equation}
    :label: sd
 
-| where :math:`\mathbf{B}` :math:`[T]` is the magnetic induction or magnetic flux density,  :math:`\mu_0` :math:`[NA^{-2}]` is the magnetic permeability of a vacuum, and :math:`\mathbf{r}` is the vector with length :math:`r` :math:`[m]` from the position of the dipole to the observation point. In this study :math:`\mathbf{B}` will be referred to as the *magnetic field strength*, see :doc:`app` for further information.
-
-.. todo:: figure, look at E/Y
+| where :math:`\mathbf{B}` :math:`[T]` is the magnetic induction or magnetic flux density,  :math:`\mu_0` :math:`[NA^{-2}]` is the magnetic permeability of a vacuum, and :math:`\mathbf{r}` is the vector with length :math:`r` :math:`[m]` from the position of the dipole to the observation point. In this study :math:`\mathbf{B}` will be referred to as the *magnetic field strength*, see :doc:`app1` for further information.
 
 .. _figmodel:
-.. figure:: figures/Model_final_pmag_light_shadow.png
+.. figure:: figures/model_improved2.png
    :scale: 50%
    :class: with-border
 

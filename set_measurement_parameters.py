@@ -126,9 +126,10 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
     IGRFz = 0
     error = False
 
-    # -------------------------------------------------------------------
-    ## IGRF on sites and average ##
-    # -------------------------------------------------------------------
+###################################################################################################
+# IGRF on sites and average
+###################################################################################################
+
     if site == 1:
        IGRF_E = 1560.1e-9
        IGRF_N = 26887.4e-9
@@ -177,7 +178,7 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
     print("IGRF Inc = ", IGRFinc)
     print("IGRF Dec = ", IGRFdec)
 
-    # ----------------------------------------
+###################################################################################################
     if site == 1:  # age:1892,flank:SF
        if rDEM == 2 and sDEM == 1:
           topofile = "./DEMS/2m_utm_bili_site1.asc"
@@ -306,7 +307,7 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
           error = True
           print("unknown rDEM/sDEM combination for site 1")
 
-    # ----------------------------------------
+###################################################################################################
     elif site == 2 or site == 5:  # 1983,SF
        if rDEM == 2:
           topofile = "DEMS/2m_utm_bili_site2_5.asc"
@@ -358,7 +359,7 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
           error = True
           print("unknown rDEM/sDEM combination for site 2 and/or 5")
 
-    # ----------------------------------------
+###################################################################################################
     elif site == 3:  # 1923,NEF
        if rDEM == 2 and sDEM == 1:
           topofile = "DEMS/2m_utm_bili_site3.asc"
@@ -401,7 +402,7 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
        else:
           error = True
           print("unknown rDEM/sDEM combination for site 3")
-    # ----------------------------------------
+###################################################################################################
     elif site == 4:  # 2002,NEF
        if rDEM == 2:
           topofile = "DEMS/2m_utm_bili_site4_6.asc"
@@ -450,7 +451,7 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
        else:
           error = True
           print("unknown rDEM/sDEM combination for site 4")
-   # ----------------------------------------
+###################################################################################################
     elif site == 6:  # 2002,NEF
        if rDEM == 2:
           topofile = "DEMS/2m_utm_bili_site4_6.asc"
@@ -537,7 +538,7 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
        else:
           error = True
           print("unknown rDEM/sDEM combination for site 6")
-    # ----------------------------------------
+###################################################################################################
     if site == 1 and path == 1 and ho == 1:
        pathfile = "sites/1-1-1.txt"
        print("reading from 1-1-1")
@@ -736,4 +737,5 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
     Lz = 20
     nelz = 10
 
-    return (Lx, Ly, Lz, nelx, nely, nelz, xllcorner, yllcorner, npath, zpath_height, pathfile, topofile, error, IGRFx, IGRFy, IGRFz )
+    return (Lx, Ly, Lz, nelx, nely, nelz, xllcorner, yllcorner, npath, zpath_height, pathfile,\
+             topofile, error, IGRFx, IGRFy, IGRFz )
