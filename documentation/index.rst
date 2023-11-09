@@ -54,4 +54,30 @@ Reproduction
 For most sections, a stepwise method to reproduce the presented results is given. These are located in collapsible sections at the end of each subsection. Please make sure to read the :doc:`usage` section beforehand.
 
 
+.. automodule:: magnetostatics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: support
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: tools
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: set_measurement_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: art_DEM
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 .. todolist::
