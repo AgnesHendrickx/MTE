@@ -40,11 +40,8 @@ todo_include_todos = True
 from pygments.styles import get_all_styles
 styles = list(get_all_styles())
 
-pygments_style = 'fruity'
-pygments_style = 'default'
 
-pygments_style = 'monokai2'
-#pygments_style = 'monokai3'
+pygments_style = 'monokai'
 
 
 bibtex_bibfiles= ['references.bib']
