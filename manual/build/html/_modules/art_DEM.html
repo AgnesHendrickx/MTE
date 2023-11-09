@@ -93,7 +93,7 @@
 <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
 
 <div class="viewcode-block" id="generate_fractal_map">
-<a class="viewcode-back" href="../index.html#art_DEM.generate_fractal_map">[docs]</a>
+<a class="viewcode-back" href="../functions.html#art_DEM.generate_fractal_map">[docs]</a>
 <span class="k">def</span> <span class="nf">generate_fractal_map</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">roughness</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates a square fractal map using the diamond-square algorithm, followed by Gaussian filtering.</span>
@@ -218,7 +218,7 @@
 
 
 <div class="viewcode-block" id="write_dem_to_ascii">
-<a class="viewcode-back" href="../index.html#art_DEM.write_dem_to_ascii">[docs]</a>
+<a class="viewcode-back" href="../functions.html#art_DEM.write_dem_to_ascii">[docs]</a>
 <span class="k">def</span> <span class="nf">write_dem_to_ascii</span><span class="p">(</span><span class="n">dem</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span> <span class="n">cellsize</span><span class="p">,</span> <span class="n">xllcorner</span><span class="p">,</span> <span class="n">yllcorner</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;art_dem.ascii&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes the digital elevation model (DEM) data to an ASCII file in grid format.</span>
@@ -259,7 +259,7 @@
 
 
 <div class="viewcode-block" id="generate_pathfile">
-<a class="viewcode-back" href="../index.html#art_DEM.generate_pathfile">[docs]</a>
+<a class="viewcode-back" href="../functions.html#art_DEM.generate_pathfile">[docs]</a>
 <span class="k">def</span> <span class="nf">generate_pathfile</span><span class="p">(</span><span class="n">xllcorner</span><span class="p">,</span> <span class="n">yllcorner</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">rough_length</span><span class="p">,</span> <span class="n">npath</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>\
                        <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;art_path.txt&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
