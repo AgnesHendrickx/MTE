@@ -27,7 +27,6 @@ release = '1.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 numfig = True
-#html4_writer = True
 numfig_format={'figure': 'Figure %s'}
 
 
@@ -40,6 +39,7 @@ extensions = [
 ]
 #'sphinxawesome_theme.highlighting',
 todo_include_todos = True
+
 from pygments.styles import get_all_styles
 styles = list(get_all_styles())
 
