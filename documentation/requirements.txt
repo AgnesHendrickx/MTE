@@ -1,4 +1,4 @@
 sphinxcontrib-bibtex
 sphinx-toolbox
 sphinx_rtd_theme
-docutils==0.20
+#docutils==0.20
