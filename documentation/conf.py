@@ -42,6 +42,11 @@ todo_include_todos = True
 from pygments.styles import get_all_styles
 styles = list(get_all_styles())
 
+autodoc_mock_imports = [
+    'numpy',
+    # ... other modules to mock ...
+]
+
 
 pygments_style = 'monokai'
 
