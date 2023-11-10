@@ -14,7 +14,7 @@ Welcome to MTE's documentation!
 
 +----------------------------+------------------------------------------------------------------------------------------------------------------+
 |.. toctree::                |For a thorough understanding of the MTE library,                                                                  |
-|   :maxdepth: 1             | begin with the :doc:`usage` section which provides essential details on :ref:`installation <installation>`.      |
+|   :maxdepth: 2             | begin with the :doc:`usage` section which provides essential details on :ref:`installation <installation>`.      |
 |   :caption: Contents       |Dive into the :doc:`governing_equations`                                                                          |
 |                            | to grasp the theoretical underpinnings of the code.                                                              |
 |   usage                    |Proceed to the :doc:`computational_approach`                                                                      |
