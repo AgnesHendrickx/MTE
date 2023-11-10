@@ -45,6 +45,9 @@ styles = list(get_all_styles())
 
 from yourcustomstyle import YourStyle
 
+pygments_style = 'YourStyle'
+
+
 autodoc_mock_imports = [
     'numpy', 'scipy', 'numba',
     # ... other modules to mock ...
