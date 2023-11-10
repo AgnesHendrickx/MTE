@@ -54,7 +54,7 @@ if issubclass(YourStyle, Style):
 styles = list(get_all_styles())
 
 # Set the Pygments style in Sphinx to your custom style
-pygments_style = 'yourstyle'
+pygments_style = 'your'
 
 autodoc_mock_imports = [
     'numpy', 'scipy', 'numba',
