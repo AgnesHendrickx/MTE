@@ -59,11 +59,12 @@ todo_include_todos = True
 
 # Now, you can use get_all_styles() to list your custom style along with others
 styles = list(get_all_styles())
+print(styles)
 
 #print(styles)
 
 # Set the Pygments style in Sphinx to your custom style
-pygments_style = 'your'
+pygments_style = 'yourcustom'
 
 autodoc_mock_imports = [
     'numpy', 'scipy', 'numba',
