@@ -48,13 +48,13 @@ from yourcustomstyle import YourStyle  # Make sure this import points to the rig
 # Check if your style is a subclass of pygments.style.Style
 if issubclass(YourStyle, Style):
     # Manually add your style to Pygments' STYLE_MAP
-    STYLE_MAP['yourstyle'] = 'yourcustomstyle.YourStyle'
+    STYLE_MAP['yourstyle'] = 'yourcustomstyle::YourStyle'
 
 # Now, you can use get_all_styles() to list your custom style along with others
 styles = list(get_all_styles())
 
 # Set the Pygments style in Sphinx to your custom style
-pygments_style = 'your'
+pygments_style = 'yourstyle'
 
 autodoc_mock_imports = [
     'numpy', 'scipy', 'numba',
