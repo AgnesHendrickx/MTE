@@ -43,18 +43,27 @@ extensions = [
 #'sphinxawesome_theme.highlighting',
 todo_include_todos = True
 
-from yourcustomstyle import CustomStyle  # Make sure this import points to the right location
+#from yourcustomstyle import CustomStyle  # Make sure this import points to the right location
 
-# Check if your style is a subclass of pygments.style.Style
-if issubclass(CustomStyle, Style):
-    # Manually add your style to Pygments' STYLE_MAP
-    STYLE_MAP['customstyle'] = 'custom::CustomStyle'
+#print(STYLE_MAP)
+
+## Check if your style is a subclass of pygments.style.Style
+#if issubclass(CustomStyle, Style):
+#    # Manually add your style to Pygments' STYLE_MAP
+#    STYLE_MAP['customstyle'] = 'custom::CustomStyle'
+
+#print(STYLE_MAP)
+
+#[project.entry-points."pygments.styles"]
+#customstyle = 'custom::CustomStyle'
 
 # Now, you can use get_all_styles() to list your custom style along with others
 styles = list(get_all_styles())
 
+#print(styles)
+
 # Set the Pygments style in Sphinx to your custom style
-pygments_style = 'custom'
+pygments_style = 'your'
 
 autodoc_mock_imports = [
     'numpy', 'scipy', 'numba',

@@ -26,6 +26,7 @@
 /manual/
 /tests/
 **/other
+**/your-style-package/
 
 # Ignore admin files
 push_changes.sh
