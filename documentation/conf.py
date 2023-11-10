@@ -43,7 +43,7 @@ from pygments.styles import get_all_styles
 styles = list(get_all_styles())
 
 autodoc_mock_imports = [
-    'numpy',
+    'numpy', 'scipy', 'numba',
     # ... other modules to mock ...
 ]
 
