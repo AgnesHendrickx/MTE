@@ -2,6 +2,9 @@
 # add these directories to sys.path here.
 import os
 import sys
+from pygments.style import Style
+from pygments.styles import STYLE_MAP, get_all_styles
+
 #sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 #sys.path.insert(0, os.path.abspath(".."))
 #sys.path.insert(0, os.path.abspath("../.."))
@@ -40,22 +43,23 @@ extensions = [
 #'sphinxawesome_theme.highlighting',
 todo_include_todos = True
 
-from pygments.styles import get_all_styles
+from yourcustomstyle import YourStyle  # Make sure this import points to the right location
+
+# Check if your style is a subclass of pygments.style.Style
+if issubclass(YourStyle, Style):
+    # Manually add your style to Pygments' STYLE_MAP
+    STYLE_MAP['yourstyle'] = 'yourcustomstyle.YourStyle'
+
+# Now, you can use get_all_styles() to list your custom style along with others
 styles = list(get_all_styles())
 
-from yourcustomstyle import YourStyle
-
-pygments_style = 'YourStyle'
-
+# Set the Pygments style in Sphinx to your custom style
+pygments_style = 'yourstyle'
 
 autodoc_mock_imports = [
     'numpy', 'scipy', 'numba',
     # ... other modules to mock ...
 ]
-
-
-pygments_style = 'your'
-
 
 bibtex_bibfiles= ['references.bib']
 
