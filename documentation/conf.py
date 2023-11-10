@@ -31,7 +31,8 @@ release = '1.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 numfig = True
-numfig_format={'figure': 'Figure %s'}
+numfig_format={'figure': 'Figure %s', 'code-block': 'Codeblock {number}',
+}
 
 
 extensions = [
