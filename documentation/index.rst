@@ -14,22 +14,21 @@ Welcome to MTE's documentation!
 
 +----------------------------+------------------------------------------------------------------------------------------------------------------+
 |.. toctree::                |For a thorough understanding of the MTE library,                                                                  |
-|   :maxdepth: 2             | begin with the :doc:`usage` section which provides essential details on :ref:`install <installation>`.           |
-|   :caption: Contents       |Dive into the :doc:`governing_equations` to grasp the theoretical underpinnings of the code.                      |
-|                            |Proceed to the :doc:`computational_approach` for insight into the numerical framework that drives our simulations.|
-|   usage                    |Discover the validation process through four comprehensive :doc:`benchmarks`,                                     |
-|   governing_equations      | where the methodology for accurate reproduction of computed values is also outlined.                             |
-|   computational_approach   |Insights into optimizing model :doc:`parameters` such as mesh resolution and domain extent are shared,            |
-|   benchmarks               | showing the process of refinement for enhanced simulation accuracy.                                              |
-|   parameters               |The :ref:`flank simulations <flanksim>` section presents a case study on applying synthetic topography,           |
-|   flanksim                 | again offering a walkthrough of the setup process.                                                               |
-|   artdem                   |Uncover the process of integrating a :ref:`DEM <art_dem>` into the model, from generating an artificial DEM       |
-|   etna                     | using pseudo-fractals to incorporating real-world terrain and field paths.                                       |
-|   functions                |Finally, the :ref:`Etna <etna>` section illustrates the replication of field values from the study :cite:`Meyer23`|
-|   ref                      |                                                                                                                  |
-|   app1                     |                                                                                                                  |
+|   :maxdepth: 2             | begin with the :doc:`usage` section which provides essential details on :ref:`installation <installation>`.      |
+|   :caption: Contents       |Dive into the :doc:`governing_equations`                                                                          |
+|                            | to grasp the theoretical underpinnings of the code.                                                              |
+|   usage                    |Proceed to the :doc:`computational_approach`                                                                      |
+|   governing_equations      | for insight into the numerical framework that drives our simulations.                                            |
+|   computational_approach   |Discover the validation process through four comprehensive :doc:`benchmarks`,                                     |
+|   benchmarks               | where the methodology for accurate reproduction of computed values is also outlined.                             |
+|   parameters               |Insights into optimizing model :doc:`parameters` such as mesh resolution and domain extent are shared,            |
+|   flanksim                 | showing the process of refinement for enhanced simulation accuracy.                                              |
+|   artdem                   |The :ref:`flank simulations <flanksim>` section presents a case study on applying synthetic topography,           |
+|   etna                     | again offering a walkthrough of the setup process.                                                               |
+|   functions                |Uncover the process of integrating a :ref:`DEM <art_dem>` into the model, from generating an artificial DEM       |
+|   ref                      | using pseudo-fractals to incorporating real-world terrain and field paths.                                       |
+|   app1                     |Finally, the :ref:`Etna <etna>` section illustrates the replication of field values from the study :cite:`Meyer23`|
 +----------------------------+------------------------------------------------------------------------------------------------------------------+
-
 
 Reproduction
 ------------
