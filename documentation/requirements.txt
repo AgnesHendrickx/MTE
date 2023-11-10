@@ -139,3 +139,4 @@ urllib3==2.0.7
     # via requests
 webencodings==0.5.1
     # via html5lib
+yourstyle==0.1
