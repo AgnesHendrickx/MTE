@@ -43,13 +43,15 @@ todo_include_todos = True
 from pygments.styles import get_all_styles
 styles = list(get_all_styles())
 
+from yourcustomstyle import YourStyle
+
 autodoc_mock_imports = [
     'numpy', 'scipy', 'numba',
     # ... other modules to mock ...
 ]
 
 
-pygments_style = 'yourcustomstyle'
+pygments_style = 'your'
 
 
 bibtex_bibfiles= ['references.bib']
