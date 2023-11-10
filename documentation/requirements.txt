@@ -139,4 +139,4 @@ urllib3==2.0.7
     # via requests
 webencodings==0.5.1
     # via html5lib
-
+git+https://github.com/AgnesHendrickx/MTE/documentation/yourpygmentsstylepackage.git#egg=YourPygmentsStylePackage
