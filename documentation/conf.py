@@ -48,7 +48,7 @@ autodoc_mock_imports = [
 ]
 
 
-pygments_style = 'monokai'
+pygments_style = 'your'
 
 
 bibtex_bibfiles= ['references.bib']
