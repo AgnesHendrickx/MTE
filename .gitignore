@@ -23,6 +23,7 @@
 #/path_results/
 #/flanksim_parameters/
 #/zero_topo/
+/manual/
 /tests/
 **/other
 
