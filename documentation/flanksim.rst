@@ -70,7 +70,7 @@ Discussion
 ----------
 .. _flanksim_dec_lines:
 .. figure:: figures/flanksimDc_zt_lines.png
-   :scale: 70%
+   :scale: 60%
 
    Declination of the flank simulation, the vertical grey lines signify points where most of the declination deflection should cancel out.
 
