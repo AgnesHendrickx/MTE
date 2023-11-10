@@ -5,7 +5,7 @@ import sys
 #sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 #sys.path.insert(0, os.path.abspath(".."))
 #sys.path.insert(0, os.path.abspath("../.."))
-from yourpygmentsstylepackage import YourCustomStyle
+#from yourpygmentsstylepackage import YourCustomStyle
 
 sys.path.insert(0, os.path.abspath('../'))
 sys.path.append(os.path.abspath("./_ext"))
