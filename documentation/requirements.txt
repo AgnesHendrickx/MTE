@@ -1,5 +1,5 @@
 pip==23.2.1
-setuptools==65.5.0
+setuptools==65.5.1
 sphinx==7.2.6
 sphinxcontrib-bibtex==2.6.1
 sphinx-toolbox==3.5.0
