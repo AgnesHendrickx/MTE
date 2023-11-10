@@ -29,13 +29,11 @@ Analytical solution
 
 Model setup
 ^^^^^^^^^^^
-
-| The model setup was as follows: A spherical inclusion of radius :math:`ds=1m` and :math:`\mathbf{M}= (0,0,7.5)` in a domain of 2x2x2m with a resolution of 100 elements in each direction.
+| The model setup was as follows: A spherical inclusion of radius :math:`ds=1m` and :math:`\mathbf{M}= (0,0,7.5)` in a domain of :math:`2\times2\times2m` with a resolution of 100 elements in each direction.
 | The magnetic field values were computed along a vertical line positioned directly above the sphere's center, where the distance :math:`r` was progressively increased to exceed :math:`100m`.
 
 Results
 ^^^^^^^
-
 .. _figureB1_mp:
 .. figure:: figures/B1dipole_mp.png
    :scale: 80%
@@ -167,10 +165,10 @@ Model setup
 
    Visualization of different model setups by cross sectional planes trough middle of each mesh, on the left the undeformed base mesh, in the middle deformation setup (1), on the right deformation setup (2).
 
-| To verify this, a domain of 10x10x10m, with an initial element size of 2x2x2m and :math:`\mathbf{M}= (0,0,7.5)`, was deformed in two ways:
+| To verify this, a domain of 10x10x10m, with an initial element size of :math:`2\times2\times2m` and :math:`\mathbf{M}= (0,0,7.5)`, was deformed in two ways:
 
 1. a random value between :math:`-0.1` and :math:`0.1` was added to the z coordinates of internal nodes
-2. situation in (1) was combined with elements of a very high aspect ratio (5x1x0.2m).
+2. situation in (1) was combined with elements of a very high aspect ratio (:math:`5\times1\times0.2m`).
 
 | The original domain and results will be referred to as the base setup, see :numref:`deformationsetups` for visualization of the deformation setups.
 
