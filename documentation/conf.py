@@ -64,7 +64,7 @@ print(styles)
 #print(styles)
 
 # Set the Pygments style in Sphinx to your custom style
-pygments_style = 'yourcustom'
+pygments_style = 'yourstyle'
 
 autodoc_mock_imports = [
     'numpy', 'scipy', 'numba',
