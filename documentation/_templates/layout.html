@@ -49,12 +49,12 @@
 
 {% block menu %}
    {{ super() }}
+   <p class="caption">
+    <span class="caption-text">Indices</span>
+   </p>
    <ul>
-        <li class="toctree-l1"><a href= "{{pathto('genindex.html', 1)}}"><strong>Index</strong></a></li>
-   </ul>
-   {{ super() }}
-   <ul>
-        <li class="toctree-l1"><a href= "{{pathto('modindex.html', 1)}}"><strong>Modules</strong></a></li>
+        <li class="toctree-l1"><a href= "{{pathto('genindex.html', 1)}}"><strong>Full index</strong></a></li>
+        <li class="toctree-l1"><a href= "{{pathto('py-modindex.html', 1)}}"><strong>Modules</strong></a></li>
    </ul>
 {% endblock %}
 
