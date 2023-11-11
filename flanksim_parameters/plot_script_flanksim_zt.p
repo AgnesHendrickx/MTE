@@ -72,7 +72,7 @@ set grid back ytics ls 12
 set autoscale xy
 set ytics nomirror
 
-set xlabel font "times,14" 'distance (m)'
+set xlabel font "times,14" 'distance [m]'
 set ylabel font "times,14" 'intensity [{/Symbol m}T]'
 set y2label font "times,14" 'height surface [m]'
 

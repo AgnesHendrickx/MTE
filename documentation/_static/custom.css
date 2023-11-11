@@ -9,10 +9,6 @@
     float: right;
 }
 
-.body{
-    font-family:"Arial", Helvetica, sans-serif;
-}
-
 .rst-content .code-block-caption  {
     text-align: left;
 }
@@ -30,3 +26,6 @@ html{box-sizing:border-box}*,:after,:before{box-sizing:inherit}article,aside,det
 
 
 
+.body{
+    font-family:"Arial", Helvetica, sans-serif;
+}
