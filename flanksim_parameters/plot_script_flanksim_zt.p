@@ -78,7 +78,7 @@ set y2label font "times,14" 'height surface [m]'
 
 set format y "%.0f"
 
-set xrange[100:149.5]
+set xrange[100:149.4]
 set y2range[-6:6]
 set y2tics -6,2
 
@@ -135,7 +135,7 @@ unset arrow
 ###########################################
 set output 'flanksimIn_zt_180.png'
 set autoscale xy
-set xrange[100:149.5]
+set xrange[100:149.4]
 
 set ytics autofreq
 set ytics nomirror
@@ -192,7 +192,7 @@ unset key
 set autoscale xy
 set ytics autofreq
 set ytics nomirror
-set xrange[100:149.5]
+set xrange[100:149.4]
 
 set ylabel font "times,12" 'intensity [{/Symbol m}T]'
 plot loc1 u 1:($4*1e6) w l ls 2 t "IGRF" axis x1y1,\
