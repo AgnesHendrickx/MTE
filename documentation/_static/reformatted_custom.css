@@ -6132,8 +6132,8 @@ span[id*=MathJax-Span] {
     text-align: left;
 }
 
-.wy-side-nav-search, .wy-nav-top {
-    background: #0b750a!important;
+.wy-nav-top {
+    background: #0b750a !important;
 }
 
 .underline {
