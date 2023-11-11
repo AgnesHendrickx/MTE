@@ -8,17 +8,17 @@ rdem=5
 
 for site in 1 2 4 5 ; do
      for sdem in 2 ; do
-        for ipath in 1 2 3 ; do 
-            for ho in 1 2 ; do 
+        for ipath in 1 2 3 ; do
+            for ho in 1 2 ; do
 
                 echo '********************************************************'
                 echo site= $site path=$ipath sDEM=$sdem ho=$ho rDEM=$rdem
 
-                sed -i "s/path=.*/path="$ipath"/" etna.py
-                sed -i "s/site=.*/site="$site"/" etna.py
-                sed -i "s/ho=.*/ho="$ho"/" etna.py
-                sed -i "s/sDEM=.*/sDEM="$sdem"/" etna.py
-                sed -i "s/rDEM=.*/rDEM="$rdem"/" etna.py
+                sed -i "s/path =.*/path ="$ipath"/" etna.py
+                sed -i "s/site =.*/site ="$site"/" etna.py
+                sed -i "s/ho =.*/ho ="$ho"/" etna.py
+                sed -i "s/sDEM =.*/sDEM ="$sdem"/" etna.py
+                sed -i "s/rDEM =.*/rDEM ="$rdem"/" etna.py
 
                 python3 MTE.py  > log.txt
 
@@ -46,17 +46,17 @@ rdem=5
 
 for site in 5 ; do
      for sdem in 2 ; do
-        for ipath in 1 2 3 ; do 
-            for ho in 3 4 ; do 
+        for ipath in 1 2 3 ; do
+            for ho in 3 4 ; do
 
                 echo '********************************************************'
                 echo site= $site path=$ipath sDEM=$sdem ho=$ho rDEM=$rdem
 
-                sed -i "s/path=.*/path="$ipath"/" etna.py
-                sed -i "s/site=.*/site="$site"/" etna.py
-                sed -i "s/ho=.*/ho="$ho"/" etna.py
-                sed -i "s/sDEM=.*/sDEM="$sdem"/" etna.py
-                sed -i "s/rDEM=.*/rDEM="$rdem"/" etna.py
+                sed -i "s/path =.*/path ="$ipath"/" etna.py
+                sed -i "s/site =.*/site ="$site"/" etna.py
+                sed -i "s/ho =.*/ho ="$ho"/" etna.py
+                sed -i "s/sDEM =.*/sDEM ="$sdem"/" etna.py
+                sed -i "s/rDEM =.*/rDEM ="$rdem"/" etna.py
 
                 python3 MTE.py  > log.txt
 
@@ -81,17 +81,17 @@ done
 
 for site in 6 ; do
      for sdem in 4 ; do
-        for ipath in 1 ; do 
-            for ho in 1 ; do 
+        for ipath in 1 ; do
+            for ho in 1 ; do
 
                 echo '********************************************************'
                 echo site= $site path=$ipath sDEM=$sdem ho=$ho rDEM=$rdem
 
-                sed -i "s/path=.*/path="$ipath"/" etna.py
-                sed -i "s/site=.*/site="$site"/" etna.py
-                sed -i "s/ho=.*/ho="$ho"/" etna.py
-                sed -i "s/sDEM=.*/sDEM="$sdem"/" etna.py
-                sed -i "s/rDEM=.*/rDEM="$rdem"/" etna.py
+                sed -i "s/path =.*/path ="$ipath"/" etna.py
+                sed -i "s/site =.*/site ="$site"/" etna.py
+                sed -i "s/ho =.*/ho ="$ho"/" etna.py
+                sed -i "s/sDEM =.*/sDEM ="$sdem"/" etna.py
+                sed -i "s/rDEM =.*/rDEM ="$rdem"/" etna.py
 
                 python3 MTE.py  > log.txt
 
@@ -118,17 +118,17 @@ rdem=2
 #######################################################
 #for site in 1 ; do
 #     for sdem in 5 ; do
-#        for ipath in 1 2 3 ; do 
-#            for ho in 1 2 ; do 
+#        for ipath in 1 2 3 ; do
+#            for ho in 1 2 ; do
 #
 #                echo '********************************************************'
 #                echo site= $site path=$ipath sDEM=$sdem ho=$ho rDEM=$rdem
 #
-#                sed -i "s/path=.*/path="$ipath"/" etna.py
-#                sed -i "s/site=.*/site="$site"/" etna.py
-#                sed -i "s/ho=.*/ho="$ho"/" etna.py
-#                sed -i "s/sDEM=.*/sDEM="$sdem"/" etna.py
-#                sed -i "s/rDEM=.*/rDEM="$rdem"/" etna.py
+#                sed -i "s/path =.*/path ="$ipath"/" etna.py
+#                sed -i "s/site =.*/site ="$site"/" etna.py
+#                sed -i "s/ho =.*/ho ="$ho"/" etna.py
+#                sed -i "s/sDEM =.*/sDEM ="$sdem"/" etna.py
+#                sed -i "s/rDEM =.*/rDEM ="$rdem"/" etna.py
 #
 #                python3 MTE.py  > log.txt
 #
@@ -153,17 +153,17 @@ rdem=2
 #######################################################
 for site in 3 ; do
      for sdem in 2 ; do
-        for ipath in 1 2 3 ; do 
-            for ho in 1 2 ; do 
+        for ipath in 1 2 3 ; do
+            for ho in 1 2 ; do
 
                 echo '********************************************************'
                 echo site= $site path=$ipath sDEM=$sdem ho=$ho rDEM=$rdem
 
-                sed -i "s/path=.*/path="$ipath"/" etna.py
-                sed -i "s/site=.*/site="$site"/" etna.py
-                sed -i "s/ho=.*/ho="$ho"/" etna.py
-                sed -i "s/sDEM=.*/sDEM="$sdem"/" etna.py
-                sed -i "s/rDEM=.*/rDEM="$rdem"/" etna.py
+                sed -i "s/path =.*/path ="$ipath"/" etna.py
+                sed -i "s/site =.*/site ="$site"/" etna.py
+                sed -i "s/ho =.*/ho ="$ho"/" etna.py
+                sed -i "s/sDEM =.*/sDEM ="$sdem"/" etna.py
+                sed -i "s/rDEM =.*/rDEM ="$rdem"/" etna.py
 
                 python3 MTE.py  > log.txt
 

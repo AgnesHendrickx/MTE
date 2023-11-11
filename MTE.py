@@ -62,10 +62,10 @@ remove_zerotopo = True  # setup run 2 times: 1st time, zero topography setup: xy
 subbench = 'west'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
 
 ## ONLY BENCHMARK = -1 (DEM) ##
-add_noise = True  # if True, noise is added to the DEM after loading in from file.
+add_noise = False  # if True, noise is added to the DEM after loading in from file.
 Nf = 1  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
         # on the top/bottom surface. Only relevant if add_noise = True
-art_DEM = True  # if True, path/topo file (+ header) produced by art_DEM.py read in.
+art_DEM = False  # if True, path/topo file (+ header) produced by art_DEM.py read in.
                 # Please note other values specified below for IGRF and magnetization etc.
 
 ###################################################################################################
