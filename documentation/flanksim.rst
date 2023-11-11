@@ -63,7 +63,7 @@ Results
 .. figure:: figures/flanksim_comp_mp_zt.png
    :scale: 50%
 
-   Three subplots depicting the components of the computed magnetic field **B** [:math:`\micro\tesla`] superimposed on the IGRF derived from flank simulations.
+   Three subplots depicting the components of the computed magnetic field **B** [:math:`\mu T`] superimposed on the IGRF derived from flank simulations.
 
 | Diving deeper into individual magnetic field components reveals more nuances. For the :math:`B_x` and  :math:`B_y` components, :numref:`flanksim_comp` indicates that the largest deviations are situated on flanks where topographic ridges and gullies align parallel to the component.
 
