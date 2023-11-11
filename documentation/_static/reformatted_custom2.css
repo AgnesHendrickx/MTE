@@ -1,3 +1,33 @@
+
+.wy-nav-content {
+    max-width: 80% !important;
+}
+
+.math {
+    text-align: left;
+}
+
+.eqno {
+    float: right;
+}
+
+.body {
+    font-family:"Bookman", Times, serif;
+}
+
+.rst-content .code-block-caption {
+    text-align: left;
+}
+
+.wy-nav-top {
+    background: #144812 !important;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+
 html {
     box-sizing:border-box;
 }
@@ -6110,32 +6140,4 @@ span[id*=MathJax-Span] {
     font-weight:700;
     src:url(fonts/Roboto-Slab-Bold.woff2?9984f4a9bda09be08e83f2506954adbe) format("woff2"),url(fonts/Roboto-Slab-Bold.woff?bed5564a116b05148e3b3bea6fb1162a) format("woff");
     font-display:block;
-}
-
-.wy-nav-content {
-    max-width: 80% !important;
-}
-
-.math {
-    text-align: left;
-}
-
-.eqno {
-    float: right;
-}
-
-.body {
-    font-family:"Bookman", Times, serif;
-}
-
-.rst-content .code-block-caption {
-    text-align: left;
-}
-
-.wy-nav-top {
-    background: #144812 !important;
-}
-
-.underline {
-    text-decoration: underline;
 }
