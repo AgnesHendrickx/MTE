@@ -42,6 +42,10 @@ Artificial DEM
 
 Scripts
 -------
+.. automodule:: MTE
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 .. literalinclude:: ../etna.py
 
@@ -54,9 +58,6 @@ Scripts
 .. literalinclude:: ../script_etna_full.sh
 
 .. literalinclude:: ../script_art_DEM.sh
-
-.. literalinclude:: ../MTE.py
-
 
 .. rubric:: Footnotes
 
