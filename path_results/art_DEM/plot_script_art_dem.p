@@ -1,53 +1,26 @@
 loc1 = './252_r12_r2_afx5_afy12_s2/measurements_path_plotfile.ascii'
 loc2 = './252_r12_r2_afx5_afy12_s2_180/measurements_path_plotfile.ascii'
 
-set terminal pngcairo size 1800,1200
+set terminal pngcairo size 1200,900
 
+set style line 1 lw 2 lc 'grey20' dt 2
+set style line 2 lw 1.5 lc "black"
 
-set style line 1 pt 1 lw 2 ps 0.5 lc "black"
-set style line 2 pt 2 lw 1 ps 0.5 lc 'grey20' dt 2
 set style line 20 pt 2 lw 1 ps 0.5 lc 'sienna4' dt 2
-set style line 3 pt 7 lw 3 ps 1.5 lc "royalblue"
-set style line 4 pt 5 lw 3 ps 1 lc "web-green" 
-set style line 5 pt 9 lw 3 ps 1.5 lc "orange-red"
-set style line 6 pt 11 lw 3 ps 1.5 lc "gold"
 
-set style line 30 pt 6 lw 2 ps 1.2 lc "skyblue"
-set style line 40 pt 4 lw 2 ps 0.5 lc "light-green" 
-set style line 50 pt 8 lw 2 ps 1 lc "salmon"
-set style line 60 pt 10 lw 2 ps 1 lc "sienna4"
+set style line 3 pt 7 lw 4 ps 1.5 lc "royalblue"
+set style line 4 pt 5 lw 4 ps 1 lc "web-green" 
+set style line 5 pt 9 lw 4 ps 1.5 lc "orange-red"
+set style line 6 pt 11 lw 4 ps 1.5 lc "gold"
 
-
-set style line 14 pt 7 ps 2 lw 2 lc 'light-green'
-set style line 144 pt 6 ps 2 lw 2 lc 'web-green' 
-set style line 1444 pt 7 ps 0.5 lw 2 lc 'dark-green'
-set style line 14444 pt 6 ps 0.5 lw 2 lc 'olive'
-set style line 144444 pt 7 ps 1 lw 2 dt 1 lc 'sienna4'
-
-set style line 17 pt 13 ps 2 lw 2 lc 'slategray'
-set style line 177 pt 12 ps 2 lw 2 lc 'steelblue'
-set style line 1777 pt 11 ps 1.5 lw 2 lc 'skyblue'
-set style line 17777 pt 10 ps 1.5 lw 2 lc 'web-blue'
-set style line 177777 pt 9 ps 1.5 lw 2 lc 'royalblue'
-set style line 1777777 pt 8 ps 1.5 lw 2 lc 'medium-blue'
-set style line 17777777 pt 11 ps 2.5 lw 2 lc 'midnight-blue'
-set style line 177777777 pt 10 ps 2.5 lw 2 lc 'cyan'
-set style line 1777777777 pt 9 ps 2 lw 2 lc 'aquamarine'
-set style line 17777777777 pt 6 lw 2 lc 'dark-turquoise'
-
-set style line 15 pt 5 ps 0.5 lw 8 lc 'salmon'
-set style line 155 pt 5 ps 0.5 lw 8 lc 'orange'
-set style line 1555 pt 5 ps 2 lw 2 lc 'red'
-set style line 15555 pt 4 ps 2 lw 2 lc 'magenta'
-set style line 155555 pt 2 ps 2 lw 2 lc 'purple'
-set style line 1555555 pt 3 ps 2 lw 2 lc 'orchid4'
-
-
-
+set style line 30 pt 6 lw 3 ps 1.2 lc "skyblue" dt 4
+set style line 40 pt 4 lw 3 ps 0.5 lc "light-green" dt 4
+set style line 50 pt 8 lw 2 ps 1 lc "salmon" dt 4
+set style line 60 pt 10 lw 2 ps 1 lc "sienna4" dt 4
 
 set style line 12 lc 'grey80' dt 2 lw 0.5
 
-set key default font "times,14" box lc 'grey60' opaque fc 'grey90' vertical top right height 0.5 width 0.5
+set key default font "times,14" box lc 'grey60' opaque fc 'grey90' vertical top left height 0.5 width 0.5
 
 set xtics out font "times,14"
 set ytics out font "times,14"
@@ -63,7 +36,7 @@ set y2label font "times,14" 'height surface [m]'
 
 set format y "%.0f"
 
-set xrange[0:30.5]
+set xrange[0:30.2]
 set y2range[182:198]
 set y2tics 162,4
 set label 1 'NW' front at graph -0.02,-0.12 font "times,20"
