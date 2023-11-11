@@ -17,6 +17,7 @@ Finally, there are two scripts, ``script_etna_full.sh`` and ``script_etna.sh``, 
 
 .. code-block::
    :caption: **/main/** (runtime: ~30 min)
+
    ./script_etna_full
 
 

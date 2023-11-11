@@ -43,19 +43,19 @@ Artificial DEM
 Scripts
 -------
 
-.. literalinclude:: etna.py
+.. literalinclude:: ../etna.py
 
-.. literalinclude:: flanksim.py
+.. literalinclude:: ../flanksim.py
 
-.. literalinclude:: script_flanksim.sh
+.. literalinclude:: ../script_flanksim.sh
 
-.. literalinclude:: script_etna.sh
+.. literalinclude:: ../script_etna.sh
 
-.. literalinclude:: script_etna_full.sh
+.. literalinclude:: ../script_etna_full.sh
 
-.. literalinclude:: script_art_DEM.sh
+.. literalinclude:: ../script_art_DEM.sh
 
-.. literalinclude:: MTE.py
+.. literalinclude:: ../MTE.py
 
 
 .. rubric:: Footnotes
