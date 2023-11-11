@@ -114,10 +114,10 @@ html_show_sourcelink = False
 #3ae23a
 html_logo = "Logo2r2.png"
 html_static_path = ['_static']
-#html_css_files = [
-#    'reformatted_custom.css',
-#]
-
 html_css_files = [
-    'custom.css',
+    'reformatted_custom.css',
 ]
+
+#html_css_files = [
+#    'custom.css',
+#]
