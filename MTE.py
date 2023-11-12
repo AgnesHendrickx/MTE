@@ -63,7 +63,7 @@ subbench = 'west'  # 'south', 'east', 'north', 'west', shifts topo features, and
 
 ## ONLY BENCHMARK = -1 (DEM) ##
 add_noise = False  # if True, noise is added to the DEM after loading in from file.
-Nf = 1  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
+Nf = 2  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
         # on the top/bottom surface. Only relevant if add_noise = True
 art_DEM = False  # if True, path/topo file (+ header) produced by art_DEM.py read in.
                 # Please note other values specified below for IGRF and magnetization etc.
@@ -347,6 +347,10 @@ if benchmark == '-1':
          Ly = nely * cellsize
    else:
       from etna import *
+      #Mx0, My0, Mz0 = 0, 0.545, -0.839
+      Mx0, My0, Mz0 = 0, 4.085, -6.290
+      #Mx0, My0, Mz0 = 0, 10.893, -16.773
+
 
 ###################################################################################################
 ###################################################################################################
@@ -593,12 +597,12 @@ if benchmark == '-1':
       # within the topography (DEM). The mean of the ztopo is used both to extent the domain
       # in depth, and to shift. This only works if the obs path is roughly in the middle,
       # runs perpendicular to the slope and if the slope on the areal scale > local topo.
+      zmin = np.min(ztopo) # min value of DEM topography.
       counter = 0
       for i in range(0, nnx):
           for j in range(0, nny):
               for k in range(0, nnz):
                   zmax = Lz + ztopo[j * nnx + i]
-                  zmin = min(ztopo)  # min value of DEM topography.
                   z[counter] = k * (zmax - zmin) / float(nelz) + zmin - Lz
                   #if remove_zerotopo:
                   #   zb[counter] = k * (Lz + np.mean(ztopo)) / float(nelz) - Lz - np.mean(ztopo)

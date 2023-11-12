@@ -20,14 +20,14 @@ nqdim = 2
 #       see docstrings set_measurement_parameters for more info.
 # site: 1-6.
 # path: the number allocated to each path on the sites (for 1-5: 3 paths, site 6: 1 path).
-# ho: for site 1-4 there are 2, ho =1
-#     for site 5 there are 4, ho =1
+# ho: for site 1-4 there are 2, ho = 1
+#     for site 5 there are 4, ho = 1
 
-rDEM =2
-sDEM =2
-site =3
-path =1
-ho =1
+rDEM = 5
+sDEM = 3
+site = 1
+path = 1
+ho = 1
 
 Lx, Ly, Lz, nelx, nely, nelz, xllcorner, yllcorner, npath, zpath_height,\
         pathfile, topofile, error, IGRFx, IGRFy, IGRFz = \
