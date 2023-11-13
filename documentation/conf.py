@@ -38,49 +38,6 @@ latex_elements = {
 \setmonofont{DejaVu Sans Mono}
 ''',
     'preamble': r'''
-%%%%% PREAMBLE %%%%%%%
-% Language, coding, font %%%
-%\usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
-%\usepackage[backend=biber,style=apa,]{biblatex}
-
-\usepackage{setspace}
-\onehalfspacing
-%\doublespacing
-
-% Layout and Typography %%%
-\usepackage[cm]{fullpage}
-\usepackage{float}
-\usepackage{csquotes}
-%\usepackage[table,xcdraw]{xcolor}
-\usepackage{parskip}
-\setlength{\parindent}{0.5em}
-\usepackage{listings}
-\usepackage{multicol}
-
-% Linking and referencing %%%
-\usepackage[nottoc]{tocbibind}
-\usepackage[toc,page]{appendix}
-\usepackage{hyperref}
-\usepackage{url}
-
-% Graphics %%%
-\usepackage{graphicx}
-\usepackage{tikz}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{caption}
-\captionsetup[table]{skip=6pt}
-\usepackage{subcaption}
-\usepackage{rotating}
-
-% Mathematics and Science %%%
-%\usepackage{siunitx}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{textcomp}
-\usepackage{gensymb}
-\usepackage{bm}
 
 %\cftsetpnumwidth{1.25cm}\cftsetrmarg{1.5cm}
 %\setlength{\cftchapnumwidth}{0.75cm}
