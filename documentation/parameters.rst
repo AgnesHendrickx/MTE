@@ -52,7 +52,7 @@ Results
 
 Reproduce [#]_
 ^^^^^^^^^^^^^^
-.. collapse:: **Steps to reproduce the results and figures** for zero topography
+.. collapse:: Steps to reproduce the results and figures for zero topography
 
    Please note basic setup in :ref:`installation`.
 
@@ -150,7 +150,7 @@ Reproduce [#]_
          gnuplot plot_script_restest.p
 
 
-.. collapse:: **Steps to reproduce the results and figures** for synthetic topography
+.. collapse:: Steps to reproduce the results and figures for synthetic topography
 
    Please note basic setup in :ref:`installation`.
 
@@ -315,7 +315,7 @@ Results and analysis
 
 Reproduce
 """""""""
-.. collapse:: **Steps to reproduce the results and figures** for zero topography
+.. collapse:: Steps to reproduce the results and figures for zero topography
 
    Please note basic setup in :ref:`installation`.
 
@@ -412,7 +412,7 @@ Reproduce
          gnuplot plot_script_extest.p
 
 
-.. collapse:: **Steps to reproduce the results and figures** for synthetic topography
+.. collapse:: Steps to reproduce the results and figures for synthetic topography
 
    Please note basic setup in :ref:`installation`.
 
@@ -542,7 +542,7 @@ Verification
 
 Reproduce
 """""""""
-.. collapse:: **Steps to reproduce the results and figures** for zero topography
+.. collapse:: Steps to reproduce the results and figures for zero topography
 
    Please note basic setup in :ref:`installation`.
 
@@ -678,7 +678,7 @@ Challenges in Setup Optimization
 
 Reproduce
 """""""""
-.. collapse:: **Steps to reproduce the results and figures** for synthetic topography
+.. collapse:: Steps to reproduce the results and figures for synthetic topography
 
    Please note basic setup in :ref:`installation`.
 
@@ -889,7 +889,7 @@ In :numref:`topo_zt_fb_sb`, we observe that the solution of subtraction a zero t
 
 Reproduce
 """""""""
-.. collapse:: **Steps to reproduce the results and figures** for synthetic topography
+.. collapse:: Steps to reproduce the results and figures for synthetic topography
 
    Please note basic setup in :ref:`installation`.
 

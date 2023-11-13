@@ -45,7 +45,7 @@ Results
 
 Reproduce
 ^^^^^^^^^
-.. collapse:: **Steps to reproduce the results and figures**
+.. collapse:: Steps to reproduce the results and figures
 
    Please note basic setup in :ref:`installation`
 
@@ -192,7 +192,7 @@ Results
 
 Reproduce
 ^^^^^^^^^
-.. collapse:: **Steps to reproduce the results and figures**
+.. collapse:: Steps to reproduce the results and figures
 
    Please note basic setup in :ref:`installation`
 
@@ -386,7 +386,7 @@ Results
 
 Reproduce
 ^^^^^^^^^
-.. collapse:: **Steps to reproduce the results and figures**
+.. collapse:: Steps to reproduce the results and figures
 
    Please note basic setup in :ref:`installation`
 
@@ -621,7 +621,7 @@ Results
 
 Reproduce
 ^^^^^^^^^
-.. collapse:: **Steps to reproduce the results and figures**
+.. collapse:: Steps to reproduce the results and figures
 
    Please note basic setup in :ref:`installation`
 

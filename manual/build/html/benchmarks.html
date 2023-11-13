@@ -77,7 +77,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id16">Analytical solution</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id19">Model setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id23">Results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id26">Reproduce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Reproduce</a></li>
 </ul>
 </li>
 </ul>
@@ -126,7 +126,8 @@
 <span id="id1"></span><h1>Benchmarks<a class="headerlink" href="#benchmarks" title="Link to this heading"></a></h1>
 <div class="line-block">
 <div class="line">Several different benchmarks are available to verify computed values of MTE code.</div>
-<div class="line"><br /></div>
+</div>
+<div class="line-block">
 <div class="line">Verification aims of the benchmarks:</div>
 </div>
 <ol class="arabic simple">
@@ -155,27 +156,27 @@
 <section id="model-setup">
 <h3>Model setup<a class="headerlink" href="#model-setup" title="Link to this heading"></a></h3>
 <div class="line-block">
-<div class="line">The model setup was as follows: A spherical inclusion of radius <span class="math notranslate nohighlight">\(ds=1m\)</span> and <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span> in a domain of <span class="math notranslate nohighlight">\(2\times2\times2m\)</span> with a resolution of 100 elements in each direction.</div>
-<div class="line">The magnetic field values were computed along a vertical line positioned directly above the sphere’s center, where the distance <span class="math notranslate nohighlight">\(r\)</span> was progressively increased to exceed <span class="math notranslate nohighlight">\(100m\)</span>.</div>
+<div class="line">The model setup is as follows: A spherical inclusion of radius <span class="math notranslate nohighlight">\(ds=1m\)</span> and <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span> in a domain of <span class="math notranslate nohighlight">\(2\times2\times2m\)</span> with a resolution of <span class="math notranslate nohighlight">\(100\)</span> elements in each direction.</div>
+<div class="line">The magnetic field values are computed along a vertical line positioned directly above the sphere’s center, where the distance <span class="math notranslate nohighlight">\(r\)</span> is progressively increased to exceed <span class="math notranslate nohighlight">\(100m\)</span>.</div>
 </div>
 </section>
 <section id="results">
 <h3>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h3>
-<figure class="align-default" id="id27">
+<figure class="align-default" id="id28">
 <span id="figureb1-mp"></span><a class="reference internal image-reference" href="_images/B1dipole_mp.png"><img alt="_images/B1dipole_mp.png" src="_images/B1dipole_mp.png" style="width: 1120.0px; height: 480.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Figure 2 </span><span class="caption-text">On the left, analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. On the right, the difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.</span><a class="headerlink" href="#id27" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 3 </span><span class="caption-text">On the left, analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. On the right, the difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. Both show an excellent match of the computed and analytical values, even at close proximity to the surface. At <span class="math notranslate nohighlight">\(0.25m\)</span> the error remains approximately <span class="math notranslate nohighlight">\(\sim \lvert 0.01 \rvert \mu T\)</span>.</span><a class="headerlink" href="#id28" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
 <div class="line">As illustrated in <a class="reference internal" href="#figureb1-mp"><span class="std std-numref">Figure 2</span></a>, the discrepancies between the analytical solution and computed values are minimal.</div>
-<div class="line">Even at a height of <span class="math notranslate nohighlight">\(0.25m\)</span>, the smallest height above the topography measured in the Etna case study <span id="id5">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span>, the error remains approximately <span class="math notranslate nohighlight">\(\sim \lvert 0.01 \rvert \mu T\)</span> .</div>
+<div class="line">Even at a height of <span class="math notranslate nohighlight">\(0.25m\)</span>, the smallest height above the topography measured in the Etna case study <span id="id5">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span>, the error remains approximately <span class="math notranslate nohighlight">\(\sim \lvert 0.01 \rvert \mu T\)</span>.</div>
 </div>
 </section>
 <section id="reproduce">
 <h3>Reproduce<a class="headerlink" href="#reproduce" title="Link to this heading"></a></h3>
-<details class="summary-how-to-reproduce-the-results-and-figures">
-<summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
+<details class="summary-steps-to-reproduce-the-results-and-figures">
+<summary>**Steps to reproduce the results and figures**</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
 <ol class="arabic">
 <li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
@@ -299,18 +300,18 @@
 </section>
 <section id="id8">
 <h3>Model setup<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
-<figure class="align-default" id="id28">
+<figure class="align-default" id="id29">
 <span id="deformationsetups"></span><a class="with-border reference internal image-reference" href="_images/result_b2_frames_only_3.png"><img alt="_images/result_b2_frames_only_3.png" class="with-border" src="_images/result_b2_frames_only_3.png" style="width: 701.0px; height: 267.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Figure 3 </span><span class="caption-text">Visualization of different model setups by cross sectional planes trough middle of each mesh, on the left the undeformed base mesh, in the middle deformation setup (1), on the right deformation setup (2).</span><a class="headerlink" href="#id28" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 4 </span><span class="caption-text">Visualization of different model setups by cross sectional (z-y) planes trough middle of each domain. On the left the undeformed base domain, in the middle deformation setup (1), where perturbations within a range of <span class="math notranslate nohighlight">\([-0.1:0.1m]\)</span> are introduced to the z-coordinates of the internal nodes of the domain. On the right deformation setup (2), where the same perturbations are repeated, additionally, the aspect ratio of elements are increased.</span><a class="headerlink" href="#id29" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
-<div class="line">To verify this, a domain of 10x10x10m, with an initial element size of <span class="math notranslate nohighlight">\(2\times2\times2m\)</span> and <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span>, was deformed in two ways:</div>
+<div class="line">To verify this, a domain of  <span class="math notranslate nohighlight">\(10\times10\times10m\)</span>, with an initial element size of <span class="math notranslate nohighlight">\(2\times2\times2m\)</span> and <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span>, is deformed in two ways:</div>
 </div>
 <ol class="arabic simple">
-<li><p>a random value between <span class="math notranslate nohighlight">\(-0.1\)</span> and <span class="math notranslate nohighlight">\(0.1\)</span> was added to the z coordinates of internal nodes</p></li>
-<li><p>situation in (1) was combined with elements of a very high aspect ratio (<span class="math notranslate nohighlight">\(5\times1\times0.2m\)</span>).</p></li>
+<li><p>A random value between <span class="math notranslate nohighlight">\(-0.1\)</span> and <span class="math notranslate nohighlight">\(0.1m\)</span> is added to the z coordinates of internal nodes.</p></li>
+<li><p>In addition to situation (1), the aspect ratio of elements is significantly increased, with each element’s dimension now <span class="math notranslate nohighlight">\(5\times1\times0.2m\)</span>.</p></li>
 </ol>
 <div class="line-block">
 <div class="line">The original domain and results will be referred to as the base setup, see <a class="reference internal" href="#deformationsetups"><span class="std std-numref">Figure 3</span></a> for visualization of the deformation setups.</div>
@@ -318,26 +319,26 @@
 </section>
 <section id="id9">
 <h3>Results<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
-<figure class="align-default" id="id29">
+<figure class="align-default" id="id30">
 <span id="figureb2base"></span><a class="with-border reference internal image-reference" href="_images/result_b2_base_lines.png"><img alt="_images/result_b2_base_lines.png" class="with-border" src="_images/result_b2_base_lines.png" style="width: 856.1999999999999px; height: 470.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">Figure 4 </span><span class="caption-text">The magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> on a plane <span class="math notranslate nohighlight">\(1m\)</span> above the surface of a box with a spatial extent that is twice as large as the (undeformed) domain beneath.</span><a class="headerlink" href="#id29" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 5 </span><span class="caption-text">The magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> on a plane <span class="math notranslate nohighlight">\(1m\)</span> above the surface of a box with a spatial extent that is twice as large as the (undeformed) domain beneath. Black lines denote the domain edges, while the grey lines connect the observation points on the plane. The observed pattern reveals the extent of the magnetization of the cuboid domain, rapidly decreasing with distance from the domain. These results provided the base for further testing in this benchmark.</span><a class="headerlink" href="#id30" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id30">
+<figure class="align-default" id="id31">
 <span id="figureb2"></span><a class="reference internal image-reference" href="_images/result_b2.png"><img alt="_images/result_b2.png" src="_images/result_b2.png" style="width: 979.2px; height: 627.2px;" /></a>
 <figcaption>
-<p><span class="caption-number">Figure 5 </span><span class="caption-text">Difference between <a class="reference internal" href="#figureb2base"><span class="std std-numref">Figure 4</span></a> and results from the deformed domain setups. On the left the difference between deformation setup (1) and the base, on the right the difference between deformation setup (2) and the base. See model setup section.</span><a class="headerlink" href="#id30" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 6 </span><span class="caption-text">Difference between <a class="reference internal" href="#figureb2base"><span class="std std-numref">Figure 4</span></a> and results from the deformed domain setups. The left side depicts the variance between deformation setup (1) and the base, while the right side shows the difference of deformation setup (2) relative to the base. Notably, the errors in both deformation setups are minimal.</span><a class="headerlink" href="#id31" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
-<div class="line">As expected and observable in <a class="reference internal" href="#figureb2"><span class="std std-numref">Figure 5</span></a>, the computed values of the magnetic field on the observation plane, located one meter above the domain, remained consistent (up to machine precision) across these scenarios.</div>
+<div class="line">As expected and observable in <a class="reference internal" href="#figureb2"><span class="std std-numref">Figure 5</span></a>, the computed values of the magnetic field on the observation plane, located one meter above the domain, remained consistent (up to machine precision) across these scenarios. However, an increased error is noticeable in deformation setup (1). This might be due to the high aspect ratio, which results in fewer observation points corresponding with the domain’s spatial instabilities, see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>. However, the errors in both experiments are minimal, indicating that internal modifications, which are theoretically expected to neutralize each other, do not significantly impact the results when employing the MTE code.</div>
 </div>
 </section>
 <section id="id10">
 <h3>Reproduce<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
-<details class="summary-how-to-reproduce-the-results-and-figures">
-<summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
+<details class="summary-steps-to-reproduce-the-results-and-figures">
+<summary>**Steps to reproduce the results and figures**</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
 <ol class="arabic">
 <li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">2a</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
@@ -499,7 +500,7 @@
 </details></section>
 </section>
 <section id="benchmark-3-a-magnetized-sphere">
-<h2>Benchmark 3: a magnetized sphere<a class="headerlink" href="#benchmark-3-a-magnetized-sphere" title="Link to this heading"></a></h2>
+<span id="b3"></span><h2>Benchmark 3: a magnetized sphere<a class="headerlink" href="#benchmark-3-a-magnetized-sphere" title="Link to this heading"></a></h2>
 <section id="id11">
 <h3>Analytical solution<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
 <div class="line-block">
@@ -514,35 +515,36 @@
 <div class="line-block">
 <div class="line">where <span class="math notranslate nohighlight">\(r\)</span> is the distance from the center of the sphere to the observation point, <span class="math notranslate nohighlight">\(a\)</span> is the radius of the sphere, <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\hat{\theta}}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\theta\)</span> is the angle between <span class="math notranslate nohighlight">\(\mathbf{\hat{r}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> increasing clockwise from <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span> and both <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B_0}\)</span> are in the direction of <span class="math notranslate nohighlight">\(\mathbf{\hat{k}}\)</span>.</div>
 </div>
-<figure class="align-default" id="id31">
+<figure class="align-default" id="id32">
 <span id="sphere-bench-setup"></span><a class="with-border reference internal image-reference" href="_images/Model_setup.png"><img alt="_images/Model_setup.png" class="with-border" src="_images/Model_setup.png" style="width: 804.6px; height: 705.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">Figure 6 </span><span class="caption-text">Visualization of the model setup, numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. Numbering of the computation points start at the top of the sphere and circle down in a counterclockwise fashion.</span><a class="headerlink" href="#id31" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 7 </span><span class="caption-text">Visualization of the model setup with numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. The numbering sequence begins at the top of the sphere and proceeds downward in a counterclockwise spiral. The magnetization is assigned to any elements within the spherical domain, and aligned with the z-axis.</span><a class="headerlink" href="#id32" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="id13">
 <h3>Model setup<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
 <div class="line-block">
-<div class="line">The model setup was as follows, see <a class="reference internal" href="#sphere-bench-setup"><span class="std std-numref">Figure 6</span></a>: A spherical inclusion similar to the first benchmark, but now with a radius of <span class="math notranslate nohighlight">\(a=10m\)</span> was placed in a domain of 20x20x20m with a magnetization of <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span> assigned only to elements within the spherical inclusion. Since a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements were anticipated to be necessary to produce adequate results. A Fibonacci spiral was used to uniformly distribute 101 computation points at <span class="math notranslate nohighlight">\(0.25m\)</span> and <span class="math notranslate nohighlight">\(0.5m\)</span> above the surface of a sphere with a domain resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> elements per meter.</div>
+<div class="line">The model setup is as follows, see <a class="reference internal" href="#sphere-bench-setup"><span class="std std-numref">Figure 6</span></a>: A spherical inclusion similar to the first benchmark, but now featuring a radius of <span class="math notranslate nohighlight">\(a=10m\)</span> is placed in a domain of <span class="math notranslate nohighlight">\(20\times20\times20m\)</span> with a magnetization of <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,7.5)\)</span> assigned exclusively to elements within the spherical inclusion. Given that a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements are anticipated to be necessary to produce adequate results. A Fibonacci spiral is used to uniformly distribute <span class="math notranslate nohighlight">\(101\)</span> computation points at <span class="math notranslate nohighlight">\(0.25m\)</span> and <span class="math notranslate nohighlight">\(0.5m\)</span> above the surface of a sphere with a domain resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> elements per meter.</div>
 </div>
 </section>
 <section id="id14">
 <h3>Results<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
-<div class="line-block">
-<div class="line">The results are shown in the <a class="reference internal" href="#sphere-bench"><span class="std std-numref">Figure 7</span></a>. As expected, closer to the surface the required resolution increases, however, at a distance of <span class="math notranslate nohighlight">\(0.5m\)</span> above the sphere <span class="math notranslate nohighlight">\(3\)</span> elements per meter suffices.</div>
-</div>
-<figure class="align-default" id="id32">
+<figure class="align-default" id="id33">
 <span id="sphere-bench"></span><a class="with-border reference internal image-reference" href="_images/B3sphere_dif_mp_splitcase_all.png"><img alt="_images/B3sphere_dif_mp_splitcase_all.png" class="with-border" src="_images/B3sphere_dif_mp_splitcase_all.png" style="width: 1260.0px; height: 630.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Figure 7 </span><span class="caption-text">Difference between analytical solution and computed values for 100 difference computation points at either 0.25 or 0.5m above the surface of a sphere with a resolution of either <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> <span class="math notranslate nohighlight">\(el/m\)</span>.</span><a class="headerlink" href="#id32" title="Link to this image"></a></p>
+<p><span class="caption-number">Figure 8 </span><span class="caption-text">Comparative analysis of the analytical solution versus computed values at <span class="math notranslate nohighlight">\(101\)</span> distinct observation points, located either <span class="math notranslate nohighlight">\(0.25m\)</span> or <span class="math notranslate nohighlight">\(0.5m\)</span> above a sphere’s surface. The resolutions tested are <span class="math notranslate nohighlight">\(3\)</span> or <span class="math notranslate nohighlight">\(6\)</span> elements per meter (<span class="math notranslate nohighlight">\(el/m`\)</span>). It is demonstrated that increasing the number of elements substantially reduces the discrepancy between analytical and computed values.</span><a class="headerlink" href="#id33" title="Link to this image"></a></p>
 </figcaption>
 </figure>
+<div class="line-block">
+<div class="line">The results are shown in the <a class="reference internal" href="#sphere-bench"><span class="std std-numref">Figure 7</span></a>. The findings confirm that proximity to the surface necessitates a higher resolution. A notable feature of this relationship is its scalability; for instance, at twice the altitude, the required resolution can be halved while maintaining accuracy.</div>
+<div class="line">At a distance of <span class="math notranslate nohighlight">\(0.5m\)</span> above the sphere’s surface, a resolution of <span class="math notranslate nohighlight">\(3\)</span> elements per meter is found to be adequate, whilst at a distance of <span class="math notranslate nohighlight">\(0.25m\)</span>, a resolution of <span class="math notranslate nohighlight">\(6\)</span> elements per meter is required.</div>
+</div>
 </section>
 <section id="id15">
 <h3>Reproduce<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
-<details class="summary-how-to-reproduce-the-results-and-figures">
-<summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
+<details class="summary-steps-to-reproduce-the-results-and-figures">
+<summary>**Steps to reproduce the results and figures**</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
 <ol class="arabic">
 <li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">3</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
@@ -759,39 +761,40 @@
 <section id="id16">
 <h3>Analytical solution<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
 <div class="line-block">
-<div class="line">In this benchmark, rather than relying on theoretically derived analytical solutions for specific scenarios, we will assess our model against the numerical outcomes of another study presenting a (similar) closed-form analytical solution for a homogeneous polyhedral magnetic target <span id="id17">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">Ren <em>et al.</em>, 2019</a>]</span>. The findings of this study have been corroborated against <span id="id18">[<a class="reference internal" href="ref.html#id4" title="Stewart Greenhalgh Philip J. Heath and Nicholas G. Direen. Modelling gravity and magnetic gradient tensor responses for exploration within the regolith. Exploration Geophysics, 36(4):357-364, 2005. doi:10.1071/EG05357.">Philip J. Heath and Direen, 2005</a>]</span> using a prismatic body model setup. It’s essential to note that only gradient tensor component results were incorporated in the published findings. However, full access to the code and accompanying datasets was provided, (<a class="reference external" href="https://github.com/renzhengyong-geo/Magnetic_homogeneous_polyhedron/tree/master/">github</a>), enabling us to perform the comparison for this numerical configuration.</div>
+<div class="line">In this benchmark, rather than relying on theoretically derived analytical solutions for specific scenarios, we will assess our model against the numerical outcomes of another study presenting a (similar) closed-form analytical solution for a homogeneous polyhedral magnetic target <span id="id17">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">Ren <em>et al.</em>, 2019</a>]</span>. The findings of this study have been corroborated against <span id="id18">[<a class="reference internal" href="ref.html#id4" title="Stewart Greenhalgh Philip J. Heath and Nicholas G. Direen. Modelling gravity and magnetic gradient tensor responses for exploration within the regolith. Exploration Geophysics, 36(4):357-364, 2005. doi:10.1071/EG05357.">Philip J. Heath and Direen, 2005</a>]</span> using a prismatic body model setup. Their paper only presented results for the gradient tensor components. However, it also involved calculations for the magnetic field components.</div>
+<div class="line">Fortunately, full access to the original code and the magnetic field strengths datasets is provided, (<a class="reference external" href="https://github.com/renzhengyong-geo/Magnetic_homogeneous_polyhedron/tree/master/">github</a>), enabling us to perform the comparison for this numerical configuration.</div>
 </div>
 </section>
 <section id="id19">
 <h3>Model setup<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
 <div class="line-block">
-<div class="line">Our model setup was designed to mirror the configuration delineated by <span id="id20">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">Ren <em>et al.</em>, 2019</a>]</span>. Nevertheless, certain parameters were adjusted to align optimally with our coding framework.</div>
-<div class="line">The evaluations were conducted on an equilateral cuboid with side lengths of <span class="math notranslate nohighlight">\(L=10m\)</span>, centrally positioned at <span class="math notranslate nohighlight">\((0,0,-5 m)\)</span>.  The top face of this cuboid intersects the plane at a height of <span class="math notranslate nohighlight">\(z=0m\)</span>. Each element within the cuboid was assigned a homogeneous magnetization of <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,200) A/m\)</span>. 21 observation points were equally distributed along a line on the top surface of the prism at <span class="math notranslate nohighlight">\(z = 0 m\)</span>, with an x-coordinate of <span class="math notranslate nohighlight">\(x = 6 m\)</span> and y-coordinates ranging from <span class="math notranslate nohighlight">\([-25:25] m\)</span>.</div>
-<div class="line"><span id="id21">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">Ren <em>et al.</em>, 2019</a>]</span>’s model setup section described that the prism was discretized into eight tetrahedral elements. Contrarily, their code stated a division into just six elements. Given this disparity, our modeling approach segmented the domain into ten elements. Nonetheless, theoretical understanding posits that the resolution in this configuration is irrelevant, as shown in the <a class="reference internal" href="parameters.html#parameters"><span class="std std-ref">parameter section</span></a>.</div>
+<div class="line">Our model setup is designed to mirror the configuration delineated by <span id="id20">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">Ren <em>et al.</em>, 2019</a>]</span>. Nevertheless, certain parameters are adjusted to align optimally with our coding framework.</div>
+<div class="line">The evaluations are conducted on an equilateral cuboid with side lengths of <span class="math notranslate nohighlight">\(L=10m\)</span>, centrally positioned at <span class="math notranslate nohighlight">\((0,0,-5m)\)</span>. The top face of this cuboid intersects the plane at a height of <span class="math notranslate nohighlight">\(z=0m\)</span>. Each element within the cuboid is assigned a homogeneous magnetization of <span class="math notranslate nohighlight">\(\mathbf{M}= (0,0,200) A/m\)</span>. <span class="math notranslate nohighlight">\(21\)</span> observation points are equally distributed along a line on the top surface of the prism at <span class="math notranslate nohighlight">\(z = 0m\)</span>, with an x-coordinate of <span class="math notranslate nohighlight">\(x = 6m\)</span> and y-coordinates ranging from <span class="math notranslate nohighlight">\([-25:25m]\)</span>.</div>
+<div class="line"><span id="id21">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">Ren <em>et al.</em>, 2019</a>]</span>’s model setup section described that the prism is discretized into eight tetrahedral elements. Contrarily, their code stated a division into just six elements. Given this disparity, our modeling approach segmented the domain into ten elements, erring on the side of caution. Nonetheless, theoretical understanding posits that the resolution in this configuration is irrelevant, as shown in the <a class="reference internal" href="parameters.html#parameters"><span class="std std-ref">parameter section</span></a>.</div>
 </div>
 <div class="line-block">
-<div class="line">Another key distinction to note: the analytical solution proposed by <span id="id22">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">Ren <em>et al.</em>, 2019</a>]</span> was engineered to counteract numerical instabilities occurring when the observation point aligns with an element’s edge. Our model does exhibit this instability (see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>). To closely replicate their observation points, minor adjustments to the positioning of our study’s observation points were done.</div>
+<div class="line">Another key distinction to note: the analytical solution proposed by <span id="id22">[<a class="reference internal" href="ref.html#id2" title="Zhengyong Ren, Huang Chen, Chaojian Chen, Yiyuan Zhong, and Jingtian Tang. New analytical expression of the magnetic gradient tensor for homogeneous polyhedrons. Geophysics, 84:A31-A35, 05 2019. doi:10.1190/geo2018-0741.1.">Ren <em>et al.</em>, 2019</a>]</span> is engineered to counteract numerical instabilities occurring when the observation point aligns with an element’s edge. Our model does exhibit this instability (see <a class="reference internal" href="computational_approach.html"><span class="doc">Computational approach</span></a>). To closely replicate their observation points, minor adjustments to the positioning of our study’s observation points are done.</div>
 </div>
 <div class="line-block">
-<div class="line">It should be noted, that while this model setup does not necessitate modifications to the top or bottom surface (absence of topography), employing <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a> would suffice. Nonetheless, to validate our proposed solution (see <a class="reference internal" href="functions.html#support.shift_observation_points_edge" title="support.shift_observation_points_edge"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.shift_observation_points_edge()</span></code></a>) for additional singularities on diagonals of domain elements, function <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a> was still utilized.</div>
+<div class="line">It should be noted, that while this model setup does not necessitate modifications to the top or bottom surface (absence of topography), employing <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_cuboid" title="magnetostatics.compute_B_surface_integral_cuboid"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_cuboid()</span></code></a> would suffice. Nonetheless, to validate our proposed solution (see <a class="reference internal" href="functions.html#support.shift_observation_points_edge" title="support.shift_observation_points_edge"><code class="xref py py-func docutils literal notranslate"><span class="pre">support.shift_observation_points_edge()</span></code></a>) for additional singularities on diagonals of domain elements, function <a class="reference internal" href="functions.html#magnetostatics.compute_B_surface_integral_wtopo" title="magnetostatics.compute_B_surface_integral_wtopo"><code class="xref py py-func docutils literal notranslate"><span class="pre">magnetostatics.compute_B_surface_integral_wtopo()</span></code></a> is still utilized.</div>
 </div>
 </section>
 <section id="id23">
 <h3>Results<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
-<figure class="align-default" id="id33">
+<figure class="align-default" id="id34">
 <span id="b4"></span><a class="reference internal image-reference" href="_images/B4.png"><img alt="_images/B4.png" src="_images/B4.png" style="width: 1170.0px; height: 585.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Figure 8 </span><span class="caption-text">Comparison of magnetic field components <span class="math notranslate nohighlight">\(\mathbf{B_x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_y}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_z}\)</span> for the prismatic body. As observation site location were displaced from <span id="id24">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">Ren <em>et al.</em>, 2017</a>]</span>, the x-axis now refers to index relating to the observation point rather than a specific distance.</span><a class="headerlink" href="#id33" title="Link to this image"></a></p>
+<p><span class="caption-text">Comparison of magnetic field components <span class="math notranslate nohighlight">\(\mathbf{B_x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_y}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{B_z}\)</span> for the prismatic body. As observation site location are displaced from <span id="id24">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">Ren <em>et al.</em>, 2017</a>]</span>, the x-axis now refers to index relating to the observation point rather than distance. The computed values of our study match those of <span id="id25">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">Ren <em>et al.</em>, 2017</a>]</span>, down to machine precision.</span><a class="headerlink" href="#id34" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="line-block">
-<div class="line"><a class="reference internal" href="#b4"><span class="std std-numref">Figure 8</span></a> shows a near-perfect alignment of the two numerical outputs, down to machine precision. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in <span id="id25">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">Ren <em>et al.</em>, 2017</a>]</span>.</div>
+<div class="line"><a class="reference internal" href="#b4"><span class="std std-numref">Figure 8</span></a> shows a near-perfect alignment of the two numerical outputs, down to machine precision. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in <span id="id26">[<a class="reference internal" href="ref.html#id3" title="Zhengyong Ren, Chaojian Chen, Jingtian Tang, Huang Chen, Shuanggui Hu, Cong Zhou, and Xiao Xiao. Closed-form formula of magnetic gradient tensor for a homogeneous polyhedral magnetic target: a tetrahedral grid example. GEOPHYSICS, 82(6):WB21-WB28, 2017. doi:10.1190/geo2016-0470.1.">Ren <em>et al.</em>, 2017</a>]</span>.</div>
 </div>
 </section>
-<section id="id26">
-<h3>Reproduce<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
-<details class="summary-how-to-reproduce-the-results-and-figures">
-<summary>How to reproduce the results and figures</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
+<section id="id27">
+<h3>Reproduce<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<details class="summary-steps-to-reproduce-the-results-and-figures">
+<summary>**Steps to reproduce the results and figures**</summary><p>Please note basic setup in <a class="reference internal" href="usage.html#installation"><span class="std std-ref">Installation</span></a></p>
 <ol class="arabic">
 <li><p>In <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, modify benchmark attribution to <code class="docutils literal notranslate"><span class="pre">4</span></code>:</p>
 <div class="literal-block-wrapper docutils container">
