@@ -642,7 +642,15 @@ Reproduce
 Challenges in Setup Optimization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | Determining the optimal setup for the size of the domain now poses challenges. While increasing domain size might intuitively stabilize computed values, :numref:`extest_comp_mp_high`, :numref:`zt_low` and :numref:`zt_high_dif` contradict this presumption. While consistent depth expansion appears to eventually plateau the results, increasing depth continues to influence the magnitudes of the :math:`B_x` and :math:`B_z` components, as illustrated in various depth configurations with a spatial layout of 250x250 in :numref:`zt_low`. Moreover, when comparing deeper configurations like :math:`500\times500\times1800` with :math:`500\times500\times20` meters in :numref:`zt_low`, a pronounced amplification of edge effects for the :math:`B_y` component is evident. This observation aligns with recommendations from the foundational study by :cite:`Bott63`, suggesting that optimal results emerge when the depth is substantially less than the areal extent.
+
 | Nevertheless, this observation does not offer clarity in distinguishing between configurations of shallower depths but varied spatial dimensions, such as :math:`250\times250\times10`, :math:`250\times250\times20`, :math:`500\times500\times20`, :math:`500\times500\times40` meters. Still, by examining :numref:`extest_comp_mp_high`, it becomes apparent that magnitude differences for these setups are minimal when juxtaposed with anomalies caused by topography.
+
+
+.. _topo_zt_fb_comp:
+.. figure:: figures/topo_zt_fb_comp.png
+   :scale: 70%
+
+   Three subplots depicting the components of the computed magnetic field **B** for the depth experiments. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz). Please note, the y-axis varies between each subplot. Adjusting the computed values with a zero topography run removes most domain related variations, irrelevant of size and depth.
 
 .. _vis_flanksim_zt:
 .. figure:: figures/vis_flanksim_zt.png
@@ -650,24 +658,17 @@ Challenges in Setup Optimization
 
    Visualization of Southern flank and flat-terrain model setup. The flat-terrain setup is set to a lower opacity, to show the intersection between the two domains. The observation points for both setups are at the same xy-coordinates, only the z-coordinate differs. Furthermore, the thickness of the flat-terrain domain is equal to the depth of the topography setup underneath the observation path.
 
-.. _topo_zt_fb_comp:
-.. figure:: figures/topo_zt_fb_comp.png
-   :scale: 70%
-
-   Three subplots depicting the components of the computed magnetic field **B** for the depth experiments. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz). Please note, the y-axis varies between each subplot.
-
-| Furthermore, by adjusting the computed values at the observation points for the topographic model with computed values for a flat-terrain model with matching dimensions, the discrepancies nearly converge into a single solution, as illustrated in :numref:`topo_zt_fb_comp`. The residual minor fluctuations in the :math:`B_x` components across various domain sizes may stem from the incline of the topographic model. In consideration that this method essentially involves subtracting a rectangular prism from the simulation of the southern slope, which ascends northward, see :numref:`vis_flanksim_zt`.
+| Furthermore, by adjusting the computed values at the observation points for the topographic model with computed values for a flat-terrain model with matching dimensions, the discrepancies nearly converge into a single solution, as illustrated in :numref:`topo_zt_fb_comp`. The residual minor fluctuations in the :math:`B_x` components across various domain sizes may stem from the incline of the topographic model. In consideration that this method essentially involves subtracting a rectangular prism from the simulation of the southern slope, which ascends northward, see :numref:`vis_flanksim_zt`. It is important to note that the flat-terrain domain, chosen for subtraction, was configured with a vertical span equal to the depth of the domain underneath the observation path, aligning with elements that most significantly affect the final calculations.
 
 .. _topo_zt_fb_sloped:
 .. figure:: figures/topo_zt_fb_sloped.png
    :scale: 70%
 
-   Three subplots depicting the components of the computed magnetic field **B** for the depth experiments. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz). Please note, the y-axis varies between each subplot.
+   Three subplots depicting the components of the computed magnetic field **B** for the depth experiments. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz). Please note, the y-axis varies between each subplot. Subtracting a sloped zero-topography instead of a regular flat zero-topography domain results in the :math:`B_x` components to fully match. However, it is evident that the effect of the slope is also removed, as the results are approximately :math:`0.5 \mu T` lower than in previous tests.
 
+| As evidenced in :numref:`topo_zt_fb_sloped`, removing a sloped "flat"-terrain model from the calculations causes the solutions for all domain sizes to merge into a single solution, which also, unfortunately, removes the slope's effect from the output. This removal is counterproductive since lava flows frequently are deposited on volcanic slopes.
 
-| As evidenced in :numref:`topo_zt_fb_sloped`, removing a sloped "flat"-terrain model from the calculations causes the solutions for all domain sizes to merge into a single solution, which also, unfortunately, removes the slope's effect from the output. This removal is counterproductive since lava flows predominantly settle on volcanic slopes.
-
-| Therefore, and again highlighting that these anomalies are small compared to the topographic anomalies being studies, it is recommended for more complex domain configurations to remove flat-terrain model's results to cancel out any effects of the domain size on the findings. Future investigation should also meticulously evaluate the role of both the depth and the spatial extent of the domain. It is important to note that the flat-terrain domain, chosen for subtraction, was configured with a vertical span equal to the depth of the domain underneath the observation path, aligning with elements that most significantly affect the final calculations.
+| Therefore, and again highlighting that these anomalies are small compared to the topographic anomalies being studies, it is recommended for more complex domain configurations to remove flat-terrain model's results to cancel out any effects of the domain size on the findings. Future investigation should also meticulously evaluate the role of both the depth and the spatial extent of the domain.
 
 | This study's focal point is the influence of topography on magnetic field readings above a flow, thus, this subtraction technique is adequate for alleviating complications linked to domain size and the magnitude of the resultant anomaly. A key takeaway is that maintaining **a spatial size above or equal to 250x250 meter**, where the depth is considerably less than the spatial dimension, is crucial.
 
@@ -970,6 +971,7 @@ Conclusions
 2. The amount of elements in the xy-direction for synthetic topography should be at least 1.5 elements per meter (at a height of 1 meter above the surface).
 3. The spatial extent of the domain needs to be at least 250x250 meter to avoid a significant edge effect on a central measurement path (of ~50 meter).
 4. Extending the depth and spatial extent has a proportional impact on the magnitude of the :math:`B_z` and :math:`B_x` components.
+    - Increasing the depth for a domain leads to enlargement of the edge effect, so the depth of the domain should remain considerably less than the spatial dimension.
     - To remove the domain related variations, one can subtract the values computed over a flat topography domain from the observed results. We recommend implementing a flat boundary surface at a consistent depth beneath the lowest topographical point within the domain. The thickness of this "zero topography" domain should be calibrated to match that beneath the observation path within the topographic domain.
 
 .. rubric:: Footnotes
