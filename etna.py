@@ -24,8 +24,8 @@ nqdim = 2
 #     for site 5 there are 4, ho = 1
 
 rDEM = 5
-sDEM = 3
-site = 1
+sDEM = 4
+site = 6
 path = 1
 ho = 1
 

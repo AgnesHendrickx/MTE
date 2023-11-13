@@ -2,7 +2,7 @@ Complete derivation of the equations
 ====================================
 | This is a summary of the complete derivation of the equations used in this study. These closely follow the derivations in :cite:`REITZ, GRIFFITHS,BLAKELY`, amongst other basic electromagnetic theory textbooks. Note that a trivial assumption for these derivations is considering the magnetization to be uniform within the object. From now on any use of the term "magnetization" will mean "uniform magnetization".
 | Firstly, we will derive some fundamental principals and equations of magnetostatics required for later derivations. Secondly, the derivation of the the equation for the Magnetic induction field :math:`\mathbf{B}` of a magnetized object. Lastly, we will derive the equation of a magnetized sphere.
-|
+
 | The fundamental equations [SI units] of electromagnetism (Maxwell) state:
 
 .. math::
@@ -75,9 +75,6 @@ Complete derivation of the equations
 
 | where :math:`\mu_{0}` is the permeability of free space. It is pertinent to note that :math:`\mathbf{B}` is frequently termed the *magnetic field strength*, albeit theoretically inaccurately. This practice, prevalent in the field fo paleomagnetism, can be rationalized considering that in most paleomagnetic instances, the observation point is situated outside the magnetized body (:math:`\mathbf{M}=0`), whereby :eq:`eq.8` simplifies to :math:`\mathbf{B}=\mu_{0}\mathbf{H}` :cite:`TAUXE`. Consequently, for the purposes of this study, :math:`\mathbf{B}` shall be denoted as the magnetic field strength.
 
-makes sense if we consider that in most paleoamgnetic cases the observation point is located outside of the magnetized body (:math:`\mathbf{M}=0`), so :eq:`eq.8` becomes :math:`\mathbf{B}=\mu_{0}\mathbf{H}`.
-|
-|
 | First, the derivation of the equation for the magnetic field strength :math:`\mathbf{B}` of a magnetized object.
 | :math:`\mathbf{M}` :math:`\mathit[Am^{-1}]`, the magnetization of a material, is equal to the magnetic dipole moment :math:`\mathbf{m}`  per unit volume. This is defined as
 
@@ -196,7 +193,7 @@ makes sense if we consider that in most paleoamgnetic cases the observation poin
     \end{equation}
     :label: Atrans
 
-Using :math:`\mathbf{B}=\nabla\times\mathbf{A}` (eq. :eq:`eq.BA`),  the vector identity in eq. :eq:`I-1` and
+| Using :math:`\mathbf{B}=\nabla\times\mathbf{A}` (eq. :eq:`eq.BA`),  the vector identity in eq. :eq:`I-1` and
 
 .. math::
     \begin{equation}

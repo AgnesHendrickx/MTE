@@ -60,10 +60,13 @@
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
 </ul>
 
+   <p class="caption">
+    <span class="caption-text">Indices</span>
+   </p>
    <ul>
-        <li class="toctree-l1"><a href= "genindex.html"><strong>Index</strong></a></li>
+        <li class="toctree-l1"><a href= "genindex.html"><strong>Full index</strong></a></li>
+        <li class="toctree-l1"><a href= "py-modindex.html"><strong>Modules</strong></a></li>
    </ul>
-
 
         </div>
       </div>
@@ -94,18 +97,21 @@
 <div class="line">Additionally, two other optional modules are available exclusively for the Mount Etna case study, where the field sites from <span id="id1">[<a class="reference internal" href="ref.html#id15" title="Romy Meyer and Lennart V. de Groot. Local magnetic anomalies in rugged volcanic terrain explain bias in paleomagnetic data: consequences for sampling. Geophysical Research Letters, 2023.">Meyer and de Groot, 2023</a>]</span> are reproduced:</div>
 </div>
 <ol class="arabic simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">set_measurement_parameters.py()</span></code>: This module provides DEM, site and path-specific values such as the file to read, the location and number of measurement points, IGRF (International Geomagnetic Reference Field) values for the site, and more. See <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a> for more details.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">etna.py</span></code>: This module you define input parameters (see <a class="reference internal" href="#"><span class="doc">Case study: Mount Etna</span></a>), to run different options reproducing field paths, to call <code class="xref py py-func docutils literal notranslate"><span class="pre">set_measurement_parameters.py()</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">set_measurement_parameters.py</span></code>: This module provides DEM, site and path-specific values such as the file to read, the location and number of measurement points, IGRF (International Geomagnetic Reference Field) values for the site, and more. See <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a> for more details.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">etna.py</span></code>: This module you define input parameters, to run different options reproducing field paths, to call <code class="xref py py-mod docutils literal notranslate"><span class="pre">set_measurement_parameters.py</span></code></p></li>
 </ol>
-<p>Finally, there are two scripts, <code class="docutils literal notranslate"><span class="pre">script_etna_full.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">script_etna.sh</span></code>, that automatically modify <code class="docutils literal notranslate"><span class="pre">etna.py</span></code>, see <a class="reference internal" href="#"><span class="doc">Case study: Mount Etna</span></a> for more information.</p>
+<p>Finally, there are two scripts, <code class="docutils literal notranslate"><span class="pre">script_etna_full.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">script_etna.sh</span></code>, that automatically modify <code class="docutils literal notranslate"><span class="pre">etna.py</span></code>.</p>
 <div class="line-block">
 <div class="line">To run all (optimized) setups for case study Mount Etna (reproducing) field sites use <code class="docutils literal notranslate"><span class="pre">script_etna_full</span></code>.</div>
 </div>
+<div class="line-block">
+<div class="line">Run DEM simulation:</div>
+</div>
+<div class="literal-block-wrapper docutils container">
+<div class="code-block-caption"><span class="caption-text"><strong>/main/</strong> (runtime: ~30 min)</span></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">script_etna_full</span>
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line">run time 30 min</div>
 </div>
 <div class="admonition-todo admonition" id="id2">
 <p class="admonition-title">Todo</p>

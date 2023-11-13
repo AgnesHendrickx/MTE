@@ -62,8 +62,8 @@ remove_zerotopo = True  # setup run 2 times: 1st time, zero topography setup: xy
 subbench = 'west'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
 
 ## ONLY BENCHMARK = -1 (DEM) ##
-add_noise = False  # if True, noise is added to the DEM after loading in from file.
-Nf = 2  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
+add_noise = True  # if True, noise is added to the DEM after loading in from file.
+Nf = 1.5  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
         # on the top/bottom surface. Only relevant if add_noise = True
 art_DEM = False  # if True, path/topo file (+ header) produced by art_DEM.py read in.
                 # Please note other values specified below for IGRF and magnetization etc.
@@ -348,7 +348,8 @@ if benchmark == '-1':
    else:
       from etna import *
       #Mx0, My0, Mz0 = 0, 0.545, -0.839
-      Mx0, My0, Mz0 = 0, 4.085, -6.290
+      #Mx0, My0, Mz0 = 0, 4.085, -6.290
+      Mx0, My0, Mz0 = 0, 7.080, -10.903
       #Mx0, My0, Mz0 = 0, 10.893, -16.773
 
 
@@ -1241,7 +1242,7 @@ if do_path_measurements:
       if site == 1 or site == 2 or site == 5:
          poh = 7.5
       elif site == 4:
-         poh = 3
+         poh = 3  # this value is different from site 6, likely due to breaking of GPS (Meyer23)
       elif site == 6:
          poh = 8.5
    else:

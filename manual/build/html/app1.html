@@ -63,10 +63,13 @@
 </li>
 </ul>
 
+   <p class="caption">
+    <span class="caption-text">Indices</span>
+   </p>
    <ul>
-        <li class="toctree-l1"><a href= "genindex.html"><strong>Index</strong></a></li>
+        <li class="toctree-l1"><a href= "genindex.html"><strong>Full index</strong></a></li>
+        <li class="toctree-l1"><a href= "py-modindex.html"><strong>Modules</strong></a></li>
    </ul>
-
 
         </div>
       </div>
@@ -96,7 +99,8 @@
 <div class="line-block">
 <div class="line">This is a summary of the complete derivation of the equations used in this study. These closely follow the derivations in <span id="id1">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>, <a class="reference internal" href="ref.html#id17" title="David J Griffiths. Introduction to electrodynamics; 4th ed. Pearson, Boston, MA, 2013. Re-published by Cambridge University Press in 2017. URL: https://cds.cern.ch/record/1492149, doi:1108420419.">Griffiths, 2013</a>, <a class="reference internal" href="ref.html#id19" title="J.R. Reitz and F.J. Milford. Foundations of Electromagnetic Theory, third edition. Addison-Wesley series in physics. Addison-Wesley, 1960. URL: https://books.google.nl/books?id=JpReyQEACAAJ.">Reitz and Milford, 1960</a>]</span>, amongst other basic electromagnetic theory textbooks. Note that a trivial assumption for these derivations is considering the magnetization to be uniform within the object. From now on any use of the term “magnetization” will mean “uniform magnetization”.</div>
 <div class="line">Firstly, we will derive some fundamental principals and equations of magnetostatics required for later derivations. Secondly, the derivation of the the equation for the Magnetic induction field <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> of a magnetized object. Lastly, we will derive the equation of a magnetized sphere.</div>
-<div class="line"><br /></div>
+</div>
+<div class="line-block">
 <div class="line">The fundamental equations [SI units] of electromagnetism (Maxwell) state:</div>
 </div>
 <div class="math notranslate nohighlight" id="equation-eq-2-2">
@@ -158,11 +162,10 @@
 <div class="line-block">
 <div class="line">where <span class="math notranslate nohighlight">\(\mu_{0}\)</span> is the permeability of free space. It is pertinent to note that <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is frequently termed the <em>magnetic field strength</em>, albeit theoretically inaccurately. This practice, prevalent in the field fo paleomagnetism, can be rationalized considering that in most paleomagnetic instances, the observation point is situated outside the magnetized body (<span class="math notranslate nohighlight">\(\mathbf{M}=0\)</span>), whereby <a class="reference internal" href="#equation-eq-8">(16)</a> simplifies to <span class="math notranslate nohighlight">\(\mathbf{B}=\mu_{0}\mathbf{H}\)</span> <span id="id2">[<a class="reference internal" href="ref.html#id20" title="Lisa Tauxe. Essentials of paleomagnetism. Univ of California Press, 2010.">Tauxe, 2010</a>]</span>. Consequently, for the purposes of this study, <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> shall be denoted as the magnetic field strength.</div>
 </div>
-<p>makes sense if we consider that in most paleoamgnetic cases the observation point is located outside of the magnetized body (<span class="math notranslate nohighlight">\(\mathbf{M}=0\)</span>), so <a class="reference internal" href="#equation-eq-8">(16)</a> becomes <span class="math notranslate nohighlight">\(\mathbf{B}=\mu_{0}\mathbf{H}\)</span>.
-|
-|
-| First, the derivation of the equation for the magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> of a magnetized object.
-| <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> <span class="math notranslate nohighlight">\(\mathit[Am^{-1}]\)</span>, the magnetization of a material, is equal to the magnetic dipole moment <span class="math notranslate nohighlight">\(\mathbf{m}\)</span>  per unit volume. This is defined as</p>
+<div class="line-block">
+<div class="line">First, the derivation of the equation for the magnetic field strength <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> of a magnetized object.</div>
+<div class="line"><span class="math notranslate nohighlight">\(\mathbf{M}\)</span> <span class="math notranslate nohighlight">\(\mathit[Am^{-1}]\)</span>, the magnetization of a material, is equal to the magnetic dipole moment <span class="math notranslate nohighlight">\(\mathbf{m}\)</span>  per unit volume. This is defined as</div>
+</div>
 <div class="math notranslate nohighlight" id="equation-eq-6-2">
 <span class="eqno">(17)<a class="headerlink" href="#equation-eq-6-2" title="Link to this equation"></a></span>\[\begin{equation}
     \mathbf{M}(x',y',z')  = \frac{\delta\mathbf{m}}{\delta v'} \hspace{5mm} \textrm{or} \hspace{5mm} \mathbf{m} = \iiint \mathbf{M} \; dv'
@@ -266,7 +269,9 @@
 <span class="eqno">(29)<a class="headerlink" href="#equation-atrans" title="Link to this equation"></a></span>\[\begin{equation}
     \mathbf{A}(\mathbf{r}) =\frac{\mu_{0}}{4\pi}\int_V \frac{\nabla'\times\mathbf{M(r')}}{\mathbf{\left|r-r'\right|}}dv'+ \frac{\mu_{0}}{4\pi}\oint_S\frac{\mathbf{M(r')}\times{\mathbf{\hat{n}'}}}{\mathbf{\left|r-r'\right|}}ds'
 \end{equation}\]</div>
-<p>Using <span class="math notranslate nohighlight">\(\mathbf{B}=\nabla\times\mathbf{A}\)</span> (eq. <a class="reference internal" href="#equation-eq-ba">(10)</a>),  the vector identity in eq. <a class="reference internal" href="#equation-i-1">(20)</a> and</p>
+<div class="line-block">
+<div class="line">Using <span class="math notranslate nohighlight">\(\mathbf{B}=\nabla\times\mathbf{A}\)</span> (eq. <a class="reference internal" href="#equation-eq-ba">(10)</a>),  the vector identity in eq. <a class="reference internal" href="#equation-i-1">(20)</a> and</div>
+</div>
 <div class="math notranslate nohighlight" id="equation-identity2">
 <span class="eqno">(30)<a class="headerlink" href="#equation-identity2" title="Link to this equation"></a></span>\[\begin{equation}
    \nabla\times\left(\mathbf{u \times v}\right) = \mathbf{u(\nabla\cdot v)} - \mathbf{v(\nabla\cdot u)} + \mathbf{(v\cdot\nabla)u} -  \mathbf{(u\cdot\nabla)v}
