@@ -7,11 +7,9 @@ Governing equations
 | The total magnetic field :math:`\mathbf{B_t(r)}` at position :math:`\mathbf{r}` above the surface of magnetized matter consist of contributions from the initial field :math:`\mathbf{B_0}` and the anomalous field :math:`\mathbf{B_a}` produced by the underlying magnetized matter
 
 .. math::
-    \begin{equation}
-        \mathbf{B_t(r)} =  \mathbf{B_0} + \mathbf{B_a}
-        \label{eq:Bsum}
-    \end{equation}
     :label: Bsum
+
+    \mathbf{B_t(r)} =  \mathbf{B_0} + \mathbf{B_a}
 
 | We assume the initial field (:math:`\mathbf{B_0}`) to be solely the Earth's magnetic field, uniform and constant above the surface. Thereby disregarding any contribution of solar-induced fields, as these are considered to be insignificant compared to the topography induced anomalies in regular conditions (i.e. absence of geomagnetic storms, etc.) :cite:`Baag95`.
 |
