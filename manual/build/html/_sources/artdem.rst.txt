@@ -22,9 +22,9 @@ Computational approach
 
 Model setup
 -----------
-| The selected domain for the simulation was defined as :math:`252\times252\times20` meters, discretized into :math:`126\times126\times10` elements.  Inclines of :math:`5 ^{\circ}` and :math:`12 ^{\circ}` were applied along the x- and y-direction, respectively, situating the model on what would represent the southwestern slope of Mount Etna. The bottom surface was simulated as a level plane, and the removal of a zero topography domain was executed. The decision was made to synthesize the topography by merging two DEMs with distinct roughness values of :math:`12` and :math:`2`. This approach was intended to create a topographic roughness that exceeds the levels encountered in previous flank simulations. The specific parameters used to generate the artificial DEM are presented in the subsequent steps.
+| The selected domain for the simulation is defined as :math:`252\times252\times20` meters, discretized into :math:`126\times126\times10` elements.  Inclines of :math:`5 ^{\circ}` and :math:`12 ^{\circ}` are applied along the x- and y-direction, respectively, situating the model on what would represent the southwestern slope of Mount Etna. The bottom surface is simulated as a level plane, and the removal of a zero topography domain is executed. The decision has been made to synthesize the topography by merging two DEMs with distinct roughness values of :math:`12` and :math:`2`. This approach is intended to create a topographic roughness that exceeds the levels encountered in previous flank simulations. The specific parameters used to generate the artificial DEM are presented in the subsequent steps.
 
-| A uniform remanent magnetization intensity of :math:`7.5` :math:`[A/m]` was assigned to the simulated matter, aligning closely with the thermoremanent magnetization (TRM) observed in lava flow samples from the field, as reported in :cite:`Meyer23`, and with the magnetization intensities noted in prior paleomagnetic research on Etnean lavas by :cite:`Nicolosi14`, which documented a bulk magnetization of :math:`8` :math:`[A/m]`, with a range between :math:`5` and :math:`13` :math:`[A/m]`. However, it is worth noting the broader spectrum of recorded values in other studies, from as low as :math:`0.1-1` :math:`[A/m]` to as high as :math:`20` :math:`[A/m]`, as cited by :cite:`Tanguy04, Speranza06`, indicating the significant variability in magnetization measurements of Etnean lavas. The magnetization inclination applied in this study is :math:`57 ^{\circ}`, estimated from Mount Etna's average latitude based on the Geocentric Axial Dipole model (:math:`\tan{I} = 2\tan({lat})`). A declination of :math:`0 ^{\circ}` was assumed, corresponding to alignment with the present geomagnetic field, allowing for the computation of the magnetization components.
+| A uniform remanent magnetization intensity of :math:`7.5` :math:`[A/m]` has been assigned to the simulated matter, aligning closely with the thermoremanent magnetization (TRM) observed in lava flow samples from the field, as reported in :cite:`Meyer23`, and with the magnetization intensities noted in prior paleomagnetic research on Etnean lavas by :cite:`Nicolosi14`, which documented a bulk magnetization of :math:`8` :math:`[A/m]`, with a range between :math:`5` and :math:`13` :math:`[A/m]`. However, it is worth noting the broader spectrum of recorded values in other studies, from as low as :math:`0.1-1` :math:`[A/m]` to as high as :math:`20` :math:`[A/m]`, as cited by :cite:`Tanguy04, Speranza06`, indicating the significant variability in magnetization measurements of Etnean lavas. The magnetization inclination applied in this study is :math:`57 ^{\circ}`, estimated from Mount Etna's average latitude based on the Geocentric Axial Dipole model (:math:`\tan{I} = 2\tan({lat})`). A declination of :math:`0 ^{\circ}` is assumed, corresponding to alignment with the present geomagnetic field, allowing for the computation of the magnetization components.
 
 | Similarly to the :ref:`previous section <flanksim>`, the IGRF values used signify an average for Mount Etna, with the respective components being :math:`IGRF_E = 1561.2 nT`, and :math:`IGRF_N = 26850.3 nT`, and :math:`IGRF_D = 36305.7 nT`.
 
@@ -35,7 +35,7 @@ Results
 .. figure:: figures/art_DEM_mp.png
    :scale: 50%
 
-   Three subplots depicting the intensity [:math:`\mu T`], inclination [:math:`^{\circ}`] and declination [:math:`^{\circ}`] of the computed magnetic field **B** superimposed on the IGRF derived from flank simulations. Simulations were done at both 1 meter and 1.8 meter above the topography.
+   Three subplots depicting the intensity [:math:`\mu T`], inclination [:math:`^{\circ}`] and declination [:math:`^{\circ}`] of the computed magnetic field **B** superimposed on the IGRF derived from flank simulations. Simulations are done at both :math:`1m` and :math:`1.8m` above the topography. Similar trends as before can be observed, the ambient magnetic field is a function of topography.
 
 | The maximum intensity anomaly observed relative to Mount Etna's IGRF intensity, for path above an artificial DEM, is approximately :math:`+2 \mu T` for positive anomalies and :math:`-1.39 \mu T` for negative anomalies. The greatest inclination anomaly recorded reaches about :math:`+2.37 ^{\circ}` in the positive spectrum and :math:`-3.02 ^{\circ}` in the negative. Similarly, the peak declination anomaly is :math:`+5.45 ^{\circ}` for positive deviations and :math:`-1.08 ^{\circ}` for negative deviations.
 
@@ -47,7 +47,7 @@ Reproduce
 ---------
 | The ``script_art_DEM.sh`` shell script has been crafted to automate the execution and organization of output data, directing it into the correct subdirectory for a run using the artificial DEM generating module ``art_DEM.py``. Please make sure any modifications of the
 
-.. collapse:: Steps to reproduce the results and figures
+.. collapse:: **Steps to reproduce the results and figures**
 
    Please note basic setup in :ref:`installation`
 
@@ -260,7 +260,7 @@ Results and analyses
 .. figure:: figures/art_DEM_mp_noise.png
    :scale: 50%
 
-   Three subplots depicting the intensity [:math:`\mu T`], inclination [:math:`^{\circ}`] and declination [:math:`^{\circ}`] of the computed magnetic field **B** superimposed on the IGRF derived from flank simulations. These simulations were conducted at 1 meter and 1.8 meters above the terrain surface. To add variability, the midpoint of each element's surface was altered by introducing a random noise factor ranging between -1 and 1 meter.
+   Three subplots depicting the intensity [:math:`\mu T`], inclination [:math:`^{\circ}`] and declination [:math:`^{\circ}`] of the computed magnetic field **B** superimposed on the IGRF derived from flank simulations. These simulations are conducted at 1 meter and 1.8 meters above the terrain surface. To add variability, the midpoint of each element's surface is altered by introducing a random noise factor ranging between -1 and 1 meter. Results show that adding noise introduces more variations and introduces frequent sudden peaks and dips in the magnetic field curves.
 
 | :numref:`art_DEM_noise` illustrates the successful implementation of the intended feature. The introduction of random noise results in stochastic variations in the magnetic anomalies. With the path's altitude consistently set at least one meter above the terrain, any perturbations introduced are confined to within one meter, and ensuring observation points are never coincident with an element's midpoint as outlined in :doc:`computational_approach`. This precaution verifies that the anomalies detected are genuine effects, not artifacts from the potential misplacement of observation points within the magnetic domain of the underlying flow. Therefore, it can be confidently stated that these rough anomalies are attributed to the proximal, pointed topographic features that may have been smoothed in a DEM representation, but reintroduced using this feature in the MTE code.
 
@@ -269,7 +269,7 @@ Results and analyses
 Reproduce
 ^^^^^^^^^
 
-.. collapse:: Steps to reproduce the results and figures
+.. collapse:: **Steps to reproduce the results and figures**
 
    Please note basic setup in :ref:`installation`
 

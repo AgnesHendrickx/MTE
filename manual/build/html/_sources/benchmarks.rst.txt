@@ -3,7 +3,7 @@
 Benchmarks
 ==========
 | Several different benchmarks are available to verify computed values of MTE code.
-|
+
 | Verification aims of the benchmarks:
 
 1. Assumption that the contribution of an element can be represented by a single dipole "far" away from source  (see :doc:`governing_equations`).
@@ -29,8 +29,8 @@ Analytical solution
 
 Model setup
 ^^^^^^^^^^^
-| The model setup was as follows: A spherical inclusion of radius :math:`ds=1m` and :math:`\mathbf{M}= (0,0,7.5)` in a domain of :math:`2\times2\times2m` with a resolution of 100 elements in each direction.
-| The magnetic field values were computed along a vertical line positioned directly above the sphere's center, where the distance :math:`r` was progressively increased to exceed :math:`100m`.
+| The model setup is as follows: A spherical inclusion of radius :math:`ds=1m` and :math:`\mathbf{M}= (0,0,7.5)` in a domain of :math:`2\times2\times2m` with a resolution of :math:`100` elements in each direction.
+| The magnetic field values are computed along a vertical line positioned directly above the sphere's center, where the distance :math:`r` is progressively increased to exceed :math:`100m`.
 
 Results
 ^^^^^^^
@@ -38,14 +38,14 @@ Results
 .. figure:: figures/B1dipole_mp.png
    :scale: 80%
 
-   On the left, analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. On the right, the difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere.
+   On the left, analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. On the right, the difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. Both show an excellent match of the computed and analytical values, even at close proximity to the surface. At :math:`0.25m` the error remains approximately :math:`\sim \lvert 0.01 \rvert \mu T`.
 
 | As illustrated in :numref:`figureB1_mp`, the discrepancies between the analytical solution and computed values are minimal.
-| Even at a height of :math:`0.25m`, the smallest height above the topography measured in the Etna case study :cite:`Meyer23`, the error remains approximately :math:`\sim \lvert 0.01 \rvert \mu T` .
+| Even at a height of :math:`0.25m`, the smallest height above the topography measured in the Etna case study :cite:`Meyer23`, the error remains approximately :math:`\sim \lvert 0.01 \rvert \mu T`.
 
 Reproduce
 ^^^^^^^^^
-.. collapse:: How to reproduce the results and figures
+.. collapse:: **Steps to reproduce the results and figures**
 
    Please note basic setup in :ref:`installation`
 
@@ -163,12 +163,12 @@ Model setup
    :class: with-border
    :scale: 50%
 
-   Visualization of different model setups by cross sectional planes trough middle of each mesh, on the left the undeformed base mesh, in the middle deformation setup (1), on the right deformation setup (2).
+   Visualization of different model setups by cross sectional (z-y) planes trough middle of each domain. On the left the undeformed base domain, in the middle deformation setup (1), where perturbations within a range of :math:`[-0.1:0.1m]` are introduced to the z-coordinates of the internal nodes of the domain. On the right deformation setup (2), where the same perturbations are repeated, additionally, the aspect ratio of elements are increased.
 
-| To verify this, a domain of 10x10x10m, with an initial element size of :math:`2\times2\times2m` and :math:`\mathbf{M}= (0,0,7.5)`, was deformed in two ways:
+| To verify this, a domain of  :math:`10\times10\times10m`, with an initial element size of :math:`2\times2\times2m` and :math:`\mathbf{M}= (0,0,7.5)`, is deformed in two ways:
 
-1. a random value between :math:`-0.1` and :math:`0.1` was added to the z coordinates of internal nodes
-2. situation in (1) was combined with elements of a very high aspect ratio (:math:`5\times1\times0.2m`).
+1. A random value between :math:`-0.1` and :math:`0.1m` is added to the z coordinates of internal nodes.
+2. In addition to situation (1), the aspect ratio of elements is significantly increased, with each element's dimension now :math:`5\times1\times0.2m`.
 
 | The original domain and results will be referred to as the base setup, see :numref:`deformationsetups` for visualization of the deformation setups.
 
@@ -179,20 +179,20 @@ Results
    :class: with-border
    :scale: 60%
 
-   The magnetic field strength :math:`\mathbf{B}` on a plane :math:`1m` above the surface of a box with a spatial extent that is twice as large as the (undeformed) domain beneath.
+   The magnetic field strength :math:`\mathbf{B}` on a plane :math:`1m` above the surface of a box with a spatial extent that is twice as large as the (undeformed) domain beneath. Black lines denote the domain edges, while the grey lines connect the observation points on the plane. The observed pattern reveals the extent of the magnetization of the cuboid domain, rapidly decreasing with distance from the domain. These results provided the base for further testing in this benchmark.
 
 .. _figureB2:
 .. figure:: figures/result_b2.png
    :scale: 80%
 
 
-   Difference between :numref:`figureB2base` and results from the deformed domain setups. On the left the difference between deformation setup (1) and the base, on the right the difference between deformation setup (2) and the base. See model setup section.
+   Difference between :numref:`figureB2base` and results from the deformed domain setups. The left side depicts the variance between deformation setup (1) and the base, while the right side shows the difference of deformation setup (2) relative to the base. Notably, the errors in both deformation setups are minimal.
 
-| As expected and observable in :numref:`figureB2`, the computed values of the magnetic field on the observation plane, located one meter above the domain, remained consistent (up to machine precision) across these scenarios.
+| As expected and observable in :numref:`figureB2`, the computed values of the magnetic field on the observation plane, located one meter above the domain, remained consistent (up to machine precision) across these scenarios. However, an increased error is noticeable in deformation setup (1). This might be due to the high aspect ratio, which results in fewer observation points corresponding with the domain's spatial instabilities, see :doc:`computational_approach`. However, the errors in both experiments are minimal, indicating that internal modifications, which are theoretically expected to neutralize each other, do not significantly impact the results when employing the MTE code.
 
 Reproduce
 ^^^^^^^^^
-.. collapse:: How to reproduce the results and figures
+.. collapse:: **Steps to reproduce the results and figures**
 
    Please note basic setup in :ref:`installation`
 
@@ -342,6 +342,8 @@ Reproduce
       |   gnuplot plot_script_B2.p                   |   python3 plot_script_B2.py                  |
       +----------------------------------------------+----------------------------------------------+
 
+.. _B3:
+
 Benchmark 3: a magnetized sphere
 --------------------------------
 Analytical solution
@@ -363,27 +365,28 @@ Analytical solution
    :class: with-border
    :scale: 90%
 
-   Visualization of the model setup, numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. Numbering of the computation points start at the top of the sphere and circle down in a counterclockwise fashion.
+   Visualization of the model setup with numbering along Fibonacci spiral for uniform distribution above the tessellated sphere. The numbering sequence begins at the top of the sphere and proceeds downward in a counterclockwise spiral. The magnetization is assigned to any elements within the spherical domain, and aligned with the z-axis.
 
 
 Model setup
 ^^^^^^^^^^^
-| The model setup was as follows, see :numref:`sphere_bench_setup`: A spherical inclusion similar to the first benchmark, but now with a radius of :math:`a=10m` was placed in a domain of 20x20x20m with a magnetization of :math:`\mathbf{M}= (0,0,7.5)` assigned only to elements within the spherical inclusion. Since a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements were anticipated to be necessary to produce adequate results. A Fibonacci spiral was used to uniformly distribute 101 computation points at :math:`0.25m` and :math:`0.5m` above the surface of a sphere with a domain resolution of either :math:`3` or :math:`6` elements per meter.
+| The model setup is as follows, see :numref:`sphere_bench_setup`: A spherical inclusion similar to the first benchmark, but now featuring a radius of :math:`a=10m` is placed in a domain of :math:`20\times20\times20m` with a magnetization of :math:`\mathbf{M}= (0,0,7.5)` assigned exclusively to elements within the spherical inclusion. Given that a sphere is a complex shape to accurately represent using hexahedron elements, a large number of elements are anticipated to be necessary to produce adequate results. A Fibonacci spiral is used to uniformly distribute :math:`101` computation points at :math:`0.25m` and :math:`0.5m` above the surface of a sphere with a domain resolution of either :math:`3` or :math:`6` elements per meter.
 
 Results
 ^^^^^^^
-| The results are shown in the :numref:`sphere_bench`. As expected, closer to the surface the required resolution increases, however, at a distance of :math:`0.5m` above the sphere :math:`3` elements per meter suffices.
-
 .. _sphere_bench:
 .. figure:: figures/B3sphere_dif_mp_splitcase_all.png
    :class: with-border
    :scale: 70%
 
-   Difference between analytical solution and computed values for 100 difference computation points at either 0.25 or 0.5m above the surface of a sphere with a resolution of either :math:`3` or :math:`6` :math:`el/m`.
+   Comparative analysis of the analytical solution versus computed values at :math:`101` distinct observation points, located either :math:`0.25m` or :math:`0.5m` above a sphere's surface. The resolutions tested are :math:`3` or :math:`6` elements per meter (:math:`el/m``). It is demonstrated that increasing the number of elements substantially reduces the discrepancy between analytical and computed values.
+
+| The results are shown in the :numref:`sphere_bench`. The findings confirm that proximity to the surface necessitates a higher resolution. A notable feature of this relationship is its scalability; for instance, at twice the altitude, the required resolution can be halved while maintaining accuracy.
+| At a distance of :math:`0.5m` above the sphere's surface, a resolution of :math:`3` elements per meter is found to be adequate, whilst at a distance of :math:`0.25m`, a resolution of :math:`6` elements per meter is required.
 
 Reproduce
 ^^^^^^^^^
-.. collapse:: How to reproduce the results and figures
+.. collapse:: **Steps to reproduce the results and figures**
 
    Please note basic setup in :ref:`installation`
 
@@ -593,17 +596,18 @@ Benchmark 4: a prismatic body
 
 Analytical solution
 ^^^^^^^^^^^^^^^^^^^
-| In this benchmark, rather than relying on theoretically derived analytical solutions for specific scenarios, we will assess our model against the numerical outcomes of another study presenting a (similar) closed-form analytical solution for a homogeneous polyhedral magnetic target :cite:`Ren19`. The findings of this study have been corroborated against :cite:`Heath05` using a prismatic body model setup. It's essential to note that only gradient tensor component results were incorporated in the published findings. However, full access to the code and accompanying datasets was provided, (`github <https://github.com/renzhengyong-geo/Magnetic_homogeneous_polyhedron/tree/master/>`_), enabling us to perform the comparison for this numerical configuration.
+| In this benchmark, rather than relying on theoretically derived analytical solutions for specific scenarios, we will assess our model against the numerical outcomes of another study presenting a (similar) closed-form analytical solution for a homogeneous polyhedral magnetic target :cite:`Ren19`. The findings of this study have been corroborated against :cite:`Heath05` using a prismatic body model setup. Their paper only presented results for the gradient tensor components. However, it also involved calculations for the magnetic field components.
+| Fortunately, full access to the original code and the magnetic field strengths datasets is provided, (`github <https://github.com/renzhengyong-geo/Magnetic_homogeneous_polyhedron/tree/master/>`_), enabling us to perform the comparison for this numerical configuration.
 
 Model setup
 ^^^^^^^^^^^
-| Our model setup was designed to mirror the configuration delineated by :cite:`Ren19`. Nevertheless, certain parameters were adjusted to align optimally with our coding framework.
-| The evaluations were conducted on an equilateral cuboid with side lengths of :math:`L=10m`, centrally positioned at :math:`(0,0,-5 m)`.  The top face of this cuboid intersects the plane at a height of :math:`z=0m`. Each element within the cuboid was assigned a homogeneous magnetization of :math:`\mathbf{M}= (0,0,200) A/m`. 21 observation points were equally distributed along a line on the top surface of the prism at :math:`z = 0 m`, with an x-coordinate of :math:`x = 6 m` and y-coordinates ranging from :math:`[-25:25] m`.
-| :cite:`Ren19`'s model setup section described that the prism was discretized into eight tetrahedral elements. Contrarily, their code stated a division into just six elements. Given this disparity, our modeling approach segmented the domain into ten elements. Nonetheless, theoretical understanding posits that the resolution in this configuration is irrelevant, as shown in the :ref:`parameter section <parameters>`.
+| Our model setup is designed to mirror the configuration delineated by :cite:`Ren19`. Nevertheless, certain parameters are adjusted to align optimally with our coding framework.
+| The evaluations are conducted on an equilateral cuboid with side lengths of :math:`L=10m`, centrally positioned at :math:`(0,0,-5m)`. The top face of this cuboid intersects the plane at a height of :math:`z=0m`. Each element within the cuboid is assigned a homogeneous magnetization of :math:`\mathbf{M}= (0,0,200) A/m`. :math:`21` observation points are equally distributed along a line on the top surface of the prism at :math:`z = 0m`, with an x-coordinate of :math:`x = 6m` and y-coordinates ranging from :math:`[-25:25m]`.
+| :cite:`Ren19`'s model setup section described that the prism is discretized into eight tetrahedral elements. Contrarily, their code stated a division into just six elements. Given this disparity, our modeling approach segmented the domain into ten elements, erring on the side of caution. Nonetheless, theoretical understanding posits that the resolution in this configuration is irrelevant, as shown in the :ref:`parameter section <parameters>`.
 
-| Another key distinction to note: the analytical solution proposed by :cite:`Ren19` was engineered to counteract numerical instabilities occurring when the observation point aligns with an element's edge. Our model does exhibit this instability (see :doc:`computational_approach`). To closely replicate their observation points, minor adjustments to the positioning of our study's observation points were done.
+| Another key distinction to note: the analytical solution proposed by :cite:`Ren19` is engineered to counteract numerical instabilities occurring when the observation point aligns with an element's edge. Our model does exhibit this instability (see :doc:`computational_approach`). To closely replicate their observation points, minor adjustments to the positioning of our study's observation points are done.
 
-| It should be noted, that while this model setup does not necessitate modifications to the top or bottom surface (absence of topography), employing :func:`magnetostatics.compute_B_surface_integral_cuboid` would suffice. Nonetheless, to validate our proposed solution (see :func:`support.shift_observation_points_edge`) for additional singularities on diagonals of domain elements, function :func:`magnetostatics.compute_B_surface_integral_wtopo` was still utilized.
+| It should be noted, that while this model setup does not necessitate modifications to the top or bottom surface (absence of topography), employing :func:`magnetostatics.compute_B_surface_integral_cuboid` would suffice. Nonetheless, to validate our proposed solution (see :func:`support.shift_observation_points_edge`) for additional singularities on diagonals of domain elements, function :func:`magnetostatics.compute_B_surface_integral_wtopo` is still utilized.
 
 Results
 ^^^^^^^
@@ -611,13 +615,13 @@ Results
 .. figure:: figures/B4.png
    :scale: 65%
 
-   Comparison of magnetic field components :math:`\mathbf{B_x}`, :math:`\mathbf{B_y}`, :math:`\mathbf{B_z}` for the prismatic body. As observation site location were displaced from :cite:`Ren17`, the x-axis now refers to index relating to the observation point rather than a specific distance.
+   Comparison of magnetic field components :math:`\mathbf{B_x}`, :math:`\mathbf{B_y}`, :math:`\mathbf{B_z}` for the prismatic body. As observation site location are displaced from :cite:`Ren17`, the x-axis now refers to index relating to the observation point rather than distance. The computed values of our study match those of :cite:`Ren17`, down to machine precision.
 
 | :numref:`B4` shows a near-perfect alignment of the two numerical outputs, down to machine precision. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in :cite:`Ren17`.
 
 Reproduce
 ^^^^^^^^^
-.. collapse:: How to reproduce the results and figures
+.. collapse:: **Steps to reproduce the results and figures**
 
    Please note basic setup in :ref:`installation`
 

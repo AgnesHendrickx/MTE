@@ -5,7 +5,7 @@
 
 Welcome to MTE's documentation!
 ===============================
-| MTE is an advanced Python library meticulously crafted to calculate the magnetic field proximately above the topography (~1 meter), as defined by either an analytical equation or a Digital Elevation Model (DEM). The code is available for download `GitHub <https://github.com/AgnesHendrickx/MTE/>`_, offering a comprehensive suite of tools for geophysical analysis and simulation, tailored for precision and ease of use in professional environments.
+| MTE is an advanced Python library meticulously crafted to calculate the magnetic field proximately above the topography (~1 meter), as defined by either an analytical equation or a Digital Elevation Model (DEM). The code is available for download `GitHub <https://github.com/AgnesHendrickx/MTE/>`_, offering a comprehensive suite of tools for geophysical analysis and simulation, tailored for precision and ease of use in professional environments. The primary purpose is to compute magnetic anomalies in the ambient magnetic field above topographies for investigating their effect on the paleomagnetic records.
 | This documentation is designed to serve as a comprehensive guide to both theoretical and practical applications of the MTE library.
 
 
