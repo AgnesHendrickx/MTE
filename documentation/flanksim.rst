@@ -20,15 +20,15 @@ Synthetic topopography: flank simulations
 
 Model setup
 -----------
-| To explore the impact of these variances, a specialized model configuration was devised to conduct flank simulations, as demonstrated in :numref:`fflanksim`. In this model, the undulating nature of flank topography is replicated using a sine function that models the ridges and troughs typical of volcanic landscapes. This wavy pattern, described by :func:`support.topography`, traverses perpendicular across the inclined surface.
+| To explore the impact of these variances, a specialized model configuration has been devised to conduct flank simulations, as demonstrated in :numref:`fflanksim`. In this model, the undulating nature of flank topography is replicated using a sine function that models the ridges and troughs typical of volcanic landscapes. This wavy pattern, described by :func:`support.topography`, traverses perpendicular across the inclined surface.
 
 | The simulation framework permits the manipulation of several parameters to investigate their effects on the magnetic field above the flank simulations. Key variables include the slope of the surface, the amplitude and wavelength of the sine function, and the orientation of the sine wave's propagation relative to the Cartesian axes (this angle is variable and contingent on the particular flank being simulated), an example is given in :numref:`bdeg`.
 
-| For alignment with the :doc:`etna`, the parameters used to define the synthetic topography aim to replicate the ridges and gullies of Mount Etna. Based on the analysis of aerial imagery and DEMs of the area around the field sites of :cite:`Meyer23`, an amplitude of :math:`4m`, a wavelength of :math:`25m`, and an angle of inclination for the slope of :math:`6 ^{\circ}` were found to be representative values.
+| For alignment with the :doc:`etna`, the parameters used to define the synthetic topography aim to replicate the ridges and gullies of Mount Etna. Based on the analysis of aerial imagery and DEMs of the area around the field sites of :cite:`Meyer23`, an amplitude of :math:`4m`, a wavelength of :math:`25m`, and an angle of inclination for the slope of :math:`6 ^{\circ}` are found to be representative values.
 
-| The uniform remanent magnetization intensity chosen was :math:`7.5` :math:`A/m` with a inclination of :math:`57 ^{\circ}` and a declination of :math:`0 ^{\circ}`. For the rationale of chosen magnetization, see :ref:`DEM section <artdem>`. Additionally, the Earth's magnetic field in the flank simulations was calibrated to the average of the IGRF values specific to Etna's flanks :cite:`IGRF`, with the respective components being :math:`IGRF_E = 1561.2 nT`, and :math:`IGRF_N = 26850.3 nT`, and :math:`IGRF_D = 36305.7 nT`.
+| The uniform remanent magnetization intensity chosen is :math:`7.5` :math:`A/m` with a inclination of :math:`57 ^{\circ}` and a declination of :math:`0 ^{\circ}`. For the rationale of chosen magnetization, see :ref:`DEM section <artdem>`. Additionally, the Earth's magnetic field in the flank simulations has been calibrated to the average of the IGRF values specific to Etna's flanks :cite:`IGRF`, with the respective components being :math:`IGRF_E = 1561.2 nT`, and :math:`IGRF_N = 26850.3 nT`, and :math:`IGRF_D = 36305.7 nT`.
 
-| Flank simulations were done using a domain of :math:`250\times250\times20m` discretized with :math:`375\times375\times10` elements, with a level plane as the bottom boundary and removal of the zero topography results, a decision which is justified in the :ref:`parameter section <parameters>`. Computation were conducted along a path comprising 47 points positioned :math:`1m` and :math:`1.8m` above the domain's center, with observation points distributed at approximately one meter intervals. To ensure consistency in the simulation environment, this sinuous topography was uniformly applied beneath the path at the center of each flank.
+| Flank simulations are done using a domain of :math:`250\times250\times20m` discretized with :math:`375\times375\times10` elements, with a level plane as the bottom boundary and removal of the zero topography results, a decision which is justified in the :ref:`parameter section <parameters>`. Computation are conducted along a path comprising 47 points positioned :math:`1m` and :math:`1.8m` above the domain's center, with observation points distributed at approximately one meter intervals. To ensure consistency in the simulation environment, this sinuous topography has been uniformly applied beneath the path at the center of each flank.
 
 Results
 -------
@@ -37,7 +37,7 @@ Results
 .. figure:: figures/flanksim_mp_zt.png
    :scale: 50%
 
-   Three subplots depicting the intensity [:math:`\mu T`], inclination [:math:`^{\circ}`] and declination [:math:`^{\circ}`] of the computed magnetic field **B** superimposed on the IGRF derived from flank simulations.
+   Three subplots depicting the intensity [:math:`\mu T`], inclination [:math:`^{\circ}`] and declination [:math:`^{\circ}`] of the computed magnetic field **B** superimposed on the IGRF derived from flank simulations. Each flank reveals a unique pattern, with notable north-south and minimal east-west differences. An inverse relationship between inclination and intensity deviations is observed on the north and south flanks, contrasting signs and temporal shifts in east-west declination deviations. Furthermore, negative anomalies extend over a broader region compared to positive anomalies.
 
 | In :numref:`flanksim_plot` the results of the flank simulations done for Mt. Etna are presented, where each flank reveals a unique pattern. Despite these differences, there is a notable similarity in the trends of flanks that are geographically opposite, such as the north and south flanks. The north flank, characterized by a slope that descends in the same direction as the magnetization inclination, exhibits significantly larger anomalies in comparison to the south flank, where the slope direction differs. Conversely, the differences between the east and west flanks are minimal.
 
@@ -51,7 +51,7 @@ Results
 .. figure:: figures/flanksim_mp_zt_180.png
    :scale: 50%
 
-   Three subplots depicting the intensity [:math:`\mu T`], inclination [:math:`^{\circ}`] and declination [:math:`^{\circ}`] of the computed magnetic field **B** superimposed on the IGRF derived from flank simulations, with the observation path at a height of :math:`1.8m` above the topography.
+   Three subplots depicting the intensity [:math:`\mu T`], inclination [:math:`^{\circ}`] and declination [:math:`^{\circ}`] of the computed magnetic field **B** superimposed on the IGRF derived from flank simulations, with the observation path at a height of :math:`1.8m` above the topography. Misalignment of the curve extremities and accentuated displacement of anomalies at different elevations is observed. Furthermore, the persistance of negative anomalies is shown for higher altitudes.
 
 | At first glance, the curves computed at a higher altitude, see :numref:`flanksim_plot_180`, seem logically consistent. The deviations at this higher elevation present with reduced magnitudes when compared to those derived at closer proximity to the topography. This attenuation of anomaly strength with altitude aligns with magnetic principles, where field variations diminish in intensity as the distance from their source increases :cite:`REITZ`.
 | Notably, a distinct pattern emerges where, at higher altitudes, the minimum and maximum of the curves do not consistently align with those observed at lower elevations. This discrepancy is most apparent for measurements on the east and west flanks across all parameters, and for the on the north and south flanks only in declination. It is also observed that peaks and troughs that appear "lagged" or "premature" at a lower level are accentuated in their displacement at higher altitude. Furthermore, the negative anomalies display greater persistence at elevated altitudes, exhibiting a less pronounced reduction in magnitude with height than the positive anomalies.
@@ -63,7 +63,7 @@ Results
 .. figure:: figures/flanksim_comp_mp_zt.png
    :scale: 50%
 
-   Three subplots depicting the components of the computed magnetic field **B** [:math:`\mu T`] superimposed on the IGRF derived from flank simulations.
+   Three subplots depicting the components of the computed magnetic field **B** [:math:`\mu T`] superimposed on the IGRF derived from flank simulations. The most significant anomalies are present on flanks where the ridges and gullies run parallel to the component of the magnetization.
 
 | Diving deeper into individual magnetic field components reveals more nuances. For the :math:`B_x` and  :math:`B_y` components, :numref:`flanksim_comp` indicates that the largest deviations are situated on flanks where topographic ridges and gullies align parallel to the component.
 
@@ -93,7 +93,7 @@ Reproduce
 ---------
 | A dedicated module, ``flanksim.py``, has been integrated into the codebase for executing full simulations across all flanks. To activate this module, uncomment the corresponding line in the ``MTE.py`` file (see steps below). Additionally, the ``script_flanksim.sh`` shell script has been crafted to automate the execution and organization of output data, directing it into the correct subdirectory [#]_ for each flank simulation.
 
-.. collapse:: Steps to reproduce the results and figures
+.. collapse:: **Steps to reproduce the results and figures**
 
    Please note basic setup in :ref:`installation`
 
