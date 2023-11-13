@@ -5,11 +5,6 @@ import sys
 from pygments.style import Style
 from pygments.styles import STYLE_MAP, get_all_styles
 
-#sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
-#sys.path.insert(0, os.path.abspath(".."))
-#sys.path.insert(0, os.path.abspath("../.."))
-#from yourpygmentsstylepackage import YourCustomStyle
-
 sys.path.insert(0, os.path.abspath('../'))
 sys.path.append(os.path.abspath("./_ext"))
 
@@ -34,6 +29,73 @@ numfig = True
 numfig_format={'figure': 'Figure %s', 'code-block': 'Code %s',
 }
 
+# inside conf.py
+latex_engine = 'xelatex'
+latex_elements = {
+    'fontpkg': r'''
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+''',
+    'preamble': r'''
+%%%%% PREAMBLE %%%%%%%
+% Language, coding, font %%%
+%\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[backend=biber,style=apa,]{biblatex}
+
+\usepackage{setspace}
+\onehalfspacing
+%\doublespacing
+
+% Layout and Typography %%%
+\usepackage[cm]{fullpage}
+\usepackage{float}
+\usepackage{csquotes}
+%\usepackage[table,xcdraw]{xcolor}
+\usepackage{parskip}
+\setlength{\parindent}{0.5em}
+\usepackage{listings}
+\usepackage{multicol}
+
+% Linking and referencing %%%
+\usepackage[nottoc]{tocbibind}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\usepackage{url}
+
+% Graphics %%%
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\usepackage{subcaption}
+\usepackage{rotating}
+
+% Mathematics and Science %%%
+%\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{bm}
+
+%\cftsetpnumwidth{1.25cm}\cftsetrmarg{1.5cm}
+%\setlength{\cftchapnumwidth}{0.75cm}
+%\setlength{\cftsecindent}{\cftchapnumwidth}
+%\setlength{\cftsecnumwidth}{1.25cm}
+
+''',
+    'fncychap': r'\usepackage[Bjornstrup]{fncychap}',
+    'printindex': r'\footnotesize\raggedright\printindex',
+
+
+}
+latex_show_urls = 'footnote'
+
+
 
 extensions = [
         'sphinx.ext.doctest','sphinx.ext.autodoc',
@@ -41,31 +103,28 @@ extensions = [
         'sphinx.ext.todo','sphinx.ext.viewcode',
         'sphinx_toolbox.collapse','sphinx_rtd_theme',
 ]
-#'sphinxawesome_theme.highlighting',
+
+# The suffix of source filenames.
+source_suffix = '.rst'
+
+# The master toctree document.
+master_doc = 'index'
+
 todo_include_todos = True
 
-#from yourcustomstyle import CustomStyle  # Make sure this import points to the right location
-
-#print(STYLE_MAP)
-
-## Check if your style is a subclass of pygments.style.Style
-#if issubclass(CustomStyle, Style):
-#    # Manually add your style to Pygments' STYLE_MAP
-#    STYLE_MAP['customstyle'] = 'custom::CustomStyle'
-
-#print(STYLE_MAP)
-
-#[project.entry-points."pygments.styles"]
-#customstyle = 'custom::CustomStyle'
-
-# Now, you can use get_all_styles() to list your custom style along with others
 styles = list(get_all_styles())
-print(styles)
 
-#print(styles)
 
-# Set the Pygments style in Sphinx to your custom style
-pygments_style = 'yourstyle'
+# Check if the build is happening on Read the Docs
+on_rtd = os.environ.get('READTHEDOCS') == 'True'
+
+if on_rtd:
+   pygments_style = 'yourstyle' # For build of RTD (gets style from my own pypi package)
+else:
+   pygments_style = 'monokai' # For local build (gets style locally, edited monokai)
+
+
+
 
 autodoc_mock_imports = [
     'numpy', 'scipy', 'numba',
@@ -78,10 +137,6 @@ templates_path = ['_templates']
 exclude_patterns = []
 
 bibtex_reference_style = 'author_year'
-#bibtex_reference_style = 'super'
-
-#bibtex_default_style = 'plain'
-
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -105,11 +160,6 @@ html_theme_options = {
 
 html_show_sourcelink = False
 
-#html_theme = "furo"
-#html_theme_options = {
-#    "sidebar_hide_name": True,
-#    "navigation_with_keys": True,
-#    }
 
 html_logo = "Logo2r2.png"
 html_static_path = ['_static']

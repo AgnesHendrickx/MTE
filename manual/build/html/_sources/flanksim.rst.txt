@@ -9,7 +9,8 @@ Synthetic topopography: flank simulations
 
    Flank simulation on the Etna. (:math:`\mathbf{M}`) = :math:`7.5 [A/m]` (arrows). The slope (:math:`a` in :numref:`fflanksim`) is  :math:`6 ^{\circ}`. The computations of the magnetic field (:math:`\mathbf{B}`) above the flanks are done at point composing either a path or a plane above each flank. The flanks are labeled as displayed. Please note, for visual purposes, the extent and resolution of the displayed mesh do not adhere the optimized testing setup outlined before in the :ref:`parameter section <parameters>`.
 
-| Given that the majority of lava flows are located on the flanks of volcanoes, simulating volcanic flanks is a relevant and intuitive starting point for our initial generic modeling setup. While the magnetization direction remains consistent, the dip direction of the surfaces on these flanks varies.
+| Given that the majority of lava flows are located on the flanks of volcanoes, simulating volcanic flanks is a relevant starting point for our initial generic modeling setup. It is expected that each flank produces different anomalies due to the variation in the dip direction of the surfaces, while the magnetization direction remains consistent.
+
 
 .. _bdeg:
 .. figure:: figures/bdegflank.png
@@ -21,7 +22,7 @@ Model setup
 -----------
 | To explore the impact of these variances, a specialized model configuration was devised to conduct flank simulations, as demonstrated in :numref:`fflanksim`. In this model, the undulating nature of flank topography is replicated using a sine function that models the ridges and troughs typical of volcanic landscapes. This wavy pattern, described by :func:`support.topography`, traverses perpendicular across the inclined surface.
 
-| The simulation framework permits the manipulation of several parameters to discern their effects on the magnetic field characteristics. Key variables include the slope of the surface, the amplitude and frequency of the sine function, and the orientation of the sine wave's propagation relative to the Cartesian axes (this angle is variable and contingent on the particular flank being simulated), an example is given in :numref:`bdeg`.
+| The simulation framework permits the manipulation of several parameters to investigate their effects on the magnetic field above the flank simulations. Key variables include the slope of the surface, the amplitude and wavelength of the sine function, and the orientation of the sine wave's propagation relative to the Cartesian axes (this angle is variable and contingent on the particular flank being simulated), an example is given in :numref:`bdeg`.
 
 | For alignment with the :doc:`etna`, the parameters used to define the synthetic topography aim to replicate the ridges and gullies of Mount Etna. Based on the analysis of aerial imagery and DEMs of the area around the field sites of :cite:`Meyer23`, an amplitude of :math:`4m`, a wavelength of :math:`25m`, and an angle of inclination for the slope of :math:`6 ^{\circ}` were found to be representative values.
 
@@ -38,7 +39,7 @@ Results
 
    Three subplots depicting the intensity [:math:`\mu T`], inclination [:math:`^{\circ}`] and declination [:math:`^{\circ}`] of the computed magnetic field **B** superimposed on the IGRF derived from flank simulations.
 
-| In Figure :numref:`flanksim_plot` the results of the flank simulations done for Mt. Etna are presented, where each flank reveals a unique pattern. Despite these differences, there is a notable similarity in the trends of flanks that are geographically opposite, such as the north and south flanks. The north flank, characterized by a slope that descends in the same direction as the magnetization inclination, exhibits significantly larger anomalies in comparison to the south flank, where the slope direction differs. Conversely, the differences between the east and west flanks are minimal.
+| In :numref:`flanksim_plot` the results of the flank simulations done for Mt. Etna are presented, where each flank reveals a unique pattern. Despite these differences, there is a notable similarity in the trends of flanks that are geographically opposite, such as the north and south flanks. The north flank, characterized by a slope that descends in the same direction as the magnetization inclination, exhibits significantly larger anomalies in comparison to the south flank, where the slope direction differs. Conversely, the differences between the east and west flanks are minimal.
 
 | Notably, for the north and south flanks, there exists an inverse relationship between inclination and intensity deviations, a phenomenon absent in east-west comparisons. However, for the east and west flanks peaks appear misaligned, either "lagged" in inclination or "premature" in intensity relative to their north-south counterparts and the topography. For the east and west flanks, declination deviations are not only contrasting in sign, which seems intuitively accurate given the major magnetized body alignment due to the slope, but also exhibit a temporal shift.
 
@@ -62,7 +63,7 @@ Results
 .. figure:: figures/flanksim_comp_mp_zt.png
    :scale: 50%
 
-   Three subplots depicting the components of the computed magnetic field **B** [:math:`\micro\tesla`] superimposed on the IGRF derived from flank simulations.
+   Three subplots depicting the components of the computed magnetic field **B** [:math:`\mu T`] superimposed on the IGRF derived from flank simulations.
 
 | Diving deeper into individual magnetic field components reveals more nuances. For the :math:`B_x` and  :math:`B_y` components, :numref:`flanksim_comp` indicates that the largest deviations are situated on flanks where topographic ridges and gullies align parallel to the component.
 
@@ -70,7 +71,7 @@ Discussion
 ----------
 .. _flanksim_dec_lines:
 .. figure:: figures/flanksimDc_zt_lines.png
-   :scale: 70%
+   :scale: 60%
 
    Declination of the flank simulation, the vertical grey lines signify points where most of the declination deflection should cancel out.
 

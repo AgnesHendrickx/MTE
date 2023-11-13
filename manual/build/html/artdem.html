@@ -73,10 +73,13 @@
 <li class="toctree-l1"><a class="reference internal" href="app1.html">Complete derivation of the equations</a></li>
 </ul>
 
+   <p class="caption">
+    <span class="caption-text">Indices</span>
+   </p>
    <ul>
-        <li class="toctree-l1"><a href= "genindex.html"><strong>Index</strong></a></li>
+        <li class="toctree-l1"><a href= "genindex.html"><strong>Full index</strong></a></li>
+        <li class="toctree-l1"><a href= "py-modindex.html"><strong>Modules</strong></a></li>
    </ul>
-
 
         </div>
       </div>
@@ -112,10 +115,10 @@
 <div class="line">The generation of an artificial DEM is facilitated by the diamond-square algorithm. This algorithm initiates by segmenting the map into a square with predefined corner values and randomly displacing the midpoint within a range determined by the roughness <a class="footnote-reference brackets" href="#id6" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. Next, these midpoints become the corners of diamond shapes, and their midpoint, too, are adjusted vertically by random amounts proportional to the current level of roughness. This step establishes the foundational relief. With each iteration, the grid is refined by halving the <code class="docutils literal notranslate"><span class="pre">stepsize</span></code>, effectively quadrupling the number of squares, while concurrently scaling down the roughness factor, which can be moderated linearly or exponentially. This iterative refinement continues until the <code class="docutils literal notranslate"><span class="pre">stepsize</span></code> reaches two, at which point the artificial DEM’s elevations are fully determined.</div>
 </div>
 <div class="line-block">
-<div class="line">Subsequently, the DEM undergoes a smoothing process via a Gaussian filter. An additional feature implemented in this method allows for the integration of two successive executions of the <code class="xref py py-func docutils literal notranslate"><span class="pre">art_DEM.generate_fractal_map()</span></code> function, facilitating the overlay of coarser topographic features with finer details. To mimic the typical slopes found in volcanic regions, a routine has been crafted to impose a incline across the fractal map. Precision within the DEM is optimized by limiting elevation values to two decimal places, which is sufficient for representing the terrain while significantly reducing the DEM’s file size. The finalized DEM is then exported to an ASCII file using <code class="xref py py-func docutils literal notranslate"><span class="pre">art_DEM.write_dem_to_ascii()</span></code>, including essential metadata in the file header.</div>
+<div class="line">Subsequently, the DEM undergoes a smoothing process via a Gaussian filter. An additional feature implemented in this method allows for the integration of two successive executions of the <a class="reference internal" href="functions.html#art_DEM.generate_fractal_map" title="art_DEM.generate_fractal_map"><code class="xref py py-func docutils literal notranslate"><span class="pre">art_DEM.generate_fractal_map()</span></code></a> function, facilitating the overlay of coarser topographic features with finer details. To mimic the typical slopes found in volcanic regions, a routine has been crafted to impose a incline across the fractal map. Precision within the DEM is optimized by limiting elevation values to two decimal places, which is sufficient for representing the terrain while significantly reducing the DEM’s file size. The finalized DEM is then exported to an ASCII file using <a class="reference internal" href="functions.html#art_DEM.write_dem_to_ascii" title="art_DEM.write_dem_to_ascii"><code class="xref py py-func docutils literal notranslate"><span class="pre">art_DEM.write_dem_to_ascii()</span></code></a>, including essential metadata in the file header.</div>
 </div>
 <div class="line-block">
-<div class="line">The final step involves plotting a trajectory through the <code class="xref py py-func docutils literal notranslate"><span class="pre">art_DEM.generate_pathfile`()</span></code> function, which calculates xy-coordinates for a series of observational points situated approximately at the center of the domain.</div>
+<div class="line">The final step involves plotting a trajectory through the <a class="reference internal" href="functions.html#art_DEM.generate_pathfile" title="art_DEM.generate_pathfile"><code class="xref py py-func docutils literal notranslate"><span class="pre">art_DEM.generate_pathfile()</span></code></a> function, which calculates xy-coordinates for a series of observational points situated approximately at the center of the domain.</div>
 </div>
 <div class="line-block">
 <div class="line">It should be noted that the flat bottom method results in varied depths throughout the domain, influenced by the topography’s extent and slope. Such variability complicates the subtraction of a zero topography domain, which should ideally have a consistent thickness corresponding to the area beneath the central observation path. In our approach with topography from a DEM, this thickness is computed from the average path height and minimum height of the DEM topography. However, using this technique that may not be universally valid. It is only effective if the observation path is located in the middle of the domain and orientated perpendicular to the slope. Additionally, it presupposes that the area’s slope (within the entire spatial extent of the domain) dominates over the local topographical variations along the path.</div>

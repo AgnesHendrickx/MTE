@@ -39,7 +39,25 @@ Artificial DEM
    :members:
    :undoc-members:
    :show-inheritance:
+..
+   Scripts
+   -------
+   .. automodule:: MTE
+      :members:
+      :undoc-members:
+      :show-inheritance:
 
+   .. literalinclude:: ../etna.py
+
+   .. literalinclude:: ../flanksim.py
+
+   .. literalinclude:: ../script_flanksim.sh
+
+   .. literalinclude:: ../script_etna.sh
+
+   .. literalinclude:: ../script_etna_full.sh
+
+   .. literalinclude:: ../script_art_DEM.sh
 
 .. rubric:: Footnotes
 
