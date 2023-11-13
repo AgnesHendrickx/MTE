@@ -114,9 +114,9 @@
 <div class="line">The main body of the code is in <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code>, where you can configure the model setup for various benchmarks and modify meshing, among other tasks. It relies on three modules that consist of various functions:</div>
 </div>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">magnetostatics.py</span></code>: This module mainly involves the translation of the original Fortran77 code from <span id="id2">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>]</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tools.py</span></code>: This module contains functions to generate vtu files for visualization.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">support.py</span></code>: This module houses several functions related to specific model setups.</p></li>
+<li><p><a class="reference internal" href="functions.html#module-magnetostatics" title="magnetostatics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">magnetostatics</span></code></a>: This module mainly involves the translation of the original Fortran77 code from <span id="id2">[<a class="reference internal" href="ref.html#id16" title="Richard J. Blakely. Potential Theory in Gravity and Magnetic Applications. Cambridge University Press, 1995. doi:10.1017/CBO9780511549816.006.">Blakely, 1995</a>]</span>.</p></li>
+<li><p><a class="reference internal" href="functions.html#module-tools" title="tools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code></a>: This module contains functions to generate vtu files for visualization.</p></li>
+<li><p><a class="reference internal" href="functions.html#module-support" title="support"><code class="xref py py-mod docutils literal notranslate"><span class="pre">support</span></code></a>: This module houses several functions related to specific model setups.</p></li>
 </ol>
 <div class="line-block">
 <div class="line">The script <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> performs a straightforward task: it executes the <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code> code, generating output both in the terminal and writing it in a file named <code class="docutils literal notranslate"><span class="pre">log.txt</span></code>.</div>
@@ -126,7 +126,9 @@
 <section id="reproducing-results">
 <h2>Reproducing results<a class="headerlink" href="#reproducing-results" title="Link to this heading"></a></h2>
 <div class="line-block">
-<div class="line">Throughout this documentation, we provide a stepwise approach to reproduce the results. These steps can be found in collapsible subsections at the end of each respective section. Each step will contain one or more code blocks detailing the required commands or changes.</div>
+<div class="line">Throughout this documentation, we provide a <strong>stepwise approach</strong> to reproduce the results. These steps can be found in <strong>collapsible subsections</strong> at the end of each respective section. Each step will contain one or more code blocks detailing the required commands or changes.</div>
+</div>
+<div class="line-block">
 <div class="line">Code blocks are preceded by captions that specify the location or context of the provided code. This caption might refer to a particular file in the MTE library, such as:</div>
 </div>
 <div class="literal-block-wrapper docutils container">
@@ -140,7 +142,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Highlighted lines are changes from the last setup outlined in previous steps or sections, if any preceding steps or section were not performed,make sure to check all lines for changes to the base code <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<p>Highlighted lines are changes from the last setup outlined in previous steps or sections, if any preceding steps or section were not performed, make sure to check all lines for changes to the base code <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 </div>
 <div class="line-block">
 <div class="line">Alternatively, the caption might indicate a terminal (or Spyder console <a class="footnote-reference brackets" href="#id7" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>) command executed within a certain directory:</div>
@@ -187,16 +189,17 @@
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">Please make sure to read any notes, as they highlight important steps that may be different from the standard procedures.</div>
+<div class="line"><br /></div>
 </div>
-<div class="line-block">
-<div class="line">Any modifications to the code and accompanying data not mentioned within these steps might produce unverified results. Should you make such alterations, please meticulously reviews all comments in the code and consult the <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a> documentation.</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any modifications to the code and accompanying data not mentioned within these steps might produce unverified results. Should you make such alterations, please meticulously reviews all comments in the code and consult the <a class="reference internal" href="functions.html"><span class="doc">Functions</span></a> documentation.</p>
 </div>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id6" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
-<p>The base code is how the version of the code</p>
+<p>The base code is the version of <code class="docutils literal notranslate"><span class="pre">MTE.py</span></code> on github.</p>
 </aside>
 <aside class="footnote brackets" id="id7" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>

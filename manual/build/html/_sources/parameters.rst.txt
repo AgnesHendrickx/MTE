@@ -656,7 +656,7 @@ Challenges in Setup Optimization
 
    Three subplots depicting the components of the computed magnetic field **B** for the depth experiments. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz). Please note, the y-axis varies between each subplot.
 
-| Significantly, when offsetting the computed values at the observation points for a flat-terrain model with matching dimensions from those of the topographic model, the discrepancies nearly converge into a single solution, as illustrated in :numref:`topo_zt_fb_comp`. The residual minor fluctuations in the :math:`B_x` components across various domain sizes may stem from the incline of the topographic model. In consideration that this method essentially involves subtracting a rectangular prism from the simulation of the southern slope, which ascends northward, see :numref:`vis_flanksim_zt`.
+| Furthermore, by adjusting the computed values at the observation points for the topographic model with computed values for a flat-terrain model with matching dimensions, the discrepancies nearly converge into a single solution, as illustrated in :numref:`topo_zt_fb_comp`. The residual minor fluctuations in the :math:`B_x` components across various domain sizes may stem from the incline of the topographic model. In consideration that this method essentially involves subtracting a rectangular prism from the simulation of the southern slope, which ascends northward, see :numref:`vis_flanksim_zt`.
 
 .. _topo_zt_fb_sloped:
 .. figure:: figures/topo_zt_fb_sloped.png
@@ -665,7 +665,7 @@ Challenges in Setup Optimization
    Three subplots depicting the components of the computed magnetic field **B** for the depth experiments. The numbers in the key relate to the length of each side of the domain (Lx_Ly_Lz). Please note, the y-axis varies between each subplot.
 
 
-As evidenced in :numref:`topo_zt_fb_sloped`, removing a sloped "flat"-terrain model from the calculations causes the solutions for all domain sizes to merge into a single solution, which also, unfortunately, removes the slope's effect from the output. This removal is counterproductive since lava flows predominantly settle on volcanic slopes.
+| As evidenced in :numref:`topo_zt_fb_sloped`, removing a sloped "flat"-terrain model from the calculations causes the solutions for all domain sizes to merge into a single solution, which also, unfortunately, removes the slope's effect from the output. This removal is counterproductive since lava flows predominantly settle on volcanic slopes.
 
 | Therefore, and again highlighting that these anomalies are small compared to the topographic anomalies being studies, it is recommended for more complex domain configurations to remove flat-terrain model's results to cancel out any effects of the domain size on the findings. Future investigation should also meticulously evaluate the role of both the depth and the spatial extent of the domain. It is important to note that the flat-terrain domain, chosen for subtraction, was configured with a vertical span equal to the depth of the domain underneath the observation path, aligning with elements that most significantly affect the final calculations.
 
