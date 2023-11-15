@@ -688,42 +688,42 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
     elif site == 5 and path == 2 and ho == 1:
        pathfile = "sites/5-2-1.txt"
        print("reading from 5-2-1")
-       npath = 31
+       npath = 30
        zpath_height = 0.25
     elif site == 5 and path == 2 and ho == 2:
        pathfile = "sites/5-2-2.txt"
        print("reading from 5-2-2")
-       npath = 31
+       npath = 30
        zpath_height = 0.75
     elif site == 5 and path == 2 and ho == 3:
        pathfile = "sites/5-2-3.txt"
        print("reading from 5-2-3")
-       npath = 31
+       npath = 30
        zpath_height = 1.25
     elif site == 5 and path == 2 and ho == 4:
        pathfile = "sites/5-2-4.txt"
        print("reading from 5-2-4")
-       npath = 31
+       npath = 30
        zpath_height = 1.75
     elif site == 5 and path == 3 and ho == 1:
        pathfile = "sites/5-3-1.txt"
        print("reading from 5-3-1")
-       npath = 27
+       npath = 28
        zpath_height = 0.25
     elif site == 5 and path == 3 and ho == 2:
        pathfile = "sites/5-3-2.txt"
        print("reading from 5-3-2")
-       npath = 27
+       npath = 28
        zpath_height = 0.75
     elif site == 5 and path == 3 and ho == 3:
        pathfile = "sites/5-3-3.txt"
        print("reading from 5-3-3")
-       npath = 27
+       npath = 28
        zpath_height = 1.25
     elif site == 5 and path == 3 and ho == 4:
        pathfile = "sites/5-3-4.txt"
        print("reading from 5-3-4")
-       npath = 27
+       npath = 28
        zpath_height = 1.75
     elif site == 6:
        pathfile = "sites/6-1-1.txt"

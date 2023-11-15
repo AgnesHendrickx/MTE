@@ -93,7 +93,7 @@ Reproduce
 ---------
 | A dedicated module, ``flanksim.py``, has been integrated into the codebase for executing full simulations across all flanks. To activate this module, uncomment the corresponding line in the ``MTE.py`` file (see steps below). Additionally, the ``script_flanksim.sh`` shell script has been crafted to automate the execution and organization of output data, directing it into the correct subdirectory [#]_ for each flank simulation.
 
-.. collapse:: **Steps to reproduce the results and figures**
+.. collapse:: Steps to reproduce the results and figures
 
    Please note basic setup in :ref:`installation`
 

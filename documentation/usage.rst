@@ -35,7 +35,7 @@ Reproducing results
    :linenos:
 
 
-| In such cases, the line numbers in the code block correspond directly to the line numbers in the specified file. Changes or additions to the base version are highlighted for ease of reference, for repeated changes more concise code blocks side by side are used.
+| In such cases, the line numbers in the code block correspond directly to the line numbers in the specified file. Changes or additions to the base version are highlighted for ease of reference.
 
 .. note::
    Highlighted lines are changes from the last setup outlined in previous steps or sections, if any preceding steps or section were not performed, make sure to check all lines for changes to the base code [#]_.
@@ -46,8 +46,9 @@ Reproducing results
    :caption: **/main/** (runtime: ~10 s)
 
 | In steps were computation time is expected to be significant, an estimate of the computation time is stated in the caption [#]_.
-| Regarding data visualization, for the benchmarks we supply scripts for two different plotting tools: gnuplot and matplotlib. While both scripts are designed to generate similar outputs, it is worth noting that gnuplot was our primary tool for this project. As such, the plots it produces are considered the most accurate visual representation of our data. When encountering two code blocks placed side by side, this denotes a choices. Either the flexibility to use your preferred plotting tool, or multiple changes to the base version of the model for different repeated setups for testing.
 
+| If testing required several changes to the same file, more concise code blocks side by side are used. So, when encountering two code blocks placed side by side **in the model setup steps**, this denotes multiple runs with different setups, each subsequent code block listed only once within that step should be performed repeatedly for all setups.
+| Any changes from the previous step are again highlighted for ease of reference.
 +----------------------------------+-----------------------------------+
 |.. code-block::                   |.. code-block::                    |
 |   :caption: **/main/benchmarks/**|   :caption: **/main/benchmarks/** |
@@ -55,7 +56,9 @@ Reproducing results
 |                                  |                                   |
 +----------------------------------+-----------------------------------+
 
-| In instances where specific commands are executed repeatedly, a single caption will precede all such repetitive steps:
+| Regarding data visualization, for the benchmarks we supply scripts for two different plotting tools: gnuplot and matplotlib. While both scripts are designed to generate similar outputs, it is worth noting that gnuplot was our primary tool for this project. As such, the plots it produces are considered the most accurate visual representation of our data. When encountering two code blocks placed side by side **in the plotting steps**, this denotes a choice to use your preferred plotting tool.
+
+| In instances where specific commands are executed multiple times consecutively, a single caption will precede all such repetitive steps:
 
 .. code-block::
    :caption: **/main/**

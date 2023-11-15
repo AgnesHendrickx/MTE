@@ -1,9 +1,9 @@
 #! /bin/bash
 
 # Define the name of the folder here
-folder_name="250_250_20_fb_180"
+folder_name="250_250_20_fb_ztr_paraguay"
 
-for subbenchs in 1 2 3 4; do
+for subbenchs in 1 ; do
     echo '********************************************************'
     echo subbenchs= $subbenchs
 

@@ -47,7 +47,7 @@ Reproduce
 ---------
 | The ``script_art_DEM.sh`` shell script has been crafted to automate the execution and organization of output data, directing it into the correct subdirectory for a run using the artificial DEM generating module ``art_DEM.py``. Please make sure any modifications of the
 
-.. collapse:: **Steps to reproduce the results and figures**
+.. collapse:: Steps to reproduce the results and figures
 
    Please note basic setup in :ref:`installation`
 
@@ -269,7 +269,7 @@ Results and analyses
 Reproduce
 ^^^^^^^^^
 
-.. collapse:: **Steps to reproduce the results and figures**
+.. collapse:: Steps to reproduce the results and figures
 
    Please note basic setup in :ref:`installation`
 
