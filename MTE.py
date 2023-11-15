@@ -42,7 +42,7 @@ start_fullrun = time.time()
 ###################################################################################################
 ###################################################################################################+
 
-benchmark = '-1'
+benchmark = '5'
 
 compute_vi = False  # possible for all setups apart from DEM (-1).
 if compute_vi:
@@ -62,7 +62,7 @@ remove_zerotopo = True  # setup run 2 times: 1st time, zero topography setup: xy
 subbench = 'west'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
 
 ## ONLY BENCHMARK = -1 (DEM) ##
-add_noise = True  # if True, noise is added to the DEM after loading in from file.
+add_noise = False  # if True, noise is added to the DEM after loading in from file.
 Nf = 1.5  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
         # on the top/bottom surface. Only relevant if add_noise = True
 art_DEM = False  # if True, path/topo file (+ header) produced by art_DEM.py read in.
@@ -227,6 +227,7 @@ if benchmark == '5':
    #Lx, Ly, Lz = 50, 50, 120
    #nelx, nely, nelz = 10, 10, 10
 
+
    # Synthetic topography settings
    wavelength = 25
    A = 4
@@ -245,7 +246,7 @@ if benchmark == '5':
    plane_x0, plane_y0, plane_z0 = -Lx / 2, -Ly / 2, 1
    plane_Lx, plane_Ly = 2 * Lx, 2 * Ly
 
-   #from flanksim import *
+   from flanksim import *
 
    if subbench == 'east':
       slopex = np.tan(-af / 180 * np.pi)  # added height in x-direction due to angle of flank.
@@ -282,9 +283,17 @@ if benchmark == '5':
    IGRF_E = 1561.2e-9  # IGRF component in East direction.
    IGRF_N = 26850.3e-9  # IGRF component in North direction.
    IGRF_D = 36305.7e-9  # IGRF component in Down direction.
+
    IGRFx = IGRF_N  # Pmag coordinate configuration!
    IGRFy = IGRF_E
    IGRFz = IGRF_D
+
+   IGRFx = 18034.3 * 1e-9  # Asuncion, Paraguay
+   IGRFy = -4873.9 * 1e-9
+   IGRFz = -11904.4 * 1e-9
+   Mx0, My0, Mz0 = 0, 3.1, 6.2
+
+
    IGRFint = np.sqrt(IGRFx**2 + IGRFy**2 + IGRFz**2)  # intensity equation for pmag coord.
    IGRFinc = np.arctan2(IGRFz, np.sqrt(IGRFx**2 + IGRFy**2)) / np.pi * 180  # inclination.
    IGRFdec = np.arctan2(IGRFy, IGRFx) / np.pi * 180  # declination.
