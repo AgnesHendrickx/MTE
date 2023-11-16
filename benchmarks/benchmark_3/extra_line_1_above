@@ -1,2 +1,0 @@
-mkdir benchmarks/benchmark_3/1_above && mv log.txt *.vtu *.ascii benchmarks/benchmark_3/1_above
-

@@ -1,3 +1,0 @@
-For setup of Benchmark see Main code section "Benchmark 1".
-For data labeled "zoom" default setup is modified as follows (rest kept same):
- * Measurement line ends at 2m above surface sphere instead of 100 m.  
