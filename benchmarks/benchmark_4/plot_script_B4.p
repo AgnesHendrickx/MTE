@@ -62,8 +62,8 @@ set grid back xtics ls 12
 set key font "times,14" box lc 'grey60' opaque fc 'grey90' vertical top right height 0.8
 
 set ylabel font "times,14" '{/Symbol D}B_i [{/Symbol m}T]' offset 1,0
-plot loc.'measurements_line.ascii' u 0:($10-$7)*1e6 w lp ls 4 t 'B@_z^{analytical} - B@_z^{computed}'  ,\
-     loc.'measurements_line.ascii' u 0:($11-$8)*1e6 w lp ls 5 t 'B@_z^{analytical} - B@_z^{computed}'  ,\
+plot loc.'measurements_line.ascii' u 0:($10-$7)*1e6 w lp ls 4 t 'B@_x^{analytical} - B@_x^{computed}'  ,\
+     loc.'measurements_line.ascii' u 0:($11-$8)*1e6 w lp ls 5 t 'B@_y^{analytical} - B@_y^{computed}'  ,\
      loc.'measurements_line.ascii' u 0:($12-$9)*1e6 w lp ls 6 t 'B@_z^{analytical} - B@_z^{computed}'  
 
 ##############################
@@ -80,7 +80,7 @@ set style line 6 pt 11 lw 2 ps 0.5 lc "gold"
 set style line 12 lc 'grey80' dt 2 lw 0.5
 
 set key default
-set key font "times,14" box lc 'grey60' opaque fc 'grey90' vertical top right height 0.5
+set key font "times,14" box lc 'grey60' opaque fc 'grey90' vertical top right height 1.5
 
 unset grid
 
@@ -131,9 +131,23 @@ set grid back xtics ls 12
 set key font "times,14" box lc 'grey60' opaque fc 'grey90' vertical top right height 0.8
 
 set ylabel font "times,14" '{/Symbol D}B_i [{/Symbol m}T]' offset 1,0
-plot loc.'measurements_line.ascii' u 0:($10-$7)*1e6 w lp ls 4 t 'B@_z^{analytical} - B@_z^{computed}'  ,\
-     loc.'measurements_line.ascii' u 0:($11-$8)*1e6 w lp ls 5 t 'B@_z^{analytical} - B@_z^{computed}'  ,\
+plot loc.'measurements_line.ascii' u 0:($10-$7)*1e6 w lp ls 4 t 'B@_x^{analytical} - B@_x^{computed}'  ,\
+     loc.'measurements_line.ascii' u 0:($11-$8)*1e6 w lp ls 5 t 'B@_y^{analytical} - B@_y^{computed}'  ,\
      loc.'measurements_line.ascii' u 0:($12-$9)*1e6 w lp ls 6 t 'B@_z^{analytical} - B@_z^{computed}'  
+
+##############################
+
+set output 'B4_dif_rel.eps'
+set autoscale xy
+
+set grid back xtics ls 12
+
+set key font "times,14" box lc 'grey60' opaque fc 'grey90' vertical top right height 2
+
+set ylabel font "times,14" '{/Symbol D}B@_i^rel [%]' offset 1,0
+plot loc.'measurements_line.ascii' u 0:(($10-$7)*1e6/($7*1e6)*100) w l ls 4 t 'B@_x^{analytical} - B@_x^{computed}'  ,\
+     loc.'measurements_line.ascii' u 0:(($11-$8)*1e6/($8*1e6)*100) w l ls 5 t 'B@_y^{analytical} - B@_y^{computed}'  ,\
+     loc.'measurements_line.ascii' u 0:(($12-$9)*1e6/($9*1e6)*100) w l ls 6 t 'B@_z^{analytical} - B@_z^{computed}'  
 
 ##############################
 

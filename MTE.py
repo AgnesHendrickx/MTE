@@ -46,7 +46,7 @@ benchmark = '5'
 
 compute_vi = False  # possible for all setups apart from DEM (-1).
 if compute_vi:
-   nqdim = 6  # number of quadrature points, see documentation.
+   nqdim = 4  # number of quadrature points, see documentation.
 
 ## ONLY BENCHMARK = -1 (DEM) & BENCHMARK = 5 (FLANKSIM) ##
 flat_bottom = True  # if True, a flat bottom is generated at the lower surface of the domain.
@@ -59,7 +59,7 @@ remove_zerotopo = True  # setup run 2 times: 1st time, zero topography setup: xy
                         # if 1st run was done with less el (and cuboid function), yet to be done.
 
 ## ONLY BENCHMARK = 5 (FLANKSIM) ##
-subbench = 'west'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
+subbench = 'south'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
 
 ## ONLY BENCHMARK = -1 (DEM) ##
 add_noise = False  # if True, noise is added to the DEM after loading in from file.
@@ -222,7 +222,7 @@ if benchmark == '5':
 
    # Domain settings
    Lx, Ly, Lz = 250, 250, 20
-   nelx, nely, nelz = int(Lx * 1.5), int(Ly * 1.5), 10
+   nelx, nely, nelz = int(Lx * 2), int(Ly * 2), 10
    Mx0, My0, Mz0 = 0, 4.085, -6.29
    #Lx, Ly, Lz = 50, 50, 120
    #nelx, nely, nelz = 10, 10, 10
@@ -238,7 +238,7 @@ if benchmark == '5':
    line_nmeas = 47
    xstart, xend = 0.23 + ((Lx - 50) / 2), 49.19 + ((Ly - 50) / 2)
    ystart, yend = Ly / 2 - 0.221, Ly / 2 - 0.221
-   zstart, zend = 1.8, 1.8  # 1m above surface.
+   zstart, zend = 0.25, 0.25  # 1m above surface.
 
    # Plane measurement settings
    do_plane_measurements = False
@@ -246,7 +246,7 @@ if benchmark == '5':
    plane_x0, plane_y0, plane_z0 = -Lx / 2, -Ly / 2, 1
    plane_Lx, plane_Ly = 2 * Lx, 2 * Ly
 
-   from flanksim import *
+   #from flanksim import *
 
    if subbench == 'east':
       slopex = np.tan(-af / 180 * np.pi)  # added height in x-direction due to angle of flank.
@@ -288,10 +288,10 @@ if benchmark == '5':
    IGRFy = IGRF_E
    IGRFz = IGRF_D
 
-   IGRFx = 18034.3 * 1e-9  # Asuncion, Paraguay
-   IGRFy = -4873.9 * 1e-9
-   IGRFz = -11904.4 * 1e-9
-   Mx0, My0, Mz0 = 0, 3.1, 6.2
+   #IGRFx = 18034.3 * 1e-9  # Asuncion, Paraguay
+   #IGRFy = -4873.9 * 1e-9
+   #IGRFz = -11904.4 * 1e-9
+   #Mx0, My0, Mz0 = 0, 3.1, 6.2
 
 
    IGRFint = np.sqrt(IGRFx**2 + IGRFy**2 + IGRFz**2)  # intensity equation for pmag coord.
@@ -940,7 +940,7 @@ if do_line_measurements:
        if benchmark != '1' and benchmark != '2a':  # both use surface_int_cuboid not _wtopo.
           xm, ym, message = shift_observation_points_edge(x, y, Lx, Ly, nelx, nely, nelz, xm, ym)
           if not message == "No observation points were shifted.":
-             print(counter, message)
+             print(i, message)
 
        x_meas[i] = xm
        y_meas[i] = ym

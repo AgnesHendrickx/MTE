@@ -596,8 +596,8 @@ Benchmark 4: a prismatic body
 
 Analytical solution
 ^^^^^^^^^^^^^^^^^^^
-| In this benchmark, rather than relying on theoretically derived analytical solutions for specific scenarios, we will assess our model against the numerical outcomes of another study presenting a (similar) closed-form analytical solution for a homogeneous polyhedral magnetic target :cite:`Ren19`. The findings of this study have been corroborated against :cite:`Heath05` using a prismatic body model setup. Their paper only presented results for the gradient tensor components. However, it also involved calculations for the magnetic field components.
-| Fortunately, full access to the original code and the magnetic field strengths datasets is provided, (`github <https://github.com/renzhengyong-geo/Magnetic_homogeneous_polyhedron/tree/master/>`_), enabling us to perform the comparison for this numerical configuration.
+| In this benchmark, rather than relying on theoretically derived analytical solutions for specific scenarios, we will assess our model against the numerical outcomes of another study presenting a (similar) closed-form analytical solution for a homogeneous polyhedral magnetic target :cite:`Ren17,Ren19`. The findings of this study have been corroborated against :cite:`Heath05` using a prismatic body model setup. Their paper only presented results for the gradient tensor components. However, it also involved calculations for the magnetic field components.
+| Fortunately, full access to the original code and the magnetic field strengths dataset is provided, (`github <https://github.com/renzhengyong-geo/Magnetic_homogeneous_polyhedron/tree/master/>`_), enabling us to perform the comparison for this numerical configuration.
 
 Model setup
 ^^^^^^^^^^^
@@ -615,7 +615,7 @@ Results
 .. figure:: figures/B4.png
    :scale: 65%
 
-   Comparison of magnetic field components :math:`\mathbf{B_x}`, :math:`\mathbf{B_y}`, :math:`\mathbf{B_z}` for the prismatic body. As observation site location are displaced from :cite:`Ren17`, the x-axis now refers to index relating to the observation point rather than distance. The computed values of our study match those of :cite:`Ren17`, down to machine precision.
+   Comparison of magnetic field components :math:`\mathbf{B_x}`, :math:`\mathbf{B_y}`, :math:`\mathbf{B_z}` for the prismatic body. As observation site location are displaced from :cite:`Ren17`, the x-axis now refers to index relating to the observation point rather than distance. The computed values of our study match those of :cite:`Ren19`, down to machine precision.
 
 | :numref:`B4` shows a near-perfect alignment of the two numerical outputs, down to machine precision. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in :cite:`Ren17`.
 
