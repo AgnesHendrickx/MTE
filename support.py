@@ -269,6 +269,7 @@ def shift_observation_points_edge(x, y, Lx, Ly, nelx, nely, nelz, xm, ym):
                     ):
                         xm += random.uniform(-1, +1) * eps
                         ym += random.uniform(-1, +1) * eps
+                        #xm += eps
                         message += f"x-coordinate was shifted by {eps} meters, due \
                             to diagonal alignment."
                         break  # exiting the k loop if condition is met,

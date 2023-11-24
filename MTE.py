@@ -42,7 +42,7 @@ start_fullrun = time.time()
 ###################################################################################################
 ###################################################################################################+
 
-benchmark = '5'
+benchmark = '-1'
 
 compute_vi = False  # possible for all setups apart from DEM (-1).
 if compute_vi:
@@ -222,7 +222,7 @@ if benchmark == '5':
 
    # Domain settings
    Lx, Ly, Lz = 250, 250, 20
-   nelx, nely, nelz = int(Lx * 2), int(Ly * 2), 10
+   nelx, nely, nelz = int(Lx * 4), int(Ly * 4), 10
    Mx0, My0, Mz0 = 0, 4.085, -6.29
    #Lx, Ly, Lz = 50, 50, 120
    #nelx, nely, nelz = 10, 10, 10
@@ -238,7 +238,7 @@ if benchmark == '5':
    line_nmeas = 47
    xstart, xend = 0.23 + ((Lx - 50) / 2), 49.19 + ((Ly - 50) / 2)
    ystart, yend = Ly / 2 - 0.221, Ly / 2 - 0.221
-   zstart, zend = 0.25, 0.25  # 1m above surface.
+   zstart, zend = 1, 1  # 1m above surface.
 
    # Plane measurement settings
    do_plane_measurements = False
@@ -358,7 +358,9 @@ if benchmark == '-1':
       from etna import *
       #Mx0, My0, Mz0 = 0, 0.545, -0.839
       #Mx0, My0, Mz0 = 0, 4.085, -6.290
-      Mx0, My0, Mz0 = 0, 7.080, -10.903
+      
+      #Mx0, My0, Mz0 = 0.2590, 4.4505, -6.0313
+      #Mx0, My0, Mz0 = 0, 7.080, -10.903
       #Mx0, My0, Mz0 = 0, 10.893, -16.773
 
 
@@ -1206,8 +1208,8 @@ if do_path_measurements:
    linefile1.write("# data, Mean, stDEV, min In_siB0, max In_siB0, minus (from mean), maxus,\
                    minus (from IGRF), maxus  \n")
 ## INT ##
-   MeanIn = np.mean(In_siB0)
-   StdevIn = np.std(In_siB0)
+   MeanIn = np.nanmean(In_siB0)
+   StdevIn = np.nanstd(In_siB0, ddof=1)
    linefile1.write("int %e %e %e %e %e %e %e %e \n" %(MeanIn * 1e6, StdevIn * 1e6,\
                                                  min(In_siB0) * 1e6, max(In_siB0) * 1e6,\
                                                  (min(In_siB0) - MeanIn) * 1e6,\
@@ -1217,8 +1219,8 @@ if do_path_measurements:
    print('Mean Int IGRF added=', MeanIn)
    print('stDEV Int IGRF added=', StdevIn)
 ## INC ##
-   MeanIc = np.mean(Ic_siB0)
-   StdevIc = np.std(Ic_siB0)
+   MeanIc = np.nanmean(Ic_siB0)
+   StdevIc = np.nanstd(Ic_siB0, ddof=1)
    linefile1.write("inc %e %e %e %e %e %e %e %e \n" %(MeanIc, StdevIc,\
                                                  min(Ic_siB0), max(Ic_siB0),\
                                                  min(Ic_siB0) - MeanIc, max(Ic_siB0) - MeanIc,\
@@ -1226,8 +1228,8 @@ if do_path_measurements:
    print('Mean Inc IGRF added=', MeanIc)
    print('stDEV Inc IGRF added=', StdevIc)
 ## DEC ##
-   MeanDc = np.mean(Dc_siB0)
-   StdevDc = np.std(Dc_siB0)
+   MeanDc = np.nanmean(Dc_siB0)
+   StdevDc = np.nanstd(Dc_siB0, ddof=1)
    linefile1.write("dec %e %e %e %e %e %e %e %e \n" %(MeanDc, StdevDc,\
                                                  min(Dc_siB0), max(Dc_siB0),\
                                                  min(Dc_siB0) - MeanDc, max(Dc_siB0) - MeanDc,\

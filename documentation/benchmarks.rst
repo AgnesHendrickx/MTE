@@ -615,9 +615,24 @@ Results
 .. figure:: figures/B4.png
    :scale: 65%
 
-   Comparison of magnetic field components :math:`\mathbf{B_x}`, :math:`\mathbf{B_y}`, :math:`\mathbf{B_z}` for the prismatic body. As observation site location are displaced from :cite:`Ren17`, the x-axis now refers to index relating to the observation point rather than distance. The computed values of our study match those of :cite:`Ren19`, down to machine precision.
+   Comparison of magnetic field components :math:`\mathbf{B_x}`, :math:`\mathbf{B_y}`, :math:`\mathbf{B_z}` for the prismatic body. As observation site location are displaced from :cite:`Ren17`, the x-axis now refers to index relating to the observation point rather than distance. The computed values of our study match those of :cite:`Ren19`.
 
-| :numref:`B4` shows a near-perfect alignment of the two numerical outputs, down to machine precision. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in :cite:`Ren17`.
+| :numref:`B4` shows a near-perfect alignment of the two numerical outputs. This observation underscores that either approach is viable. One can either utilize an analytical solution, acknowledging the instability at the domain edges and minimally adjusting observation points or adopt numerically stable solutions tailored for logarithmic singularities as highlighted in :cite:`Ren17`.
+
+Discussion
+^^^^^^^^^^
+
+.. _B4_dif:
+.. figure:: figures/B4_dif.png
+   :scale: 65%
+
+   Comparison of magnetic field components :math:`\mathbf{B_x}`, :math:`\mathbf{B_y}`, :math:`\mathbf{B_z}` for the prismatic body. As observation site location are displaced from :cite:`Ren17`, the x-axis now refers to index relating to the observation point rather than distance. The differences are small compared to the absolute values depicted in the previous graph.
+
+| When reproducing the benchmark's results, discrepancies may arise between the computed values from our model and the numerical results from :cite:`Ren19`, as shown in :numref:`B4_dif`. These discrepancies mainly stem from our method of handling observation points at singularities. Our code shifts problematic observation points by introducing a small, random artificial distance to allow computation (see :doc:`computational_approach`). As a result, when observation points fall at these singularities, the comparison between our model's results and Ren's numerical solutions can show notable and variable deviations in each run.
+
+| While such variations might initially seem to indicate instability in our method, it is important to consider the specific aims of Ren's numerical benchmark. Ren's work was specifically designed to test observation points at singularities, presenting a code with significant advancement over previous methods. In the context of our study, however, such singularities are seldom encountered in practice. Our observation points are usually derived from real field measurements or are selected for synthetic topography simulations. Therefore, despite potential variability in these particular cases, our method remains stable and effective for the types of applications and scenarios we focus on.
+
+| Most significantly, it is worth noting that these discrepancies are relatively minor when compared to the absolute values, as can be observed in :numref:`B4`. This underscores the overall reliability and applicability of our approach in a broad range of practical scenarios, despite the occasional variations encountered under specific conditions.
 
 Reproduce
 ^^^^^^^^^
@@ -695,5 +710,9 @@ Reproduce
       |                                              |                                              |
       |   gnuplot plot_script_B4.p                   |   python3 plot_script_B4.py                  |
       +----------------------------------------------+----------------------------------------------+
+
+      .. note::
+         If the resulted difference is unsatisfactory, see discussion section and repeat run to randomly generate new observation point for the model.
+
 
 
