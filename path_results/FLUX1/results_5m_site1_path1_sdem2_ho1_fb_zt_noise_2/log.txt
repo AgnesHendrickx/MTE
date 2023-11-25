@@ -1,0 +1,380 @@
+========================================
+=             ETNA project             =
+========================================
+reference field and IGRF site 1
+IGRF Int =  4.515489709577467e-05
+IGRF Inc =  53.38395555303272
+IGRF Dec =  3.320776046762466
+reading from 5x5 DEM site 1 300
+reading from 1-1-1
+========================================
+benchmark= -1
+Lx,Ly,Lz= 275 260 20
+nelx,nely,nelz= 55 52 10
+nnx,nny,nnz= 56 53 11
+nel= 28600
+Mx,My,Mz= 0 4.085 -6.29
+do_plane_measurements= False
+do_line_measurements= False
+do_spiral_measurements= False
+do_path_measurements= True
+site= 1
+path= 1
+resolution DEM= 5
+size cut DEM= 2
+height path= 1 1
+npts path= 39
+IGRFx= 2.68874e-05
+IGRFy= 1.5601e-06
+IGRFz= 3.62436e-05
+magnetization (Mx,My,Mz) 0 4.085 -6.29
+noise added to DEM with a noise factor of: 2
+Zero topography removed from final results.
+========================================
+grid points setup: 0.064 s
+grid connectivity setup: 0.078 s
+header was not found, no values read in
+add in topofile ok
+adding DEM topography to domain: 5.439 s
+sites/1-1-1.txt counts  39  lines
+39
+39
+creating path points above DEM: 0.227 s
+adjusting zero topo solution for DEM: 10.191 s
+xpath (min/max): 501701.9061 501743.9998
+ypath (min/max): 4171113.212 4171149.367
+zpath (min/max): 1614.0593163280614 1619.0872522256307
+prescribe M vector in domain: 0.639 s
+========================================
+========================================
+========================================
+starting path measurement ...
+starting path measurement for zerotopo ...
+zerotopo: doing 1 out of  39
+surf int: 5.924 s
+Obs point number= 1 Bx (North)= -4.5397209583623345e-07 By= 9.028994982003675e-08 Bz= 1.446375889503432e-06
+Intensity Path: 1.5186329881091387e-06 Inclination Path: 72.2544817741268 Declination Path: 168.75130081248832
+zerotopo: doing 2 out of  39
+surf int: 0.732 s
+Obs point number= 2 Bx (North)= -4.5728296809921815e-07 By= 8.86258682072209e-08 Bz= 1.442994424687205e-06
+Intensity Path: 1.5163097200464923e-06 Inclination Path: 72.11015521348077 Declination Path: 169.03150735601906
+zerotopo: doing 3 out of  39
+surf int: 0.730 s
+Obs point number= 3 Bx (North)= -4.6173085438348206e-07 By= 9.131562971727271e-08 Bz= 1.4418730131516665e-06
+Intensity Path: 1.5167503789930064e-06 Inclination Path: 71.92164555120999 Declination Path: 168.8130806693629
+zerotopo: doing 4 out of  39
+surf int: 0.713 s
+Obs point number= 4 Bx (North)= -4.6173085438348206e-07 By= 9.131562971727271e-08 Bz= 1.4418730131516665e-06
+Intensity Path: 1.5167503789930064e-06 Inclination Path: 71.92164555120999 Declination Path: 168.8130806693629
+zerotopo: doing 5 out of  39
+surf int: 0.714 s
+Obs point number= 5 Bx (North)= -4.642015665498506e-07 By= 8.659199392431975e-08 Bz= 1.437455947490845e-06
+Intensity Path: 1.5130303595023887e-06 Inclination Path: 71.81448103989467 Declination Path: 169.4335096754898
+zerotopo: doing 6 out of  39
+surf int: 0.723 s
+Obs point number= 6 Bx (North)= -4.6719408540595434e-07 By= 7.912893018981415e-08 Bz= 1.4311517447319174e-06
+Intensity Path: 1.507556638233039e-06 Inclination Path: 71.68053019792866 Declination Path: 170.38700884588835
+zerotopo: doing 7 out of  39
+surf int: 0.719 s
+Obs point number= 7 Bx (North)= -4.708943258699523e-07 By= 7.556416252219357e-08 Bz= 1.4270378901968514e-06
+Intensity Path: 1.5046223941081291e-06 Inclination Path: 71.52027827678356 Declination Path: 170.88349781392105
+zerotopo: doing 8 out of  39
+surf int: 0.721 s
+Obs point number= 8 Bx (North)= -4.745796524684293e-07 By= 7.16315592778381e-08 Bz= 1.4228621336152e-06
+Intensity Path: 1.501630306732529e-06 Inclination Path: 71.35989120104331 Declination Path: 171.41674506380585
+zerotopo: doing 9 out of  39
+surf int: 0.723 s
+Obs point number= 9 Bx (North)= -4.782032967437973e-07 By= 6.661939793267656e-08 Bz= 1.4182173748791494e-06
+Intensity Path: 1.4981512138654945e-06 Inclination Path: 71.19924486479896 Declination Path: 172.06906200077833
+zerotopo: doing 10 out of  39
+surf int: 0.722 s
+Obs point number= 10 Bx (North)= -4.833472507317135e-07 By= 6.150103882504607e-08 Bz= 1.4130719647711642e-06
+Intensity Path: 1.4947171371830538e-06 Inclination Path: 70.97518981795592 Declination Path: 172.74865826360846
+zerotopo: doing 11 out of  39
+surf int: 0.744 s
+Obs point number= 11 Bx (North)= -4.90854576226009e-07 By= 5.795457111869905e-08 Bz= 1.4083121343699771e-06
+Intensity Path: 1.4925280617560554e-06 Inclination Path: 70.66086503783866 Declination Path: 173.2663348213144
+zerotopo: doing 12 out of  39
+surf int: 0.744 s
+Obs point number= 12 Bx (North)= -4.897687029025522e-07 By= 5.028466331172035e-08 Bz= 1.4044178760592465e-06
+Intensity Path: 1.488217558121791e-06 Inclination Path: 70.68099051133487 Declination Path: 174.1379693628962
+zerotopo: doing 13 out of  39
+surf int: 0.726 s
+Obs point number= 13 Bx (North)= -4.899193323147875e-07 By= 4.455676704613563e-08 Bz= 1.401516046535978e-06
+Intensity Path: 1.4853462513377842e-06 Inclination Path: 70.65859246243245 Declination Path: 174.80340834348922
+zerotopo: doing 14 out of  39
+surf int: 0.781 s
+Obs point number= 14 Bx (North)= -4.945687808976394e-07 By= 4.0516603801233605e-08 Bz= 1.3979242173290582e-06
+Intensity Path: 1.4833853146156002e-06 Inclination Path: 70.45650151691922 Declination Path: 175.31661124485987
+zerotopo: doing 15 out of  39
+surf int: 0.811 s
+Obs point number= 15 Bx (North)= -4.977740986617335e-07 By= 3.545218855589632e-08 Bz= 1.394628397564456e-06
+Intensity Path: 1.4812239122648225e-06 Inclination Path: 70.31144527218825 Declination Path: 175.92619085585784
+zerotopo: doing 16 out of  39
+surf int: 0.810 s
+Obs point number= 16 Bx (North)= -4.974321534123398e-07 By= 3.384191581208835e-08 Bz= 1.3941011315741745e-06
+Intensity Path: 1.4805748841482704e-06 Inclination Path: 70.32107522512348 Declination Path: 176.10798045803574
+zerotopo: doing 17 out of  39
+surf int: 0.795 s
+Obs point number= 17 Bx (North)= -4.973720972169511e-07 By= 3.0119798082559973e-08 Bz= 1.3927385484908423e-06
+Intensity Path: 1.479191289109999e-06 Inclination Path: 70.31419815852797 Declination Path: 176.53452138649436
+zerotopo: doing 18 out of  39
+surf int: 0.883 s
+Obs point number= 18 Bx (North)= -5.032703007221846e-07 By= 2.568475476466508e-08 Bz= 1.3892447444468186e-06
+Intensity Path: 1.4778165184451775e-06 Inclination Path: 70.06260695708822 Declination Path: 177.0784042926616
+zerotopo: doing 19 out of  39
+surf int: 0.944 s
+Obs point number= 19 Bx (North)= -5.052433017815244e-07 By= 2.4041962233814765e-08 Bz= 1.3881157063506175e-06
+Intensity Path: 1.4774011046971714e-06 Inclination Path: 69.9787831963813 Declination Path: 177.27563993826715
+zerotopo: doing 20 out of  39
+surf int: 0.907 s
+Obs point number= 20 Bx (North)= -5.081797572665223e-07 By= 2.1088286599401626e-08 Bz= 1.386385166338616e-06
+Intensity Path: 1.4767380305832555e-06 Inclination Path: 69.85364630284708 Declination Path: 177.62372084405723
+zerotopo: doing 21 out of  39
+surf int: 0.879 s
+Obs point number= 21 Bx (North)= -5.135681958007919e-07 By= 1.7720654775327392e-08 Bz= 1.3840385000535821e-06
+Intensity Path: 1.4763566245911982e-06 Inclination Path: 69.63075402413828 Declination Path: 178.023794929325
+zerotopo: doing 22 out of  39
+surf int: 0.983 s
+Obs point number= 22 Bx (North)= -5.202274027224365e-07 By= 1.658570025078781e-08 Bz= 1.3821813976797887e-06
+Intensity Path: 1.4769350195889442e-06 Inclination Path: 69.36499794077898 Declination Path: 178.17393538830567
+zerotopo: doing 23 out of  39
+surf int: 0.864 s
+Obs point number= 23 Bx (North)= -5.244395980949573e-07 By= 1.7018542843492655e-08 Bz= 1.3814189284037159e-06
+Intensity Path: 1.4777160683306475e-06 Inclination Path: 69.20131086731655 Declination Path: 178.14135198567527
+zerotopo: doing 24 out of  39
+surf int: 0.825 s
+Obs point number= 24 Bx (North)= -5.290593194103915e-07 By= 1.6641879512062508e-08 Bz= 1.3804848847698987e-06
+Intensity Path: 1.4784854523081521e-06 Inclination Path: 69.02161711019195 Declination Path: 178.19832081974235
+zerotopo: doing 25 out of  39
+surf int: 0.748 s
+Obs point number= 25 Bx (North)= -5.309702945647367e-07 By= 1.142390363049929e-08 Bz= 1.379044179785343e-06
+Intensity Path: 1.4777763054955752e-06 Inclination Path: 68.93746304581896 Declination Path: 178.76746307231915
+zerotopo: doing 26 out of  39
+surf int: 0.821 s
+Obs point number= 26 Bx (North)= -5.480716064596131e-07 By= 1.2632420076225809e-08 Bz= 1.3770581544127144e-06
+Intensity Path: 1.4821711184875903e-06 Inclination Path: 68.29212794452776 Declination Path: 178.67963197200004
+zerotopo: doing 27 out of  39
+surf int: 0.791 s
+Obs point number= 27 Bx (North)= -5.55089672518341e-07 By= 9.592375825965995e-09 Bz= 1.3758682775979329e-06
+Intensity Path: 1.4836542978439447e-06 Inclination Path: 68.02557691581484 Declination Path: 179.00998346936416
+zerotopo: doing 28 out of  39
+surf int: 0.867 s
+Obs point number= 28 Bx (North)= -5.618917416770217e-07 By= 6.399841829645736e-09 Bz= 1.3749488147907629e-06
+Intensity Path: 1.4853442465081302e-06 Inclination Path: 67.77064369700722 Declination Path: 179.34744000657736
+zerotopo: doing 29 out of  39
+surf int: 0.868 s
+Obs point number= 29 Bx (North)= -5.630044794804746e-07 By= 4.036804815903589e-09 Bz= 1.3746540797880006e-06
+Intensity Path: 1.4854844929469969e-06 Inclination Path: 67.72739859527637 Declination Path: 179.5891899201319
+zerotopo: doing 30 out of  39
+surf int: 0.779 s
+Obs point number= 30 Bx (North)= -5.651138291930691e-07 By= 2.3750863595912183e-09 Bz= 1.3744401264083575e-06
+Intensity Path: 1.4860837601097359e-06 Inclination Path: 67.64935227439778 Declination Path: 179.75919608384552
+zerotopo: doing 31 out of  39
+surf int: 0.919 s
+Obs point number= 31 Bx (North)= -5.691321044130838e-07 By= 1.5879644910900684e-10 Bz= 1.3742013355512768e-06
+Intensity Path: 1.487393924997978e-06 Inclination Path: 67.50287215124477 Declination Path: 179.98401361295743
+zerotopo: doing 32 out of  39
+surf int: 0.852 s
+Obs point number= 32 Bx (North)= -5.780101103523598e-07 By= -1.1970237587770313e-09 Bz= 1.3739452258450061e-06
+Intensity Path: 1.4905779429998659e-06 Inclination Path: 67.18377218251544 Declination Path: -179.88134409748432
+zerotopo: doing 33 out of  39
+surf int: 0.784 s
+Obs point number= 33 Bx (North)= -5.850140179684689e-07 By= -2.164816619985342e-09 Bz= 1.3738881173675103e-06
+Intensity Path: 1.4932563901401032e-06 Inclination Path: 66.93511395558103 Declination Path: -179.78798065381503
+zerotopo: doing 34 out of  39
+surf int: 0.750 s
+Obs point number= 34 Bx (North)= -5.913155501488289e-07 By= -2.751849090708668e-09 Bz= 1.373919726311345e-06
+Intensity Path: 1.4957663811132645e-06 Inclination Path: 66.71341682803606 Declination Path: -179.73336030063416
+zerotopo: doing 35 out of  39
+surf int: 0.809 s
+Obs point number= 35 Bx (North)= -5.963809147129992e-07 By= -5.580494677585597e-09 Bz= 1.3742356950848643e-06
+Intensity Path: 1.4980737909062224e-06 Inclination Path: 66.53955183341155 Declination Path: -179.46388381438456
+zerotopo: doing 36 out of  39
+surf int: 0.791 s
+Obs point number= 36 Bx (North)= -6.013581143722051e-07 By= -6.29101091963034e-09 Bz= 1.3744303119210785e-06
+Intensity Path: 1.5002432605638189e-06 Inclination Path: 66.36790159077913 Declination Path: -179.40063130819212
+zerotopo: doing 37 out of  39
+surf int: 0.935 s
+Obs point number= 37 Bx (North)= -6.029165023235091e-07 By= -7.539295850604565e-09 Bz= 1.3746688556552225e-06
+Intensity Path: 1.5010928060797493e-06 Inclination Path: 66.31655943946411 Declination Path: -179.2835702492769
+zerotopo: doing 38 out of  39
+surf int: 0.867 s
+Obs point number= 38 Bx (North)= -6.066745951712956e-07 By= -9.445650494742505e-09 Bz= 1.375161252506844e-06
+Intensity Path: 1.5030674486315365e-06 Inclination Path: 66.1919871123165 Declination Path: -179.1080025631911
+zerotopo: doing 39 out of  39
+surf int: 0.794 s
+Obs point number= 39 Bx (North)= -6.078939851474081e-07 By= -1.304019906899516e-08 Bz= 1.3761516485187382e-06
+Intensity Path: 1.5044927728942394e-06 Inclination Path: 66.16241536647185 Declination Path: -178.77111171203524
+all zerotopo surf int: 36.499 s
+========================================
+doing 1 out of  39
+surf int: 2.661 s
+Obs point number= 1 Bx= -8.648248961283385e-07 By= -4.709980601614863e-07 Bz= -1.6336226175867705e-06
+Intensity Path: 1.9074810956678775e-06 Inclination Path: -58.91799344870658 Declination Path: -151.42655192026672
+doing 2 out of  39
+surf int: 0.792 s
+Obs point number= 2 Bx= -6.171487099130322e-08 By= -1.4786827834960151e-06 Bz= -9.631733780140198e-07
+Intensity Path: 1.7657900372422352e-06 Inclination Path: -33.05631867021061 Declination Path: -92.38993154783655
+doing 3 out of  39
+surf int: 0.788 s
+Obs point number= 3 Bx= 1.2152224154947718e-07 By= -8.684386649911894e-07 Bz= -1.3034701606926028e-06
+Intensity Path: 1.570983077521489e-06 Inclination Path: -56.06959926685827 Declination Path: -82.03421847599957
+doing 4 out of  39
+surf int: 0.789 s
+Obs point number= 4 Bx= 3.6462016601517064e-07 By= -7.061507096225533e-07 Bz= -1.5409829468767872e-06
+Intensity Path: 1.7338469173287569e-06 Inclination Path: -62.718500700504634 Declination Path: -62.69047958221341
+doing 5 out of  39
+surf int: 0.787 s
+Obs point number= 5 Bx= 2.67777765986226e-07 By= -7.312911205275164e-07 Bz= -1.188856703847727e-06
+Intensity Path: 1.4212219732338247e-06 Inclination Path: -56.772685808894565 Declination Path: -69.88872311052855
+doing 6 out of  39
+surf int: 0.839 s
+Obs point number= 6 Bx= -5.761251252431506e-07 By= -7.828012433664324e-07 Bz= -1.8251890328100974e-06
+Intensity Path: 2.067852255854544e-06 Inclination Path: -61.96365760725491 Declination Path: -126.35228066635212
+doing 7 out of  39
+surf int: 1.135 s
+Obs point number= 7 Bx= -2.2257647554086627e-07 By= -3.968422634396774e-07 Bz= -2.8765814488152897e-06
+Intensity Path: 2.912343541065235e-06 Inclination Path: -81.0117901876316 Declination Path: -119.28671052823547
+doing 8 out of  39
+surf int: 0.849 s
+Obs point number= 8 Bx= 2.0263976220131935e-07 By= -3.2721012762993953e-07 Bz= -1.954301044621997e-06
+Intensity Path: 1.991838827279767e-06 Inclination Path: -78.8588694858054 Declination Path: -58.23025299202313
+doing 9 out of  39
+surf int: 0.794 s
+Obs point number= 9 Bx= 1.3263324380293048e-07 By= 1.4303623724894843e-07 Bz= -2.4107169508262535e-06
+Intensity Path: 2.4185961133535823e-06 Inclination Path: -85.37391129046475 Declination Path: 47.1611565958963
+doing 10 out of  39
+surf int: 0.818 s
+Obs point number= 10 Bx= 1.6239244790590727e-06 By= 2.2545485098005462e-07 Bz= -2.4797172358743753e-06
+Intensity Path: 2.972702166953523e-06 Inclination Path: -56.52875215021738 Declination Path: 7.9040399063091655
+doing 11 out of  39
+surf int: 0.812 s
+Obs point number= 11 Bx= 3.7563796386182775e-06 By= 1.5500857583690379e-07 Bz= -1.334970650339438e-06
+Intensity Path: 3.989556652721787e-06 Inclination Path: -19.549206501241255 Declination Path: 2.3629936354279364
+doing 12 out of  39
+surf int: 0.806 s
+Obs point number= 12 Bx= 1.3891789473285528e-06 By= -1.391246145123747e-07 Bz= -1.6695797701257104e-06
+Intensity Path: 2.1763893068284228e-06 Inclination Path: -50.09711639200696 Declination Path: -5.71903461946477
+doing 13 out of  39
+surf int: 0.916 s
+Obs point number= 13 Bx= 1.0223786396302822e-06 By= 4.671078837513599e-07 Bz= -9.548838244508593e-07
+Intensity Path: 1.4748732067648526e-06 Inclination Path: -40.34845366807476 Declination Path: 24.55487650057923
+doing 14 out of  39
+surf int: 0.831 s
+Obs point number= 14 Bx= 1.823084845929586e-06 By= -1.7530491856277789e-06 Bz= 1.5847304804538499e-07
+Intensity Path: 2.5341534108346946e-06 Inclination Path: 3.5853256461872345 Declination Path: -43.878052439688915
+doing 15 out of  39
+surf int: 0.784 s
+Obs point number= 15 Bx= 1.2235069683460783e-06 By= -1.0781591565491433e-06 Bz= -8.022066383774648e-07
+Intensity Path: 1.8173970284720519e-06 Inclination Path: -26.193507476564612 Declination Path: -41.386629391415326
+doing 16 out of  39
+surf int: 0.785 s
+Obs point number= 16 Bx= 1.0564528573919583e-06 By= -1.038905235471078e-06 Bz= -4.3526889641178244e-07
+Intensity Path: 1.5443042900815825e-06 Inclination Path: -16.37090989587831 Declination Path: -44.52018646498425
+doing 17 out of  39
+surf int: 0.801 s
+Obs point number= 17 Bx= 4.894785617498173e-07 By= -2.3223755792615502e-06 Bz= -3.0567185166552835e-07
+Intensity Path: 2.393000809540967e-06 Inclination Path: -7.33877186558914 Declination Path: -78.09817480455646
+doing 18 out of  39
+surf int: 0.752 s
+Obs point number= 18 Bx= 7.820732178308035e-07 By= -7.729097274847749e-07 Bz= -9.843952468777844e-07
+Intensity Path: 1.4758258592951916e-06 Inclination Path: -41.83695429599569 Declination Path: -44.662360769593256
+doing 19 out of  39
+surf int: 0.760 s
+Obs point number= 19 Bx= -8.620414509899015e-07 By= -7.723156044610038e-07 Bz= -1.1341814788243202e-06
+Intensity Path: 1.620479707687468e-06 Inclination Path: -44.41936426933637 Declination Path: -138.14237133364668
+doing 20 out of  39
+surf int: 0.833 s
+Obs point number= 20 Bx= -4.378650657846173e-07 By= -4.167131544872276e-07 Bz= -1.1400930388911878e-06
+Intensity Path: 1.29042156146176e-06 Inclination Path: -62.06802207186725 Declination Path: -136.41785482530426
+doing 21 out of  39
+surf int: 0.758 s
+Obs point number= 21 Bx= 7.275292842621395e-07 By= -1.4851944684850414e-06 Bz= -8.93853437933781e-08
+Intensity Path: 1.6562280061521136e-06 Inclination Path: -3.09371195311823 Declination Path: -63.90186603242476
+doing 22 out of  39
+surf int: 0.744 s
+Obs point number= 22 Bx= 7.663630331201396e-07 By= -5.13306523042174e-07 Bz= -6.361711833354721e-07
+Intensity Path: 1.1204952742592005e-06 Inclination Path: -34.594095606708784 Declination Path: -33.81399826135629
+doing 23 out of  39
+surf int: 0.772 s
+Obs point number= 23 Bx= 8.011701344974672e-07 By= -3.7382458541389985e-07 Bz= -5.576030976310963e-07
+Intensity Path: 1.045246200451529e-06 Inclination Path: -32.239925269233794 Declination Path: -25.01367458576515
+doing 24 out of  39
+surf int: 0.761 s
+Obs point number= 24 Bx= 5.48334417274338e-07 By= 1.5388953378393718e-07 Bz= -7.169776089233962e-07
+Intensity Path: 9.156470463411848e-07 Inclination Path: -51.53869200000872 Declination Path: 15.676724950213721
+doing 25 out of  39
+surf int: 0.748 s
+Obs point number= 25 Bx= 1.7853632923983542e-06 By= -6.263050650681143e-07 Bz= -4.1141189520285914e-07
+Intensity Path: 1.936243752188209e-06 Inclination Path: -12.26769064912082 Declination Path: -19.33085963870981
+doing 26 out of  39
+surf int: 0.741 s
+Obs point number= 26 Bx= 4.761370212383768e-07 By= -6.951895539127173e-07 Bz= -9.526123575785821e-07
+Intensity Path: 1.2717960853354368e-06 Inclination Path: -48.50635085621933 Declination Path: -55.592661391799105
+doing 27 out of  39
+surf int: 0.740 s
+Obs point number= 27 Bx= 2.541517275930776e-06 By= -4.264203772310554e-07 Bz= 1.2836248345188115e-07
+Intensity Path: 2.580236680835772e-06 Inclination Path: 2.851546777038431 Declination Path: -9.524477299468868
+doing 28 out of  39
+surf int: 0.740 s
+Obs point number= 28 Bx= 4.792141217423939e-07 By= -1.0624176702987944e-06 Bz= -4.5725261755833396e-07
+Intensity Path: 1.2519814043764387e-06 Inclination Path: -21.421317622493785 Declination Path: -65.72176834002185
+doing 29 out of  39
+surf int: 0.743 s
+Obs point number= 29 Bx= 5.583946331192349e-07 By= 4.362189599296383e-08 Bz= -1.1031713806697793e-06
+Intensity Path: 1.2372124034438279e-06 Inclination Path: -63.08244224804035 Declination Path: 4.466885258639186
+doing 30 out of  39
+surf int: 0.735 s
+Obs point number= 30 Bx= -1.1035137216115462e-07 By= 2.1490876654385186e-06 Bz= -9.182188348500999e-07
+Intensity Path: 2.3396326736800597e-06 Inclination Path: -23.107830252308883 Declination Path: 92.93944260354027
+doing 31 out of  39
+surf int: 0.748 s
+Obs point number= 31 Bx= 1.7840715362699569e-06 By= 4.783794316028143e-07 Bz= -1.5201937680873017e-06
+Intensity Path: 2.392226414794541e-06 Inclination Path: -39.455027416661416 Declination Path: 15.010154400115365
+doing 32 out of  39
+surf int: 0.755 s
+Obs point number= 32 Bx= 2.5281359800722105e-06 By= 5.078385397131961e-07 Bz= -4.3047996410715083e-07
+Intensity Path: 2.6143229554994543e-06 Inclination Path: -9.477606987353346 Declination Path: 11.358113047255262
+doing 33 out of  39
+surf int: 0.748 s
+Obs point number= 33 Bx= 2.086677429150398e-06 By= -2.236269362395219e-06 Bz= 1.6590231135256136e-06
+Intensity Path: 3.4795805847437207e-06 Inclination Path: 28.475846346395475 Declination Path: -46.98188138562362
+doing 34 out of  39
+surf int: 0.767 s
+Obs point number= 34 Bx= 1.6789542860193622e-06 By= 5.663800838404696e-07 Bz= 2.7768718808414363e-07
+Intensity Path: 1.7935395363191753e-06 Inclination Path: 8.90672552654858 Declination Path: 18.64135886746737
+doing 35 out of  39
+surf int: 0.770 s
+Obs point number= 35 Bx= 1.3728711589395512e-06 By= -1.291931831516288e-07 Bz= 1.3409571247121341e-06
+Intensity Path: 1.923442774801764e-06 Inclination Path: 44.19999770567808 Declination Path: -5.375951703468445
+doing 36 out of  39
+surf int: 0.756 s
+Obs point number= 36 Bx= 6.265449319748861e-07 By= -2.1512384428863426e-07 Bz= 1.4174400727422322e-06
+Intensity Path: 1.564600006385159e-06 Inclination Path: 64.95073291281587 Declination Path: -18.949879617725767
+doing 37 out of  39
+surf int: 0.751 s
+Obs point number= 37 Bx= 8.45979851098815e-07 By= -6.415816609428306e-07 Bz= 1.2202475510447007e-06
+Intensity Path: 1.6175020933383435e-06 Inclination Path: 48.97318501434228 Declination Path: -37.176273196508234
+doing 38 out of  39
+surf int: 0.746 s
+Obs point number= 38 Bx= 5.767824916393831e-07 By= -9.361672843985865e-07 Bz= 1.3836057720324377e-06
+Intensity Path: 1.767329103319876e-06 Inclination Path: 51.52498353081047 Declination Path: -58.36234138959568
+doing 39 out of  39
+surf int: 0.760 s
+Obs point number= 39 Bx= -5.309836433836866e-08 By= -1.1776832763364204e-06 Bz= 4.173215962558262e-07
+Intensity Path: 1.2505657321226287e-06 Inclination Path: 19.49388464663952 Declination Path: -92.5815541635042
+all surf int: 32.620 s
+========================================
+========================================
+starting processing: adding reference field and statistics ...
+Mean Int IGRF added= 4.5094911717530694e-05
+stDEV Int IGRF added= 1.1705211195595658e-06
+Mean Inc IGRF added= 52.0598330767447
+stDEV Inc IGRF added= 1.0831428688524114
+Mean Dec IGRF added= 2.177863138722185
+stDEV Dec IGRF added= 1.6623604779711378
+statistics: 0.002 s
+plot file gen: 0.001 s
+========================================
+full run time: 86.010 s
