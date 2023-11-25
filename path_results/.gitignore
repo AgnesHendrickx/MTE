@@ -1,7 +1,6 @@
 *
 !.gitignore
 !/art_DEM/
-!statistics_after.py
 !/FLUX1/
 !/FLUX2/
 !/FLUX3/
@@ -13,4 +12,5 @@
 !stats_100_checked.csv
 !stats_180_checked.csv
 !stats_all_after.py
+!statistics_after.py
 !stats_all_checked.ods
