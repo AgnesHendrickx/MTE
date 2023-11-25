@@ -7,4 +7,13 @@
 !plot_script*
 !vis_fb_sv.pvsm
 !vis_remove_zt.pvsm
+!flanksim_mp_zt_paraguay_block.eps
+!flanksim_mp_zt_180_block.eps
+!flanksim_mp_zt_180.eps
+!flanksim_mp_zt.eps
+!flanksim_mp_zt_block.eps
+!stats_all_after.py
+!stats_fsp.csv
+!stats_fs.csv
+
 

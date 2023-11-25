@@ -1,7 +1,7 @@
 #Ignore DEMS folder (due to unauthorized)
 #/DEMS
 
-#Ignore VTU files (due to size)
+#Ignore VTU files (due to size, and copyright issues)
 *.vtu
 
 #Ignore personal folders
