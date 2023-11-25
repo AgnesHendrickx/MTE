@@ -4,10 +4,6 @@
 !/east/
 !/west/
 !/north/
-!/south/250_250_20_fb/
-!/south/250_250_20_fb_180/
-!/south/250_250_20_fb_ztr_paraguay/
-!/south/250_250_20_25cm/
 !plot_script*
 !vis_fb_sv.pvsm
 !vis_remove_zt.pvsm

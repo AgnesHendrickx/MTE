@@ -1,0 +1,224 @@
+========================================
+=             ETNA project             =
+========================================
+========================================
+benchmark= 5
+Lx,Ly,Lz= 250 250 20
+nelx,nely,nelz= 375 375 10
+nnx,nny,nnz= 376 376 11
+nel= 1406250
+Mx,My,Mz= 0 4.085 -6.29
+do_plane_measurements= False
+do_line_measurements= True
+xstart,ystart,zstart= 100.23 124.779 1.8
+xend,yend,zend= 149.19 124.779 1.8
+line_nmeas= 47
+subbench, flank= south
+do_spiral_measurements= False
+do_path_measurements= False
+Zero topography removed from final results.
+========================================
+grid points setup: 6.893 s
+grid connectivity setup: 3.866 s
+min topo: -17.13715214210894
+add synthetic topography: 6.914 s
+prescribe M vector in domain: 28.482 s
+========================================
+starting line measurement ...
+starting line measurement for zerotopo ...
+doing zt for 1 out of  47
+surf zt int: 38.750 s
+doing zt for 2 out of  47
+surf zt int: 34.462 s
+doing zt for 3 out of  47
+surf zt int: 34.553 s
+doing zt for 4 out of  47
+surf zt int: 34.478 s
+doing zt for 5 out of  47
+surf zt int: 34.462 s
+doing zt for 6 out of  47
+surf zt int: 34.595 s
+doing zt for 7 out of  47
+surf zt int: 34.535 s
+doing zt for 8 out of  47
+surf zt int: 34.516 s
+doing zt for 9 out of  47
+surf zt int: 34.916 s
+doing zt for 10 out of  47
+surf zt int: 34.523 s
+doing zt for 11 out of  47
+surf zt int: 34.534 s
+doing zt for 12 out of  47
+surf zt int: 34.366 s
+doing zt for 13 out of  47
+surf zt int: 34.441 s
+doing zt for 14 out of  47
+surf zt int: 34.497 s
+doing zt for 15 out of  47
+surf zt int: 34.631 s
+doing zt for 16 out of  47
+surf zt int: 34.468 s
+doing zt for 17 out of  47
+surf zt int: 34.451 s
+doing zt for 18 out of  47
+surf zt int: 34.423 s
+doing zt for 19 out of  47
+surf zt int: 34.424 s
+doing zt for 20 out of  47
+surf zt int: 34.437 s
+doing zt for 21 out of  47
+surf zt int: 34.391 s
+doing zt for 22 out of  47
+surf zt int: 34.447 s
+doing zt for 23 out of  47
+surf zt int: 34.579 s
+doing zt for 24 out of  47
+surf zt int: 34.506 s
+doing zt for 25 out of  47
+surf zt int: 34.484 s
+doing zt for 26 out of  47
+surf zt int: 34.433 s
+doing zt for 27 out of  47
+surf zt int: 34.448 s
+doing zt for 28 out of  47
+surf zt int: 34.372 s
+doing zt for 29 out of  47
+surf zt int: 34.464 s
+doing zt for 30 out of  47
+surf zt int: 34.482 s
+doing zt for 31 out of  47
+surf zt int: 34.543 s
+doing zt for 32 out of  47
+surf zt int: 34.558 s
+doing zt for 33 out of  47
+surf zt int: 34.523 s
+doing zt for 34 out of  47
+surf zt int: 34.420 s
+doing zt for 35 out of  47
+surf zt int: 34.495 s
+doing zt for 36 out of  47
+surf zt int: 34.475 s
+doing zt for 37 out of  47
+surf zt int: 34.603 s
+doing zt for 38 out of  47
+surf zt int: 34.432 s
+doing zt for 39 out of  47
+surf zt int: 34.403 s
+doing zt for 40 out of  47
+surf zt int: 34.497 s
+doing zt for 41 out of  47
+surf zt int: 34.512 s
+doing zt for 42 out of  47
+surf zt int: 34.533 s
+doing zt for 43 out of  47
+surf zt int: 34.509 s
+doing zt for 44 out of  47
+surf zt int: 34.511 s
+doing zt for 45 out of  47
+surf zt int: 34.429 s
+doing zt for 46 out of  47
+surf zt int: 34.472 s
+doing zt for 47 out of  47
+surf zt int: 34.435 s
+starting line measurement...
+doing 1 out of  47
+surf int: 34.556 s
+doing 2 out of  47
+surf int: 34.489 s
+doing 3 out of  47
+surf int: 34.542 s
+doing 4 out of  47
+surf int: 34.496 s
+doing 5 out of  47
+surf int: 34.636 s
+doing 6 out of  47
+surf int: 34.571 s
+doing 7 out of  47
+surf int: 34.444 s
+doing 8 out of  47
+surf int: 34.578 s
+doing 9 out of  47
+surf int: 34.730 s
+doing 10 out of  47
+surf int: 34.572 s
+doing 11 out of  47
+surf int: 34.610 s
+doing 12 out of  47
+surf int: 34.726 s
+doing 13 out of  47
+surf int: 34.543 s
+doing 14 out of  47
+surf int: 34.619 s
+doing 15 out of  47
+surf int: 34.618 s
+doing 16 out of  47
+surf int: 34.521 s
+doing 17 out of  47
+surf int: 34.600 s
+doing 18 out of  47
+surf int: 34.639 s
+doing 19 out of  47
+surf int: 34.611 s
+doing 20 out of  47
+surf int: 34.679 s
+doing 21 out of  47
+surf int: 34.623 s
+doing 22 out of  47
+surf int: 34.633 s
+doing 23 out of  47
+surf int: 34.514 s
+doing 24 out of  47
+surf int: 34.730 s
+doing 25 out of  47
+surf int: 34.619 s
+doing 26 out of  47
+surf int: 34.643 s
+doing 27 out of  47
+surf int: 34.724 s
+doing 28 out of  47
+surf int: 34.691 s
+doing 29 out of  47
+surf int: 34.597 s
+doing 30 out of  47
+surf int: 34.582 s
+doing 31 out of  47
+surf int: 34.662 s
+doing 32 out of  47
+surf int: 34.568 s
+doing 33 out of  47
+surf int: 34.542 s
+doing 34 out of  47
+surf int: 34.681 s
+doing 35 out of  47
+surf int: 34.577 s
+doing 36 out of  47
+surf int: 34.645 s
+doing 37 out of  47
+surf int: 34.586 s
+doing 38 out of  47
+surf int: 34.690 s
+doing 39 out of  47
+surf int: 34.587 s
+doing 40 out of  47
+surf int: 34.566 s
+doing 41 out of  47
+surf int: 34.720 s
+doing 42 out of  47
+surf int: 34.718 s
+doing 43 out of  47
+surf int: 34.639 s
+doing 44 out of  47
+surf int: 34.505 s
+doing 45 out of  47
+surf int: 34.582 s
+doing 46 out of  47
+surf int: 34.618 s
+doing 47 out of  47
+surf int: 34.588 s
+all line measurement done: 3265.965 s
+========================================
+========================================
+========================================
+========================================
+========================================
+full run time: 3312.121 s

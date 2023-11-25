@@ -1,0 +1,54 @@
+ 
+   xstart=0.23
+   ystart=Ly/2-0.221
+   zstart=1      #slightly above surface
+   xend=49.19
+   yend=Ly/2-0.221
+   zend=1
+   Mx0=0
+   My0=4.085
+   Mz0=-6.29
+   nqdim=4
+   #topography parameters
+   wavelength=25
+   A=4
+   line_nmeas=47
+   subbench='south'
+   Lx=50
+   Ly=50
+#
+   Lz=120
+   nelx=10
+   nely=10
+   nelz=10
+#
+   Lz=240
+   nelx=10
+   nely=10
+   nelz=10
+#
+   Lz=120
+   nelx=25
+   nely=25
+   nelz=10
+#
+   Lz=120
+   nelx=50
+   nely=50
+   nelz=10
+#
+   Lz=120
+   nelx=75
+   nely=75
+   nelz=10
+#
+   Lz=240
+   nelx=75
+   nely=75
+   nelz=10
+#
+   Lz=120
+   nelx=75
+   nely=75
+   nelz=100
+#
