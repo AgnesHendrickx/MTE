@@ -1,3 +1,4 @@
+setuptools<82
 alabaster==0.7.13
     # via sphinx
 apeye==1.4.1
