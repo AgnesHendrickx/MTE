@@ -338,7 +338,13 @@ def export_line_measurements(N, x, y, z, filename, B_vi, B_si, B_th):
     vtufile = open(filename, "w")
     vtufile.write("<VTKFile type='UnstructuredGrid' version='0.1' byte_order='BigEndian'> \n")
     vtufile.write("<UnstructuredGrid> \n")
-    vtufile.write("<Piece NumberOfPoints=' %5d ' NumberOfCells=' %5d '> \n" % (N, N - 1))
+    # use 1 vertex cell when N == 1; else N-1 line cells
+    if N == 1:
+        num_cells = 1
+    else:
+        num_cells = N - 1
+
+    vtufile.write(f"<Piece NumberOfPoints='{N}' NumberOfCells='{num_cells}'> \n")
     #####
     vtufile.write("<Points> \n")
     vtufile.write("<DataArray type='Float32' NumberOfComponents='3' Format='ascii'> \n")
@@ -368,16 +374,24 @@ def export_line_measurements(N, x, y, z, filename, B_vi, B_si, B_th):
     #####
     vtufile.write("<Cells>\n")
     vtufile.write("<DataArray type='Int32' Name='connectivity' Format='ascii'> \n")
-    for i in range (0, N - 1):
-        vtufile.write("%d %d \n" % (i, i + 1))
+    if N == 1:
+        vtufile.write("0\n")            # one vertex cell referencing point 0
+    else:
+        for i in range (0, N - 1):
+            vtufile.write("%d %d \n" % (i, i + 1))
     vtufile.write("</DataArray>\n")
     vtufile.write("<DataArray type='Int32' Name='offsets' Format='ascii'> \n")
+    if N == 1:
+        vtufile.write("1\n")            # 1 index in connectivity
     for i in range (0, N - 1):
         vtufile.write("%d \n" % ((i + 1) * 2))
     vtufile.write("</DataArray>\n")
     vtufile.write("<DataArray type='Int32' Name='types' Format='ascii'>\n")
-    for iel in range (0, N - 1):
-        vtufile.write("%d \n" % 3)
+    if N == 1:
+       vtufile.write("1\n")            # VTK_VERTEX
+    else:
+       for iel in range (0, N - 1):
+           vtufile.write("%d \n" % 3)
     vtufile.write("</DataArray>\n")
     vtufile.write("</Cells>\n")
     #####

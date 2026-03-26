@@ -19,7 +19,7 @@ sys.path.append(os.path.abspath("./_ext"))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'MTE'
-copyright = '2023, A.E. Hendrickx'
+copyright = '2026, A.E. Hendrickx'
 author = 'A.E. Hendrickx'
 release = '1.0'
 
@@ -84,7 +84,7 @@ else:
 
 
 autodoc_mock_imports = [
-    'numpy', 'scipy', 'numba',
+    'numpy', 'scipy', 'numba', 'pandas', 'ppigrf'
     # ... other modules to mock ...
 ]
 
@@ -121,5 +121,5 @@ html_show_sourcelink = False
 html_logo = "Logo2r2.png"
 html_static_path = ['_static']
 html_css_files = [
-    'custom.css',
+    'reformatted_custom.css',
 ]

@@ -2,7 +2,7 @@
 
 Case study: Mount Etna
 ======================
-| Additionally, two other optional modules are available exclusively for the Mount Etna case study, where the field sites from :cite:`Meyer23` are reproduced:
+| Additionally, two other optional modules are available exclusively for the Mount Etna case study, where the field sites from :cite:`Meyer24` are reproduced:
 
 1. :func:`set_measurement_parameters.set_measurement_parameters`: This module provides DEM, site and path-specific values such as the file to read, the location and number of measurement points, IGRF (International Geomagnetic Reference Field) values for the site, and more. See :doc:`functions` for more details.
 2. ``etna.py``: This script is used to define input parameters, to run different options reproducing field paths and call :func:`set_measurement_parameters.set_measurement_parameters`
@@ -20,8 +20,15 @@ Case study: Mount Etna
 
    ./script_etna_full
 
+| Note that since the DEM snippets are not provided (due to copyright issues), without downloading, converting and cutting the DEMs to the sizes as listed in the original study, you are not able to run this. 
+| All information on the sizes are listed in the original study and :func:`set_measurement_parameters.set_measurement_parameters`, and the DEMs were converted to WGS84 UTM 33N in ArcGIS Pro through bilinear interpolation. 
 
-.. todo:: finish this section
+| We have included all the (converted) FLUX data from :cite:`Meyer24` within the ``sites`` folder within the MTE repository on `GitHub <https://github.com/AgnesHendrickx/MTE/>`_. 
+
+| Lastly, two python scripts are provided to compute statistical paramters using the output ascii files generated when using the MTE code with a DEM setup: ``stats_all_after.py`` and ``statistics_after.py``, where the first automatically computes the statistical parameters for all path results (if the results are produced using the provided scripts) and the other python script is for computing these parameters for individual setups. 
+
+| For more details of this case study, results and interpretations, please see the original study. 
+
 
 ..
    \subsubsection{Topography from Digital Elevation Models at field paths}

@@ -250,20 +250,20 @@ def qweights_1D(nqpts):
 ###################################################################################################
 
 
-@jit(nopython=True)  # TODO fill docstrings #CT
+@jit(nopython=True)
 def NNN(r, s, t):
     """
-    {DESCRIPTION FUNCTION} Q1 basis functions inside the [-1:1]x[-1:1]x[-1:1] reference element
+    Q1 basis functions inside the [-1:1]x[-1:1]x[-1:1] reference element
 
-    :param r: ** - 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type r: (array_like(float))
-    :param s: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type s: (array_like(float))
-    :param t: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type t: (array_like(float))
+    :param r: Local coordinate in x-direction (range: -1 to 1)
+    :type r: scalar(float)
+    :param s: Local coordinate in y-direction (range: -1 to 1)
+    :type s: scalar(float)
+    :param t: Local coordinate in z-direction (range: -1 to 1)
+    :type t: scalar(float)
 
     :return:
-      - **N** *(array_like(float))* - 1D array(8) containing {DESCRIPTION RETURN PARAMETER}
+      - **N** *(array_like(float))* - 1D array(8) containing the values of the 8 Q1 basis functions at (r, s, t).
 
     """
 
@@ -281,19 +281,19 @@ def NNN(r, s, t):
 
 
 @jit(nopython=True)
-def dNNNdr(r, s, t):  # TODO fill docstrings #CT
+def dNNNdr(r, s, t): 
     """
-    {DESCRIPTION FUNCTION}
+    Derivatives of the Q1 basis functions with respect to the local coordinate r.
 
-    :param r: ** - 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type r: (array_like(float))
-    :param s: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type s: (array_like(float))
-    :param t: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type t: (array_like(float))
+    :param r: Local coordinate in x-direction (range: -1 to 1)
+    :type r: scalar(float)
+    :param s: Local coordinate in y-direction (range: -1 to 1)
+    :type s: scalar(float)
+    :param t: Local coordinate in z-direction (range: -1 to 1)
+    :type t: scalar(float)
 
     :return:
-      - **dNdr** *(array_like(float))* - 1D array(8) containing {DESCRIPTION RETURN PARAMETER}
+      - **dNdr** *(array_like(float))* - 1D array(8) containing derivatives of the basis functions with respect to r at (r, s, t).
 
     """
     dNdr0 = -0.125 * (1.0 - s) * (1.0 - t)
@@ -312,19 +312,19 @@ def dNNNdr(r, s, t):  # TODO fill docstrings #CT
 
 
 @jit(nopython=True)
-def dNNNds(r, s, t):  # TODO fill docstrings #CT
+def dNNNds(r, s, t): 
     """
-    {DESCRIPTION FUNCTION}
+    Derivatives of the Q1 basis functions with respect to the local coordinate s.
 
-    :param r: ** - 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type r: (array_like(float))
-    :param s: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type s: (array_like(float))
-    :param t: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type t: (array_like(float))
+    :param r: Local coordinate in x-direction (range: -1 to 1)
+    :type r: scalar(float)
+    :param s: Local coordinate in y-direction (range: -1 to 1)
+    :type s: scalar(float)
+    :param t: Local coordinate in z-direction (range: -1 to 1)
+    :type t: scalar(float)
 
     :return:
-      - **dNds** *(array_like(float))* - 1D array(8) containing {DESCRIPTION RETURN PARAMETER}
+      - **dNds** *(array_like(float))* - 1D array(8) containing derivatives of the basis functions with respect to s at (r, s, t).
 
     """
     dNds0 = -0.125 * (1.0 - r) * (1.0 - t)
@@ -343,19 +343,19 @@ def dNNNds(r, s, t):  # TODO fill docstrings #CT
 
 
 @jit(nopython=True)
-def dNNNdt(r, s, t):  # TODO fill docstrings #CT
+def dNNNdt(r, s, t):
     """
-    {DESCRIPTION FUNCTION}
+    Derivatives of the Q1 basis functions with respect to the local coordinate t.
 
-    :param r: ** - 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type r: (array_like(float))
-    :param s: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type s: (array_like(float))
-    :param t: 1D array(nqpts) containing {DESCRIPTION PARAMETER}
-    :type t: (array_like(float))
+    :param r: Local coordinate in x-direction (range: -1 to 1)
+    :type r: scalar(float)
+    :param s: Local coordinate in y-direction (range: -1 to 1)
+    :type s: scalar(float)
+    :param t: Local coordinate in z-direction (range: -1 to 1)
+    :type t: scalar(float)
 
     :return:
-      - **dNdt** *(array_like(float))* - 1D array(8) containing {DESCRIPTION RETURN PARAMETER}
+      - **dNdt** *(array_like(float))* - 1D array(8) containing derivatives of the basis functions with respect to t at (r, s, t).
 
     """
     dNdt0 = -0.125 * (1.0 - r) * (1.0 - s)
@@ -374,9 +374,9 @@ def dNNNdt(r, s, t):  # TODO fill docstrings #CT
 
 
 @jit(nopython=True)
-def compute_B_quadrature(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My, Mz, nqdim):  # TODO check docstrings #CT
+def compute_B_quadrature(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My, Mz, nqdim):
     """
-    | Solves volume integral, numerical solution, as the volume integral is parameterized by the number of quadrature points per dimension (nqdim). Computes magnetic field components based on 2^3 quadrature point integration produced by a single hexahedron (cuboid) carrying a magnetization vector (Mx,My,Mz) assumed to be constant inside the element. # TODO: allow for higher quadrature
+    | Solves volume integral, numerical solution, as the volume integral is parameterized by the number of quadrature points per dimension (nqdim). Computes magnetic field components based on 2^3 quadrature point integration produced by a single hexahedron (cuboid) carrying a magnetization vector (Mx,My,Mz) assumed to be constant inside the element. 
 
     :param xmeas: x coordinate of observation point.
     :type xmeas: scalar(float)
@@ -875,7 +875,7 @@ def facmag(Mx, My, Mz, x0, y0, z0, x, y, z, n):
 
 @jit(nopython=True)
 def compute_B_surface_integral_cuboid(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My, Mz):
-    """
+    r"""
     | This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a cuboid element employing :func:`facmag` function on each face. Here again the magnetization vector (Mx,My,Mz) is assumed to be constant inside the element. It uses the ``icon`` array to identify the x-,y-,z-coordinates associated with each node, before calling :func:`facmag`, to compute the total magnetic field strength for each face.
     | Magnetic field strength :math:`\mathbf{B}` is computed in Tesla [T]. Note that the negative of the computed values is passed, as the numbering of our nodes was counterclockwise, not clockwise as in :cite:`BLAKELY`.
     | Distance units are irrelevant but must be consistent.  For numbering of the nodes, see comments in code.
@@ -1064,7 +1064,7 @@ def compute_B_surface_integral_cuboid(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My
 
 @jit(nopython=True)
 def compute_B_surface_integral_wtopo(xmeas, ymeas, zmeas, x, y, z, icon, Mx, My, Mz):
-    """
+    r"""
 
     | This function computes the magnetic field at a point (defined my x,y,z-coordinate) produced by a hexahedron element which vertical sides are planar. Only the top and bottom faces can contain 4 nodes which are not co-planar.
     | In light thereof we subdivide the top and bottom faces into four triangles. This feature is needed in the case topography is prescribed at the top (or bottom) of the domain and the vertical position of the nodes are modified.

@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) [2023] [A.E. (Agnes Ellen) Hendrickx]
+Copyright (c) [2026] [A.E. (Agnes Ellen) Hendrickx]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

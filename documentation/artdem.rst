@@ -12,7 +12,7 @@ Computational approach
 
 | The final step involves plotting a trajectory through the :func:`art_DEM.generate_pathfile` function, which calculates xy-coordinates for a series of observational points situated approximately at the center of the domain.
 
-| It should be noted that the flat bottom method results in varied depths throughout the domain, influenced by the topography's extent and slope. Such variability complicates the subtraction of a zero topography domain, which should ideally have a consistent thickness corresponding to the area beneath the central observation path. In our approach with topography from a DEM, this thickness is computed from the average path height and minimum height of the DEM topography. However, using this technique that may not be universally valid. It is only effective if the observation path is located in the middle of the domain and orientated perpendicular to the slope. Additionally, it presupposes that the area's slope (within the entire spatial extent of the domain) dominates over the local topographical variations along the path.
+| It should be noted that the flat bottom method results in varied depths throughout the domain, influenced by the topography's extent and slope. Such variability complicates the subtraction of a zero topography domain, which should ideally have a consistent thickness corresponding to the depth beneath the central observation path. In our approach with topography from a DEM, this thickness is computed from the average path height and minimum height of the DEM topography. However, using this technique that may not be universally valid. It is only effective if the observation path is located in the middle of the domain and orientated perpendicular to the slope. Additionally, it presupposes that the area's slope (within the entire spatial extent of the domain) dominates over the local topographical variations along the path.
 
 .. _vis_art_DEM:
 .. figure:: figures/vis_art_DEM.png
@@ -24,7 +24,7 @@ Model setup
 -----------
 | The selected domain for the simulation is defined as :math:`252\times252\times20` meters, discretized into :math:`126\times126\times10` elements.  Inclines of :math:`5 ^{\circ}` and :math:`12 ^{\circ}` are applied along the x- and y-direction, respectively, situating the model on what would represent the southwestern slope of Mount Etna. The bottom surface is simulated as a level plane, and the removal of a zero topography domain is executed. The decision has been made to synthesize the topography by merging two DEMs with distinct roughness values of :math:`12` and :math:`2`. This approach is intended to create a topographic roughness that exceeds the levels encountered in previous flank simulations. The specific parameters used to generate the artificial DEM are presented in the subsequent steps.
 
-| A uniform remanent magnetization intensity of :math:`7.5` :math:`[A/m]` has been assigned to the simulated matter, aligning closely with the thermoremanent magnetization (TRM) observed in lava flow samples from the field, as reported in :cite:`Meyer23`, and with the magnetization intensities noted in prior paleomagnetic research on Etnean lavas by :cite:`Nicolosi14`, which documented a bulk magnetization of :math:`8` :math:`[A/m]`, with a range between :math:`5` and :math:`13` :math:`[A/m]`. However, it is worth noting the broader spectrum of recorded values in other studies, from as low as :math:`0.1-1` :math:`[A/m]` to as high as :math:`20` :math:`[A/m]`, as cited by :cite:`Tanguy04, Speranza06`, indicating the significant variability in magnetization measurements of Etnean lavas. The magnetization inclination applied in this study is :math:`57 ^{\circ}`, estimated from Mount Etna's average latitude based on the Geocentric Axial Dipole model (:math:`\tan{I} = 2\tan({lat})`). A declination of :math:`0 ^{\circ}` is assumed, corresponding to alignment with the present geomagnetic field, allowing for the computation of the magnetization components.
+| A uniform remanent magnetization intensity of :math:`7.5` :math:`[A/m]` has been assigned to the simulated matter, aligning closely with the thermoremanent magnetization (TRM) observed in lava flow samples from the field, as reported in :cite:`Meyer24`, and with the magnetization intensities noted in prior paleomagnetic research on Etnean lavas by :cite:`Nicolosi14`, which documented a bulk magnetization of :math:`8` :math:`[A/m]`, with a range between :math:`5` and :math:`13` :math:`[A/m]`. However, it is worth noting the broader spectrum of recorded values in other studies, from as low as :math:`0.1-1` :math:`[A/m]` to as high as :math:`20` :math:`[A/m]`, as cited by :cite:`Tanguy04, Speranza06`, indicating the significant variability in magnetization measurements of Etnean lavas. The magnetization inclination applied in this study is :math:`57 ^{\circ}`, estimated from Mount Etna's average latitude based on the Geocentric Axial Dipole model (:math:`\tan{I} = 2\tan({lat})`). A declination of :math:`0 ^{\circ}` is assumed, corresponding to alignment with the present geomagnetic field, allowing for the computation of the magnetization components.
 
 | Similarly to the :ref:`previous section <flanksim>`, the IGRF values used signify an average for Mount Etna, with the respective components being :math:`IGRF_E = 1561.2 nT`, and :math:`IGRF_N = 26850.3 nT`, and :math:`IGRF_D = 36305.7 nT`.
 
@@ -39,7 +39,7 @@ Results
 
 | The maximum intensity anomaly observed relative to Mount Etna's IGRF intensity, for path above an artificial DEM, is approximately :math:`+2 \mu T` for positive anomalies and :math:`-1.39 \mu T` for negative anomalies. The greatest inclination anomaly recorded reaches about :math:`+2.37 ^{\circ}` in the positive spectrum and :math:`-3.02 ^{\circ}` in the negative. Similarly, the peak declination anomaly is :math:`+5.45 ^{\circ}` for positive deviations and :math:`-1.08 ^{\circ}` for negative deviations.
 
-| Upon comparing these values to the results of the :ref:`flank simulation <flanksim>`, it becomes apparent that the observed anomalies are consistently lower or at most equal in magnitude. Despite the model setup and elevation of the path, see :numref:`art_DEM` indicating more substantial topographical features. This implies that the interplay between adjacent topographical features may exert a more significant influence than the sheer size of any individual topographic characteristic.
+| Upon comparing these values to the results of the :ref:`flank simulation <flanksim>`, it becomes apparent that the observed anomalies are consistently lower or at most equal in magnitude. Despite the model setup and elevation of the path, see :numref:`art_DEM`, indicating more substantial topographical features. This implies that the interplay between adjacent topographical features may exert a more significant influence than the sheer size of any individual topographic characteristic.
 
 | In :numref:`art_DEM`, similar patterns as in the :ref:`previous section <flanksim>` can be observed. The topography exerts a significant influence on the magnetic field measurements at the surface, affecting intensity, inclination, and declination in relation to the terrain's contours. At increased altitudes, the strength of the anomalies diminishes, with positive anomalies decreasing more rapidly than their negative counterparts. Regarding declination, the anomaly peaks premature of the corresponding topographical feature, and this temporal shift becomes more pronounced at higher elevations.
 
@@ -56,12 +56,13 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
-         :emphasize-lines: 1,8,11,24
+         :lineno-start: 49
+         :emphasize-lines: 1,9,12,22,25,29
 
          benchmark = '-1'
 
-         compute_vi = False  # Possible for all setups apart from DEM (-1).
+         compute_vi = False  # This includes the volume integral computation by Gaussian quadrature, see
+                             # documentation, possible for all setups apart from DEM (-1).
          if compute_vi:
             nqdim = 6  # Number of quadrature points, see documentation.
 
@@ -76,22 +77,27 @@ Reproduce
                                  # if 1st run was done with less el (and cuboid function), yet to be done.
 
          ## ONLY BENCHMARK = 5 (FLANKSIM) ##
-         subbench = 'west'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
+         subbench = 'south'  # 'south', 'east', 'north', 'west', input parameters imported from flanksim
+                    # have priority over any choice made here. So if this is used, make sure to
+                    # comment out the import line in section below!  
+         global_run = False
 
          ## ONLY BENCHMARK = -1 (DEM) ##
-         add_noise = False  # if True, noise is added to the DEM after loading in from file.
-         Nf = 1  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
-                 # on the top/bottom surface. Only relevant if add_noise = True
          art_DEM = True  # if True, path/topo file (+ header) produced by art_DEM.py read in.
                          # Please note other values specified below for IGRF and magnetization etc.
 
+         ## BENCHMARK == -1 OR 5 ##
+         add_noise = False  # if True, noise is added to the DEM after loading in from file.
+         Nf = 1.5  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
+                   # on the top/bottom surface. Only relevant if adding noise, increasing this value,
+                   # increases the amount of noise superimposed on the DEM.
 
    2. In ``MTE.py``, fill the required parameters.
 
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 294
+         :lineno-start: 325
          :emphasize-lines: 14,15,16,17,18,19,22,26,30,45,46,47,48,49
 
          if benchmark == '-1':
@@ -192,7 +198,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 314
+         :lineno-start: 345
          :emphasize-lines: 6
 
          # Path measurement settings
@@ -278,12 +284,13 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
-         :emphasize-lines: 1,8,11,24
+         :lineno-start: 49
+         :emphasize-lines: 1,9,12,22,25,29,30
 
          benchmark = '-1'
 
-         compute_vi = False  # Possible for all setups apart from DEM (-1).
+         compute_vi = False  # This includes the volume integral computation by Gaussian quadrature, see
+                             # documentation, possible for all setups apart from DEM (-1).
          if compute_vi:
             nqdim = 6  # Number of quadrature points, see documentation.
 
@@ -298,14 +305,20 @@ Reproduce
                                  # if 1st run was done with less el (and cuboid function), yet to be done.
 
          ## ONLY BENCHMARK = 5 (FLANKSIM) ##
-         subbench = 'west'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
+         subbench = 'south'  # 'south', 'east', 'north', 'west', input parameters imported from flanksim
+                    # have priority over any choice made here. So if this is used, make sure to
+                    # comment out the import line in section below!  
+         global_run = False
 
          ## ONLY BENCHMARK = -1 (DEM) ##
-         add_noise = True  # if True, noise is added to the DEM after loading in from file.
-         Nf = 1  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
-                 # on the top/bottom surface. Only relevant if add_noise = True
          art_DEM = True  # if True, path/topo file (+ header) produced by art_DEM.py read in.
                          # Please note other values specified below for IGRF and magnetization etc.
+
+         ## BENCHMARK == -1 OR 5 ##
+         add_noise = True  # if True, noise is added to the DEM after loading in from file.
+         Nf = 1  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
+                   # on the top/bottom surface. Only relevant if adding noise, increasing this value,
+                   # increases the amount of noise superimposed on the DEM.
 
 
    2. In ``MTE.py``, fill the required parameters.
@@ -313,7 +326,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 314
+         :lineno-start: 345
          :emphasize-lines: 6
 
          # Path measurement settings
@@ -367,7 +380,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 314
+         :lineno-start: 345
          :emphasize-lines: 6
 
          # Path measurement settings
@@ -408,7 +421,7 @@ Reproduce
 
 Adding another DEM
 ------------------
-| The outlined procedures detail the integration of an artificial DEM created using the MTE code code, but these instructions are also applicable to any real-world DEM and corresponding field path files. Here are several crucial considerations:
+| The outlined procedures detail the integration of an artificial DEM created using the MTE code, but these instructions are also applicable to any real-world DEM and corresponding field path files. Here are several crucial considerations:
 
  - Ensure that the file locations and names of the DEM and path file are consistent between the code's main body and the file directory.
  - The DEM ASCII file should adhere to a standard format, with the top-left value (below the header) representing the most northwestern point. If the DEM's structure deviates from this norm, the code segment responsible for parsing DEM values will require modification to accommodate the alternative format.
@@ -419,7 +432,7 @@ Adding another DEM
    .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 1228
+         :lineno-start: 1285
          :emphasize-lines: 2
 
          if art_DEM:

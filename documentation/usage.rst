@@ -35,7 +35,7 @@ Reproducing results
    :linenos:
 
 
-| In such cases, the line numbers in the code block correspond directly to the line numbers in the specified file. Changes or additions to the base version are highlighted for ease of reference.
+| In such cases, the line numbers in the code block correspond directly to the line numbers in the specified file. Changes or additions to the base version are highlighted for ease of reference. Some comments in code blocks may not exactly match the comments in the code. 
 
 .. note::
    Highlighted lines are changes from the last setup outlined in previous steps or sections, if any preceding steps or section were not performed, make sure to check all lines for changes to the base code [#]_.
@@ -49,6 +49,7 @@ Reproducing results
 
 | If testing required several changes to the same file, more concise code blocks side by side are used. So, when encountering two code blocks placed side by side **in the model setup steps**, this denotes multiple runs with different setups, each subsequent code block listed only once within that step should be performed repeatedly for all setups.
 | Any changes from the previous step are again highlighted for ease of reference.
+
 +----------------------------------+-----------------------------------+
 |.. code-block::                   |.. code-block::                    |
 |   :caption: **/main/benchmarks/**|   :caption: **/main/benchmarks/** |

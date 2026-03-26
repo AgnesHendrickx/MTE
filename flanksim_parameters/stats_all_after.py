@@ -93,12 +93,12 @@ file_fs = [
 output_csv_fs = 'stats_fs.csv'
 main(output_csv_fs, file_fs)
 
-file_fsp = [
-    ('FS', '1', './south/250_250_20_fb_ztr_paraguay/measurements_line_plotfile.ascii'),
-    ('FE', '1', './east/250_250_20_fb_ztr_paraguay/measurements_line_plotfile.ascii'),
-    ('FN', '1', './north/250_250_20_fb_ztr_paraguay/measurements_line_plotfile.ascii'),
-    ('FW', '1', './west/250_250_20_fb_ztr_paraguay/measurements_line_plotfile.ascii'),
-]
-output_csv_fsp = 'stats_fsp.csv'
-main(output_csv_fsp, file_fsp)
+#file_fsp = [
+#    ('FS', '1', './south/250_250_20_fb_ztr_paraguay/measurements_line_plotfile.ascii'),
+#    ('FE', '1', './east/250_250_20_fb_ztr_paraguay/measurements_line_plotfile.ascii'),
+#    ('FN', '1', './north/250_250_20_fb_ztr_paraguay/measurements_line_plotfile.ascii'),
+#    ('FW', '1', './west/250_250_20_fb_ztr_paraguay/measurements_line_plotfile.ascii'),
+#]
+#output_csv_fsp = 'stats_fsp.csv'
+#main(output_csv_fsp, file_fsp)
 

@@ -5,12 +5,9 @@
 
 Welcome to MTE's documentation!
 ===============================
-| MTE is an advanced Python library meticulously crafted to calculate the magnetic field proximately above the topography (~1 meter), as defined by either an analytical equation or a Digital Elevation Model (DEM). The code is available for download `GitHub <https://github.com/AgnesHendrickx/MTE/>`_, offering a comprehensive suite of tools for geophysical analysis and simulation, tailored for precision and ease of use in professional environments. The primary purpose is to compute magnetic anomalies in the ambient magnetic field above topographies for investigating their effect on the paleomagnetic records.
+| MTE is a Python library crafted to compute the magnetic field above (:math:`> 0.1` m) various topographies. Topographies can be simulated using either an analytical equation or a Digital Elevation Model (DEM). The code is available for download `GitHub <https://github.com/AgnesHendrickx/MTE/>`_. The primary purpose is to compute magnetic anomalies in the ambient magnetic field above topographies for investigating their effect on the paleomagnetic records.
 | This documentation is designed to serve as a comprehensive guide to both theoretical and practical applications of the MTE library.
 
-
-.. note::
-   this project is under active development.
 
 +----------------------------+------------------------------------------------------------------------------------------------------------------+
 |.. toctree::                |For a thorough understanding of the MTE library,                                                                  |
@@ -29,13 +26,13 @@ Welcome to MTE's documentation!
 |   functions                | using pseudo-fractals to incorporating real-world terrain and field paths.                                       |
 |   ref                      |                                                                                                                  |
 |   app1                     |Finally, the :ref:`Etna <etna>` section                                                                           |
-|                            | illustrates the replication of field values from the study of :cite:`Meyer23`.                                   |
+|                            | illustrates the replication of field values from the study of :cite:`Meyer24`.                                   |
 +----------------------------+------------------------------------------------------------------------------------------------------------------+
 
 Reproduction
 ------------
 | For most sections, a stepwise method to reproduce the presented results is given. These are located in collapsible sections at the end of each subsection. Please make sure to read the :doc:`usage` section beforehand.
-|
 
-
-.. todolist::
+Contact
+------------
+For any bugs or questions, please contact: a.e.hendrickx@uu.nl 

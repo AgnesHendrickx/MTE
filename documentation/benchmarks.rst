@@ -41,7 +41,7 @@ Results
    On the left, analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. On the right, the difference between analytical solution for a single dipole and computed values at increasing distance from surface of a sphere. Both show an excellent match of the computed and analytical values, even at close proximity to the surface. At :math:`0.25m` the error remains approximately :math:`\sim \lvert 0.01 \rvert \mu T`.
 
 | As illustrated in :numref:`figureB1_mp`, the discrepancies between the analytical solution and computed values are minimal.
-| Even at a height of :math:`0.25m`, the smallest height above the topography measured in the Etna case study :cite:`Meyer23`, the error remains approximately :math:`\sim \lvert 0.01 \rvert \mu T`.
+| Even at a height of :math:`0.25m`, the smallest height above the topography measured in the Etna case study :cite:`Meyer24`, the error remains approximately :math:`\sim \lvert 0.01 \rvert \mu T`.
 
 Reproduce
 ^^^^^^^^^
@@ -54,7 +54,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
+         :lineno-start: 49
          :emphasize-lines: 1
 
          benchmark = '1'
@@ -64,7 +64,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 74
+         :lineno-start: 88
          :emphasize-lines: 22,23
 
          if benchmark == '1':
@@ -112,7 +112,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 90
+         :lineno-start: 104
          :emphasize-lines: 6,7
 
          # Line measurement settings
@@ -201,20 +201,20 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
+         :lineno-start: 49
          :emphasize-lines: 1
 
-         benchmark = '2a'
+         benchmark = '2a' 
 
    2. Run base setup & rename/move files
 
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 106
+         :lineno-start: 120
 
          if benchmark == '2a':
-            # General settings
+            # General settings 
             remove_zerotopo = False
             compute_analytical = False
             do_spiral_measurements = False
@@ -254,7 +254,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
+         :lineno-start: 49
          :emphasize-lines: 1
 
          benchmark = '2b'
@@ -264,7 +264,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 133
+         :lineno-start: 147
          :emphasize-lines: 11,12
 
          if benchmark == '2b':
@@ -303,7 +303,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 141
+         :lineno-start: 155
          :emphasize-lines: 3,4
 
          # Domain settings
@@ -395,7 +395,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
+         :lineno-start: 49
          :emphasize-lines: 1
 
          benchmark = '3'
@@ -405,7 +405,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 156
+         :lineno-start: 170
          :emphasize-lines: 10,11,21,22
 
          if benchmark == '3':
@@ -453,7 +453,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 163
+         :lineno-start: 177
          :emphasize-lines: 3,4
 
          # Domain settings
@@ -487,7 +487,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 163
+         :lineno-start: 177
          :emphasize-lines: 3,4,14,15
 
          # Domain settings
@@ -521,7 +521,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 163
+         :lineno-start: 177
          :emphasize-lines: 3,4
 
          # Domain settings
@@ -645,7 +645,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
+         :lineno-start: 49
          :emphasize-lines: 1
 
          benchmark = '4'
@@ -655,7 +655,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 187
+         :lineno-start: 201
 
          if benchmark == '4':
             # General settings

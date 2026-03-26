@@ -61,7 +61,7 @@ Reproduce [#]_
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
+         :lineno-start: 49
          :emphasize-lines: 1
 
          benchmark = '2a'
@@ -71,7 +71,7 @@ Reproduce [#]_
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 106
+         :lineno-start: 120
          :emphasize-lines: 9,10,11,14,20
 
          if benchmark == '2a':
@@ -115,7 +115,7 @@ Reproduce [#]_
       |.. code-block:: python             |.. code-block:: python             |.. code-block:: python             |
       |   :caption: **/main/MTE.py**      |   :caption: **/main/MTE.py**      |   :caption: **/main/MTE.py**      |
       |   :linenos:                       |   :linenos:                       |   :linenos:                       |
-      |   :lineno-start: 113              |   :lineno-start: 113              |   :lineno-start: 113              |
+      |   :lineno-start: 127              |   :lineno-start: 127              |   :lineno-start: 127              |
       |   :emphasize-lines: 3             |   :emphasize-lines: 3             |   :emphasize-lines: 3             |
       |                                   |                                   |                                   |
       |   # Domain settings               |   # Domain settings               |   # Domain settings               |
@@ -159,12 +159,13 @@ Reproduce [#]_
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
-         :emphasize-lines: 1,8,11,18
+         :lineno-start: 49
+         :emphasize-lines: 1,9,12,22
 
          benchmark = '5'
-
-         compute_vi = False  # Possible for all setups apart from DEM (-1).
+         
+         compute_vi = False  # This includes the volume integral computation by Gaussian quadrature, see
+                              # documentation, possible for all setups apart from DEM (-1).
          if compute_vi:
             nqdim = 6  # Number of quadrature points, see documentation.
 
@@ -179,15 +180,18 @@ Reproduce [#]_
                                  # if 1st run is done with less el (and cuboid function), yet to be done.
 
          ## ONLY BENCHMARK = 5 (FLANKSIM) ##
-         subbench = 'south'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
+         subbench = 'south'  # 'south', 'east', 'north', 'west', input parameters imported from flanksim
+                             # have priority over any choice made here. So if this is used, make sure to
+                             # comment out the import line in section below!
+         global_run = False
 
    2. Run first setup & move files
 
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 217
-         :emphasize-lines: 8,9
+         :lineno-start: 231
+         :emphasize-lines: 8,9,32
 
          if benchmark == '5':
             # General settings
@@ -219,6 +223,8 @@ Reproduce [#]_
             plane_nnx, plane_nny = 30, 30
             plane_x0, plane_y0, plane_z0 = -Lx / 2, -Ly / 2, 1
             plane_Lx, plane_Ly = 2 * Lx, 2 * Ly
+            
+            #from flanksim import *  
 
       .. code-block::
          :caption: **/main/**     (runtime: ~6 s)
@@ -236,7 +242,7 @@ Reproduce [#]_
       |.. code-block:: python            |.. code-block:: python            |.. code-block:: python            |.. code-block:: python            |.. code-block:: python            |.. code-block:: python            |
       |   :caption: **/main/MTE.py**     |   :caption: **/main/MTE.py**     |   :caption: **/main/MTE.py**     |   :caption: **/main/MTE.py**     |   :caption: **/main/MTE.py**     |   :caption: **/main/MTE.py**     |
       |   :linenos:                      |   :linenos:                      |   :linenos:                      |   :linenos:                      |   :linenos:                      |   :linenos:                      |
-      |   :lineno-start: 223             |   :lineno-start: 223             |   :lineno-start: 223             |   :lineno-start: 223             |   :lineno-start: 223             |   :lineno-start: 223             |
+      |   :lineno-start: 237             |   :lineno-start: 237             |   :lineno-start: 237             |   :lineno-start: 237             |   :lineno-start: 237             |   :lineno-start: 237             |
       |   :emphasize-lines: 2,3          |   :emphasize-lines: 3            |   :emphasize-lines: 3            |   :emphasize-lines: 3            |   :emphasize-lines: 3            |   :emphasize-lines: 2,3          |
       |                                  |                                  |                                  |                                  |                                  |                                  |
       |   # Domain settings              |   # Domain settings              |   # Domain settings              |   # Domain settings              |   # Domain settings              |   # Domain settings              |
@@ -275,7 +281,7 @@ Size
 | The size experiments will commence with a more compact domain and progressively expand it until the computed magnetic field at a point above the domain center stabilizes. The outcomes of changes in both the depth extent (z-direction) and spatial extent (xy-direction) will be analyzed.
 
 | However, upon adapting domain depth, a complication arises: the exact nature of the magnetization in the underlying flows and deeper is unknown. Nonetheless, a uniform magnetization is continuously assumed. This assumption now expands deeper, eventually stretching to the full pile of volcanic flows of Mount Etna. To validate this assumption for our case study, we refer to the geomagnetic history of Mount Etna. The last reversal of Earth's magnetic field is dated around :math:`\sim795` ka ago :cite:`Singer19` and the first volcanic activity of Mount Etna is dated around :math:`\sim500` ka ago :cite:`Branca08`.
-| Therefore, no reversals are anticipated within the accumulated layers, allowing us to extend the depth for experimental purposes without restrictions. Nonetheless, as the directly underlying flow is deemed to exert the most substantial influence, expanding the depth beyond a singular flow might be redundant. The thickness of the flows underneath the field sites mentioned in :cite:`Meyer23` fluctuate between 5-15 meter :cite:`Andro05, Mur00`.
+| Therefore, no reversals are anticipated within the accumulated layers, allowing us to extend the depth for experimental purposes without restrictions. Nonetheless, as the directly underlying flow is deemed to exert the most substantial influence, expanding the depth beyond a singular flow might be redundant. The thickness of the flows underneath the field sites mentioned in :cite:`Meyer24` fluctuate between 5-15 meter :cite:`Andro05, Mur00`.
 
 Model setup
 ^^^^^^^^^^^
@@ -324,7 +330,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
+         :lineno-start: 49
          :emphasize-lines: 1
 
          benchmark = '2a'
@@ -334,7 +340,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 106
+         :lineno-start: 120
          :emphasize-lines: 9,10,11,14,20
 
          if benchmark == '2a':
@@ -378,7 +384,7 @@ Reproduce
       |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |
       |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |
       |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |   :linenos:                               |
-      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |
+      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |
       |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |
       |                                           |                                           |                                           |                                           |                                           |                                           |                                           |                                           |                                           |                                           |                                           |                                           |                                           |                                           |                                           |                                           |
       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |
@@ -421,12 +427,13 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
-         :emphasize-lines: 1,8,11,18
+         :lineno-start: 49
+         :emphasize-lines: 1,9,12,22
 
          benchmark = '5'
 
-         compute_vi = False  # Possible for all setups apart from DEM (-1).
+         compute_vi = False  # This includes the volume integral computation by Gaussian quadrature, see
+                              # documentation, possible for all setups apart from DEM (-1).
          if compute_vi:
             nqdim = 6  # Number of quadrature points, see documentation.
 
@@ -441,14 +448,17 @@ Reproduce
                                  # if 1st run is done with less el (and cuboid function), yet to be done.
 
          ## ONLY BENCHMARK = 5 (FLANKSIM) ##
-         subbench = 'south'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
-
+         subbench = 'south'  # 'south', 'east', 'north', 'west', input parameters imported from flanksim
+                    # have priority over any choice made here. So if this is used, make sure to
+                    # comment out the import line in section below!  
+         global_run = False
+         
    2. Run first setup & move files
 
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 217
+         :lineno-start: 231
          :emphasize-lines: 8,9,11,12
 
          if benchmark == '5':
@@ -498,7 +508,7 @@ Reproduce
       |.. code-block:: python          |.. code-block:: python          |.. code-block:: python          |.. code-block:: python          |.. code-block:: python          |
       |   :caption: **/main/MTE.py**   |   :caption: **/main/MTE.py**   |   :caption: **/main/MTE.py**   |   :caption: **/main/MTE.py**   |   :caption: **/main/MTE.py**   |
       |   :linenos:                    |   :linenos:                    |   :linenos:                    |   :linenos:                    |   :linenos:                    |
-      |   :lineno-start: 223           |   :lineno-start: 223           |   :lineno-start: 223           |   :lineno-start: 223           |   :lineno-start: 223           |
+      |   :lineno-start: 237           |   :lineno-start: 237           |   :lineno-start: 237           |   :lineno-start: 237           |   :lineno-start: 237           |
       |   :emphasize-lines: 2          |   :emphasize-lines: 2          |   :emphasize-lines: 2          |   :emphasize-lines: 2          |   :emphasize-lines: 2          |
       |                                |                                |                                |                                |                                |
       |   # Domain settings            |   # Domain settings            |   # Domain settings            |   # Domain settings            |   # Domain settings            |
@@ -551,12 +561,13 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
-         :emphasize-lines: 1,3,5
+         :lineno-start: 49
+         :emphasize-lines: 1,3,6
 
          benchmark = '2a'
 
-         compute_vi = True  # Possible for all setups apart from DEM (-1).
+         compute_vi = True  # This includes the volume integral computation by Gaussian quadrature, see
+                              # documentation, possible for all setups apart from DEM (-1).
          if compute_vi:
             nqdim = 6  # Number of quadrature points, see documentation.
 
@@ -565,7 +576,7 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 106
+         :lineno-start: 120
          :emphasize-lines: 9,10,11,14,20
 
          if benchmark == '2a':
@@ -609,7 +620,7 @@ Reproduce
       |.. code-block:: python                     |.. code-block:: python                     |.. code-block:: python                     |
       |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |   :caption: **/main/MTE.py**              |
       |   :linenos:                               |   :linenos:                               |   :linenos:                               |
-      |   :lineno-start: 113                      |   :lineno-start: 113                      |   :lineno-start: 113                      |
+      |   :lineno-start: 127                      |   :lineno-start: 127                      |   :lineno-start: 127                      |
       |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |   :emphasize-lines: 2                     |
       |                                           |                                           |                                           |
       |   # Domain settings                       |   # Domain settings                       |   # Domain settings                       |
@@ -687,12 +698,13 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
-         :emphasize-lines: 1,3,8,11,18
+         :lineno-start: 49
+         :emphasize-lines: 1,3,9,12,19,22
 
          benchmark = '5'
 
-         compute_vi = False  # Possible for all setups apart from DEM (-1).
+         compute_vi = False  # This includes the volume integral computation by Gaussian quadrature, see
+                              # documentation, possible for all setups apart from DEM (-1).
          if compute_vi:
             nqdim = 6  # Number of quadrature points, see documentation.
 
@@ -707,14 +719,17 @@ Reproduce
                                  # if 1st run is done with less el (and cuboid function), yet to be done.
 
          ## ONLY BENCHMARK = 5 (FLANKSIM) ##
-         subbench = 'south'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
+         subbench = 'south'  # 'south', 'east', 'north', 'west', input parameters imported from flanksim
+                    # have priority over any choice made here. So if this is used, make sure to
+                    # comment out the import line in section below!  
+         global_run = False
 
    2. Run first setup & move files
 
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 217
+         :lineno-start: 231
          :emphasize-lines: 8,9
 
          if benchmark == '5':
@@ -764,7 +779,7 @@ Reproduce
       |.. code-block:: python          |.. code-block:: python          |.. code-block:: python          |.. code-block:: python          |.. code-block:: python          |
       |   :caption: **/main/MTE.py**   |   :caption: **/main/MTE.py**   |   :caption: **/main/MTE.py**   |   :caption: **/main/MTE.py**   |   :caption: **/main/MTE.py**   |
       |   :linenos:                    |   :linenos:                    |   :linenos:                    |   :linenos:                    |   :linenos:                    |
-      |   :lineno-start: 223           |   :lineno-start: 223           |   :lineno-start: 223           |   :lineno-start: 223           |   :lineno-start: 223           |
+      |   :lineno-start: 237           |   :lineno-start: 237           |   :lineno-start: 237           |   :lineno-start: 237           |   :lineno-start: 237           |
       |   :emphasize-lines: 2          |   :emphasize-lines: 2          |   :emphasize-lines: 2          |   :emphasize-lines: 2          |   :emphasize-lines: 2          |
       |                                |                                |                                |                                |                                |
       |   # Domain settings            |   # Domain settings            |   # Domain settings            |   # Domain settings            |   # Domain settings            |
@@ -788,12 +803,13 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
+         :lineno-start: 49
          :emphasize-lines: 11
 
          benchmark = '5'
 
-         compute_vi = False  # Possible for all setups apart from DEM (-1).
+         compute_vi = False  # This includes the volume integral computation by Gaussian quadrature, see
+                              # documentation, possible for all setups apart from DEM (-1).
          if compute_vi:
             nqdim = 6  # Number of quadrature points, see documentation.
 
@@ -808,13 +824,16 @@ Reproduce
                                  # if 1st run is done with less el (and cuboid function), yet to be done.
 
          ## ONLY BENCHMARK = 5 (FLANKSIM) ##
-         subbench = 'south'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
+         subbench = 'south'  # 'south', 'east', 'north', 'west', input parameters imported from flanksim
+                    # have priority over any choice made here. So if this is used, make sure to
+                    # comment out the import line in section below!  
+         global_run = False
 
       +-------------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+
       |.. code-block:: python                                 |.. code-block:: python                                 |.. code-block:: python                                 |
       |   :caption: **/main/MTE.py**                          |   :caption: **/main/MTE.py**                          |   :caption: **/main/MTE.py**                          |
       |   :linenos:                                           |   :linenos:                                           |   :linenos:                                           |
-      |   :lineno-start: 223                                  |   :lineno-start: 223                                  |   :lineno-start: 223                                  |
+      |   :lineno-start: 237                                  |   :lineno-start: 237                                  |   :lineno-start: 237                                  |
       |   :emphasize-lines: 2,9,10                            |   :emphasize-lines: 2                                 |   :emphasize-lines: 2                                 |
       |                                                       |                                                       |                                                       |
       |   # Domain settings                                   |   # Domain settings                                   |   # Domain settings                                   |
@@ -898,12 +917,13 @@ Reproduce
       .. code-block:: python
          :caption: **/main/MTE.py**
          :linenos:
-         :lineno-start: 45
-         :emphasize-lines: 1,8,11,18
+         :lineno-start: 49
+         :emphasize-lines: 1,9,12,19,22
 
          benchmark = '5'
 
-         compute_vi = False  # Possible for all setups apart from DEM (-1).
+         compute_vi = False  # This includes the volume integral computation by Gaussian quadrature, see
+                              # documentation, possible for all setups apart from DEM (-1).
          if compute_vi:
             nqdim = 6  # Number of quadrature points, see documentation.
 
@@ -918,7 +938,10 @@ Reproduce
                                  # if 1st run is done with less el (and cuboid function), yet to be done.
 
          ## ONLY BENCHMARK = 5 (FLANKSIM) ##
-         subbench = 'south'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
+         subbench = 'south'  # 'south', 'east', 'north', 'west', input parameters imported from flanksim
+                    # have priority over any choice made here. So if this is used, make sure to
+                    # comment out the import line in section below!  
+         global_run = False
 
    2. Run two same bottom setups & move files (not included lines same as before)
 
@@ -926,7 +949,7 @@ Reproduce
       |.. code-block:: python                                 |.. code-block:: python                                 |
       |   :caption: **/main/MTE.py**                          |   :caption: **/main/MTE.py**                          |
       |   :linenos:                                           |   :linenos:                                           |
-      |   :lineno-start: 223                                  |   :lineno-start: 223                                  |
+      |   :lineno-start: 237                                  |   :lineno-start: 237                                  |
       |   :emphasize-lines: 2,9,10                            |   :emphasize-lines: 2                                 |
       |                                                       |                                                       |
       |   # Domain settings                                   |   # Domain settings                                   |

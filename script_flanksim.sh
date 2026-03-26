@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Define the name of the folder here
-folder_name="250_250_20_fb_ztr_paraguay"
+folder_name="250_250_20_fb"
 
 for subbenchs in 1 ; do
     echo '********************************************************'

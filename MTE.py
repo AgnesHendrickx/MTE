@@ -1,7 +1,8 @@
+#!/usr/bin/env python
+import numpy as np
+
 import random
 import time as time
-
-import numpy as np
 
 from magnetostatics import *
 from set_measurement_parameters import *
@@ -14,16 +15,19 @@ print('========================================')
 start_fullrun = time.time()
 
 ###################################################################################################
-# Benchmark:
-# 1: Dipole (small sphere, far away), line meas.
-# 2a: No perturbation, simple undeformed domain of cubic elements (box), plane and/or line meas.
-# 2b: Random perturbation internal nodes cubic or pancake, plane meas.
-# 3: Sphere (larger sphere, anywhere in space) analytical, spiral meas.
-# 4: A prismatic body, domain with constant M vector.
-# 5: Synthetic shapes, wavy surface, domain with constant M vector.
-# -1: DEM topography
+# Extensive explanation of the parameters to be chosen:
+
+# Benchmark: changing this number selects different predefined setups.
+# For more information, see documentation of the code.
+#     1: Dipole (small sphere, far away), line measurements by default.
+#     2a: No perturbation, simple undeformed domain of cubic elements (box), plane measurement.
+#     2b: Random perturbation internal nodes cubic or pancake, plane measurement.
+#     3: Sphere (larger sphere, anywhere in space) analytical, spiral measurement.
+#     4: A prismatic body, domain with constant M vector, line measurement.
+#     5: Synthetic shapes, wavy surface, domain with constant M vector, line measurement.
+#     -1: DEM topography, both artificial and real, path measurement.
 #
-# Observation methods:
+# Observation methods: Booleans "do_line_measurements = False", predefined for various setups.
 # plane: obs points (amount= plane_nnx, plane_nny) in each direction are equally distributed
 #        on a plane with sides (length= plane_Lx, plane_Ly) and a corner (coord =
 #        plane_x0, plane_y0) and at constant height (height= plane_z0).
@@ -40,35 +44,45 @@ start_fullrun = time.time()
 #       to line meas, but now coordinates are from file.
 #       Can be used for benchmark -1.
 ###################################################################################################
-###################################################################################################+
+###################################################################################################
 
-benchmark = '-1'
+benchmark = '1'  # adjust this number for various pre-defined setups, see numbering above.
 
-compute_vi = False  # possible for all setups apart from DEM (-1).
+compute_vi = False  # This includes the volume integral computation by Gaussian quadrature, see
+                     # documentation, possible for all setups apart from DEM (-1).
 if compute_vi:
-   nqdim = 4  # number of quadrature points, see documentation.
+   nqdim = 4  # number of quadrature points.
 
 ## ONLY BENCHMARK = -1 (DEM) & BENCHMARK = 5 (FLANKSIM) ##
 flat_bottom = True  # if True, a flat bottom is generated at the lower surface of the domain.
-                    # Please see documentation, as the specific setup of this feature is different
-                    # for the flank simulations and the DEM test.
-remove_zerotopo = True  # setup run 2 times: 1st time, zero topography setup: xy coordinates
+                    # Please see comments below, as the specific setup of this feature is 
+                    # different for the flank simulations and the DEM test.
+remove_zerotopo = False  # setup run 2 times: 1st time, zero topography setup: xy coordinates
                         # of the observation points the same, but zerotopo domain and obs path
                         # shifted to average height DEM. 2nd time, "regular" run with topography.
                         # final results are 2nd run - 1 st run values. Run time can be improved,
                         # if 1st run was done with less el (and cuboid function), yet to be done.
 
 ## ONLY BENCHMARK = 5 (FLANKSIM) ##
-subbench = 'south'  # 'south', 'east', 'north', 'west', shifts topo features, and obs paths.
+subbench = 'south'  # 'south', 'east', 'north', 'west', input parameters imported from flanksim
+                    # have priority over any choice made here. So if this is used, make sure to
+                    # comment out the import line in section below!
+global_run = False
 
 ## ONLY BENCHMARK = -1 (DEM) ##
-add_noise = False  # if True, noise is added to the DEM after loading in from file.
-Nf = 1.5  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
-        # on the top/bottom surface. Only relevant if add_noise = True
 art_DEM = False  # if True, path/topo file (+ header) produced by art_DEM.py read in.
                 # Please note other values specified below for IGRF and magnetization etc.
 
+## BENCHMARK == -1 OR 5 ##
+add_noise = False  # if True, noise is added to the DEM after loading in from file.
+Nf = 1.5  # noise amplitude between -Nf and Nf, value added to the z-coor of the middle node
+          # on the top/bottom surface. Only relevant if adding noise, increasing this value,
+          # increases the amount of noise superimposed on the DEM.
+
 ###################################################################################################
+###################################################################################################
+# Benchmark (or predefined setup) specific parameters, at the top are general settings that should
+# not be changed, as not all observation methods can be used in every setup.
 ###################################################################################################
 
 if benchmark == '1':
@@ -121,8 +135,8 @@ if benchmark == '2a':
    plane_x0, plane_y0, plane_z0 = -Lx / 2, -Ly / 2, 1
    plane_Lx, plane_Ly = 2 * Lx, 2 * Ly
 
-   # Line measurement settings
-   do_line_measurements = False
+   # Line measurement settings (can be used here)
+   do_line_measurements = False 
    line_nmeas = 47
    xstart, xend = 0.23 + ((Lx - 50) / 2), 49.19 + ((Ly - 50) / 2)
    ystart, yend = Ly / 2 - 0.221, Ly / 2 - 0.221
@@ -162,8 +176,8 @@ if benchmark == '3':
 
    # Domain settings
    Lx, Ly, Lz = 20, 20, 20
-   #nelx, nely, nelz = 60, 60, 60  # 3 el/m.
-   nelx, nely, nelz = 120, 120, 120  # 6 el/m.
+   nelx, nely, nelz = 60, 60, 60  # 3 el/m.
+   #nelx, nely, nelz = 120, 120, 120  # 6 el/m.
    Mx0, My0, Mz0 = 0, 0, 7.5
 
    # Sphere settings
@@ -222,11 +236,10 @@ if benchmark == '5':
 
    # Domain settings
    Lx, Ly, Lz = 250, 250, 20
-   nelx, nely, nelz = int(Lx * 4), int(Ly * 4), 10
-   Mx0, My0, Mz0 = 0, 4.085, -6.29
+   nelx, nely, nelz = int(Lx * 1.5), int(Ly * 1.5), 10
+   Mx0, My0, Mz0 = 0, 4.085, -6.29  # model configuration
    #Lx, Ly, Lz = 50, 50, 120
    #nelx, nely, nelz = 10, 10, 10
-
 
    # Synthetic topography settings
    wavelength = 25
@@ -235,7 +248,7 @@ if benchmark == '5':
 
    # Line measurement settings
    do_line_measurements = True
-   line_nmeas = 47
+   line_nmeas = 47 # setup chosen to avoid spatial instabilities at domain edges
    xstart, xend = 0.23 + ((Lx - 50) / 2), 49.19 + ((Ly - 50) / 2)
    ystart, yend = Ly / 2 - 0.221, Ly / 2 - 0.221
    zstart, zend = 1, 1  # 1m above surface.
@@ -246,7 +259,8 @@ if benchmark == '5':
    plane_x0, plane_y0, plane_z0 = -Lx / 2, -Ly / 2, 1
    plane_Lx, plane_Ly = 2 * Lx, 2 * Ly
 
-   #from flanksim import *
+   from flanksim import *  # this an automated script that runs all flanks, comment out if
+                           # parameter set above in this file is to be used.
 
    if subbench == 'east':
       slopex = np.tan(-af / 180 * np.pi)  # added height in x-direction due to angle of flank.
@@ -284,15 +298,23 @@ if benchmark == '5':
    IGRF_N = 26850.3e-9  # IGRF component in North direction.
    IGRF_D = 36305.7e-9  # IGRF component in Down direction.
 
-   IGRFx = IGRF_N  # Pmag coordinate configuration!
-   IGRFy = IGRF_E
-   IGRFz = IGRF_D
-
    #IGRFx = 18034.3 * 1e-9  # Asuncion, Paraguay
    #IGRFy = -4873.9 * 1e-9
    #IGRFz = -11904.4 * 1e-9
    #Mx0, My0, Mz0 = 0, 3.1, 6.2
+   if global_run:
+      lat = -90
+      IGRF_E, IGRF_N, IGRF_D = get_IGRF(lat)
+      print(f"Global run for latitude: {lat}")
+      print(f"IGRF_E: {IGRF_E}, IGRF_N:{IGRF_N}, IGRF_D: {IGRF_D}")
 
+      M = compute_magnetization(lat)
+      print(f"Mx0: {M[0]}, My0: {M[1]}, Mz0: {M[2]}")
+      Mx0, My0, Mz0 = M[0], M[1], M[2]
+
+   IGRFx = IGRF_N  # Pmag coordinate configuration! See add_referencefield, final computed data is
+   IGRFy = IGRF_E  # rotated to pmag before adding the reference field! So, NOT the same
+   IGRFz = IGRF_D  # coordinate orientation as the other domain parameters (magnetization)
 
    IGRFint = np.sqrt(IGRFx**2 + IGRFy**2 + IGRFz**2)  # intensity equation for pmag coord.
    IGRFinc = np.arctan2(IGRFz, np.sqrt(IGRFx**2 + IGRFy**2)) / np.pi * 180  # inclination.
@@ -325,7 +347,7 @@ if benchmark == '-1':
       print('reading from art_path.txt')
       with open(pathfile, 'r') as path:
          npath = len(path.readlines())
-      zpath_height = 1.8  # height above topo
+      zpath_height = 1  # height above topo
       ho = zpath_height
 
       # Domain settings from artificial DEM
@@ -358,11 +380,10 @@ if benchmark == '-1':
       from etna import *
       #Mx0, My0, Mz0 = 0, 0.545, -0.839
       #Mx0, My0, Mz0 = 0, 4.085, -6.290
-      
+
       #Mx0, My0, Mz0 = 0.2590, 4.4505, -6.0313
       #Mx0, My0, Mz0 = 0, 7.080, -10.903
       #Mx0, My0, Mz0 = 0, 10.893, -16.773
-
 
 ###################################################################################################
 ###################################################################################################
@@ -396,13 +417,17 @@ if do_plane_measurements:
 print('do_line_measurements=', do_line_measurements)
 if do_line_measurements:
    print('xstart,ystart,zstart=', xstart, ystart, zstart)
-   print('xend,yend,zend=', xend, yend, zend)
+   if line_nmeas > 1:
+      print('xend,yend,zend=', xend, yend, zend)
    print('line_nmeas=', line_nmeas)
    if benchmark == '5':
        print('subbench, flank=', subbench)
        print('wavelength =', wavelength)
        print('amplitude =', A)
        print('angle flank =', af)
+   if add_noise:
+      print(f'noise added to DEM with a noise factor of: {Nf}')
+
 print('do_spiral_measurements=', do_spiral_measurements)
 if do_spiral_measurements:
    print('npts_spiral', npts_spiral)
@@ -606,9 +631,7 @@ if benchmark == '-1':
    print('add in topofile ok')
    if flat_bottom:
       # flat bottom generates domain with a bottom surface flat at Lz below the lowest value
-      # within the topography (DEM). The mean of the ztopo is used both to extent the domain
-      # in depth, and to shift. This only works if the obs path is roughly in the middle,
-      # runs perpendicular to the slope and if the slope on the areal scale > local topo.
+      # within the topography (DEM). 
       zmin = np.min(ztopo) # min value of DEM topography.
       counter = 0
       for i in range(0, nnx):
@@ -634,7 +657,7 @@ if benchmark == '-1':
       # shift zerotopography domain, height chosen at mean height of the DEM.
       xb[:] += xllcorner
       yb[:] += yllcorner
-      #zb[:] += np.mean(ztopo) + min(ztopo)
+      #zb[:] += np.mean(ztopo) + min(ztopo)  # height = mean height DEM, not used anymore.
 
    print("adding DEM topography to domain: %.3f s" % (time.time() - start))
 
@@ -643,8 +666,6 @@ if benchmark == '-1':
    lines_path = path.readlines()
    nlines = np.size(lines_path)
    print(pathfile + ' counts ', nlines, ' lines')
-   print(npath)
-   print(nlines)
    xpath = np.zeros(npath, dtype=np.float64)  # x coordinates obs point
    ypath = np.zeros(npath, dtype=np.float64)  # y coordinates obs point
    zpath = np.zeros(npath, dtype=np.float64)  # z coordinates obs point
@@ -710,7 +731,8 @@ if benchmark == '-1':
    if flat_bottom and remove_zerotopo:
       # flat bottom generates domain with a bottom surface flat at Lz below the lowest value
       # within the topography (DEM). The mean of the ztopo is used both to extent the domain
-      # in depth, and to shift. This only works if the obs path is roughly in the middle,
+      # in depth, and to shift downwards for zero topography simulation domain.
+      # This only works if the obs path is roughly in the middle,
       # runs perpendicular to the slope and if the slope on the areal scale > local topo.
       counter = 0
       for i in range(0, nnx):
@@ -893,7 +915,7 @@ print('========================================')
 
 if do_line_measurements:
    start_big = time.time()
-   print('starting line measurement ...')
+   print('setting up line measurement ...')
 
    # Open files to write
    if benchmark == '5':
@@ -902,7 +924,7 @@ if do_line_measurements:
       linefile.write("# x,y,z, Bx_si, By_si, Bz_si, In_si, Ic_si, Dc_si \n")
       linefile1 = open("measurements_line_plotfile.ascii","w")
       linefile1.write("# 1 , 2 , 3 , 4      , 5      , 6      , 7      , 8      , 9      ,\
-                       10 (pm), 11 (pm), 12 (pm)  \n")
+                       10 (pm), 11 (pm), 12 (pm)  \n") # PM means paleomagnetic orientation!!)
       linefile1.write("# xm, ym, zm, IGRF_In, IGRF_Ic, IGRF_Dc, In_siB0, Ic_siB0, Dc_siB0,\
                        Bx_siB0, By_siB0, Bz_siB0  \n")
       if remove_zerotopo:
@@ -935,9 +957,9 @@ if do_line_measurements:
 
    # Setup line measurements
    for i in range(0, line_nmeas):
-       xm = xstart + (xend - xstart) / (line_nmeas - 1) * i
-       ym = ystart + (yend - ystart) / (line_nmeas - 1) * i
-       zm = zstart + (zend - zstart) / (line_nmeas - 1) * i
+       xm = xstart + (xend - xstart) / (line_nmeas - 1) * i if line_nmeas > 1 else xstart
+       ym = ystart + (yend - ystart) / (line_nmeas - 1) * i if line_nmeas > 1 else ystart
+       zm = zstart + (zend - zstart) / (line_nmeas - 1) * i if line_nmeas > 1 else zstart
 
        if benchmark != '1' and benchmark != '2a':  # both use surface_int_cuboid not _wtopo.
           xm, ym, message = shift_observation_points_edge(x, y, Lx, Ly, nelx, nely, nelz, xm, ym)
@@ -1016,10 +1038,26 @@ if do_line_measurements:
               B_si[:,i] += compute_B_surface_integral_cuboid(xm, ym, zm, x, y, z, icon[:,iel],\
                                                               Mx[iel], My[iel], Mz[iel])
           print("surf int: %.3f s" % (time.time() - start))
+
           #print('surf int   ->', B_si[:,i])
        else:
           start = time.time()
           for iel in range(0, nel):
+
+           if add_noise:
+              if iel == 0:  # noise for first "column" of the domain
+                 noise = random.uniform(-1, +1) * Nf
+                 #print("element nr:", iel)
+                 #print("Noise:", Noise)
+              elif iel%nelz == 0:  # change noise value for each new "column" of the domain
+                 noise = random.uniform(-1, +1) * Nf
+                 #print("element nr:", iel)
+                 #print("Noise:", Noise)
+
+              B_si[:,i] += compute_B_surface_integral_wtopo_noise(xm, ym, zm, x, y, z,\
+                                                                   icon[:,iel], Mx[iel], My[iel],\
+                                                                       Mz[iel], noise)
+           else:
               B_si[:,i] += compute_B_surface_integral_wtopo(xm, ym, zm, x, y, z, icon[:,iel],\
                                                              Mx[iel], My[iel], Mz[iel])
           print("surf int: %.3f s" % (time.time() - start))

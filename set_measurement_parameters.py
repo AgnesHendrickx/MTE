@@ -3,13 +3,13 @@ import numpy as np
 
 def set_measurement_parameters(rDEM, sDEM, site, path, ho):
     """
-    Returns measurement parameters from :cite:`Meyer23` of the chosen (passed) parameters.
+    Returns measurement parameters from :cite:`Meyer24` of the chosen (passed) parameters.
 
     :param rDEM: number associated with resolution of the DEM, see :doc:`etna`.
     :type rDEM: scalar(float)
     :param sDEM: number associated with size of the DEM, see :doc:`etna`.
     :type sDEM: scalar(float)
-    :param site: number associated with resolution of the domain, see :doc:`etna`.
+    :param site: number associated with site (FLUX), see :doc:`etna`.
     :type site: scalar(float)
     :param path: number associated with specific paths of a site, see :doc:`etna`.
     :type path: scalar(float)
@@ -100,9 +100,9 @@ def set_measurement_parameters(rDEM, sDEM, site, path, ho):
          - **nelz** *(scalar(int))* - amount of elements in z-direction of domain.
          - **xllcorner** *(scalar(float))* - x-coordinate of the DEM cut corner, used to align domain with field measurement coordinates in (WGS84) UTM Easting (meters), zone 33N.
          - **yllcorner** *(scalar(float))* - y-coordinate of the DEM cut corner, used to align domain with field measurement coordinates in (WGS84) UTM Northing (meters), zone 33N.
-         - **npath** *(scalar(int))* - amount of measurement points for the field path from :cite:`Meyer23`.
-         - **zpath_height** *(scalar(float))* - height of the field measurement path above the surface from :cite:`Meyer23` in meters.
-         - **pathfile** *(string)* - name of the file associated with the field path from :cite:`Meyer23`, containing all coordinates of measurement points and magnetic field strength measurement data (converted to UTM).
+         - **npath** *(scalar(int))* - amount of measurement points for the field path from :cite:`Meyer24`.
+         - **zpath_height** *(scalar(float))* - height of the field measurement path above the surface from :cite:`Meyer24` in meters.
+         - **pathfile** *(string)* - name of the file associated with the field path from :cite:`Meyer24`, containing all coordinates of measurement points and magnetic field strength measurement data (converted to UTM).
          - **pathfile** *(string)* - name of the file associated with the DEM cut chosen.
          - **IGRFx** *(scalar(float))* - x-component of the IGRF (global reference field) in Tesla.
          - **IGRFy** *(scalar(float))* - y-component of the IGRF (global reference field) in Tesla.

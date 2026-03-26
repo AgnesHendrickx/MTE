@@ -5,12 +5,17 @@
 *.vtu
 
 #Ignore personal folders
-/overig/
+/other/
 /writing/
 /lit/
-/oude codes, versies, functions, subroutines/ 
 /backup/
 /copy*/
+/publication/
+/ppigrf/
+/field_inversions_tests/
+/MTE_server/
+.DS_Store
+
 
 # Ignore .swp 
 *.swp
@@ -23,6 +28,7 @@
 #/path_results/
 #/flanksim_parameters/
 #/zero_topo/
+/results/
 /manual/
 /tests/
 **/other

@@ -1,6 +1,87 @@
 import random
 
 import numpy as np
+import ppigrf
+
+from datetime import datetime
+
+###################################################################################################
+# this function gets IGRF components based on latitude, long, height and date, using PPIGRF
+# DOI: 10.5281/zenodo.5962661
+
+
+
+def get_IGRF(lat, long=15, h=1.3, date=datetime(2018, 4, 1)):
+    """
+    Returns the components of the IGRF magnetic field at a given location, height and date. 
+    Default values are for Mt. Etna case study at various latitudes. 
+    Uses ppigrf package.
+
+    :param lat: Latitude in degrees (range: -90 to 90)
+    :type lat: float
+    :param long: Longitude in degrees
+    :type long: float
+    :param h: Height above the Earth's surface in km
+    :type h: float
+    :param date: Date for which the IGRF field is evaluated
+    :type date: datetime
+    :return:
+        - **IGRF_E** *(float)* - East component of the magnetic field [T]
+        - **IGRF_N** *(float)* - North component of the magnetic field [T]
+        - **IGRF_D** *(float)* - Downward component of the magnetic field [T]
+    :rtype: tuple(float, float, float)
+    """
+
+    # Check if value is between -90 and 90
+    if not -90 <= lat <= 90:
+        print("Latitude is outside the valid range (-90, 90)")
+        return
+    #lat_rad = np.deg2rad(lat)  # Convert latitude to radians
+    Be, Bn, Bu = ppigrf.igrf(long, lat, h, date, coeff_fn=ppigrf.ppigrf.shc_fn_igrf13) # returns east, north, up
+    #print(Be, Bn, Bu)
+
+    Be = Be[0] if isinstance(Be, (list, np.ndarray)) else Be
+    Bn = Bn[0] if isinstance(Bn, (list, np.ndarray)) else Bn
+    Bu = Bu[0] if isinstance(Bu, (list, np.ndarray)) else Bu
+
+    IGRF_E = 0 if np.isnan(Be) else Be * 1e-9
+    IGRF_N = 0 if np.isnan(Bn) else Bn * 1e-9
+    IGRF_D = 0 if np.isnan(Bu) else -Bu * 1e-9
+
+    return IGRF_E, IGRF_N, IGRF_D
+
+###################################################################################################
+# this function computes magnetization components based on latitude
+
+
+def compute_magnetization(lat, Mint=7.5):
+    """
+    Returns components of magnetization, assuming constant magnetization all over the globe
+     (not weakening towards the equator), magnetization intensity based on case study (7.5 A/m)
+     is default.
+
+    :param lat: lattitude in degrees (range: -90:90)
+    :type lat: scalar(float)
+    :param Mint: Intensity assigned to the magnetized matter in
+    :type Mint: scalar(float)
+    :return:
+        - **M_lat** *(array_like(float))* - 1D array(3), containing components (0=x;1=y;2=z) of the magnetization in model configuration (not PMAG).
+    """
+
+    # Check if value is between -90 and 90
+    if not -90 <= lat <= 90:
+        print("Latitude is outside the valid range (-90, 90)")
+        return
+    lat_rad = np.deg2rad(lat)  # Convert latitude to radians
+    inc_rad = np.arctan(2*np.tan(lat_rad))
+
+    # Assuming the components are computed as follows (example logic):
+    Mx = 0  # Zero as dec = 0 assumed
+    My = 0 if abs(Mint * np.cos(inc_rad)) < 1e-9 else Mint * np.cos(inc_rad)
+    Mz = - Mint * np.sin(inc_rad)
+
+    M_lat = np.array([Mx, My, Mz])  # Combine components into a single array
+    return M_lat
 
 
 ###################################################################################################
@@ -221,7 +302,7 @@ def shift_observation_points_edge(x, y, Lx, Ly, nelx, nely, nelz, xm, ym):
     | This function adjusts observation points positioned near the diagonal of additional triangles on the top (or bottom) of a hexahedron cell.
     | This function uses :func:`support.is_point_near_diagonal`, passing the length of an element in the x- and y-direction, and the x- and y- coordinates of each observation point with the x-coordinate and y-coordinate of each node on the top surface (see nnz-1) subtracted. This ensures testing of proximity to the diagonals of all elements. The function is designed to stop after first modification, as within macroscopic purposes we do not expect an observation point to be shifted to another diagonal. Afterwards, it states any modification within the "message".
     | Both x- and y-coordinates are shifted using a random value between -1 and 1 times the artificial distance (factor).
-    | This spatial problem isn't restricted to the domain bounds. While generating an artificial distance for singularities within the main calculation function (:func:`magnetostatics.facmag`) similar to the solution of :cite:`Bott63,BLAKELY` for edge alignment, would be preferred. The problem emerges from our decision to utilize the :func:`magnetostatics.facmag` in this particular manner (by subdividing the top and bottom into additional triangles). Since this setup is invoked via an external function, and because it falls outside the scope of the function’s original intention (to handle planes as polyhedron sides), we have opted to create this external function as well. Furthermore, there are several setups that do not require subdivision, and subsequently use the :func:`magnetostatics.compute_B_surface_integral_cuboid`, hence shifting there could only potentially introduce inaccuracies. This is avoided by the introduction of this function, only called for in case function :func:`magnetostatics.compute_B_surface_integral_wtopo` is employed, see :doc:`benchmarks`,:doc:`flanksim`,:doc:`etna`.
+    | This spatial problem isn't restricted to the domain bounds. While generating an artificial distance for singularities within the main calculation function (:func:`magnetostatics.facmag`) similar to the solution of :cite:`Bott63,BLAKELY` for edge alignment, would be preferred. The problem emerges from our decision to utilize the :func:`magnetostatics.facmag` in this particular manner (by subdividing the top and bottom into additional triangles). Since this setup is invoked via an external function, and because it falls outside the scope of the function’s original intention (to handle planes as polyhedron sides), we have opted to create this external function as well. Furthermore, there are several setups that do not require subdivision, and subsequently use the :func:`magnetostatics.compute_B_surface_integral_cuboid`, hence shifting there could only potentially introduce inaccuracies. This is avoided by the introduction of this function, only called for in case function :func:`magnetostatics.compute_B_surface_integral_wtopo` is employed, see :doc:`benchmarks`, :doc:`flanksim`, :doc:`etna`.
 
     | Benchmarks have established that the epsilon should be at least of a factor **1e-5** or larger. It is important to note that this value is not dynamically scaled and should be treated with careful consideration, particularly if there are any modifications to the core implementation of the model.
 
