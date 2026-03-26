@@ -121,5 +121,5 @@ html_show_sourcelink = False
 html_logo = "Logo2r2.png"
 html_static_path = ['_static']
 html_css_files = [
-    'reformatted_custom.css',
+    'custom.css',
 ]
