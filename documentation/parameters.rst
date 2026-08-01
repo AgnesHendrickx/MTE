@@ -996,7 +996,7 @@ Conclusions
 
 1. The amount of elements in the z-direction is irrelevant and will be maintained at ten.
 2. The amount of elements in the xy-direction for synthetic topography should be at least 1.5 elements per meter (at a height of 1 meter above the surface).
-3. The spatial extent of the domain needs to be at least :math:`250\times250m` to avoid a significant edge effect on a central measurement path (of ~:math:`50m`).
+3. The spatial extent of the domain needs to be at least :math:`250\times250m` to avoid a significant edge effect on a central measurement path (of ~ :math:`50m`).
 4. Extending the depth and spatial extent has a proportional impact on the magnitude of the :math:`B_z` and :math:`B_x` components.
     - Increasing the depth for a domain leads to enlargement of the edge effect, so the depth of the domain should remain considerably less than the spatial dimension.
     - To remove the domain related variations, one can subtract the values computed over a flat topography domain from the observed results. We recommend implementing a flat boundary surface at a consistent depth beneath the lowest topographical point within the domain. The thickness of this "zero topography" domain should be calibrated to match that beneath the observation path within the topographic domain.

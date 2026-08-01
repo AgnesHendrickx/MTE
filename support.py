@@ -56,12 +56,10 @@ def get_IGRF(lat, long=15, h=1.3, date=datetime(2018, 4, 1)):
 
 def compute_magnetization(lat, Mint_ref=7.5, lat_ref=None):
     """
-    Returns components of magnetization, varying inclination and intensity using GAD assumption.
+    Returns components of magnetization, varying inclination and intensity using GAD assumption. If lat_ref = None. we assume that Mint is equatorial intensity, magnetization intensity reference based on case study (7.5 A/m)
+    is default.
     The magnetization intensity is assumed proportional to the GAD field intensity:
         M(latitude) ∝ sqrt(1 + 3 sin(latitude)**2)     
-    If lat_ref = None. we assume that Mint is equatorial intensity, magnetization intensity reference based on case study (7.5 A/m)
-     is default.
-
         
     :param lat: lattitude in degrees (range: -90:90)
     :type lat: scalar(float)
