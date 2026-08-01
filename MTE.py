@@ -308,7 +308,7 @@ if benchmark == '5':
       print(f"Global run for latitude: {lat}")
       print(f"IGRF_E: {IGRF_E}, IGRF_N:{IGRF_N}, IGRF_D: {IGRF_D}")
 
-      M = compute_magnetization(lat)
+      M = compute_magnetization(lat, Mint_ref=7.5, lat_ref=37.752)
       print(f"Mx0: {M[0]}, My0: {M[1]}, Mz0: {M[2]}")
       Mx0, My0, Mz0 = M[0], M[1], M[2]
 

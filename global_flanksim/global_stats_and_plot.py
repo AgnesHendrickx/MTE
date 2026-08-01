@@ -198,7 +198,7 @@ def compute_median_differences2(file_paths, output_csv_path, median=True):
         writer.writerows(rows)
 
 
-def plot_median_differences(csv_file, name_image=None, ref_field=True):
+def plot_median_differences(csv_file, name_image=None, ref_field=True, median=True):
     # Read CSV file
     data = np.genfromtxt(csv_file, delimiter=',', names=True, dtype=None, encoding='utf-8')
 
@@ -266,10 +266,14 @@ def plot_median_differences(csv_file, name_image=None, ref_field=True):
     for i, (component, label) in enumerate([('Int', 'intensity [μT]'), ('Inc', 'inclination [$^\\circ$]'), ('Dec', 'declination [$^\\circ$]')]):
         ax = axes[i]
         #ax.set_title(f'Median {label} Difference vs Latitude')
-        if ref_field:
+        if ref_field and median:
             ax.set_xlabel(f'$\\tilde{{\\Delta}}$ {label} w.r.t. IGRF', fontsize=12)
+        elif ref_field and not median:
+            ax.set_xlabel(f'$\\overline{{\\Delta}}$ {label} w.r.t. IGRF', fontsize=12)
+        elif not ref_field and not median:
+            ax.set_xlabel(f'mean {label} anomaly')
         else:
-            ax.set_xlabel(f'{label} anomaly')
+            ax.set_xlabel(f'median {label} anomaly')
 
         # Plot for each flank
         for flank in median_differences.keys():
@@ -293,7 +297,7 @@ def plot_median_differences(csv_file, name_image=None, ref_field=True):
         for y0, y1 in [(-90, -60), (-30, 30), (60, 90)]:
             ax.axhspan(y0, y1, color='0.95', zorder=0)
         if i == 0:
-            ax.legend(loc='upper right')
+            ax.legend(loc='lower right')
             ax.set_ylabel('latitude', fontsize=12)
 
         ax.set_yticks(np.arange(-90, 91, 30))
@@ -302,6 +306,15 @@ def plot_median_differences(csv_file, name_image=None, ref_field=True):
         ax.relim()
         ax.autoscale(axis='x')
         ax.margins(x=0.1)
+        if median and ref_field:
+            if i == 0:
+                ax.set_xticks(np.arange(-3, 2, 1))
+            elif i == 1:
+                ax.set_xticks(np.arange(-4, 5 , 2))
+                ax.set_xlim(-3, 4.5)
+            elif i == 2:
+                ax.set_xticks(np.arange(-15, 20, 5))
+            
     # Add common x-label at the bottom of the figure
     #axes[-1].set_xlabel('Latitude')
     axes[1].tick_params(labelleft=False)
@@ -316,148 +329,148 @@ def plot_median_differences(csv_file, name_image=None, ref_field=True):
 
 file_paths = [
     # South
-    (-90, 'south', './lats/-90/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-75, 'south', './lats/-75/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-60, 'south', './lats/-60/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-45, 'south', './lats/-45/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-30, 'south', './lats/-30/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-15, 'south', './lats/-15/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (0, 'south', './lats/0/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (15, 'south', './lats/15/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (30, 'south', './lats/30/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (45, 'south', './lats/45/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (60, 'south', './lats/60/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (75, 'south', './lats/75/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (90, 'south', './lats/90/south/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
+    (-90, 'south', './lats/-90/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-75, 'south', './lats/-75/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-60, 'south', './lats/-60/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-45, 'south', './lats/-45/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-30, 'south', './lats/-30/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-15, 'south', './lats/-15/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (0, 'south', './lats/0/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (15, 'south', './lats/15/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (30, 'south', './lats/30/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (45, 'south', './lats/45/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (60, 'south', './lats/60/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (75, 'south', './lats/75/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (90, 'south', './lats/90/south/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
 
     # East
-    (-90, 'east', './lats/-90/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-75, 'east', './lats/-75/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-60, 'east', './lats/-60/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-45, 'east', './lats/-45/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-30, 'east', './lats/-30/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-15, 'east', './lats/-15/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (0, 'east', './lats/0/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (15, 'east', './lats/15/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (30, 'east', './lats/30/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (45, 'east', './lats/45/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (60, 'east', './lats/60/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (75, 'east', './lats/75/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (90, 'east', './lats/90/east/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
+    (-90, 'east', './lats/-90/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-75, 'east', './lats/-75/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-60, 'east', './lats/-60/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-45, 'east', './lats/-45/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-30, 'east', './lats/-30/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-15, 'east', './lats/-15/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (0, 'east', './lats/0/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (15, 'east', './lats/15/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (30, 'east', './lats/30/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (45, 'east', './lats/45/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (60, 'east', './lats/60/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (75, 'east', './lats/75/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (90, 'east', './lats/90/east/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
 
     # North
-    (-90, 'north', './lats/-90/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-75, 'north', './lats/-75/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-60, 'north', './lats/-60/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-45, 'north', './lats/-45/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-30, 'north', './lats/-30/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-15, 'north', './lats/-15/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (0, 'north', './lats/0/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (15, 'north', './lats/15/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (30, 'north', './lats/30/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (45, 'north', './lats/45/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (60, 'north', './lats/60/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (75, 'north', './lats/75/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (90, 'north', './lats/90/north/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
+    (-90, 'north', './lats/-90/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-75, 'north', './lats/-75/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-60, 'north', './lats/-60/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-45, 'north', './lats/-45/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-30, 'north', './lats/-30/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-15, 'north', './lats/-15/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (0, 'north', './lats/0/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (15, 'north', './lats/15/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (30, 'north', './lats/30/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (45, 'north', './lats/45/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (60, 'north', './lats/60/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (75, 'north', './lats/75/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (90, 'north', './lats/90/north/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
 
     # West
-    (-90, 'west', './lats/-90/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-75, 'west', './lats/-75/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-60, 'west', './lats/-60/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-45, 'west', './lats/-45/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-30, 'west', './lats/-30/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (-15, 'west', './lats/-15/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (0, 'west', './lats/0/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (15, 'west', './lats/15/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (30, 'west', './lats/30/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (45, 'west', './lats/45/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (60, 'west', './lats/60/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (75, 'west', './lats/75/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
-    (90, 'west', './lats/90/west/250_250_20_fb_ztr/measurements_line_plotfile.ascii'),
+    (-90, 'west', './lats/-90/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-75, 'west', './lats/-75/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-60, 'west', './lats/-60/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-45, 'west', './lats/-45/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-30, 'west', './lats/-30/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (-15, 'west', './lats/-15/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (0, 'west', './lats/0/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (15, 'west', './lats/15/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (30, 'west', './lats/30/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (45, 'west', './lats/45/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (60, 'west', './lats/60/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (75, 'west', './lats/75/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
+    (90, 'west', './lats/90/west/250_250_20_fb_ztr_vInt/measurements_line_plotfile.ascii'),
 ]
 
 
-output_csv = './median_differences.csv'
+output_csv = './median_differences_vInt.csv'
 compute_median_differences(file_paths, output_csv, median=True)
-plot_median_differences(output_csv,name_image='median', ref_field=True)
+plot_median_differences(output_csv,name_image='median_vInt', ref_field=True, median=True)
 
-output_csv = './mean_differences.csv'
+output_csv = './mean_differences_vInt.csv'
 compute_median_differences(file_paths, output_csv, median=False)
-plot_median_differences(output_csv, name_image='mean', ref_field=True)
+plot_median_differences(output_csv, name_image='mean_vInt', ref_field=True, median=False)
 
 
 file_paths2 = [
     # South
-    (-90, 'south', './lats/-90/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-75, 'south', './lats/-75/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-60, 'south', './lats/-60/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-45, 'south', './lats/-45/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-30, 'south', './lats/-30/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-15, 'south', './lats/-15/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (0, 'south', './lats/0/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (15, 'south', './lats/15/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (30, 'south', './lats/30/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (45, 'south', './lats/45/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (60, 'south', './lats/60/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (75, 'south', './lats/75/south/250_250_20_fb_ztr/measurements_line.ascii'),
-    (90, 'south', './lats/90/south/250_250_20_fb_ztr/measurements_line.ascii'),
+    (-90, 'south', './lats/-90/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-75, 'south', './lats/-75/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-60, 'south', './lats/-60/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-45, 'south', './lats/-45/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-30, 'south', './lats/-30/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-15, 'south', './lats/-15/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (0, 'south', './lats/0/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (15, 'south', './lats/15/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (30, 'south', './lats/30/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (45, 'south', './lats/45/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (60, 'south', './lats/60/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (75, 'south', './lats/75/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (90, 'south', './lats/90/south/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
 
     # East
-    (-90, 'east', './lats/-90/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-75, 'east', './lats/-75/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-60, 'east', './lats/-60/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-45, 'east', './lats/-45/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-30, 'east', './lats/-30/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-15, 'east', './lats/-15/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (0, 'east', './lats/0/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (15, 'east', './lats/15/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (30, 'east', './lats/30/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (45, 'east', './lats/45/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (60, 'east', './lats/60/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (75, 'east', './lats/75/east/250_250_20_fb_ztr/measurements_line.ascii'),
-    (90, 'east', './lats/90/east/250_250_20_fb_ztr/measurements_line.ascii'),
+    (-90, 'east', './lats/-90/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-75, 'east', './lats/-75/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-60, 'east', './lats/-60/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-45, 'east', './lats/-45/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-30, 'east', './lats/-30/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-15, 'east', './lats/-15/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (0, 'east', './lats/0/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (15, 'east', './lats/15/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (30, 'east', './lats/30/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (45, 'east', './lats/45/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (60, 'east', './lats/60/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (75, 'east', './lats/75/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (90, 'east', './lats/90/east/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
 
     # North
-    (-90, 'north', './lats/-90/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-75, 'north', './lats/-75/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-60, 'north', './lats/-60/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-45, 'north', './lats/-45/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-30, 'north', './lats/-30/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-15, 'north', './lats/-15/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (0, 'north', './lats/0/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (15, 'north', './lats/15/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (30, 'north', './lats/30/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (45, 'north', './lats/45/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (60, 'north', './lats/60/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (75, 'north', './lats/75/north/250_250_20_fb_ztr/measurements_line.ascii'),
-    (90, 'north', './lats/90/north/250_250_20_fb_ztr/measurements_line.ascii'),
+    (-90, 'north', './lats/-90/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-75, 'north', './lats/-75/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-60, 'north', './lats/-60/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-45, 'north', './lats/-45/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-30, 'north', './lats/-30/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-15, 'north', './lats/-15/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (0, 'north', './lats/0/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (15, 'north', './lats/15/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (30, 'north', './lats/30/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (45, 'north', './lats/45/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (60, 'north', './lats/60/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (75, 'north', './lats/75/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (90, 'north', './lats/90/north/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
 
     # West
-    (-90, 'west', './lats/-90/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-75, 'west', './lats/-75/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-60, 'west', './lats/-60/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-45, 'west', './lats/-45/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-30, 'west', './lats/-30/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (-15, 'west', './lats/-15/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (0, 'west', './lats/0/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (15, 'west', './lats/15/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (30, 'west', './lats/30/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (45, 'west', './lats/45/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (60, 'west', './lats/60/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (75, 'west', './lats/75/west/250_250_20_fb_ztr/measurements_line.ascii'),
-    (90, 'west', './lats/90/west/250_250_20_fb_ztr/measurements_line.ascii'),
+    (-90, 'west', './lats/-90/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-75, 'west', './lats/-75/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-60, 'west', './lats/-60/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-45, 'west', './lats/-45/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-30, 'west', './lats/-30/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (-15, 'west', './lats/-15/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (0, 'west', './lats/0/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (15, 'west', './lats/15/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (30, 'west', './lats/30/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (45, 'west', './lats/45/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (60, 'west', './lats/60/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (75, 'west', './lats/75/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
+    (90, 'west', './lats/90/west/250_250_20_fb_ztr_vInt/measurements_line.ascii'),
 ]
 
-output_csv2 = './median_differences_noref_mean.csv'
+output_csv2 = './median_differences_noref_mean_vInt.csv'
 compute_median_differences2(file_paths2, output_csv2, median=False)
 
-name_image = "only_anomalies_mean"
-plot_median_differences(output_csv2, name_image, ref_field=False)
+name_image = "only_anomalies_mean_vInt"
+plot_median_differences(output_csv2, name_image, ref_field=False, median=False)
 
 
-output_csv2 = './median_differences_noref_median.csv'
+output_csv2 = './median_differences_noref_median_vInt.csv'
 compute_median_differences2(file_paths2, output_csv2, median=True)
 
-name_image = "only_anomalies_median"
-plot_median_differences(output_csv2, name_image, ref_field=False)
+name_image = "only_anomalies_median_vInt"
+plot_median_differences(output_csv2, name_image, ref_field=False, median=True)
 

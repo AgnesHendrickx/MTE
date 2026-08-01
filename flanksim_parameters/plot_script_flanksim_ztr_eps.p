@@ -30,10 +30,10 @@ set style line 4 pt 5 lw 4 ps 1 lc "web-green"
 set style line 5 pt 9 lw 4 ps 1.5 lc "orange-red"
 set style line 6 pt 11 lw 4 ps 1.5 lc "gold"
 
-set style line 30 pt 6 lw 3 ps 1 lc rgb '#20B2AA'dt (1,1,1,1)
-set style line 40 pt 4 lw 3 ps 0.5 lc "dark-olivegreen" dt (1,1,1,1)
-set style line 50 pt 8 lw 3 ps 1 lc "coral" dt (1,1,1,1)
-set style line 60 pt 10 lw 3 ps 1 lc "dark-violet" dt (1,1,1,1)
+set style line 30 pt 6 lw 3 ps 1 lc rgb '#20B2AA'dt (8,4)
+set style line 40 pt 4 lw 3 ps 0.5 lc "dark-olivegreen" dt (8,4)
+set style line 50 pt 8 lw 3 ps 1 lc "coral" dt (8,4)
+set style line 60 pt 10 lw 3 ps 1 lc "dark-violet" dt (8,4)
 
 
 set style line 3 pt 7 lw 2 ps 1.5 lc rgb "#1965B0"
@@ -41,10 +41,22 @@ set style line 4 pt 5 lw 2 ps 1 lc rgb "#4EB265"
 set style line 5 pt 9 lw 2 ps 1.5 lc rgb "#DC050C"
 set style line 6 pt 11 lw 2 ps 1.5 lc rgb "#F6C141"
 
-set style line 30 pt 6 lw 1.8 ps 1 lc rgb '#7BAFDE'dt (1,1,1,1)
-set style line 40 pt 4 lw 1.8 ps 0.5 lc rgb "#90C987" dt (1,1,1,1)
-set style line 50 pt 8 lw 1.8 ps 1 lc rgb "#E8601C" dt (1,1,1,1)
-set style line 60 pt 10 lw 1.8 ps 1 lc rgb "#AE76A3" dt (1,1,1,1)
+set style line 30 pt 6 lw 1.6 ps 1 lc rgb '#7BAFDE'dt (8,4)
+set style line 40 pt 4 lw 1.6 ps 0.5 lc rgb "#90C987" dt (8,4)
+set style line 50 pt 8 lw 1.6 ps 1 lc rgb "#E8601C" dt (8,4)
+set style line 60 pt 10 lw 1.6 ps 1 lc rgb "#AE76A3" dt (8,4)
+
+
+set style line 30 pt 6 lw 1.8 ps 1 lc rgb '#7BAFDE'dt (8,4)
+set style line 40 pt 4 lw 1.8 ps 0.5 lc rgb "#90C987" dt (8,4)
+set style line 50 pt 8 lw 1.8 ps 1 lc rgb "#72190E" dt (8,4)
+set style line 60 pt 10 lw 1.8 ps 1 lc rgb "#AE76A3" dt (8,4)
+
+
+set style line 30 pt 6 lw 1.5 ps 1 lc rgb '#1965B0'dt (8,4)
+set style line 40 pt 4 lw 1.5 ps 0.5 lc rgb "#4EB265" dt (8,4)
+set style line 50 pt 8 lw 1.5 ps 1 lc rgb "#DC050C" dt (8,4)
+set style line 60 pt 10 lw 1.5 ps 1 lc rgb "#F6C141" dt (8,4)
 
 set style fill transparent solid 0.15 noborder
 
@@ -274,7 +286,7 @@ unset multiplot
 
 set terminal pdfcairo enhanced size 16cm,10cm
 
-set output 'flanksim_mp_zt_180_block.pdf'
+set output 'Figure_3_new.pdf'
 set multiplot layout 2,2
 unset key
 set autoscale xy

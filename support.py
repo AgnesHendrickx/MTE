@@ -54,16 +54,24 @@ def get_IGRF(lat, long=15, h=1.3, date=datetime(2018, 4, 1)):
 # this function computes magnetization components based on latitude
 
 
-def compute_magnetization(lat, Mint=7.5):
+def compute_magnetization(lat, Mint_ref=7.5, lat_ref=None):
     """
     Returns components of magnetization, assuming constant magnetization all over the globe
      (not weakening towards the equator), magnetization intensity based on case study (7.5 A/m)
      is default.
+    The magnetization intensity is assumed proportional to the GAD field
+    intensity:
 
+        M(latitude) ∝ sqrt(1 + 3 sin(latitude)**2)     
+    If lat_ref = None. we assume that Mint is equatorial intensity
+
+        
     :param lat: lattitude in degrees (range: -90:90)
     :type lat: scalar(float)
-    :param Mint: Intensity assigned to the magnetized matter in
-    :type Mint: scalar(float)
+    :param Mint_ref: Intensity assigned to the magnetized matter in model
+    :type Mint_ref: scalar(float)
+    :param lat_ref: lattitude of reference intensity of the magnetization, default is None, which assumes Mint is equatorial intensity (range: -90:90)
+    :type lat_ref: scalar(float)
     :return:
         - **M_lat** *(array_like(float))* - 1D array(3), containing components (0=x;1=y;2=z) of the magnetization in model configuration (not PMAG).
     """
@@ -72,15 +80,35 @@ def compute_magnetization(lat, Mint=7.5):
     if not -90 <= lat <= 90:
         print("Latitude is outside the valid range (-90, 90)")
         return
+    if lat_ref is not None and not -90 <= lat_ref <= 90:
+        raise ValueError(
+            "Reference latitude must be between -90 and 90 degrees."
+        )
+        
     lat_rad = np.deg2rad(lat)  # Convert latitude to radians
     inc_rad = np.arctan(2*np.tan(lat_rad))
 
-    # Assuming the components are computed as follows (example logic):
+    # GAD field-strength scaling.
+    intensity_factor = np.sqrt(1.0 + 3.0 * np.sin(lat_rad) ** 2)
+
+    if lat_ref is None:
+        # Mint is the equatorial intensity.
+        Mint_lat = Mint_ref * intensity_factor
+    else:
+        lat_ref_rad = np.deg2rad(lat_ref)
+
+        reference_factor = np.sqrt(1.0 + 3.0 * np.sin(lat_ref_rad) ** 2)
+
+        # Mint_ref is the intensity at lat_ref. 
+        Mint_lat = Mint_ref * intensity_factor / reference_factor
+
     Mx = 0  # Zero as dec = 0 assumed
-    My = 0 if abs(Mint * np.cos(inc_rad)) < 1e-9 else Mint * np.cos(inc_rad)
-    Mz = - Mint * np.sin(inc_rad)
+    My = Mint_lat * np.cos(inc_rad)
+    Mz = - Mint_lat * np.sin(inc_rad)
 
     M_lat = np.array([Mx, My, Mz])  # Combine components into a single array
+    M_lat[np.abs(M_lat) < 1e-12] = 0.0
+
     return M_lat
 
 

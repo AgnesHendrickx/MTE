@@ -21,7 +21,7 @@ sys.path.append(os.path.abspath("./_ext"))
 project = 'MTE'
 copyright = '2026, A.E. Hendrickx'
 author = 'A.E. Hendrickx'
-release = '1.0'
+release = '2.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -79,8 +79,6 @@ if on_rtd:
    pygments_style = 'yourstyle' # For build of RTD (gets style from my own pypi package)
 else:
    pygments_style = 'monokai' # For local build (gets style locally, edited monokai)
-
-
 
 
 autodoc_mock_imports = [

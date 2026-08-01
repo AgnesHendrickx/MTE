@@ -238,8 +238,8 @@ set style line 4 pt 7 lw 2 ps 1.5 lc "red" dt (2,2,2,2)
 set style line 5 pt 7 lw 2 ps 4 lc "royalblue"  dt (2,2,2,2)
 set style line 6 pt 5 lw 2.5 ps 4 lc "web-green"
 
-set terminal pngcairo enhanced size 16cm,10cm
-set output 's6_mp_ztr_sh_tests2.png'
+set terminal pdfcairo enhanced size 16cm,10cm
+set output 's6_mp_ztr_sh_tests2_new.pdf'
 set yrange[*:*]
 set multiplot layout 2,2
 set rmargin 6.8
